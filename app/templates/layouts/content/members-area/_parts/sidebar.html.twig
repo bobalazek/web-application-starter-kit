@@ -14,11 +14,19 @@
 			</a>
 		</li>
 	{% endif %}
-	{% if is_granted('ROLE_SOLES_EDITOR') or is_granted('ROLE_ADMIN') %}
+	{% if is_granted('ROLE_ROLES_EDITOR') or is_granted('ROLE_ADMIN') %}
 		<li class="{{ path('members-area.roles') in app.currentUri ? 'active' : '' }}" role="presentation">
 			<a href="{{ url('members-area.roles') }}">
 				<i class="fa fa-fw fa-tags"></i>
 				{{ 'Roles'|trans }}
+			</a>
+		</li>
+	{% endif %}
+	{% if is_granted('ROLE_POSTS_EDITOR') or is_granted('ROLE_ADMIN') %}
+		<li class="{{ path('members-area.posts') in app.currentUri ? 'active' : '' }}" role="presentation">
+			<a href="{{ url('members-area.posts') }}">
+				<i class="fa fa-fw fa-newspaper-o"></i>
+				{{ 'Posts'|trans }}
 			</a>
 		</li>
 	{% endif %}

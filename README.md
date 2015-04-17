@@ -45,7 +45,7 @@ Other commands
 
 Modules / Components
 -------------------
-In case you want to create a new component / module in this system, do the following:
+In case you want to create a new component / module in this system, do the following (in this case, the posts inside the members area):
 
 * Create a new Controller Provider (like [src/Application/ControllerProvider/MembersArea/PostsControllerProvider.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/src/Application/ControllerProvider/MembersArea/PostsControllerProvider.php) - plural)
     * Bind with the following routes:
@@ -58,7 +58,7 @@ In case you want to create a new component / module in this system, do the follo
             * Route pattern / url: [/new](https://github.com/bobalazek/web-application-starter-kit/blob/master/src/Application/ControllerProvider/MembersArea/PostsControllerProvider.php#L21)
             * Route controller method: [PostsController::newAction](https://github.com/bobalazek/web-application-starter-kit/blob/master/src/Application/Controller/MembersArea/PostsController.php#L24)
         * Detail:
-            * Route name: `posts.detail`
+            * Route name: `members-area.posts.detail`
             * Route pattern / url: `/{id}`
             * Route controller method: `PostsController::detailAction`
         * Edit:
@@ -84,7 +84,7 @@ In case you want to create a new component / module in this system, do the follo
     * app/templates/contents/members-area/posts/ (plural)
     	* [index.html.twig](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/templates/contents/members-area/posts/index.html.twig) (normally just extends the list.html.twig)
         * [list.html.twig](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/templates/contents/members-area/posts/list.html.twig)
-        * [detail.html.twig](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/templates/contents/members-area/posts/detail.html.twig)
+        * `detail.html.twig`
         * [new.html.twig](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/templates/contents/members-area/posts/new.html.twig)
         * [edit.html.twig](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/templates/contents/members-area/posts/edit.html.twig)
         * [remove.html.twig](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/templates/contents/members-area/posts/remove.html.twig)
@@ -99,7 +99,7 @@ File structure
     * locales/ => Translations & co.
     * templates/ => All twig templates
 * bin/
-    * console => Self explaining, isn't it?
+    * console
 * src/
     * Application/
         * Command/
