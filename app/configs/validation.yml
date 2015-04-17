@@ -13,7 +13,7 @@ Application\Entity\RoleEntity:
             - NotBlank:
                 message: errors.role.role.notBlank
                 groups: [ newAndEdit ]
-                
+
 Application\Entity\UserEntity:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:

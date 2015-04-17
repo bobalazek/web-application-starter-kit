@@ -6,11 +6,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Gigablah\Silex\OAuth\Security\Authentication\Token\OAuthTokenInterface;
-use Gigablah\Silex\OAuth\Security\User\Provider\OAuthUserProviderInterface;
 use Application\Entity\UserEntity;
-use Application\Entity\UserOAuthServiceEntity;
-use Application\Entity\ProfileEntity;
 
 class UserProvider
     implements UserProviderInterface

@@ -57,7 +57,7 @@ class PrepareCommand
         $translatedMessages = $results['translatedMessages'];
         $untranslatedMessages = $results['untranslatedMessages'];
 
-        $output->writeln('<info>The Translations for ' . $locale . ' were successfully prepared!</info>');
+        $output->writeln('<info>The Translations for '.$locale.' were successfully prepared!</info>');
         $output->writeln(
             '<info>All: '.count($allMessages).'; '.
             'Translated: '.count($translatedMessages).'; '.

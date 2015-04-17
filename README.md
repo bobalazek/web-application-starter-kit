@@ -13,20 +13,21 @@ Requirements & Tools & Helpers
 
 Setup / Development
 -------------------
-* With your console navigate to your project directory. For example: `cd /var/www/web-application-starter-kit` (create it before, if it doesn't exist yet - `mkdir /var/www/web-application-starter-kit`)
-* Clone this repo: `git clone git@github.com:bobalazek/web-application-starter-kit.git .` (the dot at the end means, that it should clone into the current directory, and not wrapp it with, in this case a 'myapp/' folder)
-* Configure database (and maybe other stuff if you want): `app/configs/global.php`
+* Navigate yor your web directory: `cd /var/www`
+* Create a new folder for the project and navigate to it: `mkdir my-app && cd my-app`
+* Clone the project: `git clone https://github.com/bobalazek/web-application-starter-kit.git .`
+* Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47)
 * Run the following commands:
-    * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin` (skip this step, if you already have composer installed - globally)
-    * `php bin/composer.phar install`
-    * `php bin/console orm:schema-tool:update --force --dump-sql` (to install the database schema)
-    * `bower update` (to install the frontend dependencies - you need to install [Bower](http://bower.io/) first - if you haven't already)
+    * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin` (skip this step, if you already have composer installed globally)
+    * `php bin/composer.phar install` (or `composer install` if you already have composer installed globally)
+    * `php bin/console orm:schema-tool:install --force` (to install the database schema)
+    * `bower update` (to install the frontend dependencies - you will need to install [Bower](http://bower.io/) first - if you haven't already)
 * You are done! Start developing!
 
 Database
 -------------------
 * We use the Doctrine database
-* Navigate to your project directory: `cd /var/www/myapp`
+* Navigate to your project directory: `cd /var/www/my-app`
 * Check the entities: `php bin/console orm:info` (optional)
 * Update the schema: `php bin/console orm:schema-tool:update --force --dump-sql`
 * Database updated!

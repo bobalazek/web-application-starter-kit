@@ -66,7 +66,7 @@ class MyController
                     ->setImageUploadDir(WEB_DIR.'/assets/uploads/')
                     ->imageUpload()
                 ;
-                
+
                 $app['orm.em']->persist($userEntity);
                 $app['orm.em']->flush();
 

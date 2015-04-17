@@ -5,8 +5,8 @@ namespace Application\ControllerProvider;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 
-class IndexControllerProvider 
-	implements ControllerProviderInterface
+class IndexControllerProvider
+    implements ControllerProviderInterface
 {
     public function connect(Application $app)
     {

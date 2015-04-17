@@ -6,9 +6,9 @@ if (! file_exists(APP_DIR.'/configs/global.php')) {
 }
 
 $app->register(
-	new Igorw\Silex\ConfigServiceProvider(
-		APP_DIR.'/configs/global.php'
-	)
+    new Igorw\Silex\ConfigServiceProvider(
+        APP_DIR.'/configs/global.php'
+    )
 );
 
 if (file_exists(APP_DIR.'/configs/global-local.php')) {
@@ -255,7 +255,7 @@ $app['security.role_hierarchy'] = array(
 $app['security.voters'] = $app->extend(
     'security.voters',
     function ($voters) use ($app) {
-    	// Soon!
+        // Soon!
 
         return $voters;
     }
