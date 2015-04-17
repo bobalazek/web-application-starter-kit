@@ -47,41 +47,41 @@ Modules / Components
 -------------------
 In case you want to create a new component / module in this system, do the following:
 
-* Create a new Controller Provider (src/Application/ControllerProvider/CarsControllerProvider.php - plural)
+* Create a new Controller Provider (like [src/Application/ControllerProvider/PostsControllerProvider.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/src/Application/ControllerProvider/MembersArea/PostsControllerProvider.php) - plural)
     * Bind with the following routes:
         * Overview / list:
-            * Route name: `cars`
+            * Route name: `posts`
             * Route pattern / url: ` ` (blank) or `/`
-            * Route controller method: `CarsController::indexAction`
+            * Route controller method: `PostsController::indexAction`
         * New:
-            * Route name: `cars.new`
+            * Route name: `posts.new`
             * Route pattern / url: `/new`
-            * Route controller method: `CarsController::newAction`
+            * Route controller method: `PostsController::newAction`
         * Detail:
-            * Route name: `cars.detail`
+            * Route name: `posts.detail`
             * Route pattern / url: `/{id}`
-            * Route controller method: `CarsController::detailAction`
+            * Route controller method: `PostsController::detailAction`
         * Edit:
-            * Route name: `cars.edit`
+            * Route name: `posts.edit`
             * Route pattern / url: `/{id}/edit`
-            * Route controller method: `CarsController::editAction`
+            * Route controller method: `PostsController::editAction`
         * Remove:
-            * Route name: `cars.remove`
+            * Route name: `posts.remove`
             * Route pattern / url: `/{id}/remove`
-            * Route controller method: `CarsController::removeAction`
-* Create a new Controller (src/Application/Controller/CarsController.php - plural)
+            * Route controller method: `PostsController::removeAction`
+* Create a new Controller (src/Application/Controller/MembersArea/PostsController.php - plural)
     * With the following methods:
-        * `CarsController::indexAction` - for the list template
-        * `CarsController::newAction` - for the new templates
-        * `CarsController::detailAction` - for the details template
-        * `CarsController::editAction` - for the edit template
-        * `CarsController::removeAction` - for the remove template
+        * `PostsController::indexAction` - for the list template
+        * `PostsController::newAction` - for the new templates
+        * `PostsController::detailAction` - for the details template
+        * `PostsController::editAction` - for the edit template
+        * `PostsController::removeAction` - for the remove template
 * Mount the routes of the Controller Provider to the routes (app/core/routes.php)
-* Create a new Entity (src/Application/Entity/CarEntity.php - singular)
-* Create a new Repository (src/Application/Repository/CarRepository.php - singular)
-* Create a new Form Type (src/Application/Form/Type/CarType.php - singular)
+* Create a new Entity (src/Application/Entity/PostEntity.php - singular)
+* Create a new Repository (src/Application/Repository/PostRepository.php - singular)
+* Create a new Form Type (src/Application/Form/Type/PostType.php - singular)
 * Create templates:
-    * app/templates/contents/{theme}/cars/ (plural)
+    * app/templates/contents/members-area/posts/ (plural)
     	* index.html.twig (normally just extends the list.html.twig)
         * list.html.twig
         * detail.html.twig

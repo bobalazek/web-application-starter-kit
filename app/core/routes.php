@@ -30,6 +30,12 @@ $app->mount(
     new Application\ControllerProvider\MembersArea\RolesControllerProvider()
 );
 
+/******** Posts ********/
+$app->mount(
+    '/members-area/posts',
+    new Application\ControllerProvider\MembersArea\PostsControllerProvider()
+);
+
 /******** Statistics ********/
 $app->mount(
     '/members-area/statistics',

@@ -1,0 +1,23 @@
+{% extends 'layouts/content/members-area.html.twig' %}
+
+{% block title %}{{ 'New'|trans }} | {{ 'Posts'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+	<h1>{{ 'New Post'|trans }}</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="{{ url('members-area') }}">
+				{{ 'Home' | trans }}
+			</a>
+		</li>
+		<li>
+			<a href="{{ url('members-area.posts') }}">
+				{{ 'Posts' | trans }}
+			</a>
+		</li>
+		<li class="active">
+			{{ 'New' | trans }}
+		</li>
+	</ol>
+	{% include 'contents/members-area/posts/_form.html.twig' %}
+{% endblock %}
