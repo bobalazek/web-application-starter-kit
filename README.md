@@ -14,7 +14,7 @@ Requirements & Tools & Helpers
 Setup / Development
 -------------------
 * With your console navigate to your project directory. For example: `cd /var/www/web-application-starter-kit` (create it before, if it doesn't exist yet - `mkdir /var/www/web-application-starter-kit`)
-* Clone this repo: `git clone git@github.com:corcosoft/web-application-starter-kit.git .` (the dot at the end means, that it should clone into the current directory, and not wrapp it with, in this case a 'myapp/' folder)
+* Clone this repo: `git clone git@github.com:bobalazek/web-application-starter-kit.git .` (the dot at the end means, that it should clone into the current directory, and not wrapp it with, in this case a 'myapp/' folder)
 * Configure database (and maybe other stuff if you want): `app/configs/global.php`
 * Run the following commands:
     * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin` (skip this step, if you already have composer installed - globally)
