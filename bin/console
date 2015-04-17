@@ -1,0 +1,85 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+$app = require dirname(dirname(__FILE__)) . '/app/bootstrap.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+$consoleApp = new Application(
+    $app['name'],
+    $app['version']
+);
+
+$app->boot();
+
+/********** Doctrine **********/
+$doctrineHelperSet = new Symfony\Component\Console\Helper\HelperSet( array(
+    'db' => new Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper(
+        $app['orm.em']->getConnection()
+    ),
+    'em' => new Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper(
+        $app['orm.em']
+    )
+));
+
+$consoleApp->setHelperSet($doctrineHelperSet);
+\Doctrine\ORM\Tools\Console\ConsoleRunner::addCommands(
+    $consoleApp
+);
+
+/*************** Application ***************/
+/********** Storage **********/
+/***** Prepare *****/
+$consoleApp
+    ->add(
+        new \Application\Command\Storage\PrepareCommand(
+            'application:storage:prepare',
+            $app,
+            $consoleApp
+        )
+    )
+;
+
+/********** Environment **********/
+/***** Prepare *****/
+$consoleApp
+    ->add(
+        new \Application\Command\Environment\PrepareCommand(
+            'application:environment:prepare',
+            $app,
+            $consoleApp
+        )
+    )
+;
+
+/********** Database **********/
+/***** Hydrate Data *****/
+$consoleApp
+    ->add(
+        new \Application\Command\Database\HydrateDataCommand(
+            'application:database:hydrate-data',
+            $app,
+            $consoleApp
+        )
+    )
+;
+
+/********** Translations **********/
+/***** Prepare *****/
+$consoleApp
+    ->add(
+        new \Application\Command\Translations\PrepareCommand(
+            'application:translations:prepare',
+            $app,
+            $consoleApp
+        )
+    )
+;
+
+$consoleApp->run();

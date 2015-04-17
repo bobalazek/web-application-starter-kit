@@ -1,0 +1,42 @@
+{% extends 'layouts/content/members-area/login.html.twig' %}
+
+{% block title %}{{ 'Login'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+	<h1 class="text-center">{{ 'Login'|trans }}</h1>
+	<hr />
+	{% if lastError %}
+		<div class="alert alert-danger">
+			{{ lastError }}
+		</div>
+	{% endif %}
+	{# This url is an excepiton, beacuse it is defined in app/core/providers.php #}
+	<form id="login-form" class="form" role="form" action="{{ url('members-area_login_check') }}" method="POST">
+		<input id="csrf-token-input" type="hidden" name="csrf_token" value="{{ csrfToken }}" />
+		<div class="form-group">
+			<label for="username-input">
+				{{ 'Username'|trans }} {{ 'or'|trans }} {{ 'Email'|trans }}
+			</label>
+			<input id="username-input" class="form-control" type="text"
+				name="username" value="{{ lastUsername }}" />
+		</div>
+		<div class="form-group">
+			<label for="password-input">
+				{{ 'Password'|trans }}
+			</label>
+			<input id="password-input" class="form-control" type="password"
+				name="password" />
+		</div>
+		<div class="checkbox">
+			<label>
+				<input id="remember-me-input" type="checkbox" name="remember_me" />
+				{{ 'Remember me' | trans }}
+			</label>
+		</div>
+		<div class="form-group">
+			<button id="submit-buttom" class="btn btn-default btn-lg btn-block" type="submit">
+				{{ 'Login'|trans }}
+			</button>
+		</div>
+	</form>
+{% endblock %}

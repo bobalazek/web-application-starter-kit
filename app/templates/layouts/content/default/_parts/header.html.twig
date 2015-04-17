@@ -1,0 +1,108 @@
+<nav id="primary-navigation"
+	class="navigation navbar navbar-default navbar-static-top"
+	role="navigation">
+	<div class="container{{ isContainerFluid ? '-fluid' : '' }}">
+		<div class="navbar-header">
+			<button type="button"
+				class="navbar-toggle collapsed"
+				data-toggle="collapse"
+				data-target="#primary-navigation-collapse">
+				<span class="sr-only">
+					{{ 'Toggle navigation'|trans }}
+				</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ url('index') }}">
+				<div class="inline-block">
+					{{ app.name }}
+				</div>
+			</a>
+		</div>
+		<div id="primary-navigation-collapse" class="collapse navbar-collapse">
+			{% block primary_navigation %}
+				<ul id="primary-navigation-list"
+					class="navigation-list nav navbar-nav">
+					<li class="{{ app.currentUriRelative == '' ? 'active' : '' }}">
+						<a href="{{ url('index') }}">
+							{{ 'Home'|trans }}
+						</a>
+					</li>
+					<li class="{{ path('members-area') in app.currentUri ? 'active' : '' }}">
+						<a href="{{ url('members-area') }}">
+							{{ 'Members area'|trans }}
+						</a>
+					</li>
+				</ul> <!-- /#primary-navigation-list -->
+				<ul id="right-navigation-list"
+					class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#"
+							class="dropdown-toggle"
+							data-toggle="dropdown">
+							{{ 'Languages'|trans }}
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							{% for localeKey, locale in app.locales %}
+								<li class="{{ app.locale == localeKey ? 'active' : '' }}">
+									<a href="{{ url('set-locale', { locale : localeKey }) }}">
+										{{ locale.languageName|trans }}
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</li>
+					{% if app.user and is_granted('ROLE_PREVIOUS_ADMIN') %}
+						<li>
+							<a href="?switch_user=_exit">
+								{{ 'Back to admin'|trans }}
+							</a>
+						</li>
+					{% endif %}
+					{% if app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+						<li class="dropdown">
+							<a href="#"
+								class="dropdown-toggle"
+								{% if app.user.getProfile().getImageUrl() %}
+									style="background-size: 40px 40px;
+										background-position: 15px 5px;
+										background-repeat: no-repeat;
+										background-image: url('{{ app.user.getProfile().getImageUrl() }}');
+										padding-left: 65px;"
+								{% endif %}
+								data-toggle="dropdown">
+								{{ app.user.getProfile().getName() }}
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li class="{{ path('members-area.my.profile') == app.currentUri ? 'active' : '' }}">
+									<a href="{{ url('members-area.my.profile') }}">
+										{{ 'Profile'|trans }}
+									</a>
+								</li>
+								<li class="{{ path('members-area.my.profile.settings') == app.currentUri ? 'active' : '' }}">
+									<a href="{{ url('members-area.my.profile.settings') }}">
+										{{ 'Settings'|trans }}
+									</a>
+								</li>
+								<li class="{{ path('members-area.my.profile.settings.password') == app.currentUri ? 'active' : '' }}">
+									<a href="{{ url('members-area.my.profile.settings.password') }}">
+										{{ 'Change password'|trans }}
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="{{ app.logoutUrl }}">
+										{{ 'Logout'|trans }}
+									</a>
+								</li>
+							</ul>
+						</li>
+					{% endif %}
+				</ul>
+			{% endblock %}
+		</div> <!-- /#primary-navigation-collapse -->
+	</div> <!-- /.container -->
+</nav> <!-- /#primary-navigation -->

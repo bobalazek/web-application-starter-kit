@@ -1,0 +1,39 @@
+{% extends 'layouts/content/members-area.html.twig' %}
+
+{% block title %}{{ 'Remove'|trans }} | {{ 'Roles'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+	<h1>
+		{{ 'Remove Role' | trans }}
+		<small>"{{ role }}"</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="{{ url('members-area') }}">
+				{{ 'Home' | trans }}
+			</a>
+		</li>
+		<li>
+			<a href="{{ url('members-area.roles') }}">
+				{{ 'Roles' | trans }}
+			</a>
+		</li>
+		<li class="active">
+			{{ 'Remove' | trans }}
+		</li>
+	</ol>
+	<div class="alert alert-block alert-warning">
+		<h4 class="alert-heading">{{ 'Warning!'|trans }}</h4>
+		<p>{{ 'Are you sure you want to remove this role?'|trans }}</p>
+		<p>
+			<a class="btn btn-danger"
+				href="{{ url('members-area.roles.remove', { id : role.getId() }) }}?action=confirm">
+				{{ 'Confirm'|trans }}
+			</a>
+			<a class="btn btn-success"
+				href="{{ url('members-area.roles') }}">
+				{{ 'Cancel'|trans }}
+			</a>
+		</p>
+	</div>
+{% endblock %}

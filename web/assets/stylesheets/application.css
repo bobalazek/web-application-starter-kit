@@ -1,0 +1,181 @@
+/****************************************************
+ * Company: Corcosoft
+ * Author: Borut Balazek <bobalazek124@gmail.com>
+ * Verison: 1.0
+ ****************************************************/
+
+/********** Imports (fonts) **********/
+/* Google Fonts and stuff */
+
+/********** General **********/
+#html {}
+
+	#body {}
+
+		#application {}
+
+/* Links */
+a {}
+
+a:focus,
+a:hover {
+	text-decoration: none;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {}
+
+/********** Warnings **********/
+#warnings {
+	position: fixed;
+	top: 0;
+	right: 0;
+	max-width: 360px;
+	display: none;
+}
+
+	#warnings .warning {
+		padding: 8px;
+		margin-bottom: 8px;
+		z-index: 9999;
+		background-color: #FCD116;
+		color: #6B5702;
+		text-align: justify;
+		display: none;
+	}
+
+	#warnings .warning.active {
+		display: block;
+	}
+
+	/***** Noscript *****/
+	#noscript-warning {}
+
+	/***** Old IE Warning *****/
+	#old-ie-warning {}
+
+/********** Preloader **********/
+#preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999999;
+	font-size: 32px;
+	text-align: center;
+	background-color: #fff;
+	background-position: center 100px;
+	background-repeat: no-repeat;
+	background-size: 256px 256px;
+	/* background-image: url('../images/logo/icon.png'); */
+	padding-top: 20px;
+	color: #000;
+}
+
+/********** Wrapper **********/
+#wrapper {}
+
+	#pjax-loader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding: 8px;
+		text-align: center;
+		z-index: 99999;
+		background-color: #337ab7;
+		color: #fff;
+		display: none;
+	}
+
+	#header {}
+
+	#content {}
+
+		#sidebar {}
+
+			#sidebar .nav > li > a {
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+
+		/*** Application information ***/
+		#application-information {
+			display: none;
+			margin-bottom: 10px;
+		}
+
+		#application-information-button {
+			outline: none;
+			margin-bottom: 10px;
+		}
+
+	#footer {
+		font-size: 13px;
+	}
+
+	#back-to-top {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		z-index: 99999;
+		cursor: pointer;
+	}
+
+	/***** Other *****/
+	.nav-sub {
+		margin: 5px 0 5px 30px;
+	}
+
+	.divider-top {
+		border-top: 3px solid #666;
+	}
+
+/********** Fixes **********/
+.navbar-brand {
+		line-height: 26px;
+		font-size: 22px;
+}
+
+	.navbar-default .navbar-brand {
+		padding: 9px;
+	}
+
+	.navbar-brand > img {
+		float: left;
+		margin-right: 5px;
+	}
+
+	.navbar-brand > div {
+		padding: 3px 0;
+	}
+
+/********** Media Queries (from Bootstrap) **********/
+/* Extra small devices (phones, up to 480px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+/********** Retina **********/
+.is-retina #preloader {
+	background-size: 196px 196px;
+}

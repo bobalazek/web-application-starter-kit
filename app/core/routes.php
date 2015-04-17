@@ -1,0 +1,64 @@
+<?php
+
+/*========== Index ==========*/
+$app->mount(
+    '/',
+    new Application\ControllerProvider\IndexControllerProvider()
+);
+
+/*========== Members Area ==========*/
+$app->mount(
+    '/members-area',
+    new Application\ControllerProvider\MembersAreaControllerProvider()
+);
+
+/******** My ********/
+$app->mount(
+    '/members-area/my',
+    new Application\ControllerProvider\MembersArea\MyControllerProvider()
+);
+
+/******** Users ********/
+$app->mount(
+    '/members-area/users',
+    new Application\ControllerProvider\MembersArea\UsersControllerProvider()
+);
+
+/******** Roles ********/
+$app->mount(
+    '/members-area/roles',
+    new Application\ControllerProvider\MembersArea\RolesControllerProvider()
+);
+
+/******** Statistics ********/
+$app->mount(
+    '/members-area/statistics',
+    new Application\ControllerProvider\MembersArea\StatisticsControllerProvider()
+);
+
+/******** Settings ********/
+$app->mount(
+    '/members-area/settings',
+    new Application\ControllerProvider\MembersArea\SettingsControllerProvider()
+);
+
+/*** Set Locale ***/
+$app->match('/set-locale/{locale}', function ($locale) use ($app) {
+    $cookie = new \Symfony\Component\HttpFoundation\Cookie(
+        'locale',
+        $locale,
+        new \DateTime('now + 1 year')
+    );
+
+    $response = \Symfony\Component\HttpFoundation\Response::create(null, 302, array(
+        'Location' => isset($_SERVER['HTTP_REFERER'])
+            ? $_SERVER['HTTP_REFERER']
+            : $app['baseUrl'],
+    ));
+
+    $response->headers->setCookie($cookie);
+
+    return $response;
+})
+->bind('set-locale')
+->assert('locale', implode('|', array_keys($app['locales'])));

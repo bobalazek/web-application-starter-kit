@@ -1,0 +1,136 @@
+{% extends 'layouts/content/members-area.html.twig' %}
+
+{% block title %}{{ 'Users'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+	<h1>
+		{{ 'Users'|trans }}
+		<a class="btn btn-primary btn-sm" href="{{ url('members-area.users.new') }}">
+			{{ 'New'|trans }}
+		</a>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="{{ url('members-area') }}">
+				{{ 'Home' | trans }}
+			</a>
+		</li>
+		<li class="active">
+			{{ 'Users' | trans }}
+		</li>
+	</ol>
+	<div class="table-responsive">
+		<table class="table table-striped table-condensed" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>{{ 'Email' | trans }}</th>
+					<th>{{ 'Username' | trans}}</th>
+					<th width="150">{{ 'Profile' | trans }}</th>
+					<th width="140">{{ 'Statuses' | trans }}</th>
+					<th width="200">
+						{{ 'Roles' | trans }}
+					</th>
+					<th width="160">{{ 'Time created' | trans}}</th>
+					<th width="160">{{ 'Time last active' | trans }}</th>
+					<th width="200">{{ 'Actions'|trans }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr class="{{ user.isLocked() ? 'danger' : '' }}">
+						<td>{{ user.getEmail() }}</td>
+						<td>{{ user.getUsername() }}</td>
+						<td>
+							{% if user.getProfile() %}
+								<div>
+									<b>{{ 'First name'|trans }}:</b>
+									{{ user.getProfile().getFirstName() }}
+								</div>
+								<div class="{{ user.getProfile().getLastName() == '' ? 'hidden' : '' }}">
+									<b>{{ 'Last name'|trans }}:</b>
+									{{ user.getProfile().getLastName() }}
+								</div>
+							{% endif %}
+							{% if user.getProfile().getImageUrl() %}
+								<div>
+									<b>{{ 'Image'|trans }}:</b>
+									<a href="{{ user.getProfile().getImageUrl() }}" target="_blank">
+										<img src="{{ user.getProfile().getImageUrl() }}" alt="User image" style="max-width: 64px;" />
+									</a>
+								</div>
+							{% endif %}
+						</td>
+						<td>
+							<div>
+								<b>{{ 'Enabled'|trans }}:</b>
+								{{ user.isEnabled() ? 'Yes'|trans : 'No'|trans }}
+							</div>
+							<div>
+								<b>{{ 'Locked'|trans }}:</b>
+								{{ user.isLocked() ? 'Yes'|trans : 'No'|trans }}
+							</div>
+						</td>
+						<td>{{ user.getRoles()|join(', ') }}</td>
+						<td>{{ user.getTimeCreated() | date('Y-m-d H:i:s') }}</td>
+						<td>
+							{% if user.getTimeLastActive() %}
+								{{ user.getTimeLastActive() | date('Y-m-d H:i:s') }}
+							{% endif %}
+						</td>
+						<td>
+							<a class="btn btn-sm btn-default"
+								data-toggle="tooltip" title="{{ 'View'|trans }}"
+								href="{{ url('members-area.users.detail', { id : user.getId() }) }}">
+								<i class="fa fa-fw fa-info"></i>
+							</a>
+							<a class="btn btn-sm btn-default"
+							 	data-toggle="tooltip" title="{{ 'Edit'|trans }}"
+								href="{{ url('members-area.users.edit', { id : user.getId() }) }}">
+								<i class="fa fa-fw fa-cog"></i>
+							</a>
+							{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+									<a class="btn btn-sm btn-default"
+										data-toggle="tooltip"
+										title="{{ 'First you must switch back to your own account'|trans }}"
+										href="#">
+									<i class="fa fa-fw fa-refresh"></i>
+								</a>
+							{% elseif user.isEnabled() != true %}
+								<a class="btn btn-sm btn-default"
+									data-toggle="tooltip"
+									title="{{ 'The user needs to be enabled to switch to his account'|trans }}"
+									href="#">
+									<i class="fa fa-fw fa-refresh"></i>
+								</a>
+							{% elseif user.isLocked() == true %}
+								<a class="btn btn-sm btn-default"
+									data-toggle="tooltip"
+									title="{{ 'You can not switch to a locked user!'|trans }}"
+									href="#">
+									<i class="fa fa-fw fa-refresh"></i>
+								</a>
+							{% else %}
+								<a class="btn btn-sm btn-default"
+									data-toggle="tooltip" title="{{ 'Switch'|trans }}"
+									href="?switch_user={{ user.getUsername() }}">
+									<i class="fa fa-fw fa-refresh"></i>
+								</a>
+							{% endif %}
+							<a class="btn btn-sm btn-default"
+								data-toggle="tooltip" title="{{ 'Remove'|trans }}"
+								href="{{ url('members-area.users.remove', { id : user.getId() }) }}">
+								<i class="fa fa-fw fa-times"></i>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">
+							{{ 'No users found' | trans }}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

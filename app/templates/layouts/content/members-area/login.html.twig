@@ -1,0 +1,15 @@
+{% extends 'layouts/content/default.html.twig' %}
+
+{% block title %}{{ 'Members area'|trans }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				{% block main %}{% endblock %}
+				<hr />
+				{% include 'layouts/content/members-area/_parts/footer-links.html.twig' %}
+			</div>
+		</div>
+	</div> <!-- /.container-fluid -->
+{% endblock %}

@@ -1,0 +1,10 @@
+<div id="flash-messages">
+	{% for type, flashMessages in app.flashbag.all() %}
+		{% for flashMessage in flashMessages %}
+			<div class="alert alert-{{ type }}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{ flashMessage|trans }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+</div> <!-- /#flash-messages -->

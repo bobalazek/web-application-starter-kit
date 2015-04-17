@@ -1,0 +1,24 @@
+{% extends 'layouts/content/default.html.twig' %}
+
+{% block title %}{{ 'Members area'|trans }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			{% if app.user %}
+				<div class="col-md-2">
+					<div id="sidebar" role="complementary">
+						{% block sidebar %}
+							{% include 'layouts/content/members-area/_parts/sidebar.html.twig' %}
+						{% endblock %}
+					</div>
+				</div>
+			{% endif %}
+			<div class="col-md-{{ app.user ? '10' : '12' }}">
+				<div id="main" role="main">
+					{% block main %}{% endblock %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

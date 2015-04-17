@@ -1,0 +1,31 @@
+{% extends 'layouts/content/members-area.html.twig' %}
+
+{% block title %}{{ 'Edit'|trans }} | {{ 'Roles'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+	<h1>
+		{{ 'Edit Role'|trans }}
+		<a class="btn btn-primary btn-sm"
+            href="{{ url('members-area.roles.new') }}">
+            {{ 'New'|trans }}
+        </a>
+		<br />
+		<small>{{ role }}</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="{{ url('members-area') }}">
+				{{ 'Home' | trans }}
+			</a>
+		</li>
+		<li>
+			<a href="{{ url('members-area.roles') }}">
+				{{ 'Roles' | trans }}
+			</a>
+		</li>
+		<li class="active">
+			{{ 'Edit' | trans }}
+		</li>
+	</ol>
+	{% include 'contents/members-area/roles/_form.html.twig' %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layouts/content/members-area.html.twig' %}
+
+{% block title %}{{ 'Statistics'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'Statistics'|trans }}</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ url('members-area') }}">
+                {{ 'Home' | trans }}
+            </a>
+        </li>
+        <li class="active">
+            {{ 'Statistics' | trans }}
+        </li>
+    </ol>
+    <div id="main-content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        {{ 'Users' | trans }}
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            {{ 'Total' | trans }}
+                            <span class="badge">
+                                {{ app['orm.em'].getRepository('Application\\Entity\\UserEntity').countAll() }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /.col-md-6 -->
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        {{ 'Roles' | trans }}
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            {{ 'Total' | trans }}
+                            <span class="badge">
+                                {{ app['orm.em'].getRepository('Application\\Entity\\RoleEntity').countAll() }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!-- /.col-md-6 -->
+        </div> <!-- /.row -->
+    </div>
+{% endblock %}

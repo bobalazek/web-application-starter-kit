@@ -1,0 +1,48 @@
+Application\Entity\RoleEntity:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: role
+            message: errors.role.role.alreadyInUse
+            groups: [ newAndEdit ]
+    properties:
+        name:
+            - NotBlank:
+                message: errors.role.name.notBlank
+                groups: [ newAndEdit ]
+        role:
+            - NotBlank:
+                message: errors.role.role.notBlank
+                groups: [ newAndEdit ]
+                
+Application\Entity\UserEntity:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: email
+            message: errors.user.email.alreadyInUse
+            groups: [ new, edit, settings ]
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: username
+            message: errors.user.username.alreadyInUse
+            groups: [ new, edit, settings ]
+    properties:
+        username:
+            - NotBlank:
+                message: errors.user.username.notBlank
+                groups: [ new, edit, settings ]
+        email:
+            - NotBlank:
+                message: errors.user.email.notBlank
+                groups: [ new, edit, settings, resetPasswordRequest ]
+            - Email:
+                message: errors.user.email.invalid
+                groups: [ new, edit, settings, resetPasswordRequest ]
+        plainPassword:
+            - NotBlank:
+                message: errors.user.password.notBlank
+                groups: [ new, settingsPassword, resetPasswordReset ]
+        profile:
+            - Valid: ~
+        lockedReason:
+            - NotBlank:
+                message: errors.user.lockedReason.notBlank
+                groups: [ isLocked ]

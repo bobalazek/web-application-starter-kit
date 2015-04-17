@@ -1,0 +1,19 @@
+{% extends 'layouts/content/members-area/register.html.twig' %}
+
+{% block title %}{{ 'Register'|trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+	<h1 class="text-center">{{ 'Register'|trans }}</h1>
+	<hr />
+	{% if success is defined %}
+		<div class="alert alert-success">
+			{{ successMessage|trans }}
+		</div>
+	{% elseif error is defined %}
+		<div class="alert alert-danger">
+			{{ errorMessage|trans }}
+		</div>
+	{% else %}
+		{{ form(form) }}
+	{% endif %}
+{% endblock %}

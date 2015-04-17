@@ -1,0 +1,38 @@
+<div class="container{{ isContainerFluid ? '-fluid' : '' }}">
+	<div class="row">
+		<div class="col-md-12">
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div id="copyright">
+				{{ 'Copyright'|trans }} &copy; 2015 -
+				Made with <i class="fa fa-fw fa-heart heartbeat-animation" style="color: #FE0E39;"></i>
+				in EU
+				by
+				<a href="https://twitter.com/bobalazek" target="_blank">Borut Balažek</a>
+			</div>
+		</div> <!-- /.col-md-6 -->
+		<div class="col-md-6">
+			<div class="pull-right">
+				<nav id="tertiary-navigation" class="navigation" role="navigation">
+					{% block tertiary_navigation %}
+						<ul id="tertiary-navigation-list" class="navigation-list list-inline">
+							<li>
+								<a href="{{ url('index') }}">
+									{{ 'Home'|trans }}
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('members-area') }}">
+									{{ 'Members area'|trans }}
+								</a>
+							</li>
+						</ul> <!-- /#tertiary-navigation-list -->
+					{% endblock %}
+				</nav> <!-- /#tertiary-navigation -->
+			</div>
+		</div> <!-- /.col-md-6 -->
+	</div> <!-- /.row -->
+</div> <!-- /.container-fluid -->
