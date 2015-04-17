@@ -7,7 +7,7 @@ return array(
     'version' => '0.1',
 
     // Admin email (& name)
-    'email' => 'info@bobalazek.com',
+    'email' => 'info@corcosoft.com',
     'emailName' => 'Web Application Starter Kit Mailer',
 
     // Default Locale / Language stuff
