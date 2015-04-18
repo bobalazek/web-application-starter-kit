@@ -208,7 +208,6 @@ $securityFirewalls['members-area'] = array(
         'check_path' => '/members-area/login/check',
         'failure_path' => '/members-area/login',
         'default_target_path' => '/members-area',
-        //'always_use_default_target_path' => true,
         'use_referer' => true,
         'username_parameter' => 'username',
         'password_parameter' => 'password',
@@ -222,10 +221,9 @@ $securityFirewalls['members-area'] = array(
         'target' => '/members-area',
         'invalidate_session' => true,
         'csrf_parameter' => 'csrf_token',
-        //'with_csrf' => true
     ),
     'remember_me' => array(
-        'key' => 'someRandomRememberMeKey',
+        'key' => $app['rememberMeOptions']['key'],
         'name' => 'user',
         'remember_me_parameter' => 'remember_me',
     ),

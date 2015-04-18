@@ -1,3 +1,17 @@
+Application\Entity\PostEntity:
+    properties:
+        title:
+            - NotBlank:
+                message: errors.post.title.notBlank
+                groups: [ newAndEdit ]
+
+Application\Entity\ProfileEntity:
+    properties:
+        firstName:
+            - NotBlank:
+                message: errors.profile.name.notBlank
+                groups: [ newAndEdit ]
+
 Application\Entity\RoleEntity:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:

@@ -66,6 +66,11 @@ return array(
         'auth_mode' => null,
     ),
 
+    // Remmember me Options
+    'rememberMeOptions' => array(
+        'key' => 'someRandomKey',
+    ),
+
     // Default settings (the setting values from the DB
     //   will override this values)
     'settings' => array(
