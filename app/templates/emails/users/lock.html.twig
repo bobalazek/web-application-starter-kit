@@ -1,0 +1,23 @@
+{% extends 'layouts/email.html.twig' %}
+
+{% block main %}
+    <table class="row note">
+        <tr>
+            <td class="wrapper last">
+                <h4>{{ 'Hello'|trans }} <b>{{ user.getProfile().getFirstName()  }}</b>!</h4>
+                <p>
+                     {{ 'You have been locked because'|trans }}:
+                </p>
+                <table class="twelve columns">
+                <tr>
+                    <td class="panel">
+                        {{ user.getLockedReason() ?: ('testLockedReasonText' | trans) }}
+                    </td>
+                    <td class="expander"></td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <p></p>
+{% endblock %}

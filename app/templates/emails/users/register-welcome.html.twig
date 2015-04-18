@@ -1,0 +1,17 @@
+{% extends 'layouts/email.html.twig' %}
+
+{% block main %}
+	<table class="row note">
+		<tr>
+			<td class="wrapper last">
+				<h4>
+					{{ 'Hello'|trans }}
+					<b>{{ user.getProfile().getFirstName() }}</b>!
+				</h4>
+				<p>
+					 {{ 'Thanks for joining!'|trans }}
+				</p>
+			</td>
+		</tr>
+	</table>
+{% endblock %}

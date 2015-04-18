@@ -264,6 +264,30 @@ $app['security.voters'] = $app->extend(
 /***** Remember Me *****/
 $app->register(new Silex\Provider\RememberMeServiceProvider());
 
+/***** Swiftmailer / Mailer *****/
+$app->register(new Silex\Provider\SwiftmailerServiceProvider());
+
+$app['swiftmailer.options'] = $app['swiftmailerOptions'];
+
+$app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = array(), $isTwigTemplate = true) use ($app) {
+    $emogrifier = new \Pelago\Emogrifier();
+    $emogrifier->setHtml(
+        $isTwigTemplate
+        ? $app['twig']->render($twigTemplatePathOrContent, $twigTemplateData)
+        : $app['twig']->render(
+            'emails/blank.html.twig',
+            array_merge(
+                $twigTemplateData,
+                array(
+                    'content' => $twigTemplatePathOrContent,
+                )
+            )
+        )
+    );
+
+    return $emogrifier->emogrify();
+});
+
 /*** Listeners ***/
 $app['dispatcher']->addListener(
     \Symfony\Component\Security\Core\AuthenticationEvents::AUTHENTICATION_SUCCESS,
