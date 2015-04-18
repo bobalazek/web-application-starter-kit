@@ -49,6 +49,11 @@ $app['application.translator'] = $app->share(function () use ($app) {
     return new \Application\Translator($app);
 });
 
+/*** Application Mailer ***/
+$app['application.mailer'] = $app->share(function () use ($app) {
+    return new \Application\Mailer($app);
+});
+
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
 

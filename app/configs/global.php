@@ -5,6 +5,7 @@ return array(
     'debug' => true,
     'name' => 'Web Application Starter Kit',
     'version' => '0.1.0',
+    'author' => 'Corcosoft',
 
     // Admin email (& name)
     'email' => 'info@corcosoft.com',

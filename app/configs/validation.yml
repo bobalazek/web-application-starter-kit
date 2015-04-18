@@ -42,7 +42,3 @@ Application\Entity\UserEntity:
                 groups: [ new, settingsPassword, resetPasswordReset ]
         profile:
             - Valid: ~
-        lockedReason:
-            - NotBlank:
-                message: errors.user.lockedReason.notBlank
-                groups: [ isLocked ]
