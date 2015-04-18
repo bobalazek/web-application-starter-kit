@@ -48,8 +48,10 @@
 							<dd>{{ user.getProfile().getLastName() }}</dd>
 						{% endif %}
 
-						<dt>{{ 'Gender' | trans }}</dt>
-						<dd><i class="fa fa-{{ user.getProfile().getGender() }}"></i></dd>
+						{% if user.getProfile().getGender() %}
+							<dt>{{ 'Gender' | trans }}</dt>
+							<dd><i class="fa fa-{{ user.getProfile().getGender() }}"></i></dd>
+						{% endif %}
 
 						<dt>{{ 'Birthdate' | trans }}</dt>
 						<dd>{{ user.getProfile().getBirthdate() | date('Y-m-d') }}</dd>

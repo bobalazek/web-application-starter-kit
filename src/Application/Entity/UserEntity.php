@@ -562,7 +562,7 @@ class UserEntity
 
         return $this;
     }
-    
+
     /***** Other AdvancedUserInterface Methods *****/
     public function isEqualTo(AdvancedUserInterface $user)
     {
