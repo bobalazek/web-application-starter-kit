@@ -5,6 +5,7 @@
 		<title>{% block title %}{{ app.name|trans }}{% endblock %}</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta http-equiv="cleartype" content="on" />
+		<meta name="author" content="{{ app.author }}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="HandheldFriendly" content="True" />
 		<meta name="MobileOptimized" content="480" />
@@ -75,9 +76,6 @@
 								{% include 'layouts/content/default/_parts/footer.html.twig' %}
 							{% endblock %}
 						</footer> <!-- /#footer -->
-						<div id="back-to-top" style="display: none;">
-							{{ 'Top'|trans }}
-						</div> <!-- /#back-to-top -->
 					{% endblock %}
 				</div> <!-- /#wrapper -->
 				{% block wrapper_after %}{% endblock %}
