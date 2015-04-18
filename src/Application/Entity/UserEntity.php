@@ -562,33 +562,7 @@ class UserEntity
 
         return $this;
     }
-
-    /*** Transactions ***/
-    public function getTransactions()
-    {
-        return $this->transactions;
-    }
-
-    public function setTransactions($transactions)
-    {
-        $this->transactions = $transactions;
-
-        return $this;
-    }
-
-    /*** Badges ***/
-    public function getBadges()
-    {
-        return $this->badges;
-    }
-
-    public function setBadges($badges)
-    {
-        $this->badges = $badges;
-
-        return $this;
-    }
-
+    
     /***** Other AdvancedUserInterface Methods *****/
     public function isEqualTo(AdvancedUserInterface $user)
     {
