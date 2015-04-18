@@ -138,7 +138,7 @@ class UserEntity
     /**
      * @var Doctrine\Common\Collections\ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\RoleEntity", inversedBy="users", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity="Application\Entity\RoleEntity", inversedBy="users")
      * @ORM\JoinTable(
      *      name="user_roles",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -146,6 +146,13 @@ class UserEntity
      *  )
      */
     protected $roles;
+
+    /**
+     * @var Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Application\Entity\PostEntity", mappedBy="user", cascade={"all"})
+     */
+    protected $posts;
 
     /***** Other Variables *****/
     protected $expired = false; // userExpired / accountExpired
