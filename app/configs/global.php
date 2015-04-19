@@ -45,6 +45,7 @@ return array(
     'currentDateTime' => date('Y-m-d H:i:s'),
 
     // Database / Doctrine options
+    // http://silex.sensiolabs.org/doc/providers/doctrine.html#parameters
     'databaseOptions' => array(
         'default' => array(
             'driver' => 'pdo_mysql',
@@ -57,6 +58,7 @@ return array(
     ),
 
     // Swiftmailer options
+    // http://silex.sensiolabs.org/doc/providers/swiftmailer.html#parameters
     'swiftmailerOptions' => array(
         'host' => 'corcosoft.com',
         'port' => 465,
@@ -67,8 +69,11 @@ return array(
     ),
 
     // Remmember me Options
+    // http://silex.sensiolabs.org/doc/providers/remember_me.html#options
     'rememberMeOptions' => array(
         'key' => 'someRandomKey',
+        'name' => 'user',
+        'remember_me_parameter' => 'remember_me',
     ),
 
     // Default settings (the setting values from the DB

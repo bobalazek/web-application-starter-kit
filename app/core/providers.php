@@ -222,11 +222,7 @@ $securityFirewalls['members-area'] = array(
         'invalidate_session' => true,
         'csrf_parameter' => 'csrf_token',
     ),
-    'remember_me' => array(
-        'key' => $app['rememberMeOptions']['key'],
-        'name' => 'user',
-        'remember_me_parameter' => 'remember_me',
-    ),
+    'remember_me' => $app['rememberMeOptions'],
     'switch_user' => array(
         'parameter' => 'switch_user',
         'role' => 'ROLE_ALLOWED_TO_SWITCH',
