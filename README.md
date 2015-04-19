@@ -2,7 +2,7 @@ README
 ======
 **Corcosoft Web Application Starter Kit**
 
-An simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, forgotten password, profile, edit profile anc change password), users, roles, simple statistics and more.
+An simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, forgotten password, profile, edit profile and change password), users, roles, simple statistics and more.
 
 Requirements & Tools & Helpers
 -------------------
