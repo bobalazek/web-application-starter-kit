@@ -20,23 +20,23 @@ Setup / Development
 * Run the following commands:
     * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin` (skip this step, if you already have composer installed globally)
     * `php bin/composer.phar install` (or `composer install` if you already have composer installed globally)
-    * `php bin/console orm:schema-tool:install --force` (to install the database schema)
+    * `bin/console orm:schema-tool:install --force` (to install the database schema)
     * `bower update` (to install the frontend dependencies - you will need to install [Bower](http://bower.io/) first - if you haven't already)
-    * `php bin/console application:database:hydrate-data` (to hydrate some data)
+    * `bin/console application:database:hydrate-data` (to hydrate some data)
 * You are done! Start developing!
 
 Database
 -------------------
 * We use the Doctrine database
 * Navigate to your project directory: `cd /var/www/my-app`
-* Check the entities: `php bin/console orm:info` (optional)
-* Update the schema: `php bin/console orm:schema-tool:update --force --dump-sql`
+* Check the entities: `bin/console orm:info` (optional)
+* Update the schema: `bin/console orm:schema-tool:update --force`
 * Database updated!
 
 Commands
 --------------------
 * `bin/console application:environment:prepare` - Will create the global-local.php and development-local.php files (if not existent)
-* `bin/console application:database:hydrate-data --remove-existing-data` - Will hydrate the tables with some basic data, like: 2 users and 6 roles (the `--remove-existing-data` flag will truncate all tables before re-hydrating them)
+* `bin/console application:database:hydrate-data [-r|--remove-existing-data]` - Will hydrate the tables with some basic data, like: 2 users and 6 roles (the `--remove-existing-data` flag will truncate all tables before re-hydrating them)
 * `bin/console application:storage:prepare` - Will prepare all the storage (var/) folders, like: cache, logs, sessions, etc.
 * `bin/console application:translations:prepare` - Prepares all the untranslated string into a separate (app/locales/{locale}_untranslated.yml) file. Accepts an locale argument (defaults to 'en_US' - usage: `bin/console application:translations:prepare --locale de_DE` or `bin/console application:translations:prepare -l de_DE` )
 
