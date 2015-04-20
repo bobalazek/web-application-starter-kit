@@ -121,6 +121,27 @@ File structure
         * vendor/ => Bower dependencies
     * index.php
 
+Preview
+----------------------
+
+## Dashboard ##
+![Dashboard preview](doc/assets/images/dashboard-preview.png)
+
+## Profile ##
+![Profile preview](doc/assets/images/profile-preview.png)
+
+## Profile settings ##
+![Profile settings preview](doc/assets/images/profile-settings-preview.png)
+
+## Statistics ##
+![Statistics preview](doc/assets/images/statistics-preview.png)
+
+## Users ##
+![Users preview](doc/assets/images/users-preview.png)
+
+## Users edit ##
+![Users edit preview](doc/assets/images/users-edit-preview.png)
+
 License
 ----------------------
 Corcosoft Web Application Starter Kit is licensed under the MIT license.
