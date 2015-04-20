@@ -124,22 +124,22 @@ File structure
 Preview
 ----------------------
 
-## Dashboard ##
+### Dashboard ###
 ![Dashboard preview](doc/assets/images/dashboard-preview.png)
 
-## Profile ##
+### Profile ###
 ![Profile preview](doc/assets/images/profile-preview.png)
 
-## Profile settings ##
+### Profile settings ###
 ![Profile settings preview](doc/assets/images/profile-settings-preview.png)
 
-## Statistics ##
+### Statistics ###
 ![Statistics preview](doc/assets/images/statistics-preview.png)
 
-## Users ##
+### Users ###
 ![Users preview](doc/assets/images/users-preview.png)
 
-## Users edit ##
+### Users edit ###
 ![Users edit preview](doc/assets/images/users-edit-preview.png)
 
 License
