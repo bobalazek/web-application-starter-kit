@@ -124,6 +124,15 @@ File structure
 Preview
 ----------------------
 
+### Login ###
+![Dashboard preview](doc/assets/images/login-preview.png)
+
+### Register ###
+![Dashboard preview](doc/assets/images/register-preview.png)
+
+### Reset password ###
+![Dashboard preview](doc/assets/images/reset-password-preview.png)
+
 ### Dashboard ###
 ![Dashboard preview](doc/assets/images/dashboard-preview.png)
 
