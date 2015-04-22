@@ -54,6 +54,11 @@ $app['application.mailer'] = $app->share(function () use ($app) {
     return new \Application\Mailer($app);
 });
 
+/*** Paginator ***/
+$app['paginator'] = $app->share(function () use ($app) {
+    return new \Application\Paginator($app);
+});
+
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
 
@@ -78,7 +83,8 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     $twig->addExtension(new Application\Twig\FormExtension($app));
     $twig->addExtension(new Application\Twig\FileExtension($app));
     $twig->addExtension(new Application\Twig\UiExtension($app));
-        $twig->addExtension(
+    $twig->addExtension(new Application\Twig\PaginatorExtension($app));
+    $twig->addExtension(
         new Cocur\Slugify\Bridge\Twig\SlugifyExtension(
             Cocur\Slugify\Slugify::create()
         )

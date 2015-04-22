@@ -17,10 +17,28 @@ class UsersController
             $app->abort(403);
         }
 
-        $data['users'] = $app['orm.em']
-            ->getRepository('Application\Entity\UserEntity')
-            ->findAll()
+        $limitPerPage = $request->query->get('limit_per_page', 20);
+        $currentPage = $request->query->get('page');
+
+        $userResults = $app['orm.em']
+            ->createQuery(
+                "SELECT u
+                    FROM Application\Entity\UserEntity u"
+            )
         ;
+
+        $pagination = $app['paginator']->paginate(
+            $userResults,
+            $currentPage,
+            $limitPerPage,
+            array(
+                'route' => 'members-area.users',
+                'defaultSortFieldName' => 'u.email',
+                'defaultSortDirection' => 'asc',
+            )
+        );
+
+        $data['pagination'] = $pagination;
 
         return new Response(
             $app['twig']->render(
