@@ -69,8 +69,6 @@ $app->match('/set-locale/{locale}', function ($locale) use ($app) {
 ->bind('set-locale')
 ->assert('locale', implode('|', array_keys($app['locales'])));
 
-<?php
-
 /***** Errors *****/
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
