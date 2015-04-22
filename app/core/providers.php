@@ -54,6 +54,11 @@ $app['application.mailer'] = $app->share(function () use ($app) {
     return new \Application\Mailer($app);
 });
 
+/*** Paginator ***/
+$app['paginator'] = $app->share(function () use ($app) {
+    return new \Application\Paginator($app);
+});
+
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
 
