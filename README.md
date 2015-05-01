@@ -16,7 +16,7 @@ Setup / Development
 * Navigate yor your web directory: `cd /var/www`
 * Create a new folder for the project and navigate to it: `mkdir my-app && cd my-app`
 * Clone the project: `git clone https://github.com/bobalazek/web-application-starter-kit.git .`
-* Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47)
+* Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47) or [app/configs/global-local.php.dist](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global-local.php.dist) (in case you will deploy it and need a different local configuration. Just rename the global-local.php.dist to global-local.php and set your own configuration)
 * Run the following commands:
     * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin` (skip this step, if you already have composer installed globally)
     * `php bin/composer.phar install` (or `composer install` if you already have composer installed globally)
