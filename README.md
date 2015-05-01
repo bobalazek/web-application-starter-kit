@@ -4,6 +4,10 @@ README
 
 An simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, forgotten password, profile, edit profile and change password), users, roles, simple statistics and more.
 
+Build status
+-------------------
+[![Build Status](https://travis-ci.org/bobalazek/web-application-starter-kit.svg?branch=master)](https://travis-ci.org/bobalazek/web-application-starter-kit)
+
 Requirements & Tools & Helpers
 -------------------
 * PHP > 5.3.9
