@@ -16,7 +16,7 @@ class PrepareCommand
                 'application:storage:prepare'
             )
             ->setDescription(
-                'Prepare storage (create storage folder with all files in it'
+                'Prepare storage (create storage folder with all files in it)'
             )
         ;
     }

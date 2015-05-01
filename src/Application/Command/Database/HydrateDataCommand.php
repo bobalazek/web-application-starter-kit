@@ -11,17 +11,14 @@ class HydrateDataCommand
     extends ContainerAwareCommand
 {
     protected $app;
-    protected $consoleApp;
 
     public function __construct(
         $name,
-        \Silex\Application $app,
-        \Symfony\Component\Console\Application $consoleApp
+        \Silex\Application $app
     ) {
         parent::__construct($name);
 
         $this->app = $app;
-        $this->consoleApp = $consoleApp;
     }
 
     protected function configure()

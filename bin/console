@@ -40,8 +40,7 @@ $consoleApp
     ->add(
         new \Application\Command\Storage\PrepareCommand(
             'application:storage:prepare',
-            $app,
-            $consoleApp
+            $app
         )
     )
 ;
@@ -52,8 +51,7 @@ $consoleApp
     ->add(
         new \Application\Command\Environment\PrepareCommand(
             'application:environment:prepare',
-            $app,
-            $consoleApp
+            $app
         )
     )
 ;
@@ -64,8 +62,7 @@ $consoleApp
     ->add(
         new \Application\Command\Database\HydrateDataCommand(
             'application:database:hydrate-data',
-            $app,
-            $consoleApp
+            $app
         )
     )
 ;
@@ -76,8 +73,7 @@ $consoleApp
     ->add(
         new \Application\Command\Translations\PrepareCommand(
             'application:translations:prepare',
-            $app,
-            $consoleApp
+            $app
         )
     )
 ;

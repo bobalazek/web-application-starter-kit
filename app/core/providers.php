@@ -29,31 +29,6 @@ $app['flashbag'] = $app->share(function () use ($app) {
     return $app['session']->getFlashBag();
 });
 
-/***** Http Cache *****/
-$app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
-    'http_cache.cache_dir' => STORAGE_DIR.'/cache/http/',
-));
-
-/***** Translation *****/
-$app->register(new Silex\Provider\TranslationServiceProvider(), array(
-    'locale_fallback' => 'en_US',
-));
-
-$app['translator']->addLoader(
-    'yaml',
-    new Symfony\Component\Translation\Loader\YamlFileLoader()
-);
-
-/*** Application Translator ***/
-$app['application.translator'] = $app->share(function () use ($app) {
-    return new \Application\Translator($app);
-});
-
-/*** Application Mailer ***/
-$app['application.mailer'] = $app->share(function () use ($app) {
-    return new \Application\Mailer($app);
-});
-
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
 
@@ -87,8 +62,29 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     return $twig;
 }));
 
+/***** Translation *****/
+$app->register(new Silex\Provider\TranslationServiceProvider(), array(
+    'locale_fallback' => 'en_US',
+));
+
+$app['translator']->addLoader(
+    'yaml',
+    new Symfony\Component\Translation\Loader\YamlFileLoader()
+);
+
+/*** Application Translator ***/
+$app['application.translator'] = $app->share(function () use ($app) {
+    return new \Application\Translator($app);
+});
+
+/*** Application Mailer ***/
+$app['application.mailer'] = $app->share(function () use ($app) {
+    return new \Application\Mailer($app);
+});
+
 /***** Doctrine Database & Doctrine ORM *****/
-if (isset($app['databaseOptions'])) {
+if (isset($app['databaseOptions']) &&
+    is_array($app['databaseOptions'])) {
     $app->register(
         new Silex\Provider\DoctrineServiceProvider(),
         array(
@@ -190,6 +186,11 @@ $app['validator.validator_service_ids'] = array(
 
 /***** Url Generator *****/
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+
+/***** Http Cache *****/
+$app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
+    'http_cache.cache_dir' => STORAGE_DIR.'/cache/http/',
+));
 
 /***** User Provider *****/
 $app['user.provider'] = $app->share(function () use ($app) {

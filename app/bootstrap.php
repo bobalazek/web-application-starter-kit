@@ -22,10 +22,10 @@ $autoloader = require $vendorAutoloaderFilePath;
 /********** Application **********/
 $app = new \Silex\Application();
 
-include_once APP_DIR.'/core/functions.php';
-include_once APP_DIR.'/core/providers.php';
-include_once APP_DIR.'/core/middlewares.php';
-include_once APP_DIR.'/core/routes.php';
+require APP_DIR.'/core/functions.php';
+require APP_DIR.'/core/providers.php';
+require APP_DIR.'/core/middlewares.php';
+require APP_DIR.'/core/routes.php';
 
 Request::enableHttpMethodParameterOverride();
 
