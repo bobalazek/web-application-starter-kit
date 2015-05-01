@@ -47,9 +47,14 @@
     "require-dev": {
         "phpunit/phpunit": "4.1"
     },
-    "autoload": {
+	"autoload": {
         "psr-0": {
-            "Application": "src/"
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Application\\Test\\": "test/Application/Test/"
         }
     },
 	"scripts": {
