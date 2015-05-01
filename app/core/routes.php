@@ -68,3 +68,35 @@ $app->match('/set-locale/{locale}', function ($locale) use ($app) {
 })
 ->bind('set-locale')
 ->assert('locale', implode('|', array_keys($app['locales'])));
+
+/***** Errors *****/
+$app->error(function (\Exception $e, $code) use ($app) {
+    if ($app['debug']) {
+        return;
+    }
+
+    if ($code == '403') {
+        return $app->redirect(
+            $app['url_generator']->generate(
+                'index'
+            )
+        );
+    }
+
+    // 404.html, or 40x.html, or 4xx.html, or default.html
+    $templates = array(
+        'contents/errors/'.$code.'.html.twig',
+        'contents/errors/'.substr($code, 0, 2).'x.html.twig',
+        'contents/errors/'.substr($code, 0, 1).'xx.html.twig',
+        'contents/errors/default.html.twig',
+    );
+
+    return new Response(
+        $app['twig']->resolveTemplate($templates)->render(
+            array(
+                'code' => $code,
+            )
+        ),
+        $code
+    );
+});

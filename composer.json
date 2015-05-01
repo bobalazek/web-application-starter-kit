@@ -2,7 +2,7 @@
 	"type": "project",
     "name": "corcosoft/web-application-starter-kit",
     "description": "An Web Application starter kit / boilerplate by Corcosoft - build on Silex",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "license": "MIT",
     "authors": [
         {
@@ -41,7 +41,8 @@
         "dflydev/doctrine-orm-service-provider": "1.0.6",
 		"cboden/ratchet": "~0.3",
 		"cocur/slugify": "~1.1",
-		"pelago/emogrifier": "dev-master"
+		"pelago/emogrifier": "dev-master",
+		"knplabs/knp-components": "~1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1"
