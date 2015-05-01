@@ -39,6 +39,13 @@ return array(
         ),
     ),
 
+    'environments' => array(
+        'development',
+        'testing',
+        'staging',
+        'production',
+    ),
+
     // Time and date
     'currentTime' => date('H:i:s'),
     'currentDate' => date('Y-m-d'),

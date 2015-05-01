@@ -5,7 +5,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /*** Database check ***/
 $app->before(function () use ($app) {
-    if (isset($app['databaseOptions'])) {
+    if (isset($app['databaseOptions']) &&
+        is_array($app['databaseOptions'])) {
         try {
             $app['db']->connect();
         } catch (PDOException $e) {
@@ -19,8 +20,8 @@ $app->before(function () use ($app) {
 
 /*** User check ***/
 $app->before(function () use ($app) {
-    $token = $app['security']->getToken();
     $app['user'] = null;
+    $token = $app['security']->getToken();
 
     if ($token &&
         ! $app['security.trust_resolver']->isAnonymous($token) &&

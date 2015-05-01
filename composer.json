@@ -37,7 +37,7 @@
         "doctrine/orm": "~2.4",
 		"saxulum/saxulum-doctrine-orm-manager-registry-provider": "~2.1",
         "swiftmailer/swiftmailer": "5.*",
-        "igorw/config-service-provider": "~1.0",
+        "igorw/config-service-provider": "~1.2",
         "dflydev/doctrine-orm-service-provider": "1.0.6",
 		"cboden/ratchet": "~0.3",
 		"cocur/slugify": "~1.1",

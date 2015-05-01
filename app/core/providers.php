@@ -19,6 +19,28 @@ if (file_exists(APP_DIR.'/configs/global-local.php')) {
     );
 }
 
+/* Environment */
+$app['environment'] = isset($app['environment'])
+    ? $app['environment']
+    : 'development'
+;
+
+/* Environment - Variable */
+$environmentVariable = getenv('APPLICATION_ENVIRONMENT');
+if ($environmentVariable &&
+    in_array($environmentVariable, $app['environments'])) {
+    $app['environment'] = $environmentVariable;
+}
+
+/* Config - Environment */
+if (file_exists(APP_DIR.'/configs/environments/'.$app['environment'].'.php')) {
+    $app->register(
+        new Igorw\Silex\ConfigServiceProvider(
+            APP_DIR.'/configs/environments/'.$app['environment'].'.php'
+        )
+    );
+}
+
 /***** Session *****/
 $app->register(new Silex\Provider\SessionServiceProvider(), array(
     'session.storage.save_path' => STORAGE_DIR.'/sessions',
