@@ -1,9 +1,10 @@
 {
-	"type": "project",
+    "type": "project",
     "name": "corcosoft/web-application-starter-kit",
     "description": "An Web Application starter kit / boilerplate by Corcosoft - build on Silex",
     "version": "0.1.3",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Borut Balazek",
