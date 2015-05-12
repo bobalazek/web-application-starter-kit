@@ -6,6 +6,12 @@ $app->mount(
     new Application\ControllerProvider\IndexControllerProvider()
 );
 
+/*========== API ==========*/
+$app->mount(
+    '/api',
+    new Application\ControllerProvider\ApiControllerProvider()
+);
+
 /*========== Members Area ==========*/
 $app->mount(
     '/members-area',
