@@ -11,7 +11,7 @@ class WebTestCase
     {
         $app = require dirname(__FILE__).'/../../../app/bootstrap.php';
 
-        $app['debug'] = true;
+        $app['debug'] = false;
         $app['exception_handler']->disable();
         $app['session.test'] = true;
 

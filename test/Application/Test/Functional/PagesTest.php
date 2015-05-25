@@ -8,7 +8,9 @@ class PagesTest
     extends WebTestCase
 {
     /**
-     * @dataProvider urlProvider
+     * Checks if the required pages exist
+     *
+     * @dataProvider urlExistingPagesProvider
      */
     public function testIfMainPagesExist($url)
     {
@@ -18,7 +20,24 @@ class PagesTest
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
-    public function urlProvider()
+    /**
+     * Check for a 404 page
+     */
+    public function test404()
+    {
+        $client = $this->createClient();
+        $client->request('GET', '/just-a-404-page');
+
+        $this->assertEquals(
+            404,
+            $client->getResponse()->getStatusCode()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function urlExistingPagesProvider()
     {
         return array(
             array('/'),

@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Response;
+
 /*========== Index ==========*/
 $app->mount(
     '/',
