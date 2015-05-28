@@ -24,7 +24,7 @@ Setup / Development
     * `composer install`
     * `bin/console orm:schema-tool:install --force` (to install the database schema)
     * `bower update` (to install the front-end dependencies - you will need to install [Bower](http://bower.io/) first - if you haven't already)
-    * `bin/console application:database:hydrate-data` (to hydrate the some data)
+    * `bin/console application:database:hydrate-data` (to hydrate some data)
 * You are done! Start developing!
 
 Database
