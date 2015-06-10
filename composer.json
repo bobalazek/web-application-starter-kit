@@ -1,7 +1,7 @@
 {
     "type": "project",
-    "name": "corcosoft/web-application-starter-kit",
-    "description": "An Web Application starter kit / boilerplate by Corcosoft - build on Silex",
+    "name": "bobalazek/web-application-starter-kit",
+    "description": "An Web Application starter kit / boilerplate by Borut Balazek - build on Silex",
     "version": "0.2.2",
     "license": "MIT",
     "authors": [
