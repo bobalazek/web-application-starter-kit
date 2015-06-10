@@ -25,7 +25,7 @@ Setup / Development
     * `curl -sS https://getcomposer.org/installer | php -- --install-dir=bin` (skip this step, if you already have composer installed globally)
     * `php bin/composer.phar install` (or `composer install` if you already have composer installed globally)
     * `bin/console orm:schema-tool:install --force` (to install the database schema)
-    * `bower update` (to install the frontend dependencies - you will need to install [Bower](http://bower.io/) first - if you haven't already)
+    * `bower update` (to install the front-end dependencies - you will need to install [Bower](http://bower.io/) first - if you haven't already)
     * `bin/console application:database:hydrate-data` (to hydrate some data)
 * You are done! Start developing!
 
