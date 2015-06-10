@@ -5,10 +5,10 @@ return array(
     'debug' => true,
     'name' => 'Web Application Starter Kit',
     'version' => '0.1.6',
-    'author' => 'Corcosoft',
+    'author' => 'Borut Balazek',
 
     // Admin email (& name)
-    'email' => 'info@corcosoft.com',
+    'email' => 'info@bobalazek.com',
     'emailName' => 'Web Application Starter Kit Mailer',
 
     // Default Locale / Language stuff
