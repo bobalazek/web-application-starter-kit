@@ -1,6 +1,6 @@
 {
     "author": "Borut Balazek <bobalazek124@gmail.com>",
-    "name": "corcosoft-web-application-starter-kit",
+    "name": "bobalazek-web-application-starter-kit",
     "version": "0.2.2",
     "dependencies": {
         "angular-latest": "~1.3",
