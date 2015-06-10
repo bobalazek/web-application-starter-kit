@@ -1,6 +1,6 @@
 <?php
 
-if(! function_exists('rglob')) {
+if (! function_exists('rglob')) {
     function rglob($pattern = '*', $flags = 0, $path = '')
     {
         if (!$path && ($dir = dirname($pattern)) != '.') {
@@ -20,7 +20,7 @@ if(! function_exists('rglob')) {
     }
 }
 
-if(! function_exists('dateRange')) {
+if (! function_exists('dateRange')) {
     function dateRange($first, $last, $step = '+1 day', $format = 'Y-m-d')
     {
         $dates = array();
@@ -36,7 +36,7 @@ if(! function_exists('dateRange')) {
     }
 }
 
-if(! function_exists('generateRandomString')) {
+if (! function_exists('generateRandomString')) {
     function generateRandomString($length = 16, $onlyNumbers = false)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -53,7 +53,7 @@ if(! function_exists('generateRandomString')) {
     }
 }
 
-if(! function_exists('camelize')) {
+if (! function_exists('camelize')) {
     function camelize($word)
     {
         return preg_replace(
@@ -63,7 +63,7 @@ if(! function_exists('camelize')) {
     }
 }
 
-if(! function_exists('decamelize')) {
+if (! function_exists('decamelize')) {
     function decamelize($word)
     {
         return preg_replace(
