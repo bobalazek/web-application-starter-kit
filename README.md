@@ -155,4 +155,4 @@ Preview
 
 License
 ----------------------
-Corcosoft Web Application Starter Kit is licensed under the MIT license.
+Web Application Starter Kit is licensed under the MIT license.
