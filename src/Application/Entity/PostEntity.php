@@ -67,8 +67,6 @@ class PostEntity
 
     /***** Relationship Variables *****/
     /**
-     * Who added this place?
-     *
      * @ORM\ManyToOne(targetEntity="Application\Entity\UserEntity", inversedBy="posts")
      */
     protected $user;
