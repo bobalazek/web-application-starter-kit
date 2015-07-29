@@ -232,7 +232,7 @@ class PostEntity
     }
 
     /********** API ***********/
-    public function toJson()
+    public function toArray()
     {
         return array(
             'id' => $this->getId(),
