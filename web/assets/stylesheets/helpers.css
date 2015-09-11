@@ -217,12 +217,6 @@
 	height: 100%;
 }
 
-/*** Table responsive ***/
-.table-responsive {
-	border: none;
-	overflow: hidden;
-}
-
 /*** Text - Very small ***/
 .text-mini {
 	font-size: 10px;
