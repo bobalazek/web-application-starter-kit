@@ -1,6 +1,6 @@
 README
 ======
-**Corcosoft Web Application Starter Kit**
+**Web Application Starter Kit**
 
 An simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, forgotten password, profile, edit profile and change password), users, roles, simple statistics and more.
 
@@ -176,4 +176,4 @@ Preview
 
 License
 ----------------------
-Corcosoft Web Application Starter Kit is licensed under the MIT license.
+Web Application Starter Kit is licensed under the MIT license.

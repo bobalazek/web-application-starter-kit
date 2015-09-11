@@ -67,8 +67,6 @@ class PostEntity
 
     /***** Relationship Variables *****/
     /**
-     * Who added this place?
-     *
      * @ORM\ManyToOne(targetEntity="Application\Entity\UserEntity", inversedBy="posts")
      */
     protected $user;
@@ -234,7 +232,7 @@ class PostEntity
     }
 
     /********** API ***********/
-    public function toJson()
+    public function toArray()
     {
         return array(
             'id' => $this->getId(),
