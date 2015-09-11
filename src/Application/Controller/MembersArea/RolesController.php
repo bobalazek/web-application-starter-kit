@@ -17,10 +17,27 @@ class RolesController
             $app->abort(403);
         }
 
-        $data['roles'] = $app['orm.em']
-            ->getRepository('Application\Entity\RoleEntity')
-            ->findAll()
+        $limitPerPage = $request->query->get('limit_per_page', 20);
+        $currentPage = $request->query->get('page');
+
+        $roleResults = $app['orm.em']
+            ->createQueryBuilder()
+            ->select('r')
+            ->from('Application\Entity\RoleEntity', 'r')
         ;
+
+        $pagination = $app['paginator']->paginate(
+            $roleResults,
+            $currentPage,
+            $limitPerPage,
+            array(
+                'route' => 'members-area.roles',
+                'defaultSortFieldName' => 'r.priority',
+                'defaultSortDirection' => 'desc',
+            )
+        );
+
+        $data['pagination'] = $pagination;
 
         return new Response(
             $app['twig']->render(
