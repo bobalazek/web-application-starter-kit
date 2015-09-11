@@ -35,9 +35,19 @@ Database
 * Update the schema: `bin/console orm:schema-tool:update --force`
 * Database updated!
 
+Application name
+-------------------
+You should replace the name for your actual application inside the following files:
+
+* README.md
+* bower.json
+* composer.json
+* phpunit.xml
+* app/configs/global.php
+
 Commands
 --------------------
-* `bin/console application:environment:prepare` - Will create the global-local.php and development-local.php files (if not existent)
+* `bin/console application:environment:prepare` - Will create the global-local.php and development-local.php files (if they do not exist)
 * `bin/console application:database:hydrate-data [-r|--remove-existing-data]` - Will hydrate the tables with some basic data, like: 2 users and 6 roles (the `--remove-existing-data` flag will truncate all tables before re-hydrating them)
 * `bin/console application:storage:prepare` - Will prepare all the storage (var/) folders, like: cache, logs, sessions, etc.
 * `bin/console application:translations:prepare` - Prepares all the untranslated string into a separate (app/locales/{locale}_untranslated.yml) file. Accepts an locale argument (defaults to 'en_US' - usage: `bin/console application:translations:prepare --locale de_DE` or `bin/console application:translations:prepare -l de_DE` )
