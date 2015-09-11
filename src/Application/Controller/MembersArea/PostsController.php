@@ -17,10 +17,28 @@ class PostsController
             $app->abort(403);
         }
 
-        $data['posts'] = $app['orm.em']
-            ->getRepository('Application\Entity\PostEntity')
-            ->findAll()
+        $limitPerPage = $request->query->get('limit_per_page', 20);
+        $currentPage = $request->query->get('page');
+
+        $postResults = $app['orm.em']
+            ->createQueryBuilder()
+            ->select('p')
+            ->from('Application\Entity\PostEntity', 'p')
+            ->leftJoin('p.user', 'u')
         ;
+
+        $pagination = $app['paginator']->paginate(
+            $postResults,
+            $currentPage,
+            $limitPerPage,
+            array(
+                'route' => 'members-area.posts',
+                'defaultSortFieldName' => 'p.timeCreated',
+                'defaultSortDirection' => 'desc',
+            )
+        );
+
+        $data['pagination'] = $pagination;
 
         return new Response(
             $app['twig']->render(
