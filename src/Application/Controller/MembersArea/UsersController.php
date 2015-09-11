@@ -21,10 +21,10 @@ class UsersController
         $currentPage = $request->query->get('page');
 
         $userResults = $app['orm.em']
-            ->createQuery(
-                "SELECT u
-                    FROM Application\Entity\UserEntity u"
-            )
+            ->createQueryBuilder()
+            ->select('u')
+            ->from('Application\Entity\UserEntity', 'u')
+            ->leftJoin('u.profile', 'p')
         ;
 
         $pagination = $app['paginator']->paginate(

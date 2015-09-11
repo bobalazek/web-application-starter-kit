@@ -25,8 +25,20 @@
 				<tr>
 					<th>{{ paginator_sortable(pagination, 'Email', 'u.email') }}</th>
 					<th>{{ paginator_sortable(pagination, 'Username', 'u.username') }}</th>
-					<th width="150">{{ 'Profile' | trans }}</th>
-					<th width="140">{{ 'Statuses' | trans }}</th>
+					<th width="150">
+						{{ 'Profile' | trans }}
+						(
+							{{ paginator_sortable(pagination, 'First name', 'p.firstName') }},
+							{{ paginator_sortable(pagination, 'Last name', 'p.lastName') }}
+						)
+					</th>
+					<th width="140">
+						{{ 'Statuses' | trans }}
+						(
+							{{ paginator_sortable(pagination, 'Enabled', 'u.enabled') }},
+							{{ paginator_sortable(pagination, 'Locked', 'u.locked') }}
+						)
+					</th>
 					<th width="200">{{ 'Roles' | trans }}</th>
 					<th width="160">{{ paginator_sortable(pagination, 'Time created', 'u.timeCreated') }}</th>
 					<th width="160">{{ paginator_sortable(pagination, 'Time last active', 'u.timeLastActive') }}</th>
