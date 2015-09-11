@@ -16,3 +16,4 @@
 !/bin/console
 /web/assets/vendor/*
 /web/assets/uploads/*
+!/web/assets/uploads/.gitkeep

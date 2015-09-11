@@ -45,6 +45,17 @@ You should replace the name for your actual application inside the following fil
 * phpunit.xml
 * app/configs/global.php
 
+Administrator login
+-------------------
+With the `bin/console application:database:hydrate-data` command, you will, per default hydrate 2 users (which you can change inside the `app/fixtures/users.php` file):
+
+* Admin User (with admin permissions)
+    * Username: `admin` or `admin@myapp.com`
+    * Password: `test`
+* Test User (with the default user permissions)
+    * Username: `test` or `test@myapp.com`
+    * Password: `test`
+
 Commands
 --------------------
 * `bin/console application:environment:prepare` - Will create the global-local.php and development-local.php files (if they do not exist)

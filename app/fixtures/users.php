@@ -3,14 +3,14 @@
 return array(
     array(
         'id' => 1,
-        'username' => 'bobalazek',
-        'email' => 'bobalazek124@gmail.com',
+        'username' => 'admin',
+        'email' => 'admin@myapp.com',
         'plainPassword' => 'test',
         'profile' => array(
-            'firstName' => 'Borut',
-            'lastName' => 'Balažek',
+            'firstName' => 'John',
+            'lastName' => 'Doe',
             'gender' => 'male',
-            'birthdate' => '03-09-1992',
+            'birthdate' => '01-01-1990',
         ),
         'roles' => array(
             'ROLE_SUPER_ADMIN',
@@ -20,7 +20,7 @@ return array(
     array(
         'id' => 2,
         'username' => 'test',
-        'email' => 'test@test.com',
+        'email' => 'test@myapp.com',
         'plainPassword' => 'test',
         'profile' => array(
             'firstName' => 'John',
