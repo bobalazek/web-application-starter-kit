@@ -6,14 +6,7 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
     return false;
 }
 
-$appMinPath = dirname(dirname(__FILE__)).'/app-min/bootstrap.php';
-$appPath = dirname(dirname(__FILE__)).'/app/bootstrap.php';
-
-if (file_exists($appMinPath)) {
-    $app = require $appMinPath;
-} else {
-    $app = require $appPath;
-}
+$app = require dirname(dirname(__FILE__)).'/app/bootstrap.php';
 
 if ($app['debug']) {
     $app->run();
