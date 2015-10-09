@@ -42,17 +42,17 @@ Application\Entity\UserEntity:
         username:
             - NotBlank:
                 message: errors.user.username.notBlank
-                groups: [ new, edit, settings ]
+                groups: [ new, edit, register, settings ]
         email:
             - NotBlank:
                 message: errors.user.email.notBlank
-                groups: [ new, edit, settings, resetPasswordRequest ]
+                groups: [ new, edit, register, settings, resetPasswordRequest ]
             - Email:
                 message: errors.user.email.invalid
-                groups: [ new, edit, settings, resetPasswordRequest ]
+                groups: [ new, edit, register, settings, resetPasswordRequest ]
         plainPassword:
             - NotBlank:
                 message: errors.user.password.notBlank
-                groups: [ new, settingsPassword, resetPasswordReset ]
+                groups: [ new, register, settingsPassword, resetPasswordReset ]
         profile:
             - Valid: ~
