@@ -33,11 +33,11 @@ Application\Entity\UserEntity:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: email
             message: errors.user.email.alreadyInUse
-            groups: [ new, edit, settings ]
+            groups: [ new, edit, register, settings ]
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: username
             message: errors.user.username.alreadyInUse
-            groups: [ new, edit, settings ]
+            groups: [ new, edit, register, settings ]
     properties:
         username:
             - NotBlank:
