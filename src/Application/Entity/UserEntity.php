@@ -396,7 +396,7 @@ class UserEntity
         return $this;
     }
 
-    /*** Activate account code ***/
+    /*** Activation code ***/
     public function getActivationCode()
     {
         return $this->activationCode;
