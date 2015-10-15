@@ -18,42 +18,6 @@ class MyControllerProvider implements ControllerProviderInterface
         ->bind('members-area.my');
 
         $controllers->match(
-            '/messages',
-            'Application\Controller\MembersArea\MyController::messagesAction'
-        )
-        ->bind('members-area.my.messages');
-
-        $controllers->match(
-            '/messages/new',
-            'Application\Controller\MembersArea\MyController::messagesNewAction'
-        )
-        ->bind('members-area.my.messages.new');
-
-        $controllers->match(
-            '/messages/{id}/reply',
-            'Application\Controller\MembersArea\MyController::messagesReplyAction'
-        )
-        ->bind('members-area.my.messages.reply');
-
-        $controllers->match(
-            '/actions',
-            'Application\Controller\MembersArea\MyController::actionsAction'
-        )
-        ->bind('members-area.my.actions');
-
-        $controllers->match(
-            '/notifications',
-            'Application\Controller\MembersArea\MyController::notificationsAction'
-        )
-        ->bind('members-area.my.notifications');
-
-        $controllers->match(
-            '/notifications/acknowledge/{id}',
-            'Application\Controller\MembersArea\MyController::notificationsAcknowledgeAction'
-        )
-        ->bind('members-area.my.notifications.acknowledge');
-
-        $controllers->match(
             '/profile',
             'Application\Controller\MembersArea\MyController::profileAction'
         )
