@@ -181,6 +181,9 @@ class UserEntity
         $this->setResetPasswordCode(
             md5(uniqid(null, true))
         );
+        
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /***** Getters, Setters and Other stuff *****/
