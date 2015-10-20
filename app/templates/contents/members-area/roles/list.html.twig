@@ -41,12 +41,12 @@
 						<td>{{ role.getPriority() }}</td>
 						<td>{{ role.getTimeCreated() | date(app.dateTimeFormat) }}</td>
 						<td>
-							<a class="btn btn-sm btn-default filter-submit margin-bottom"
+							<a class="btn btn-sm btn-default"
 								data-toggle="tooltip" title="{{ 'Edit'|trans }}"
 								href="{{ url('members-area.roles.edit', { id : role.getId() }) }}">
 								<i class="fa fa-fw fa-cog"></i>
 							</a>
-							<a class="btn btn-sm btn-default filter-submit margin-bottom"
+							<a class="btn btn-sm btn-danger"
 								data-toggle="tooltip" title="{{ 'Remove'|trans }}"
 								href="{{ url('members-area.roles.remove', { id : role.getId() }) }}">
 								<i class="fa fa-fw fa-times"></i>
