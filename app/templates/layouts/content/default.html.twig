@@ -24,7 +24,7 @@
 			{% block head_javascripts_before %}{% endblock %}
 			{% block head_javascripts %}
 				<script id="config-js">
-					var baseUrl = "{{ app.baseUri }}";
+					var baseUrl = "{{ app.baseUrl }}";
 					var datatablesTranslationsUrl = "{{ 'settings.datatables.translations.url' | trans }}";
 				</script>
 				<script id="modernizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
