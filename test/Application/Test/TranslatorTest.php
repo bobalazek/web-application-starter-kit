@@ -3,7 +3,6 @@
 namespace Application\Test;
 
 use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Tester\CommandTester;
 
 class TranslatorTest
     extends WebTestCase
