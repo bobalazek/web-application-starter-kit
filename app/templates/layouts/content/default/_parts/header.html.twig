@@ -37,23 +37,25 @@
 				</ul> <!-- /#primary-navigation-list -->
 				<ul id="right-navigation-list"
 					class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#"
-							class="dropdown-toggle"
-							data-toggle="dropdown">
-							{{ 'Languages'|trans }}
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu" role="menu">
-							{% for localeKey, locale in app.locales %}
-								<li class="{{ app.locale == localeKey ? 'active' : '' }}">
-									<a href="{{ url('set-locale', { locale : localeKey }) }}">
-										{{ locale.languageName|trans }}
-									</a>
-								</li>
-							{% endfor %}
-						</ul>
-					</li>
+					{% if app.locales | length > 1 %}
+						<li class="dropdown">
+							<a href="#"
+								class="dropdown-toggle"
+								data-toggle="dropdown">
+								{{ 'Languages'|trans }}
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								{% for localeKey, locale in app.locales %}
+									<li class="{{ app.locale == localeKey ? 'active' : '' }}">
+										<a href="{{ url('set-locale', { locale : localeKey }) }}">
+											{{ locale.languageName|trans }}
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% endif %}
 					{% if app.user and is_granted('ROLE_PREVIOUS_ADMIN') %}
 						<li>
 							<a href="?switch_user=_exit">
