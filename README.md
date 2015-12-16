@@ -22,7 +22,7 @@ Setup / Development
 * Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47) or [app/configs/global-local.php.dist](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global-local.php.dist) (in case you will deploy it and need a different local configuration. Just rename the global-local.php.dist to global-local.php and set your own configuration)
 * Run the following commands:
     * `composer install`
-    * `bin/console orm:schema-tool:install --force` (to install the database schema)
+    * `bin/console orm:schema-tool:update --force` (to install the database schema)
     * `bower update` (to install the front-end dependencies - you will need to install [Bower](http://bower.io/) first - if you haven't already)
     * `bin/console application:database:hydrate-data` (to hydrate some data)
 * You are done! Start developing!
