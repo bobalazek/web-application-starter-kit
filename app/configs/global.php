@@ -39,11 +39,23 @@ return array(
         ),
     ),
 
+    // Environments
     'environments' => array(
-        'development',
-        'testing',
-        'staging',
-        'production',
+        'testing' => array(
+            'domain' => 'testing.example.com',
+            'uri' => '/',
+            'directory' => '/home/example/domains/example.com/subdomains/testing',
+        ),
+        'staging' => array(
+            'domain' => 'staging.example.com',
+            'uri' => '/',
+            'directory' => '/home/example/domains/example.com/subdomains/staging',
+        ),
+        'production' => array(
+            'domain' => 'example.com',
+            'uri' => '/',
+            'directory' => '/home/example/domains/example.com/public_html',
+        ),
     ),
 
     // Time and date
