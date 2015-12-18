@@ -1,12 +1,8 @@
 *~
-/composer.lock
+*.lock
+*-local.php
 /composer.phar
-/app/configs/global-local.php
 /app/configs/environments/development.php
-/app/configs/environments/development-local.php
-/app/configs/environments/testing-local.php
-/app/configs/environments/staging-local.php
-/app/configs/environments/production-local.php
 /app/locales/*_untranslated.yml
 /var/*
 !/var/.gitkeep
