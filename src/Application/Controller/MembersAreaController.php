@@ -218,26 +218,6 @@ class MembersAreaController
                         );
 
                     if ($userEntity) {
-                        $userActionEntity = new \Application\Entity\UserActionEntity();
-                        $userActionEntity
-                          ->setUser($userEntity)
-                          ->setKey('user.reset-password.request')
-                          ->setType('event')
-                          ->setMessage('A new password has been requested!')
-                          ->setIp($request->getClientIp())
-                          ->setUserAgent($request->headers->get('User-Agent'))
-                        ;
-
-                        $userEntity
-                            ->setResetPasswordCode(
-                                generateRandomString()
-                            )
-                            ->addUserAction($userActionEntity)
-                        ;
-
-                        $app['orm.em']->persist($userEntity);
-                        $app['orm.em']->flush();
-
                         $app['application.mailer']
                             ->swiftMessageInitializeAndSend(array(
                                 'subject' => $app['name'].' - '.$app['translator']->trans('Reset password'),
