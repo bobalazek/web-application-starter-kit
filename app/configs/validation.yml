@@ -11,6 +11,10 @@ Application\Entity\ProfileEntity:
             - NotBlank:
                 message: errors.profile.name.notBlank
                 groups: [ newAndEdit ]
+        image:
+            - Image:
+                mimeTypesMessage: errors.profile.image.invalid
+                groups: [ newAndEdit ]
 
 Application\Entity\RoleEntity:
     constraints:
