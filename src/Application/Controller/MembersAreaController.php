@@ -57,6 +57,8 @@ class MembersAreaController
             ? 'confirm'
             : 'register'
         ;
+        $alert = false;
+        $alertMessage = '';
 
         $form = $app['form.factory']->create(
             new \Application\Form\Type\User\RegisterType(),
@@ -90,11 +92,11 @@ class MembersAreaController
                     ))
                 ;
 
-                $data['success'] = true;
-                $data['successMessage'] = 'members-area.register.confirm.successText';
+                $alert = 'success';
+                $alertMessage = 'members-area.register.confirm.successText';
             } else {
-                $data['error'] = true;
-                $data['errorMessage'] = 'members-area.register.confirm.activationCodeNotFound';
+                $alert = 'danger';
+                $alertMessage = 'members-area.register.confirm.activationCodeNotFound';
             }
         } else {
             if ($request->getMethod() == 'POST') {
@@ -123,15 +125,15 @@ class MembersAreaController
                     $app['orm.em']->persist($userEntity);
                     $app['orm.em']->flush();
 
-                    $data['success'] = true; // If success, we hide the form
-                    $data['successMessage'] = $app['translator']->trans(
-                        'members-area.register.successText'
-                    );
+                    $alert = 'success';
+                    $alertMessage = 'members-area.register.successText';
                 }
             }
         }
 
         $data['form'] = $form->createView();
+        $data['alert'] = $alert;
+        $data['alertMessage'] = $alertMessage;
 
         return new Response(
             $app['twig']->render(
@@ -153,6 +155,8 @@ class MembersAreaController
             ? 'reset'
             : 'request'
         ;
+        $alert = false;
+        $alertMessage = '';
 
         $form = $app['form.factory']->create(
             new \Application\Form\Type\User\ResetPasswordType($action),
@@ -183,15 +187,13 @@ class MembersAreaController
                         $app['orm.em']->merge($userEntity);
                         $app['orm.em']->flush();
 
-                        $data['success'] = true;
-                        $data['successMessage'] = $app['translator']->trans(
-                            'members-area.request-password.reset.success'
-                        );
+                        $alert = 'success';
+                        $alertMessage = 'members-area.request-password.reset.success';
                     }
                 }
             } else {
-                $data['error'] = true;
-                $data['errorMessage'] = 'members-area.request-password.reset.resetPasswordCodeNotFound';
+                $alert = 'danger';
+                $alertMessage = 'members-area.request-password.reset.resetPasswordCodeNotFound';
             }
         } else {
             if ($request->getMethod() == 'POST') {
@@ -219,15 +221,11 @@ class MembersAreaController
                             ))
                         ;
 
-                        $data['success'] = true; // If success, we hide the form
-                        $data['successMessage'] = $app['translator']->trans(
-                            'requestPassword.request.success'
-                        );
+                        $alert = 'success';
+                        $alertMessage = 'requestPassword.request.success';
                     } else {
-                        $data['error'] = true;
-                        $data['errorMessage'] = $app['translator']->trans(
-                            'requestPassword.request.emailNotFound'
-                        );
+                        $alert = 'danger';
+                        $alertMessage = 'requestPassword.request.emailNotFound';
                     }
                 }
             }
@@ -236,6 +234,8 @@ class MembersAreaController
         $data['code'] = $code;
         $data['action'] = $action;
         $data['form'] = $form->createView();
+        $data['alert'] = $alert;
+        $data['alertMessage'] = $alertMessage;
 
         return new Response(
             $app['twig']->render(
