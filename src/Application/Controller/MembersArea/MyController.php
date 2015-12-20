@@ -93,9 +93,6 @@ class MyController
     {
         $data = array();
 
-        $userOriginal = $app['user'];
-        $passwordOld = $userOriginal->getPassword();
-
         $form = $app['form.factory']->create(
             new \Application\Form\Type\User\Settings\PasswordType(),
             $app['user']

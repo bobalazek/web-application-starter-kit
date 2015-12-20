@@ -12,8 +12,10 @@ class PostsController
     {
         $data = array();
 
-        if (! $app['security']->isGranted('ROLE_POSTS_EDITOR')
-            && ! $app['security']->isGranted('ROLE_ADMIN')) {
+        if (
+            ! $app['security']->isGranted('ROLE_POSTS_EDITOR') &&
+            ! $app['security']->isGranted('ROLE_ADMIN')
+        ) {
             $app->abort(403);
         }
 
@@ -52,8 +54,10 @@ class PostsController
     {
         $data = array();
 
-        if (! $app['security']->isGranted('ROLE_POSTS_EDITOR')
-            && ! $app['security']->isGranted('ROLE_ADMIN')) {
+        if (
+            ! $app['security']->isGranted('ROLE_POSTS_EDITOR') &&
+            ! $app['security']->isGranted('ROLE_ADMIN')
+        ) {
             $app->abort(403);
         }
 
@@ -110,8 +114,10 @@ class PostsController
     {
         $data = array();
 
-        if (! $app['security']->isGranted('ROLE_POSTS_EDITOR')
-            && ! $app['security']->isGranted('ROLE_ADMIN')) {
+        if (
+            ! $app['security']->isGranted('ROLE_POSTS_EDITOR') &&
+            ! $app['security']->isGranted('ROLE_ADMIN')
+        ) {
             $app->abort(403);
         }
 
@@ -175,8 +181,10 @@ class PostsController
     {
         $data = array();
 
-        if (! $app['security']->isGranted('ROLE_POSTS_EDITOR')
-            && ! $app['security']->isGranted('ROLE_ADMIN')) {
+        if (
+            ! $app['security']->isGranted('ROLE_POSTS_EDITOR') &&
+            ! $app['security']->isGranted('ROLE_ADMIN')
+        ) {
             $app->abort(403);
         }
 
