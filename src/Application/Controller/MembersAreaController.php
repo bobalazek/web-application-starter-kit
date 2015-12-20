@@ -192,8 +192,6 @@ class MembersAreaController
                         $app['orm.em']->merge($userEntity);
                         $app['orm.em']->flush();
 
-                        // @to-do: send reset password email success?
-
                         $data['success'] = true;
                         $data['successMessage'] = $app['translator']->trans(
                             'members-area.request-password.reset.success'
