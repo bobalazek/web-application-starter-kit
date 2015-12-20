@@ -34,27 +34,24 @@
 							<dt>{{ 'Title' | trans }}</dt>
 							<dd>{{ user.getProfile().getTitle() }}</dd>
 						{% endif %}
-
 						<dt>{{ 'First name' | trans }}</dt>
 						<dd>{{ user.getProfile().getFirstName() }}</dd>
-
 						{% if user.getProfile().getMiddleName() %}
 							<dt>{{ 'Middle name' | trans }}</dt>
 							<dd>{{ user.getProfile().getMiddleName() }}</dd>
 						{% endif %}
-
 						{% if user.getProfile().getLastName() %}
 							<dt>{{ 'Last name' | trans }}</dt>
 							<dd>{{ user.getProfile().getLastName() }}</dd>
 						{% endif %}
-
 						{% if user.getProfile().getGender() %}
 							<dt>{{ 'Gender' | trans }}</dt>
 							<dd><i class="fa fa-{{ user.getProfile().getGender() }}"></i></dd>
 						{% endif %}
-
-						<dt>{{ 'Birthdate' | trans }}</dt>
-						<dd>{{ user.getProfile().getBirthdate() | date('Y-m-d') }}</dd>
+						{% if user.getProfile().getBirthdate() %}
+							<dt>{{ 'Birthdate' | trans }}</dt>
+							<dd>{{ user.getProfile().getBirthdate() | date(app.dateFormat) }}</dd>
+						{% endif %}
 					</dl>
 				</div> <!-- /.col-md-6 -->
 				<div class="col-md-6">
