@@ -323,7 +323,7 @@
 												<tr>
 													<td class="vertical-middle">
 														<a href="{{ app.baseUrl }}">
-															{% set logoImageUrl = app.baseUrl ~ '/assets/images/logo/icon.png' %}
+															{% set logoImageUrl = app.baseUrl ~ '/assets/images/logo.png' %}
 															<img src="{{ swiftMessage is defined ? swiftMessage.embed(app['application.mailer'].image(logoImageUrl)) : logoImageUrl }}"
 																src-original="{{ logoImageUrl }}" alt="Logo" width="48" height="48" style="width: 48px; height: 48px;" />
 														</a>
@@ -331,34 +331,6 @@
 												</tr>
 												</table>
 												<!-- END: Logo -->
-											</td>
-											<td class="wrapper vertical-middle last">
-												<!-- BEGIN: Social Icons -->
-												<table class="six columns">
-												<tr>
-													<td style="padding: 0;">
-														<table class="social-icons" align="right">
-														<tr>
-															<td class="vertical-middle">
-																<a href="https://www.twitter.com/corcosoft" target="_blank">
-																	{% set twitterImageUrl = app.baseUrl ~ '/assets/images/icons/social/64-twitter.png' %}
-																	<img src="{{ swiftMessage is defined ? swiftMessage.embed(app['application.mailer'].image(twitterImageUrl)) : twitterImageUrl }}"
-																		src-original="{{ twitterImageUrl }}" alt="Twitter" height="48" width="48" style="width: 48px; height: 48px;" />
-																</a>
-															</td>
-															<td class="vertical-middle">
-																<a href="https://www.facebook.com/corcosoft" target="_blank">
-																	{% set facebookImageUrl = app.baseUrl ~ '/assets/images/icons/social/64-facebook.png' %}
-																	<img src="{{ swiftMessage is defined ? swiftMessage.embed(app['application.mailer'].image(facebookImageUrl)) : facebookImageUrl }}"
-																		src-original="{{ facebookImageUrl }}" alt="Facebook" height="48" width="48" style="width: 48px; height: 48px;" />
-																</a>
-															</td>
-														</tr>
-														</table>
-													</td>
-												</tr>
-												</table>
-												<!-- END: Social Icons -->
 											</td>
 										</tr>
 										</table>
