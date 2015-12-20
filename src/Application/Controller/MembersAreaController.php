@@ -12,15 +12,6 @@ class MembersAreaController
     {
         $data = array();
 
-        $adminMode = $request->query->get('admin_mode', false);
-
-        if ($adminMode &&
-            ! $app['security']->isGranted('ROLE_ADMIN')) {
-            $app->abort(403);
-        }
-
-        $data['adminMode'] = $adminMode;
-
         return new Response(
             $app['twig']->render('contents/members-area/index.html.twig', $data)
         );
