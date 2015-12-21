@@ -2,8 +2,14 @@
 
 namespace Application\Tool;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class Storage
 {
+    /**
+     * @return void
+     */
     public static function prepare()
     {
         self::prepareFolders(array(
@@ -31,6 +37,9 @@ class Storage
         ));
     }
 
+    /**
+     * @return void
+     */
     public static function prepareFolders(array $paths = array(), $uploadsPath = false)
     {
         if (empty($paths)) {
@@ -48,6 +57,9 @@ class Storage
         self::prepareUploadsFolder($uploadsPath);
     }
 
+    /**
+     * @return void
+     */
     public static function prepareUploadsFolder($uploadsDirectory)
     {
         if (! $uploadsDirectory) {
@@ -75,6 +87,9 @@ class Storage
         }
     }
 
+    /**
+     * @return void
+     */
     public static function prepareSharedFolders(array $paths = array())
     {
         if (empty($paths)) {
@@ -108,10 +123,13 @@ class Storage
             exec("rm -rf $pathDirectory");
             exec("mv -Tf $pathDirectoryTmp $pathDirectory");
 
-            //$fs->symlink($pathDirectory, $sharedPathDirectory, true);
+            // $fs->symlink($pathDirectory, $sharedPathDirectory, true);
         }
     }
 
+    /**
+     * @return void
+     */
     public static function prepareLogFiles(array $paths)
     {
         $fs = new \Symfony\Component\Filesystem\Filesystem();

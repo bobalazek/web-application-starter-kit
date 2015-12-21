@@ -2,8 +2,14 @@
 
 namespace Application\Tool;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class Console
 {
+    /**
+     * @return string|null
+     */
     public static function execute($command = '', $quiet = true)
     {
         return $quiet
@@ -12,11 +18,17 @@ class Console
         ;
     }
 
+    /**
+     * @return string
+     */
     public static function updateDatabaseSchema()
     {
         echo \Application\Tool\Console::execute('php bin/console orm:schema-tool:update --force --dump-sql --complete');
     }
 
+    /**
+     * @return void
+     */
     public static function prepare($output = false)
     {
         if ($output) {
