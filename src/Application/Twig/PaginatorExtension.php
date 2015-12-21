@@ -4,6 +4,9 @@ namespace Application\Twig;
 
 use Silex\Application;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class PaginatorExtension extends \Twig_Extension
 {
     private $app;

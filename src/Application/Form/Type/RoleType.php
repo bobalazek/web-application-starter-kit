@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class RoleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)

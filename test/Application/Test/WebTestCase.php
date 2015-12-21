@@ -4,6 +4,9 @@ namespace Application\Test;
 
 use Silex\WebTestCase as SilexWebTestCase;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class WebTestCase
     extends SilexWebTestCase
 {

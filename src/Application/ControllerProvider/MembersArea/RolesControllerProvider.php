@@ -5,6 +5,9 @@ namespace Application\ControllerProvider\MembersArea;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class RolesControllerProvider implements ControllerProviderInterface
 {
     public function connect(Application $app)

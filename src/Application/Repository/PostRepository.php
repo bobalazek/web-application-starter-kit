@@ -4,6 +4,9 @@ namespace Application\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class PostRepository
     extends EntityRepository
 {

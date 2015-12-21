@@ -8,6 +8,9 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Application\Entity\UserEntity;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class UserProvider
     implements UserProviderInterface
 {

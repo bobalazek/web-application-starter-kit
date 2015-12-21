@@ -5,6 +5,9 @@ namespace Application\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class GenderType
     extends AbstractType
 {

@@ -4,6 +4,9 @@ namespace Application\Test\Form\Type;
 
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class RoleTypeTest
     extends TypeTestCase
 {

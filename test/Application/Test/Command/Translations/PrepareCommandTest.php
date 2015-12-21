@@ -5,6 +5,9 @@ namespace Application\Test\Command\Translations;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class PrepareCommandTest
     extends \PHPUnit_Framework_TestCase
 {

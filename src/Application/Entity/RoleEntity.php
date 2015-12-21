@@ -14,6 +14,8 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
  * @ORM\Entity(repositoryClass="Application\Repository\RoleRepository")
  * @ORM\HasLifecycleCallbacks()
  * @DoctrineAssert\UniqueEntity(fields="role")
+ *
+ * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class RoleEntity
     implements RoleInterface

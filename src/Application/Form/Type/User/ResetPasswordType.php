@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class ResetPasswordType extends AbstractType
 {
     public $action;

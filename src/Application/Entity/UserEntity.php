@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="Application\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class UserEntity
     implements AdvancedUserInterface, \Serializable

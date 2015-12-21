@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="profiles")
  * @ORM\Entity(repositoryClass="Application\Repository\ProfileRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class ProfileEntity
 {

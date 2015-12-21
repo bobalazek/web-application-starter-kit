@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="posts")
  * @ORM\Entity(repositoryClass="Application\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class PostEntity
 {

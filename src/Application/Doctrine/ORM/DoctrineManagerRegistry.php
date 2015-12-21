@@ -5,6 +5,9 @@ namespace Application\Doctrine\ORM;
 use Exception;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class DoctrineManagerRegistry implements ManagerRegistry
 {
     protected $managers;

@@ -7,6 +7,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class PrepareCommand
     extends ContainerAwareCommand
 {
