@@ -2,19 +2,27 @@
 
 namespace Application;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class Mailer
 {
     protected $app;
 
     protected $swiftMessageInstance;
     protected $swiftMessageInstanceTemplate;
-
+    
+    /**
+     * @param Silex\Application $app
+     */
     public function __construct(\Silex\Application $app)
     {
         $this->app = $app;
     }
 
-    /***** Swiftmailer stuff *****/
+    /**
+     * Prepares the (swift) email and sends it.
+     */
     public function swiftMessageInitializeAndSend(array $data = array())
     {
         $swiftMessageInstance = \Swift_Message::newInstance();
@@ -87,29 +95,6 @@ class Mailer
         return $this->app['mailer']->send($swiftMessageInstance);
     }
 
-    public function emailEntityInitialize($swiftMessage, $type = null)
-    {
-        $trackerImageUrl = false;
-
-        $email = new \Application\Entity\EmailEntity();
-
-        $emailFrom = emailsArrayToString($swiftMessage->getFrom());
-        $emailTo = emailsArrayToString($swiftMessage->getTo());
-
-        $email
-            ->setSwiftMessageId($swiftMessage->getId())
-            ->setSubject($swiftMessage->getSubject())
-            ->setFrom($emailFrom)
-            ->setTo($emailTo)
-            ->setType($type)
-        ;
-
-        $this->app['orm.em']->persist($email);
-        $this->app['orm.em']->flush();
-
-        return $email;
-    }
-
     /***** Swift Message Instance *****/
     public function getSwiftMessageInstance()
     {
@@ -123,6 +108,9 @@ class Mailer
         return $this;
     }
 
+    /**
+     * Sends the (swift) email
+     */
     public function send($swiftMessage = false)
     {
         if (! $swiftMessage) {
@@ -132,6 +120,9 @@ class Mailer
         return $this->app['mailer']->send($swiftMessage);
     }
 
+    /**
+     * Short for swift image
+     */
     public function image($path)
     {
         return \Swift_Image::fromPath($path);
