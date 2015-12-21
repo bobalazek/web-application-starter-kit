@@ -2,6 +2,9 @@
 
 namespace Application;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class Paginator
 {
     protected $app;

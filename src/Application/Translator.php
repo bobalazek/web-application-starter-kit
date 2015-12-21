@@ -2,6 +2,9 @@
 
 namespace Application;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class Translator
 {
     protected $app;
@@ -11,6 +14,9 @@ class Translator
         $this->app = $app;
     }
 
+    /**
+     * Sets the locale (if it can)
+     */
     public function setLocale($locale, $ignoreUntranslated = false)
     {
         $this->app['translator']->setLocale($locale);
@@ -25,6 +31,9 @@ class Translator
         }
     }
 
+    /**
+     * Prepares and finds all the translated and untranslated string in tempates and controllers
+     */
     public function prepare(\Silex\Application $app, $locale)
     {
         $templatesPath = APP_DIR.'/templates';
