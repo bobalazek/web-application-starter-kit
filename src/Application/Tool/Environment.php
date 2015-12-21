@@ -2,12 +2,24 @@
 
 namespace Application\Tool;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class Environment
 {
+    /**
+     * @return void
+     */
     public static function prepare()
     {
-        if (! file_exists('app/configs/global-local.php')) {
-            fopen('app/configs/global-local.php', 'w');
+        $root = dirname(dirname(dirname(dirname(__FILE__))));
+
+        if (! file_exists($root.'/app/configs/global-local.php')) {
+            fopen($root.'/app/configs/global-local.php', 'w');
+        }
+
+        if (! file_exists($root.'/app/configs/environments/development.php')) {
+            fopen($root.'/app/configs/environments/development.php', 'w');
         }
     }
 }
