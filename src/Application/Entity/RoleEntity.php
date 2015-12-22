@@ -172,6 +172,19 @@ class RoleEntity
 
         return $this;
     }
+    
+    /********** Other methods **********/
+    public function toArray()
+    {
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'role' => $this->getRole(),
+            'description' => $this->getDescription(),
+            'priority' => $this->getPriority(),
+            'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
+        );
+    }
 
     /********** Magic Methods **********/
     public function __toString()

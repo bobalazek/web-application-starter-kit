@@ -233,17 +233,15 @@ class PostEntity
         return $this;
     }
 
-    /********** API ***********/
+    /********** Other methods ***********/
     public function toArray()
     {
         return array(
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'content' => $this->getContent(),
-            'image' => array(
-                'url' => $this->getImageUrl(),
-            ),
-            'time_created' => $this->getTimeCreated(),
+            'image_url' => $this->getImageUrl(),
+            'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
         );
     }
 

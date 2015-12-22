@@ -624,14 +624,11 @@ class UserEntity
     /********** Magic Methods **********/
     public function __toString()
     {
-        return $this->getUsername()
-            ? $this->getUsername()
-            : ''
-        ;
+        return $this->getUsername();
     }
 
     /********** Other Methods **********/
-    public function toArray($includeAllData = false)
+    public function toArray()
     {
         return array(
             'id' => $this->getId(),

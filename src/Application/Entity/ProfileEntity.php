@@ -209,10 +209,9 @@ class ProfileEntity
     /*** Age ***/
     public function getAge($format = '%y')
     {
-        return $this
-            ->getBirthdate()
-            ->diff(new \DateTime())
-            ->format($format)
+        return $this->getBirthdate()
+            ? $this->getBirthdate()->diff(new \DateTime())->format($format)
+            : null
         ;
     }
 
@@ -319,19 +318,20 @@ class ProfileEntity
     }
 
     /********** Other Methods **********/
-    public function toArray($includeAllData = false)
+    public function toArray()
     {
-        $data = array();
-
-        $data['id'] = $this->getId();
-        $data['title'] = $this->getTitle();
-        $data['firstName'] = $this->getFirstName();
-        $data['middleName'] = $this->getMiddleName();
-        $data['lastName'] = $this->getLastName();
-        $data['gender'] = $this->getGender();
-        $data['birthdate'] = $this->getBirthdate();
-        $data['imageUrl'] = $this->getImageUrl();
-
-        return $data;
+        return array(
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'full_name' => $this->getFullName(),
+            'first_name' => $this->getFirstName(),
+            'middle_name' => $this->getMiddleName(),
+            'last_name' => $this->getLastName(),
+            'gender' => $this->getGender(),
+            'birthdate' => $this->getBirthdate()
+                ? $this->getBirthdate()->format(DATE_ATOM)
+                : null,
+            'image_url' => $this->getImageUrl(),
+        );
     }
 }
