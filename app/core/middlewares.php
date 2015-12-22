@@ -100,7 +100,7 @@ $app->before(function () use ($app) {
         ),
         'strlen'
     );
-    
+
     if (
         isset($app['databaseOptions']) &&
         is_array($app['databaseOptions'])

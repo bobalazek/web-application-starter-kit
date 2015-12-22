@@ -172,7 +172,7 @@ class RoleEntity
 
         return $this;
     }
-    
+
     /********** Other methods **********/
     public function toArray()
     {

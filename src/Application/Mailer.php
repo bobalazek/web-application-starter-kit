@@ -11,7 +11,7 @@ class Mailer
 
     protected $swiftMessageInstance;
     protected $swiftMessageInstanceTemplate;
-    
+
     /**
      * @param Silex\Application $app
      */
