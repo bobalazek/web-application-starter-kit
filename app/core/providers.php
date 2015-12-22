@@ -132,17 +132,17 @@ $app['translator']->addLoader(
 
 /*** Application Translator ***/
 $app['application.translator'] = $app->share(function () use ($app) {
-    return new \Application\Translator($app);
+    return new Application\Translator($app);
 });
 
 /*** Application Mailer ***/
 $app['application.mailer'] = $app->share(function () use ($app) {
-    return new \Application\Mailer($app);
+    return new Application\Mailer($app);
 });
 
 /*** Paginator ***/
 $app['paginator'] = $app->share(function () use ($app) {
-    return new \Application\Paginator($app);
+    return new Application\Paginator($app);
 });
 
 /***** Form *****/
@@ -191,12 +191,12 @@ $app['translator']->addLoader(
 
 /*** Application Translator ***/
 $app['application.translator'] = $app->share(function () use ($app) {
-    return new \Application\Translator($app);
+    return new Application\Translator($app);
 });
 
 /*** Application Mailer ***/
 $app['application.mailer'] = $app->share(function () use ($app) {
-    return new \Application\Mailer($app);
+    return new Application\Mailer($app);
 });
 
 /***** Doctrine Database & Doctrine ORM *****/
@@ -225,7 +225,7 @@ if (isset($app['databaseOptions']) &&
         )
     );
 
-    \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(
+    Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(
         array(
             require VENDOR_DIR.'/autoload.php',
             'loadClass',
@@ -249,7 +249,7 @@ if (isset($app['databaseOptions']) &&
     $app['orm.proxies_dir'] = STORAGE_DIR.'/cache/proxy';
 
     $app['orm.manager_registry'] = $app->share(function ($app) {
-        return new \Application\Doctrine\ORM\DoctrineManagerRegistry(
+        return new Application\Doctrine\ORM\DoctrineManagerRegistry(
             'manager_registry',
             array('default' => $app['orm.em']->getConnection()),
             array('default' => $app['orm.em'])
@@ -260,7 +260,7 @@ if (isset($app['databaseOptions']) &&
         $app->extend(
             'form.extensions',
             function ($extensions) use ($app) {
-                $extensions[] = new \Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension(
+                $extensions[] = new Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension(
                     $app['orm.manager_registry']
                 );
 
@@ -271,7 +271,7 @@ if (isset($app['databaseOptions']) &&
 }
 
 /***** Validator *****/
-$app->register(new \Silex\Provider\ValidatorServiceProvider());
+$app->register(new Silex\Provider\ValidatorServiceProvider());
 
 $app['validator.mapping.mapping.file_path'] = APP_DIR.'/configs/validation.yml';
 
@@ -284,7 +284,7 @@ $app['validator.mapping.class_metadata_factory'] = $app->share(function ($app) {
 });
 
 $app['validator.unique_entity'] = $app->share(function ($app) {
-    return new \Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator(
+    return new Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator(
         $app['orm.manager_registry']
     );
 });
@@ -311,7 +311,7 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
 
 /***** User Provider *****/
 $app['user.provider'] = $app->share(function () use ($app) {
-    return new \Application\Provider\UserProvider($app);
+    return new Application\Provider\UserProvider($app);
 });
 
 /***** Security *****/
@@ -372,7 +372,7 @@ $app['security.role_hierarchy'] = array(
 $app['security.voters'] = $app->extend(
     'security.voters',
     function ($voters) use ($app) {
-        // Soon!
+        // Add your own voters here!
 
         return $voters;
     }
@@ -383,11 +383,11 @@ $app->register(new Silex\Provider\RememberMeServiceProvider());
 
 /***** Swiftmailer / Mailer *****/
 $app->register(new Silex\Provider\SwiftmailerServiceProvider());
-
 $app['swiftmailer.options'] = $app['swiftmailerOptions'];
 
+/* Emogrifier */
 $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = array(), $isTwigTemplate = true) use ($app) {
-    $emogrifier = new \Pelago\Emogrifier();
+    $emogrifier = new Pelago\Emogrifier();
     $emogrifier->setHtml(
         $isTwigTemplate
         ? $app['twig']->render($twigTemplatePathOrContent, $twigTemplateData)
@@ -407,15 +407,13 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
 
 /*** Listeners ***/
 $app['dispatcher']->addListener(
-    \Symfony\Component\Security\Core\AuthenticationEvents::AUTHENTICATION_SUCCESS,
+    Symfony\Component\Security\Core\AuthenticationEvents::AUTHENTICATION_SUCCESS,
     function ($event) use ($app) {
         $user = $event->getAuthenticationToken()->getUser();
 
-        $user
-            ->setTimeLastActive(
+        $user->setTimeLastActive(
                 new \DateTime()
-            )
-        ;
+        );
 
         $app['orm.em']->merge($user);
         $app['orm.em']->flush();

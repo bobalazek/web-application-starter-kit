@@ -5,8 +5,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 /*** Database check ***/
 $app->before(function () use ($app) {
-    if (isset($app['databaseOptions']) &&
-        is_array($app['databaseOptions'])) {
+    if (
+        isset($app['databaseOptions']) &&
+        is_array($app['databaseOptions'])
+    ) {
         if ($app['databaseOptions']['default']['driver'] != 'pdo_mysql') {
             return new Response(
                 'Currently the system only works with the pdo_mysql driver.'
@@ -29,9 +31,11 @@ $app->before(function () use ($app) {
     $app['user'] = null;
     $token = $app['security']->getToken();
 
-    if ($token &&
+    if (
+        $token &&
         ! $app['security.trust_resolver']->isAnonymous($token) &&
-        $token->getUser() instanceof \Application\Entity\UserEntity) {
+        ($token->getUser() instanceof \Application\Entity\UserEntity)
+    ) {
         $app['user'] = $token->getUser();
     }
 });
@@ -96,6 +100,33 @@ $app->before(function () use ($app) {
         ),
         'strlen'
     );
+    
+    if (
+        isset($app['databaseOptions']) &&
+        is_array($app['databaseOptions'])
+    ) {
+        // Settings
+        $settingsCollection = $app['orm.em']
+            ->getRepository('Application\Entity\SettingEntity')
+            ->findAll()
+        ;
+
+        if ($settingsCollection) {
+            $settingsArray = array();
+
+            foreach ($settingsCollection as $settingsSingle) {
+                $key = $settingsSingle->getKey();
+                $value = $settingsSingle->getValue();
+
+                $settingsArray[$key] = $value;
+            }
+
+            $app['settings'] = array_merge(
+                $app['settings'],
+                $settingsArray
+            );
+        }
+    }
 }, \Silex\Application::EARLY_EVENT);
 
 /*** Set Logut path ***/

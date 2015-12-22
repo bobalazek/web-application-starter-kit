@@ -98,6 +98,6 @@ return array(
     // Default settings (the setting values from the DB
     //   will override this values)
     'settings' => array(
-
+        'foo' => 'bar',
     ),
 );
