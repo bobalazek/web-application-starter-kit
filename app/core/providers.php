@@ -412,7 +412,7 @@ $app['dispatcher']->addListener(
         $user = $event->getAuthenticationToken()->getUser();
 
         $user->setTimeLastActive(
-                new \DateTime()
+            new \DateTime()
         );
 
         $app['orm.em']->merge($user);
