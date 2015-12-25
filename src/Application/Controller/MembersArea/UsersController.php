@@ -32,6 +32,7 @@ class UsersController
             ->select('u')
             ->from('Application\Entity\UserEntity', 'u')
             ->leftJoin('u.profile', 'p')
+            ->leftJoin('u.roles', 'r')
         ;
 
         $pagination = $app['paginator']->paginate(
@@ -42,6 +43,13 @@ class UsersController
                 'route' => 'members-area.users',
                 'defaultSortFieldName' => 'u.email',
                 'defaultSortDirection' => 'asc',
+                'searchFields' => array(
+                    'u.username',
+                    'u.email',
+                    'p.firstName',
+                    'p.lastName',
+                    'r.role',
+                ),
             )
         );
 

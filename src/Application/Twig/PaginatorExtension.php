@@ -11,22 +11,68 @@ class PaginatorExtension extends \Twig_Extension
 {
     private $app;
 
+    /**
+     * @param Application $app
+     *
+     * @return void
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'application/paginator';
     }
 
+    /**
+     * @return array
+     */
     public function getFunctions()
     {
         return array(
-            'paginator_render' => new \Twig_Function_Method(
+            'paginator_limit_per_page_render' => new \Twig_Function_Method(
                 $this,
-                'paginatorRender',
+                'paginatorLimitPerPageRender',
+                array(
+                    'is_safe' => array('html'),
+                )
+            ),
+            'paginator_search_render' => new \Twig_Function_Method(
+                $this,
+                'paginatorSearchRender',
+                array(
+                    'is_safe' => array('html'),
+                )
+            ),
+            'paginator_top_render' => new \Twig_Function_Method(
+                $this,
+                'paginatorTopRender',
+                array(
+                    'is_safe' => array('html'),
+                )
+            ),
+            'paginator_pagination_render' => new \Twig_Function_Method(
+                $this,
+                'paginatorPaginationRender',
+                array(
+                    'is_safe' => array('html'),
+                )
+            ),
+            'paginator_results_text_render' => new \Twig_Function_Method(
+                $this,
+                'paginatorResultsTextRender',
+                array(
+                    'is_safe' => array('html'),
+                )
+            ),
+            'paginator_bottom_render' => new \Twig_Function_Method(
+                $this,
+                'paginatorBottomRender',
                 array(
                     'is_safe' => array('html'),
                 )
@@ -41,7 +87,12 @@ class PaginatorExtension extends \Twig_Extension
         );
     }
 
-    public function paginatorRender($pagination)
+    /**
+     * @param $pagination
+     *
+     * @return string
+     */
+    public function paginatorPaginationRender($pagination)
     {
         $output = '';
 
@@ -52,6 +103,12 @@ class PaginatorExtension extends \Twig_Extension
         ;
         $route = $paginationData['route'];
         $routeParameters = $this->app['request']->query->all();
+        if (isset($paginationData['routeParameters'])) {
+            $routeParameters = array_merge(
+                $routeParameters,
+                $paginationData['routeParameters']
+            );
+        }
         $pageCount = ceil(
             intval($paginationData['totalCount']) /
             intval($paginationData['numItemsPerPage'])
@@ -112,7 +169,7 @@ class PaginatorExtension extends \Twig_Extension
             // Next /END
 
             $output = $this->app['twig']->render(
-                'twig/paginator.html.twig',
+                'twig/paginator/pagination.html.twig',
                 array(
                     'app' => $this->app,
                     'prevUrl' => $prevUrl,
@@ -130,6 +187,175 @@ class PaginatorExtension extends \Twig_Extension
         return $output;
     }
 
+    /**
+     * @param $pagination
+     *
+     * @return string
+     */
+    public function paginatorResultsTextRender($pagination)
+    {
+        $output = '';
+
+        $paginationData = $pagination->getPaginationData();
+        $maxPageRange = isset($paginationData['pageRangeLimit'])
+            ? intval($paginationData['pageRangeLimit'])
+            : 10
+        ;
+        $route = $paginationData['route'];
+        $routeParameters = $this->app['request']->query->all();
+        if (isset($paginationData['routeParameters'])) {
+            $routeParameters = array_merge(
+                $routeParameters,
+                $paginationData['routeParameters']
+            );
+        }
+        $pageCount = ceil(
+            intval($paginationData['totalCount']) /
+            intval($paginationData['numItemsPerPage'])
+        );
+        $currentPage = intval($paginationData['current']);
+        $total = $paginationData['totalCount'];
+
+        if ($total > 0 && $currentPage <= $pageCount) {
+            $from = (($currentPage -1) * $paginationData['numItemsPerPage']) + 1;
+            $to = $currentPage * $paginationData['numItemsPerPage'] > $total
+                ? $total
+                : $currentPage * $paginationData['numItemsPerPage']
+            ;
+
+            $output = $this->app['twig']->render(
+                'twig/paginator/results-text.html.twig',
+                array(
+                    'app' => $this->app,
+                    'from' => $from,
+                    'to' => $to,
+                    'total' => $total,
+                )
+            );
+        }
+
+        return $output;
+    }
+
+    /**
+     * @param $pagination
+     *
+     * @return string
+     */
+    public function paginatorBottomRender($pagination)
+    {
+        return $this->app['twig']->render(
+            'twig/paginator/_bottom.html.twig',
+            array(
+                'pagination' => $pagination,
+            )
+        );
+    }
+
+    /**
+     * @param $pagination
+     *
+     * @return string
+     */
+    public function paginatorLimitPerPageRender($pagination)
+    {
+        $output = '';
+
+        $paginationData = $pagination->getPaginationData();
+
+        if ($paginationData['totalCount'] > 0) {
+            $maxPageRange = isset($paginationData['pageRangeLimit'])
+                ? intval($paginationData['pageRangeLimit'])
+                : 10
+            ;
+            $route = $paginationData['route'];
+            $routeParameters = $this->app['request']->query->all();
+            if (isset($paginationData['routeParameters'])) {
+                $routeParameters = array_merge(
+                    $routeParameters,
+                    $paginationData['routeParameters']
+                );
+            }
+            $pageCount = ceil(
+                intval($paginationData['totalCount']) /
+                intval($paginationData['numItemsPerPage'])
+            );
+            $currentPage = intval($paginationData['current']);
+
+            $output = $this->app['twig']->render(
+                'twig/paginator/limit-per-page.html.twig',
+                array(
+                    'app' => $this->app,
+                    'pagination' => $pagination,
+                )
+            );
+        }
+
+        return $output;
+    }
+
+    /**
+     * @param $pagination
+     *
+     * @return string
+     */
+    public function paginatorSearchRender($pagination)
+    {
+        $output = '';
+
+        $paginationData = $pagination->getPaginationData();
+
+        $maxPageRange = isset($paginationData['pageRangeLimit'])
+            ? intval($paginationData['pageRangeLimit'])
+            : 10
+        ;
+        $route = $paginationData['route'];
+        $routeParameters = $this->app['request']->query->all();
+        if (isset($paginationData['routeParameters'])) {
+            $routeParameters = array_merge(
+                $routeParameters,
+                $paginationData['routeParameters']
+            );
+        }
+        $pageCount = ceil(
+            intval($paginationData['totalCount']) /
+            intval($paginationData['numItemsPerPage'])
+        );
+        $currentPage = intval($paginationData['current']);
+
+        $output = $this->app['twig']->render(
+            'twig/paginator/search.html.twig',
+            array(
+                'app' => $this->app,
+                'pagination' => $pagination,
+            )
+        );
+
+        return $output;
+    }
+
+    /**
+     * @param $pagination
+     *
+     * @return string
+     */
+    public function paginatorTopRender($pagination)
+    {
+        return $this->app['twig']->render(
+            'twig/paginator/_top.html.twig',
+            array(
+                'pagination' => $pagination,
+            )
+        );
+    }
+
+    /**
+     * @param $pagination
+     * @param $text
+     * @param $key
+     *
+     * @return string
+     */
     public function paginatorSortable($pagination, $text = '', $key = '')
     {
         $output = '';
@@ -150,6 +376,12 @@ class PaginatorExtension extends \Twig_Extension
         $paginationData = $pagination->getPaginationData();
         $route = $paginationData['route'];
         $routeParameters = $this->app['request']->query->all();
+        if (isset($paginationData['routeParameters'])) {
+            $routeParameters = array_merge(
+                $routeParameters,
+                $paginationData['routeParameters']
+            );
+        }
         $routeParameters = array_merge(
             $routeParameters,
             array(

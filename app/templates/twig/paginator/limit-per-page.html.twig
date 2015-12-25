@@ -1,0 +1,14 @@
+{% set limitPerPage = pagination.paginationData.numItemsPerPage %}
+<div style="display: inline-block;">
+    <select id="paginator-limit-per-page-select"
+        class="form-control input-sm">
+        <option value="10" {{ limitPerPage == '10' ? 'selected="selected"' }}>10</option>
+        <option value="20" {{ limitPerPage == '20' ? 'selected="selected"' }}>20</option>
+        <option value="25" {{ limitPerPage == '25' ? 'selected="selected"' }}>25</option>
+        <option value="50" {{ limitPerPage == '50' ? 'selected="selected"' }}>50</option>
+        <option value="100" {{ limitPerPage == '100' ? 'selected="selected"' }}>100</option>
+    </select>
+    <label>
+        {{ 'entries per page' | trans }}
+    </label>
+</div>

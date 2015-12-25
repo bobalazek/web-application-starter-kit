@@ -41,6 +41,12 @@ class RolesController
                 'route' => 'members-area.roles',
                 'defaultSortFieldName' => 'r.priority',
                 'defaultSortDirection' => 'desc',
+                'searchFields' => array(
+                    'r.name',
+                    'r.description',
+                    'r.role',
+                    'r.priority',
+                ),
             )
         );
 

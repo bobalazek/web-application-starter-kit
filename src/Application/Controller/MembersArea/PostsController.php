@@ -42,6 +42,12 @@ class PostsController
                 'route' => 'members-area.posts',
                 'defaultSortFieldName' => 'p.timeCreated',
                 'defaultSortDirection' => 'desc',
+                'searchFields' => array(
+                    'p.title',
+                    'p.content',
+                    'u.username',
+                    'u.email',
+                ),
             )
         );
 

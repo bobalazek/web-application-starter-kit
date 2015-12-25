@@ -1,0 +1,27 @@
+<ul class="pagination">
+    {# Prev #}
+        <li class="{{ prevUrl == '#' ? 'disabled' : '' }}">
+            <a href="{{ prevUrl }}" aria-label="{{ 'Previous' | trans }}">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    {# Prev /END #}
+    {# Page range #}
+        {% for page in pageRange %}
+            {% set pageRouteParameters = routeParameters | merge({ (pagination.getPaginatorOption('pageParameterName')) : page }) %}
+            {% set pageUrl = url(route, pageRouteParameters) %}
+            <li class="{{ page == currentPage ? 'active' : '' }}">
+                <a href="{{ pageUrl }}">
+                    {{ page }}
+                </a>
+            </li>
+        {% endfor %}
+    {# Page range /END #}
+    {# Next #}
+        <li class="{{ nextUrl == '#' ? 'disabled' : '' }}">
+            <a href="{{ nextUrl }}" aria-label="{{ 'Next' | trans }}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    {# Next /END #}
+</ul>
