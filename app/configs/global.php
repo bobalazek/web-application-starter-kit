@@ -94,7 +94,7 @@ return array(
         'name' => 'user',
         'remember_me_parameter' => 'remember_me',
     ),
-    
+
     // User System Options
     'userSystemOptions' => array(
         'registrationEnabled' => true,

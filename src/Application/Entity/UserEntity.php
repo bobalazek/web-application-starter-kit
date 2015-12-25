@@ -65,7 +65,7 @@ class UserEntity
      * @var string
      */
     protected $plainPassword;
-    
+
     /**
      * Used only when saving a new password.
      *
@@ -347,7 +347,7 @@ class UserEntity
 
         return $this;
     }
-    
+
     /*** Old password ***/
     /**
      * @return string
@@ -681,9 +681,9 @@ class UserEntity
     }
 
    /*** Roles ***/
-   /**
-    * @return array
-    */
+    /**
+     * @return array
+     */
     public function getRoles()
     {
         $rolesArray = array();
