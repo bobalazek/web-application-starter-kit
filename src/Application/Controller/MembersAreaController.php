@@ -13,20 +13,20 @@ class MembersAreaController
 {
     public function indexAction(Request $request, Application $app)
     {
-        $data = array();
-
         return new Response(
-            $app['twig']->render('contents/members-area/index.html.twig', $data)
+            $app['twig']->render(
+                'contents/members-area/index.html.twig'
+            )
         );
     }
 
     public function loginAction(Request $request, Application $app)
     {
-        $data = array();
-
-        $data['lastUsername'] = $app['session']->get('_security.last_username');
-        $data['lastError'] = $app['security.last_error']($app['request']);
-        $data['csrfToken'] = $app['form.csrf_provider']->generateCsrfToken('authenticate'); // The intention MUST be "authenticate"
+        $data = array(
+            'lastUsername' => $app['session']->get('_security.last_username'),
+            'lastError' => $app['security.last_error']($app['request']),
+            'csrfToken' => $app['form.csrf_provider']->getToken('authenticate'), // The intention MUST be "authenticate"
+        );
 
         return new Response(
             $app['twig']->render(
@@ -38,12 +38,9 @@ class MembersAreaController
 
     public function logoutAction(Request $request, Application $app)
     {
-        $data = array();
-
         return new Response(
             $app['twig']->render(
-                'contents/members-area/logout.html.twig',
-                $data
+                'contents/members-area/logout.html.twig'
             )
         );
     }
@@ -102,7 +99,10 @@ class MembersAreaController
                 $alertMessage = 'members-area.register.confirm.activationCodeNotFound';
             }
         } else {
-            if ($request->getMethod() == 'POST') {
+            if (
+                $request->getMethod() == 'POST' &&
+                $app['userSystemOptions']['registrationEnabled']
+            ) {
                 $form->handleRequest($request);
 
                 if ($form->isValid()) {

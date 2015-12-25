@@ -1,15 +1,23 @@
 {% extends 'layouts/content/members-area/register.html.twig' %}
 
-{% block title %}{{ 'Register'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Register' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
-	<h1 class="text-center">{{ 'Register'|trans }}</h1>
+	<h1 class="text-center">
+        {{ 'Register' | trans }}
+    </h1>
 	<hr />
-    {% if alert %}
-		<div class="alert alert-{{ alert }}">
-			{{ alertMessage | trans | raw }}
-		</div>
+    {% if app.userSystemOptions.registrationEnabled %}
+		{% if alert %}
+			<div class="alert alert-{{ alert }}">
+				{{ alertMessage | trans | raw }}
+			</div>
+		{% else %}
+			{{ form(form) }}
+		{% endif %}
 	{% else %}
-		{{ form(form) }}
+		<div class="alert alert-info">
+			{{ 'Registration is disabled' | trans }}
+		</div>
 	{% endif %}
 {% endblock %}

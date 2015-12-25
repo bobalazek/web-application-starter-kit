@@ -76,6 +76,7 @@ h6 {}
 	/* background-image: url('../images/logo/icon.png'); */
 	padding-top: 20px;
 	color: #000;
+    display: none;
 }
 
 /********** Wrapper **********/

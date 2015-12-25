@@ -13,11 +13,12 @@ class PasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('oldPassword', 'password');
+        
         $builder->add('plainPassword', 'repeated', array(
             'type' => 'password',
-            'first_name' => 'password',
-            'second_name' => 'repeatPassword',
-            'required' => false,
+            'first_name' => 'newPassword',
+            'second_name' => 'newPasswordRepeat',
             'invalid_message' => 'errors.user.password.invalidText',
         ));
 

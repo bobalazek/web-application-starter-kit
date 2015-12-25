@@ -131,8 +131,11 @@ $app->before(function () use ($app) {
 
 /*** Set Logut path ***/
 $app->before(function (Request $request) use ($app) {
-    $csrfToken = $app['form.csrf_provider']->generateCsrfToken('logout');
-    $app['logoutUrl'] = $app['url_generator']->generate('members-area.logout').'?csrf_token='.$csrfToken;
+    $app['logoutUrl'] = $app['url_generator']
+        ->generate('members-area.logout').
+        '?_csrf_token='.
+        $app['form.csrf_provider']->getToken('logout')
+    ;
 });
 
 /*** SOAP ***/

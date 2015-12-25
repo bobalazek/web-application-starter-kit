@@ -59,7 +59,19 @@ class UserEntity
      */
     protected $password;
 
+    /**
+     * Used only when saving the user.
+     *
+     * @var string
+     */
     protected $plainPassword;
+    
+    /**
+     * Used only when saving a new password.
+     *
+     * @var string
+     */
+    protected $oldPassword;
 
     /**
      * @var string
@@ -166,6 +178,9 @@ class UserEntity
 
     /*************** Methods ***************/
     /***** Constructor *****/
+    /**
+     * @return void
+     */
     public function __construct()
     {
         $this->setSalt(
@@ -194,11 +209,19 @@ class UserEntity
 
     /***** Getters, Setters and Other stuff *****/
     /*** Id ***/
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -207,11 +230,19 @@ class UserEntity
     }
 
     /*** Locale ***/
+    /**
+     * @return string
+     */
     public function getLocale()
     {
         return $this->locale;
     }
 
+    /**
+     * @param $locale
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setLocale($locale)
     {
         $this->locale = $locale;
@@ -220,11 +251,19 @@ class UserEntity
     }
 
     /*** Username ***/
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * @param $username
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setUsername($username)
     {
         $this->username = $username;
@@ -233,11 +272,19 @@ class UserEntity
     }
 
     /*** Email ***/
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * @param $email
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -246,11 +293,19 @@ class UserEntity
     }
 
     /*** Password ***/
+    /**
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * @param $password
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setPassword($password)
     {
         if ($password) {
@@ -261,11 +316,20 @@ class UserEntity
     }
 
     /*** Plain password ***/
+    /**
+     * @return string
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
+    /**
+     * @param $plainPassword
+     * @param $encoderFactory
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setPlainPassword($plainPassword, \Symfony\Component\Security\Core\Encoder\EncoderFactory $encoderFactory = null)
     {
         $this->plainPassword = $plainPassword;
@@ -283,13 +347,42 @@ class UserEntity
 
         return $this;
     }
+    
+    /*** Old password ***/
+    /**
+     * @return string
+     */
+    public function getOldPassword()
+    {
+        return $this->oldPassword;
+    }
+
+    /**
+     * @param $oldPassword
+     *
+     * @return \Application\Entity\UserEntity
+     */
+    public function setOldPassword($oldPassword)
+    {
+        $this->oldPassword = $oldPassword;
+
+        return $this;
+    }
 
     /*** Salt ***/
+    /**
+     * @return string
+     */
     public function getSalt()
     {
         return $this->salt;
     }
 
+    /**
+     * @param $salt
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setSalt($salt)
     {
         $this->salt = $salt;
@@ -298,11 +391,19 @@ class UserEntity
     }
 
     /*** Token ***/
+    /**
+     * @return string
+     */
     public function getToken()
     {
         return $this->token;
     }
 
+    /**
+     * @param $token
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setToken($token)
     {
         $this->token = $token;
@@ -311,11 +412,19 @@ class UserEntity
     }
 
     /*** Access Token ***/
+    /**
+     * @return string
+     */
     public function getAccessToken()
     {
         return $this->accessToken;
     }
 
+    /**
+     * @param $accessToken
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
@@ -324,11 +433,17 @@ class UserEntity
     }
 
     /*** Enabled ***/
+    /**
+     * @return boolean
+     */
     public function getEnabled()
     {
         return $this->enabled;
     }
 
+    /**
+     * @return boolean
+     */
     public function isEnabled()
     {
         return $this->getEnabled();
@@ -341,6 +456,9 @@ class UserEntity
         return $this;
     }
 
+    /**
+     * @return \Application\Entity\UserEntity
+     */
     public function enable()
     {
         $this->setEnabled(true);
@@ -348,6 +466,9 @@ class UserEntity
         return $this;
     }
 
+    /**
+     * @return \Application\Entity\UserEntity
+     */
     public function disable()
     {
         $this->setEnabled(false);
@@ -356,16 +477,27 @@ class UserEntity
     }
 
     /*** Locked ***/
+    /**
+     * @return boolean
+     */
     public function getLocked()
     {
         return $this->locked;
     }
 
+    /**
+     * @return boolean
+     */
     public function isLocked()
     {
         return $this->getLocked();
     }
 
+    /**
+     * @param $locked
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setLocked($locked)
     {
         $this->locked = $locked;
@@ -373,6 +505,11 @@ class UserEntity
         return $this;
     }
 
+    /**
+     * @param $reason
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function lock($reason = '')
     {
         $this->setLocked(true);
@@ -380,17 +517,28 @@ class UserEntity
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
     public function isAccountNonLocked()
     {
         return ! $this->isLocked();
     }
 
     /*** Reset password code ***/
+    /**
+     * @return boolean
+     */
     public function getResetPasswordCode()
     {
         return $this->resetPasswordCode;
     }
 
+    /**
+     * @param $resetPasswordCode
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setResetPasswordCode($resetPasswordCode)
     {
         $this->resetPasswordCode = $resetPasswordCode;
@@ -399,11 +547,19 @@ class UserEntity
     }
 
     /*** Activation code ***/
+    /**
+     * @return string
+     */
     public function getActivationCode()
     {
         return $this->activationCode;
     }
 
+    /**
+     * @param $activationCode
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setActivationCode($activationCode)
     {
         $this->activationCode = $activationCode;
@@ -412,12 +568,20 @@ class UserEntity
     }
 
     /*** Time last active ***/
+    /**
+     * @return Datetime
+     */
     public function getTimeLastActive()
     {
         return $this->timeLastActive;
     }
 
-    public function setTimeLastActive(\DateTime $timeLastActive = null)
+    /**
+     * @param $timeLastActive
+     *
+     * @return \Application\Entity\UserEntity
+     */
+    public function setTimeLastActive(\Datetime $timeLastActive = null)
     {
         $this->timeLastActive = $timeLastActive;
 
@@ -425,12 +589,20 @@ class UserEntity
     }
 
     /*** Time created ***/
+    /**
+     * @return Datetime
+     */
     public function getTimeCreated()
     {
         return $this->timeCreated;
     }
 
-    public function setTimeCreated(\DateTime $timeCreated)
+    /**
+     * @param $timeCreated
+     *
+     * @return \Application\Entity\UserEntity
+     */
+    public function setTimeCreated(\Datetime $timeCreated)
     {
         $this->timeCreated = $timeCreated;
 
@@ -438,11 +610,19 @@ class UserEntity
     }
 
     /*** Time updated ***/
+    /**
+     * @return Datetime
+     */
     public function getTimeUpdated()
     {
         return $this->timeUpdated;
     }
 
+    /**
+     * @param $timeUpdated
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setTimeUpdated(\DateTime $timeUpdated)
     {
         $this->timeUpdated = $timeUpdated;
@@ -451,38 +631,59 @@ class UserEntity
     }
 
     /*** Expired ***/
+    /**
+     * @return boolean
+     */
     public function getExpired()
     {
         return $this->expired;
     }
 
+    /**
+     * @return boolean
+     */
     public function isExpired()
     {
         return $this->getExpired();
     }
 
+    /**
+     * @return boolean
+     */
     public function isAccountNonExpired()
     {
         return ! $this->getExpired();
     }
 
     /*** Credentials expired ***/
+    /**
+     * @return boolean
+     */
     public function getCredentialsExpired()
     {
         return $this->credentialsExpired;
     }
 
+    /**
+     * @return boolean
+     */
     public function isCredentialsExpired()
     {
         return $this->getCredentialsExpired();
     }
 
+    /**
+     * @return boolean
+     */
     public function isCredentialsNonExpired()
     {
         return ! $this->getExpired();
     }
 
    /*** Roles ***/
+   /**
+    * @return array
+    */
     public function getRoles()
     {
         $rolesArray = array();
@@ -506,6 +707,11 @@ class UserEntity
         return array('ROLE_USER'); // Fallback, when no roles are found
     }
 
+    /**
+     * @param $roles
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setRoles($roles)
     {
         $this->roles = $roles;
@@ -513,11 +719,19 @@ class UserEntity
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
     public function hasRole(\Application\Entity\RoleEntity $role = null)
     {
         return $this->roles->contains($role);
     }
 
+    /**
+     * @param $role
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function addRole(\Application\Entity\RoleEntity $role = null)
     {
         if (! $this->roles->contains($role)) {
@@ -527,6 +741,11 @@ class UserEntity
         return $this;
     }
 
+    /**
+     * @param $role
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function removeRole($role = null)
     {
         if (is_string($role)) {
@@ -545,11 +764,19 @@ class UserEntity
     }
 
     /*** Profile ***/
+    /**
+     * @return Application\Entity\ProfileEntity
+     */
     public function getProfile()
     {
         return $this->profile;
     }
 
+    /**
+     * @param $profile
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setProfile(\Application\Entity\ProfileEntity $profile)
     {
         $this->profile = $profile;
@@ -560,11 +787,19 @@ class UserEntity
     }
 
     /*** Posts ***/
+    /**
+     * @return array
+     */
     public function getPosts()
     {
         return $this->posts;
     }
 
+    /**
+     * @param $posts
+     *
+     * @return \Application\Entity\UserEntity
+     */
     public function setPosts($posts)
     {
         $this->posts = $posts;
@@ -573,6 +808,9 @@ class UserEntity
     }
 
     /***** Other AdvancedUserInterface Methods *****/
+    /**
+     * @return boolean
+     */
     public function isEqualTo(AdvancedUserInterface $user)
     {
         if (! $user instanceof AdvancedUserInterface) {
@@ -594,11 +832,17 @@ class UserEntity
         return true;
     }
 
+    /**
+     * @return void
+     */
     public function eraseCredentials()
     {
         $this->setPlainPassword(null);
     }
 
+    /**
+     * @return array
+     */
     public function serialize()
     {
         return serialize(array(
@@ -610,6 +854,9 @@ class UserEntity
         ));
     }
 
+    /**
+     * @return void
+     */
     public function unserialize($serialized)
     {
         list(
@@ -622,12 +869,18 @@ class UserEntity
     }
 
     /********** Magic Methods **********/
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getUsername();
     }
 
     /********** Other Methods **********/
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return array(

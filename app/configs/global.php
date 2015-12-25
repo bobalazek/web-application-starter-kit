@@ -87,12 +87,17 @@ return array(
         'auth_mode' => null,
     ),
 
-    // Remmember me Options
+    // Remember me Options
     // http://silex.sensiolabs.org/doc/providers/remember_me.html#options
     'rememberMeOptions' => array(
         'key' => 'someRandomKey',
         'name' => 'user',
         'remember_me_parameter' => 'remember_me',
+    ),
+    
+    // User System Options
+    'userSystemOptions' => array(
+        'registrationEnabled' => true,
     ),
 
     // Default settings (the setting values from the DB

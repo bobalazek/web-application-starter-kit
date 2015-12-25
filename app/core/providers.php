@@ -200,8 +200,10 @@ $app['application.mailer'] = $app->share(function () use ($app) {
 });
 
 /***** Doctrine Database & Doctrine ORM *****/
-if (isset($app['databaseOptions']) &&
-    is_array($app['databaseOptions'])) {
+if (
+    isset($app['databaseOptions']) &&
+    is_array($app['databaseOptions'])
+) {
     $app->register(
         new Silex\Provider\DoctrineServiceProvider(),
         array(
@@ -415,7 +417,7 @@ $app['dispatcher']->addListener(
             new \DateTime()
         );
 
-        $app['orm.em']->merge($user);
+        $app['orm.em']->persist($user);
         $app['orm.em']->flush();
     }
 );

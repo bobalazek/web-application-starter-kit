@@ -1,29 +1,27 @@
 {% extends 'layouts/content/members-area.html.twig' %}
 
-{% block title %}{{ user.getProfile().getName() }} | {{ 'Users'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ user.getProfile().getName() }} | {{ 'Users' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
 	<div class="row">
-		<div class="col-md-3">
-			{% if user.getProfile().getImageUrl() %}
+		<div class="col-md-3 text-center">
+            {% if user.getProfile().getImageUrl() %}
 				<img class="img-responsive img-thumbnail"
 					src="{{ user.getProfile().getImageUrl() }}"
 					alt="{{ 'Profile image' | trans }}"
 					style="max-height: 400px;" />
 			{% endif %}
-			<div class="text-center">
-				<h1>
-					<small>
-						"{{ user }}"
-					</small>
-					<br />
-					{{ user.getProfile().getName() }}
-					<br />
-					<small>
-						{{ user.getEmail() }}
-					</small>
-				</h1>
-			</div>
+			<h1>
+				<small>
+					"{{ user }}"
+				</small>
+				<br />
+				{{ user.getProfile().getName() }}
+				<br />
+				<small>
+					{{ user.getEmail() }}
+				</small>
+			</h1>
 		</div>
 		<div class="col-md-9">
 			<div class="row">
