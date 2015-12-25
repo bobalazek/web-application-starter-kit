@@ -5,6 +5,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
 /**
  * User Entity
@@ -203,8 +204,8 @@ class UserEntity
             md5(uniqid(null, true))
         );
 
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     /***** Getters, Setters and Other stuff *****/
@@ -330,7 +331,7 @@ class UserEntity
      *
      * @return \Application\Entity\UserEntity
      */
-    public function setPlainPassword($plainPassword, \Symfony\Component\Security\Core\Encoder\EncoderFactory $encoderFactory = null)
+    public function setPlainPassword($plainPassword, EncoderFactory $encoderFactory = null)
     {
         $this->plainPassword = $plainPassword;
 
@@ -722,7 +723,7 @@ class UserEntity
     /**
      * @return boolean
      */
-    public function hasRole(\Application\Entity\RoleEntity $role = null)
+    public function hasRole(RoleEntity $role = null)
     {
         return $this->roles->contains($role);
     }
@@ -732,7 +733,7 @@ class UserEntity
      *
      * @return \Application\Entity\UserEntity
      */
-    public function addRole(\Application\Entity\RoleEntity $role = null)
+    public function addRole(RoleEntity $role = null)
     {
         if (! $this->roles->contains($role)) {
             $this->roles->add($role);
@@ -777,7 +778,7 @@ class UserEntity
      *
      * @return \Application\Entity\UserEntity
      */
-    public function setProfile(\Application\Entity\ProfileEntity $profile)
+    public function setProfile(ProfileEntity $profile)
     {
         $this->profile = $profile;
 

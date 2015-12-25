@@ -5,6 +5,7 @@ namespace Application\Command\Storage;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Application\Tool\Storage;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -26,7 +27,7 @@ class PrepareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        \Application\Tool\Storage::prepare();
+        Storage::prepare();
 
         $output->writeln(
             '<info>The storage was successfully prepared!</info>'

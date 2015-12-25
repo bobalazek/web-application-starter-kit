@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Application\Entity\UserEntity;
+use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -17,7 +18,7 @@ class UserProvider
     private $app;
     private $credentials;
 
-    public function __construct(\Silex\Application $app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }

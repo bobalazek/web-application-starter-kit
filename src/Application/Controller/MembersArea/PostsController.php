@@ -5,6 +5,8 @@ namespace Application\Controller\MembersArea;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Form\Type\PostType;
+use Application\Entity\PostEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -65,8 +67,8 @@ class PostsController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\PostType(),
-            new \Application\Entity\PostEntity()
+            new PostType(),
+            new PostEntity()
         );
 
         if ($request->getMethod() == 'POST') {
@@ -131,7 +133,7 @@ class PostsController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\PostType(),
+            new PostType(),
             $post
         );
 

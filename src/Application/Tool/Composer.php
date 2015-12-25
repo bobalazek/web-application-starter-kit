@@ -12,9 +12,9 @@ class Composer
      */
     public static function postInstallCmd()
     {
-        \Application\Tool\Storage::prepare();
-        \Application\Tool\Environment::prepare();
-        \Application\Tool\Console::updateDatabaseSchema();
+        Storage::prepare();
+        Environment::prepare();
+        Console::updateDatabaseSchema();
     }
 
     /**
@@ -30,7 +30,7 @@ class Composer
      */
     public static function download()
     {
-        return \Application\Tool\Console::execute('curl -sS https://getcomposer.org/installer | php -- --install-dir=bin');
+        return Console::execute('curl -sS https://getcomposer.org/installer | php -- --install-dir=bin');
     }
 
     /**
@@ -38,7 +38,7 @@ class Composer
      */
     public static function update()
     {
-        return \Application\Tool\Console::execute('php bin/composer.phar update');
+        return Console::execute('php bin/composer.phar update');
     }
 
     /**

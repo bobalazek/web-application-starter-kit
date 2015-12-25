@@ -13,12 +13,9 @@ class IndexController
 {
     public function indexAction(Request $request, Application $app)
     {
-        $data = array();
-
         return new Response(
             $app['twig']->render(
-                'contents/index.html.twig',
-                $data
+                'contents/index.html.twig'
             )
         );
     }

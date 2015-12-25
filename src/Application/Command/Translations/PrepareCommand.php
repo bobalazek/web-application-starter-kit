@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -15,10 +16,7 @@ class PrepareCommand
 {
     protected $app;
 
-    public function __construct(
-        $name,
-        \Silex\Application $app
-    ) {
+    public function __construct($name, Application $app) {
         parent::__construct($name);
 
         $this->app = $app;

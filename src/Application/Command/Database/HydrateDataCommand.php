@@ -6,6 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Application\Entity\UserEntity;
+use Application\Entity\ProfileEntity;
+use Application\Entity\RoleEntity;
+use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -15,10 +20,7 @@ class HydrateDataCommand
 {
     protected $app;
 
-    public function __construct(
-        $name,
-        \Silex\Application $app
-    ) {
+    public function __construct($name, Application $app) {
         parent::__construct($name);
 
         $this->app = $app;
@@ -70,7 +72,7 @@ class HydrateDataCommand
         $roles = include APP_DIR.'/fixtures/roles.php';
 
         foreach ($roles as $role) {
-            $roleEntity = new \Application\Entity\RoleEntity();
+            $roleEntity = new RoleEntity();
             $roleEntity
                 ->setId($role[0])
                 ->setName($role[1])
@@ -93,8 +95,8 @@ class HydrateDataCommand
         $users = include APP_DIR.'/fixtures/users.php';
 
         foreach ($users as $user) {
-            $userEntity = new \Application\Entity\UserEntity();
-            $profileEntity = new \Application\Entity\ProfileEntity();
+            $userEntity = new UserEntity();
+            $profileEntity = new ProfileEntity();
 
             // Profile
             $profileEntity
@@ -115,7 +117,7 @@ class HydrateDataCommand
             }
 
             // User Roles
-            $userRolesCollection = new \Doctrine\Common\Collections\ArrayCollection();
+            $userRolesCollection = new ArrayCollection();
 
             if (! empty($user['roles'])) {
                 $userRoles = $user['roles'];

@@ -5,6 +5,9 @@ namespace Application\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Form\Type\User\RegisterType;
+use Application\Form\Type\User\ResetPasswordType;
+use Application\Entity\UserEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -61,8 +64,8 @@ class MembersAreaController
         $alertMessage = '';
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\User\RegisterType(),
-            new \Application\Entity\UserEntity()
+            new RegisterType(),
+            new UserEntity()
         );
 
         if ($action == 'confirm') {
@@ -162,8 +165,8 @@ class MembersAreaController
         $alertMessage = '';
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\User\ResetPasswordType($action),
-            new \Application\Entity\UserEntity()
+            new ResetPasswordType($action),
+            new UserEntity()
         );
 
         if ($action == 'reset') {

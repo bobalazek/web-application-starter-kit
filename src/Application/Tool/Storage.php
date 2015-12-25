@@ -2,6 +2,8 @@
 
 namespace Application\Tool;
 
+use Symfony\Component\Filesystem\Filesystem;
+
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
@@ -46,7 +48,7 @@ class Storage
             return false;
         }
 
-        $fs = new \Symfony\Component\Filesystem\Filesystem();
+        $fs = new Filesystem();
 
         foreach ($paths as $path) {
             $fs->remove($path);
@@ -66,7 +68,7 @@ class Storage
             return false;
         }
 
-        $fs = new \Symfony\Component\Filesystem\Filesystem();
+        $fs = new Filesystem();
 
         $uploadsDirectory = 'web/assets/uploads';
 
@@ -96,7 +98,7 @@ class Storage
             return false;
         }
 
-        $fs = new \Symfony\Component\Filesystem\Filesystem();
+        $fs = new Filesystem();
 
         $releaseRoot = dirname(dirname(dirname(dirname(__FILE__)))).'/'; // Current version root
         $root = dirname(dirname($releaseRoot));
@@ -132,7 +134,7 @@ class Storage
      */
     public static function prepareLogFiles(array $paths)
     {
-        $fs = new \Symfony\Component\Filesystem\Filesystem();
+        $fs = new Filesystem();
 
         foreach ($paths as $path) {
             $fs->remove($path);

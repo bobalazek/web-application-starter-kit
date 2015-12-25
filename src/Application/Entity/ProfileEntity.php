@@ -3,6 +3,7 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Profile Entity
@@ -221,7 +222,7 @@ class ProfileEntity
         return $this->image;
     }
 
-    public function setImage(\Symfony\Component\HttpFoundation\File\File $image = null)
+    public function setImage(File $image = null)
     {
         $this->image = $image;
 
@@ -305,7 +306,7 @@ class ProfileEntity
     }
 
     /*** User ***/
-    public function setUser(\Application\Entity\UserEntity $user)
+    public function setUser(UserEntity $user)
     {
         $this->user = $user;
 

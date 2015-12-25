@@ -34,7 +34,7 @@ class ProfileType extends AbstractType
 
         $builder->add(
             'gender',
-            new \Application\Form\Type\GenderType(),
+            new GenderType(),
             array(
                 'label' => 'Gender',
                 'required' => false,

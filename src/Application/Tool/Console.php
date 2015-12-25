@@ -23,7 +23,7 @@ class Console
      */
     public static function updateDatabaseSchema()
     {
-        echo \Application\Tool\Console::execute('php bin/console orm:schema-tool:update --force --dump-sql --complete');
+        echo self::execute('php bin/console orm:schema-tool:update --force --dump-sql --complete');
     }
 
     /**
@@ -34,35 +34,22 @@ class Console
         if ($output) {
             $output->writeln('<info>Preparing storage...</info>');
         }
-        \Application\Tool\Storage::prepare();
+        Storage::prepare();
 
         if ($output) {
             $output->writeln('<info>Preparing environment...</info>');
         }
-        \Application\Tool\Environment::prepare();
+        Environment::prepare();
 
         if ($output) {
             $output->writeln('<info>Preparing composer...</info>');
         }
-        \Application\Tool\Composer::download();
-        \Application\Tool\Composer::update();
-
-        if (\Application\Tool\Bower::isInstalled()) {
-            if ($output) {
-                $output->writeln('<info>Preparing bower...</info>');
-            }
-            \Application\Tool\Bower::update();
-        } else {
-            if ($output) {
-                $output->writeln('<info>Preparing bowerphp...</info>');
-            }
-            \Application\Tool\BowerPhp::download();
-            \Application\Tool\BowerPhp::update();
-        }
+        Composer::download();
+        Composer::update();
 
         if ($output) {
             $output->writeln('<info>Updating database schema...</info>');
         }
-        \Application\Tool\Console::updateDatabaseSchema();
+        self::updateDatabaseSchema();
     }
 }

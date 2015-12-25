@@ -3,6 +3,8 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Cocur\Slugify\Slugify;
 
 /**
  * Post Entity
@@ -121,7 +123,7 @@ class PostEntity
         return $this->image;
     }
 
-    public function setImage(\Symfony\Component\HttpFoundation\File\File $image = null)
+    public function setImage(File $image = null)
     {
         $this->image = $image;
 
@@ -174,7 +176,7 @@ class PostEntity
             return;
         }
 
-        $slugify = new \Cocur\Slugify\Slugify();
+        $slugify = new Slugify();
 
         $filename = $slugify->slugify(
             $this->getImage()->getClientOriginalName()
@@ -226,7 +228,7 @@ class PostEntity
         return $this->user;
     }
 
-    public function setUser(\Application\Entity\UserEntity $user = null)
+    public function setUser(UserEntity $user = null)
     {
         $this->user = $user;
 

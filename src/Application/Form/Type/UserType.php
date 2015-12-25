@@ -16,7 +16,7 @@ class UserType extends AbstractType
     {
         $builder->add(
             'profile',
-            new \Application\Form\Type\ProfileType()
+            new ProfileType()
         );
 
         $builder->add('username', 'text', array(

@@ -12,14 +12,9 @@ class ApiController
 {
     public function indexAction(Request $request, Application $app)
     {
-        $data = array(
-            'status' => 'ok',
-            'status_code' => 200,
+        return $app->json(array(
+            'status' => 'success',
             'message' => 'Hello API!',
-        );
-
-        return $app->json(
-            $data
-        );
+        ));
     }
 }

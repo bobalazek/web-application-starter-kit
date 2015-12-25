@@ -2,6 +2,8 @@
 
 namespace Application;
 
+use Silex\Application;
+
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
@@ -15,7 +17,7 @@ class Mailer
     /**
      * @param Silex\Application $app
      */
-    public function __construct(\Silex\Application $app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }

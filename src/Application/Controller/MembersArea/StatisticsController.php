@@ -13,12 +13,9 @@ class StatisticsController
 {
     public function indexAction(Request $request, Application $app)
     {
-        $data = array();
-
         return new Response(
             $app['twig']->render(
-                'contents/members-area/statistics/index.html.twig',
-                $data
+                'contents/members-area/statistics/index.html.twig'
             )
         );
     }

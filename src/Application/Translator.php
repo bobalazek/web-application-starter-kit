@@ -2,6 +2,12 @@
 
 namespace Application;
 
+use Symfony\Bridge\Twig\Translation\TwigExtractor;
+use Symfony\Component\Translation\MessageCatalogue;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Dumper;
+use Silex\Application;
+
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
@@ -9,7 +15,7 @@ class Translator
 {
     protected $app;
 
-    public function __construct(\Silex\Application $app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }
@@ -34,20 +40,20 @@ class Translator
     /**
      * Prepares and finds all the translated and untranslated string in tempates and controllers
      */
-    public function prepare(\Silex\Application $app, $locale)
+    public function prepare(Application $app, $locale)
     {
         $templatesPath = APP_DIR.'/templates';
         $untranslatedMessagesFile = APP_DIR.'/locales/'.$locale.'_untranslated.yml';
 
-        $extractor = new \Symfony\Bridge\Twig\Translation\TwigExtractor($app['twig']);
+        $extractor = new TwigExtractor($app['twig']);
 
         /***** All translations *****/
-        $catalogueAll = new \Symfony\Component\Translation\MessageCatalogue($locale);
+        $catalogueAll = new MessageCatalogue($locale);
         $extractor->extract($templatesPath, $catalogueAll);
         $allMessages = $catalogueAll->all('messages');
 
         // String from controller, controller provider, etc.
-        $finder = new \Symfony\Component\Finder\Finder();
+        $finder = new Finder();
         $finder->files()->in(ROOT_DIR.'/src');
 
         foreach ($finder as $file) {
@@ -93,7 +99,7 @@ class Translator
         }
 
         if (! empty($untranslatedMessages)) {
-            $dumper = new \Symfony\Component\Yaml\Dumper();
+            $dumper = new Dumper();
 
             $yaml = $dumper->dump($untranslatedMessages, 1);
 

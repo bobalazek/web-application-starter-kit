@@ -5,6 +5,8 @@ namespace Application\Controller\MembersArea;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Form\Type\User\SettingsType;
+use Application\Form\Type\User\Settings\PasswordType;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -20,12 +22,9 @@ class MyController
 
     public function profileAction(Request $request, Application $app)
     {
-        $data = array();
-
         return new Response(
             $app['twig']->render(
-                'contents/members-area/my/profile/index.html.twig',
-                $data
+                'contents/members-area/my/profile/index.html.twig'
             )
         );
     }
@@ -39,7 +38,7 @@ class MyController
         $userOld['profile'] = $app['user']->getProfile()->toArray(true);
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\User\SettingsType(),
+            new SettingsType(),
             $app['user']
         );
 
@@ -97,7 +96,7 @@ class MyController
         $data = array();
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\User\Settings\PasswordType(),
+            new PasswordType(),
             $app['user']
         );
 

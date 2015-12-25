@@ -5,6 +5,8 @@ namespace Application\Controller\MembersArea;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Form\Type\UserType;
+use Application\Entity\UserEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -65,8 +67,8 @@ class UsersController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\UserType(),
-            new \Application\Entity\UserEntity()
+            new UserType(),
+            new UserEntity()
         );
 
         if ($request->getMethod() == 'POST') {
@@ -168,7 +170,7 @@ class UsersController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\UserType(),
+            new UserType(),
             $user
         );
 

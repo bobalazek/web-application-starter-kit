@@ -5,6 +5,7 @@ namespace Application\Form\Type\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Application\Form\Type\ProfileType;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -15,7 +16,7 @@ class SettingsType extends AbstractType
     {
         $builder->add(
             'profile',
-            new \Application\Form\Type\ProfileType()
+            new ProfileType()
         );
 
         $builder->add('username', 'text', array(

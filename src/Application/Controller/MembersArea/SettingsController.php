@@ -5,6 +5,8 @@ namespace Application\Controller\MembersArea;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Form\Type\SettingsType;
+use Application\Entity\SettingEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -26,7 +28,7 @@ class SettingsController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\SettingsType($app)
+            new SettingsType($app)
         );
 
         if ($request->getMethod() == 'POST') {
@@ -43,7 +45,7 @@ class SettingsController
                         ;
 
                         if ($settingEntity === null) {
-                            $settingEntity = new \Application\Entity\SettingEntity();
+                            $settingEntity = new SettingEntity();
 
                             $settingEntity
                                 ->setKey($key)

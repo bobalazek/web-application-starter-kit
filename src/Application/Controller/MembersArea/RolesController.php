@@ -5,6 +5,8 @@ namespace Application\Controller\MembersArea;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Form\Type\RoleType;
+use Application\Entity\RoleEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -64,8 +66,8 @@ class RolesController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\RoleType(),
-            new \Application\Entity\RoleEntity()
+            new RoleType(),
+            new RoleEntity()
         );
 
         if ($request->getMethod() == 'POST') {
@@ -126,7 +128,7 @@ class RolesController
         }
 
         $form = $app['form.factory']->create(
-            new \Application\Form\Type\RoleType(),
+            new RoleType(),
             $role
         );
 
