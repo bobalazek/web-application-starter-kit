@@ -1,12 +1,12 @@
 {% extends 'layouts/content/members-area.html.twig' %}
 
-{% set user = user|default(app.user) %}
+{% set user = user | default(app.user) %}
 
-{% block title %}{{ 'Settings'|trans }} | {{ 'Profile'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Settings' | trans }} | {{ 'Profile' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
-	<h1>{{ 'Profile'|trans }}</h1>
-	<h2>{{ 'Settings'|trans }}</h2>
+	<h1>{{ 'Profile' | trans }}</h1>
+	<h2>{{ 'Settings' | trans }}</h2>
 	<ol class="breadcrumb">
 		<li>
 			<a href="{{ url('members-area') }}">

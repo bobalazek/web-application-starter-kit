@@ -1,13 +1,13 @@
 {% extends 'layouts/content/members-area.html.twig' %}
 
-{% block title %}{{ 'Posts'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Posts' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
 	<h1>
-		{{ 'Posts'|trans }}
+		{{ 'Posts' | trans }}
 		<a class="btn btn-primary btn-sm"
 			href="{{ url('members-area.posts.new') }}">
-			{{ 'New'|trans }}
+			{{ 'New' | trans }}
 		</a>
 	</h1>
 	<ol class="breadcrumb">
@@ -45,21 +45,25 @@
 						<td>{{ post.getUser()}}</td>
 						<td>{{ post.getTimeCreated()|date(app.dateTimeFormat) }}</td>
 						<td>
-							<a class="btn btn-sm btn-default"
-								data-toggle="tooltip" title="{{ 'Edit'|trans }}"
-								href="{{ url('members-area.posts.edit', { id : post.getId() }) }}">
+							<a class="btn btn-xs btn-default"
+								data-toggle="tooltip" 
+                                title="{{ 'Edit' | trans }}"
+								href="{{ url('members-area.posts.edit', { id: post.getId() }) }}">
 								<i class="fa fa-fw fa-cog"></i>
 							</a>
-							<a class="btn btn-sm btn-danger"
-								data-toggle="tooltip" title="{{ 'Remove'|trans }}"
-								href="{{ url('members-area.posts.remove', { id : post.getId() }) }}">
+							<a class="btn btn-xs btn-danger"
+								data-toggle="tooltip"
+                                title="{{ 'Remove' | trans }}"
+								href="{{ url('members-area.posts.remove', { id: post.getId() }) }}">
 								<i class="fa fa-fw fa-times"></i>
 							</a>
 						</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="99">{{ 'No posts yet'|trans }}</td>
+						<td colspan="9">
+                            {{ 'No posts yet' | trans }}
+                        </td>
 					</tr>
 				{% endfor %}
 			</tbody>

@@ -1,10 +1,10 @@
 {% extends 'layouts/content/members-area.html.twig' %}
 
-{% block title %}{{ 'Remove'|trans }} | {{ 'Posts'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Remove' | trans }} | {{ 'Posts' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
 	<h1>
-		{{ 'Remove Post'|trans }}
+		{{ 'Remove Post' | trans }}
 		<small>"{{ post }}"</small>
 	</h1>
 	<ol class="breadcrumb">
@@ -23,16 +23,18 @@
 		</li>
 	</ol>
 	<div class="alert alert-block alert-warning">
-		<h4 class="alert-heading">{{ 'Warning!'|trans }}</h4>
-		<p>{{ 'Are you sure you want to remove this post?'|trans }}</p>
+		<h4 class="alert-heading">
+            {{ 'Warning!' | trans }}
+        </h4>
+		<p>{{ 'Are you sure you want to remove this post?' | trans }}</p>
 		<p>
 			<a class="btn btn-danger"
-				href="{{ url('members-area.posts.remove', { id : post.getId() }) }}?action=confirm">
-				{{ 'Confirm'|trans }}
+				href="{{ url('members-area.posts.remove', { id: post.getId(), action: 'confirm' }) }}">
+				{{ 'Confirm' | trans }}
 			</a>
 			<a class="btn btn-success"
 				href="{{ url('members-area.posts') }}">
-				{{ 'Cancel'|trans }}
+				{{ 'Cancel' | trans }}
 			</a>
 		</p>
 	</div>

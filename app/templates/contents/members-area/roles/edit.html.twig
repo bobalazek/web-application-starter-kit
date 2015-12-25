@@ -1,13 +1,13 @@
 {% extends 'layouts/content/members-area.html.twig' %}
 
-{% block title %}{{ 'Edit'|trans }} | {{ 'Roles'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Edit' | trans }} | {{ 'Roles' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
 	<h1>
-		{{ 'Edit Role'|trans }}
+		{{ 'Edit Role' | trans }}
 		<a class="btn btn-primary btn-sm"
             href="{{ url('members-area.roles.new') }}">
-            {{ 'New'|trans }}
+            {{ 'New' | trans }}
         </a>
 		<br />
 		<small>{{ role }}</small>
