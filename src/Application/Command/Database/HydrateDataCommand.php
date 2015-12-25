@@ -20,7 +20,8 @@ class HydrateDataCommand
 {
     protected $app;
 
-    public function __construct($name, Application $app) {
+    public function __construct($name, Application $app)
+    {
         parent::__construct($name);
 
         $this->app = $app;

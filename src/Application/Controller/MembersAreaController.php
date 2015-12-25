@@ -192,7 +192,7 @@ class MembersAreaController
 
                         $app['orm.em']->persist($userEntity);
                         $app['orm.em']->flush();
-                        
+
                         $app['application.mailer']
                             ->swiftMessageInitializeAndSend(array(
                                 'subject' => $app['name'].' - '.$app['translator']->trans('Reset Password Confirmation'),

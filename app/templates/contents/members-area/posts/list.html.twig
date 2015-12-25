@@ -46,7 +46,7 @@
                         <td>{{ post.getTimeCreated()|date(app.dateTimeFormat) }}</td>
                         <td>
                             <a class="btn btn-xs btn-default"
-                                data-toggle="tooltip" 
+                                data-toggle="tooltip"
                                 title="{{ 'Edit' | trans }}"
                                 href="{{ url('members-area.posts.edit', { id: post.getId() }) }}">
                                 <i class="fa fa-fw fa-cog"></i>

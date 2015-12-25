@@ -13,7 +13,7 @@ class DoctrineManagerRegistry
     protected $managers;
     protected $connections;
     protected $name;
-    
+
     public function __construct($name, array $connections, array $managers, $defaultConnection = 'default', $defaultManager = 'default')
     {
         $this->name = $name;
