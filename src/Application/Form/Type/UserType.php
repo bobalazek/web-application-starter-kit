@@ -16,7 +16,10 @@ class UserType extends AbstractType
     {
         $builder->add(
             'profile',
-            new ProfileType()
+            new ProfileType(),
+            array(
+                'label' => false,
+            )
         );
 
         $builder->add('username', 'text', array(
@@ -36,16 +39,22 @@ class UserType extends AbstractType
             'class' => 'Application\Entity\RoleEntity',
             'multiple' => true,
             'expanded' => false,
+            'attr' => array(
+                'help_text' => 'Hold the CTRL button to select multiple roles',
+            ),
         ));
 
         $builder->add('enabled', 'checkbox', array(
+            'label' => 'Is enabled?',
             'required' => false,
         ));
         $builder->add('locked', 'checkbox', array(
+            'label' => 'Is locked?',
             'required' => false,
         ));
 
-        $builder->add('Save', 'submit', array(
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Save',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),
