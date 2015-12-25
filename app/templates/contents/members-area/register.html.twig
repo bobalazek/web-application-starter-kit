@@ -3,21 +3,21 @@
 {% block title %}{{ 'Register' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
-	<h1 class="text-center">
+    <h1 class="text-center">
         {{ 'Register' | trans }}
     </h1>
-	<hr />
+    <hr />
     {% if app.userSystemOptions.registrationEnabled %}
-		{% if alert %}
-			<div class="alert alert-{{ alert }}">
-				{{ alertMessage | trans | raw }}
-			</div>
-		{% else %}
-			{{ form(form) }}
-		{% endif %}
-	{% else %}
-		<div class="alert alert-info">
-			{{ 'Registration is disabled' | trans }}
-		</div>
-	{% endif %}
+        {% if alert %}
+            <div class="alert alert-{{ alert }}">
+                {{ alertMessage | trans | raw }}
+            </div>
+        {% else %}
+            {{ form(form) }}
+        {% endif %}
+    {% else %}
+        <div class="alert alert-info">
+            {{ 'Registration is disabled' | trans }}
+        </div>
+    {% endif %}
 {% endblock %}

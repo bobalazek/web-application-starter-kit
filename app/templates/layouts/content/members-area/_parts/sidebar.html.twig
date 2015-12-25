@@ -1,49 +1,49 @@
 <ul id="sidebar-list" class="nav nav-pills nav-stacked">
-	<li class="{{ path('members-area') == app.currentUri ? 'active' : '' }}"
-		role="presentation">
-		<a href="{{ url('members-area') }}">
-			<i class="fa fa-fw fa-dashboard"></i>
-			{{ 'Dashboard'|trans }}
-		</a>
-	</li>
-	{% if is_granted('ROLE_USERS_EDITOR') or is_granted('ROLE_ADMIN') %}
-		<li class="{{ path('members-area.users') in app.currentUri ? 'active' : '' }}" role="presentation">
-			<a href="{{ url('members-area.users') }}">
-				<i class="fa fa-fw fa-user"></i>
-				{{ 'Users'|trans }}
-			</a>
-		</li>
-	{% endif %}
-	{% if is_granted('ROLE_ROLES_EDITOR') or is_granted('ROLE_ADMIN') %}
-		<li class="{{ path('members-area.roles') in app.currentUri ? 'active' : '' }}" role="presentation">
-			<a href="{{ url('members-area.roles') }}">
-				<i class="fa fa-fw fa-tags"></i>
-				{{ 'Roles'|trans }}
-			</a>
-		</li>
-	{% endif %}
-	{% if is_granted('ROLE_POSTS_EDITOR') or is_granted('ROLE_ADMIN') %}
-		<li class="{{ path('members-area.posts') in app.currentUri ? 'active' : '' }}" role="presentation">
-			<a href="{{ url('members-area.posts') }}">
-				<i class="fa fa-fw fa-newspaper-o"></i>
-				{{ 'Posts'|trans }}
-			</a>
-		</li>
-	{% endif %}
-	{% if is_granted('ROLE_ADMIN') %}
-		<li class="{{ path('members-area.statistics') in app.currentUri ? 'active' : '' }}" role="presentation">
-			<a href="{{ url('members-area.statistics') }}">
-				<i class="fa fa-fw fa-bar-chart"></i>
-				{{ 'Statistics'|trans }}
-			</a>
-		</li>
-	{% endif %}
-	{% if is_granted('ROLE_ADMIN') %}
-		<li class="{{ path('members-area.settings') in app.currentUri ? 'active' : '' }}" role="presentation">
-			<a href="{{ url('members-area.settings') }}">
-				<i class="fa fa-fw fa-cog"></i>
-				{{ 'Settings'|trans }}
-			</a>
-		</li>
-	{% endif %}
+    <li class="{{ path('members-area') == app.currentUri ? 'active' : '' }}"
+        role="presentation">
+        <a href="{{ url('members-area') }}">
+            <i class="fa fa-fw fa-dashboard"></i>
+            {{ 'Dashboard'|trans }}
+        </a>
+    </li>
+    {% if is_granted('ROLE_USERS_EDITOR') or is_granted('ROLE_ADMIN') %}
+        <li class="{{ path('members-area.users') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.users') }}">
+                <i class="fa fa-fw fa-user"></i>
+                {{ 'Users'|trans }}
+            </a>
+        </li>
+    {% endif %}
+    {% if is_granted('ROLE_ROLES_EDITOR') or is_granted('ROLE_ADMIN') %}
+        <li class="{{ path('members-area.roles') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.roles') }}">
+                <i class="fa fa-fw fa-tags"></i>
+                {{ 'Roles'|trans }}
+            </a>
+        </li>
+    {% endif %}
+    {% if is_granted('ROLE_POSTS_EDITOR') or is_granted('ROLE_ADMIN') %}
+        <li class="{{ path('members-area.posts') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.posts') }}">
+                <i class="fa fa-fw fa-newspaper-o"></i>
+                {{ 'Posts'|trans }}
+            </a>
+        </li>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="{{ path('members-area.statistics') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.statistics') }}">
+                <i class="fa fa-fw fa-bar-chart"></i>
+                {{ 'Statistics'|trans }}
+            </a>
+        </li>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="{{ path('members-area.settings') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.settings') }}">
+                <i class="fa fa-fw fa-cog"></i>
+                {{ 'Settings'|trans }}
+            </a>
+        </li>
+    {% endif %}
 </ul>

@@ -1,104 +1,104 @@
 <!DOCTYPE html>
 <html id="html" class="no-js" lang="{{ app.languageCode }}">
-	<head>
-		<meta charset="utf-8" />
-		<title>{% block title %}{{ app.name|trans }}{% endblock %}</title>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta http-equiv="cleartype" content="on" />
-		<meta name="author" content="{{ app.author }}" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<meta name="HandheldFriendly" content="True" />
-		<meta name="MobileOptimized" content="480" />
-		<!-- Stylesheets -->
-			{% block stylesheets_before %}{% endblock %}
-			{% block stylesheets %}
-				<link id="animate.css-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/animate.css/animate.min.css" />
-				<link id="font-awesome-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/fontawesome/css/font-awesome.min.css" />
-				<link id="bootstrap-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/bootstrap/dist/css/bootstrap.min.css" />
-				<link id="helpers-css" rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/helpers.css" />
-				<link id="application-css" rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/application.css?version={{ app.version }}" />
-			{% endblock %}
-			{% block stylesheets_after %}{% endblock %}
-		<!-- Stylesheets /END -->
-		<!-- Head Javascripts -->
-			{% block head_javascripts_before %}{% endblock %}
-			{% block head_javascripts %}
-				<script id="config-js">
-					var baseUrl = "{{ app.baseUrl }}";
-					var baseUri = "{{ app.baseUri }}";
-					var datatablesTranslationsUrl = "{{ 'settings.datatables.translations.url' | trans }}";
-				</script>
-				<script id="modernizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
-				<script id="detectizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/detectizr/dist/detectizr.js"></script>
-				<script id="respond-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/respond/dest/respond.min.js"></script>
-			{% endblock %}
-			{% block head_javascripts_after %}{% endblock %}
-		<!-- Head Javascripts /END -->
-	</head>
-	<body id="body">
-		<div id="application" role="application">
-			{% block application %}
-				{% include 'layouts/content/default/_parts/preloader.html.twig' %}
-				<div id="wrapper">
-					{% block wrapper %}
-						{% set isContainerFluid = isContainerFluid is defined ? isContainerFluid : true %}
-						<header id="header" role="banner">
-							{% block header %}
-								{% include 'layouts/content/default/_parts/header.html.twig' %}
-							{% endblock %}
-						</header> <!-- /#header -->
-						<div id="content">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-12">
-										{% include 'layouts/content/default/_parts/flash-messages.html.twig' %}
-									</div>
-								</div>
-							</div>
-							{% block content %}
-								<div class="container{{ isContainerFluid ? '-fluid' : '' }}">
-									<div class="row">
-										<div class="col-md-12">
-											<div id="main" role="main">
-												{% block main %}{% endblock %}
-											</div> <!-- /#main -->
-										</div> <!-- /.col-md-8 -->
-										{# <div class="col-md-4">
-											<div id="sidebar" role="complementary">
-												{% block sidebar %}{% endblock %}
-											</div> <!-- /#sidebar -->
-										</div> <!-- /.col-md-4 --> #}
-									</div> <!-- /.row -->
-								</div> <!-- /.container-fluid -->
-							{% endblock %}
-						</div> <!-- /#content -->
-						<footer id="footer" role="contentinfo">
-							{% block footer %}
-								{% include 'layouts/content/default/_parts/footer.html.twig' %}
-							{% endblock %}
-						</footer> <!-- /#footer -->
-					{% endblock %}
-				</div> <!-- /#wrapper -->
-				{% block wrapper_after %}{% endblock %}
-			{% endblock %}
-		</div> <!-- /#application -->
-		<!-- Body Javascripts -->
-			{% block body_javascripts_before %}{% endblock %}
-			{% block body_javascripts %}
-				<script id="jquery-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery/dist/jquery.min.js"></script>
-				<script id="jquery-migrate-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-				<script id="jquery-noconflict-js" type="text/javascript">
-					jQuery.noConflict();
-				</script>
-				<script id="bootstrap-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-				<script id="moment-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/moment/min/moment-with-locales.min.js"></script>
-				<script id="helpers-js" type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/helpers.js"></script>
-				<script id="application-js" type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/application.js?version={{ app.version }}"></script>
-				<script id="application-initialize-js">
-					Application.initialize();
-				</script>
-			{% endblock %}
-			{% block body_javascripts_after %}{% endblock %}
-		<!-- Body Javascripts /END -->
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{{ app.name|trans }}{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="cleartype" content="on" />
+        <meta name="author" content="{{ app.author }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="480" />
+        <!-- Stylesheets -->
+            {% block stylesheets_before %}{% endblock %}
+            {% block stylesheets %}
+                <link id="animate.css-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/animate.css/animate.min.css" />
+                <link id="font-awesome-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/fontawesome/css/font-awesome.min.css" />
+                <link id="bootstrap-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/bootstrap/dist/css/bootstrap.min.css" />
+                <link id="helpers-css" rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/helpers.css" />
+                <link id="application-css" rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/application.css?version={{ app.version }}" />
+            {% endblock %}
+            {% block stylesheets_after %}{% endblock %}
+        <!-- Stylesheets /END -->
+        <!-- Head Javascripts -->
+            {% block head_javascripts_before %}{% endblock %}
+            {% block head_javascripts %}
+                <script id="config-js">
+                    var baseUrl = "{{ app.baseUrl }}";
+                    var baseUri = "{{ app.baseUri }}";
+                    var datatablesTranslationsUrl = "{{ 'settings.datatables.translations.url' | trans }}";
+                </script>
+                <script id="modernizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
+                <script id="detectizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/detectizr/dist/detectizr.js"></script>
+                <script id="respond-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/respond/dest/respond.min.js"></script>
+            {% endblock %}
+            {% block head_javascripts_after %}{% endblock %}
+        <!-- Head Javascripts /END -->
+    </head>
+    <body id="body">
+        <div id="application" role="application">
+            {% block application %}
+                {% include 'layouts/content/default/_parts/preloader.html.twig' %}
+                <div id="wrapper">
+                    {% block wrapper %}
+                        {% set isContainerFluid = isContainerFluid is defined ? isContainerFluid : true %}
+                        <header id="header" role="banner">
+                            {% block header %}
+                                {% include 'layouts/content/default/_parts/header.html.twig' %}
+                            {% endblock %}
+                        </header> <!-- /#header -->
+                        <div id="content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {% include 'layouts/content/default/_parts/flash-messages.html.twig' %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% block content %}
+                                <div class="container{{ isContainerFluid ? '-fluid' : '' }}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="main" role="main">
+                                                {% block main %}{% endblock %}
+                                            </div> <!-- /#main -->
+                                        </div> <!-- /.col-md-8 -->
+                                        {# <div class="col-md-4">
+                                            <div id="sidebar" role="complementary">
+                                                {% block sidebar %}{% endblock %}
+                                            </div> <!-- /#sidebar -->
+                                        </div> <!-- /.col-md-4 --> #}
+                                    </div> <!-- /.row -->
+                                </div> <!-- /.container-fluid -->
+                            {% endblock %}
+                        </div> <!-- /#content -->
+                        <footer id="footer" role="contentinfo">
+                            {% block footer %}
+                                {% include 'layouts/content/default/_parts/footer.html.twig' %}
+                            {% endblock %}
+                        </footer> <!-- /#footer -->
+                    {% endblock %}
+                </div> <!-- /#wrapper -->
+                {% block wrapper_after %}{% endblock %}
+            {% endblock %}
+        </div> <!-- /#application -->
+        <!-- Body Javascripts -->
+            {% block body_javascripts_before %}{% endblock %}
+            {% block body_javascripts %}
+                <script id="jquery-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+                <script id="jquery-migrate-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+                <script id="jquery-noconflict-js" type="text/javascript">
+                    jQuery.noConflict();
+                </script>
+                <script id="bootstrap-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script id="moment-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/moment/min/moment-with-locales.min.js"></script>
+                <script id="helpers-js" type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/helpers.js"></script>
+                <script id="application-js" type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/application.js?version={{ app.version }}"></script>
+                <script id="application-initialize-js">
+                    Application.initialize();
+                </script>
+            {% endblock %}
+            {% block body_javascripts_after %}{% endblock %}
+        <!-- Body Javascripts /END -->
+    </body>
 </html>

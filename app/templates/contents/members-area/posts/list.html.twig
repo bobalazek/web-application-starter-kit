@@ -3,71 +3,71 @@
 {% block title %}{{ 'Posts' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
-	<h1>
-		{{ 'Posts' | trans }}
-		<a class="btn btn-primary btn-sm"
-			href="{{ url('members-area.posts.new') }}">
-			{{ 'New' | trans }}
-		</a>
-	</h1>
-	<ol class="breadcrumb">
-		<li>
-			<a href="{{ url('members-area') }}">
-				{{ 'Home' | trans }}
-			</a>
-		</li>
-		<li class="active">
-			{{ 'Posts' | trans }}
-		</li>
-	</ol>
-	<div class="table-responsive">
-		<table class="table table-striped table-condensed">
-			<thead>
-				<tr>
-					<th>{{ paginator_sortable(pagination, 'Title', 'p.title') }}</th>
-					<th>{{ 'Image'|trans }}</th>
-					<th>{{ paginator_sortable(pagination, 'User', 'u.username') }}</th>
-					<th width="160">{{ paginator_sortable(pagination, 'Time Created', 'p.timeCreated') }}</th>
-					<th width="100">{{ 'Actions'|trans }}</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for post in pagination.getItems() %}
-					<tr>
-						<td>{{ post.getTitle() }}</td>
-						<th>
-							{% if post.getImageUrl() %}
-								<a href="{{ post.getImageUrl() }}" target="_blank">
-									<img src="{{ post.getImageUrl() }}" alt="Post image" style="max-width: 80px;" />
-								</a>
-							{% endif %}
-						</th>
-						<td>{{ post.getUser()}}</td>
-						<td>{{ post.getTimeCreated()|date(app.dateTimeFormat) }}</td>
-						<td>
-							<a class="btn btn-xs btn-default"
-								data-toggle="tooltip" 
+    <h1>
+        {{ 'Posts' | trans }}
+        <a class="btn btn-primary btn-sm"
+            href="{{ url('members-area.posts.new') }}">
+            {{ 'New' | trans }}
+        </a>
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ url('members-area') }}">
+                {{ 'Home' | trans }}
+            </a>
+        </li>
+        <li class="active">
+            {{ 'Posts' | trans }}
+        </li>
+    </ol>
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>{{ paginator_sortable(pagination, 'Title', 'p.title') }}</th>
+                    <th>{{ 'Image'|trans }}</th>
+                    <th>{{ paginator_sortable(pagination, 'User', 'u.username') }}</th>
+                    <th width="160">{{ paginator_sortable(pagination, 'Time Created', 'p.timeCreated') }}</th>
+                    <th width="100">{{ 'Actions'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in pagination.getItems() %}
+                    <tr>
+                        <td>{{ post.getTitle() }}</td>
+                        <th>
+                            {% if post.getImageUrl() %}
+                                <a href="{{ post.getImageUrl() }}" target="_blank">
+                                    <img src="{{ post.getImageUrl() }}" alt="Post image" style="max-width: 80px;" />
+                                </a>
+                            {% endif %}
+                        </th>
+                        <td>{{ post.getUser()}}</td>
+                        <td>{{ post.getTimeCreated()|date(app.dateTimeFormat) }}</td>
+                        <td>
+                            <a class="btn btn-xs btn-default"
+                                data-toggle="tooltip" 
                                 title="{{ 'Edit' | trans }}"
-								href="{{ url('members-area.posts.edit', { id: post.getId() }) }}">
-								<i class="fa fa-fw fa-cog"></i>
-							</a>
-							<a class="btn btn-xs btn-danger"
-								data-toggle="tooltip"
+                                href="{{ url('members-area.posts.edit', { id: post.getId() }) }}">
+                                <i class="fa fa-fw fa-cog"></i>
+                            </a>
+                            <a class="btn btn-xs btn-danger"
+                                data-toggle="tooltip"
                                 title="{{ 'Remove' | trans }}"
-								href="{{ url('members-area.posts.remove', { id: post.getId() }) }}">
-								<i class="fa fa-fw fa-times"></i>
-							</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="9">
+                                href="{{ url('members-area.posts.remove', { id: post.getId() }) }}">
+                                <i class="fa fa-fw fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9">
                             {{ 'No posts yet' | trans }}
                         </td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		{{ paginator_render(pagination) }}
-	</div>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {{ paginator_render(pagination) }}
+    </div>
 {% endblock %}

@@ -3,66 +3,66 @@
 {% block title %}{{ user.getProfile().getName() }} | {{ 'Users' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
-	<div class="row">
-		<div class="col-md-3 text-center">
+    <div class="row">
+        <div class="col-md-3 text-center">
             {% if user.getProfile().getImageUrl() %}
-				<img class="img-responsive img-thumbnail"
-					src="{{ user.getProfile().getImageUrl() }}"
-					alt="{{ 'Profile image' | trans }}"
-					style="max-height: 400px;" />
-			{% endif %}
-			<h1>
-				<small>
-					"{{ user }}"
-				</small>
-				<br />
-				{{ user.getProfile().getName() }}
-				<br />
-				<small>
-					{{ user.getEmail() }}
-				</small>
-			</h1>
-		</div>
-		<div class="col-md-9">
-			<div class="row">
-				<div class="col-md-6">
-					<h2>{{ 'Profile' | trans }}</h2>
-					<dl class="dl-horizontal">
-						{% if user.getProfile().getTitle() %}
-							<dt>{{ 'Title' | trans }}</dt>
-							<dd>{{ user.getProfile().getTitle() }}</dd>
-						{% endif %}
-						<dt>{{ 'First name' | trans }}</dt>
-						<dd>{{ user.getProfile().getFirstName() }}</dd>
-						{% if user.getProfile().getMiddleName() %}
-							<dt>{{ 'Middle name' | trans }}</dt>
-							<dd>{{ user.getProfile().getMiddleName() }}</dd>
-						{% endif %}
-						{% if user.getProfile().getLastName() %}
-							<dt>{{ 'Last name' | trans }}</dt>
-							<dd>{{ user.getProfile().getLastName() }}</dd>
-						{% endif %}
-						{% if user.getProfile().getGender() %}
-							<dt>{{ 'Gender' | trans }}</dt>
-							<dd><i class="fa fa-{{ user.getProfile().getGender() }}"></i></dd>
-						{% endif %}
-						{% if user.getProfile().getBirthdate() %}
-							<dt>{{ 'Birthdate' | trans }}</dt>
-							<dd>{{ user.getProfile().getBirthdate() | date(app.dateFormat) }}</dd>
-						{% endif %}
-					</dl>
-				</div> <!-- /.col-md-6 -->
-				<div class="col-md-6">
-					<h2>{{ 'Statuses' | trans }}</h2>
-					<dl class="dl-horizontal">
-						<dt>{{ 'Enabled' | trans }}</dt>
-						<dd>{{ user.isEnabled() ? 'Yes' : 'No' | trans }}</dd>
+                <img class="img-responsive img-thumbnail"
+                    src="{{ user.getProfile().getImageUrl() }}"
+                    alt="{{ 'Profile image' | trans }}"
+                    style="max-height: 400px;" />
+            {% endif %}
+            <h1>
+                <small>
+                    "{{ user }}"
+                </small>
+                <br />
+                {{ user.getProfile().getName() }}
+                <br />
+                <small>
+                    {{ user.getEmail() }}
+                </small>
+            </h1>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>{{ 'Profile' | trans }}</h2>
+                    <dl class="dl-horizontal">
+                        {% if user.getProfile().getTitle() %}
+                            <dt>{{ 'Title' | trans }}</dt>
+                            <dd>{{ user.getProfile().getTitle() }}</dd>
+                        {% endif %}
+                        <dt>{{ 'First name' | trans }}</dt>
+                        <dd>{{ user.getProfile().getFirstName() }}</dd>
+                        {% if user.getProfile().getMiddleName() %}
+                            <dt>{{ 'Middle name' | trans }}</dt>
+                            <dd>{{ user.getProfile().getMiddleName() }}</dd>
+                        {% endif %}
+                        {% if user.getProfile().getLastName() %}
+                            <dt>{{ 'Last name' | trans }}</dt>
+                            <dd>{{ user.getProfile().getLastName() }}</dd>
+                        {% endif %}
+                        {% if user.getProfile().getGender() %}
+                            <dt>{{ 'Gender' | trans }}</dt>
+                            <dd><i class="fa fa-{{ user.getProfile().getGender() }}"></i></dd>
+                        {% endif %}
+                        {% if user.getProfile().getBirthdate() %}
+                            <dt>{{ 'Birthdate' | trans }}</dt>
+                            <dd>{{ user.getProfile().getBirthdate() | date(app.dateFormat) }}</dd>
+                        {% endif %}
+                    </dl>
+                </div> <!-- /.col-md-6 -->
+                <div class="col-md-6">
+                    <h2>{{ 'Statuses' | trans }}</h2>
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'Enabled' | trans }}</dt>
+                        <dd>{{ user.isEnabled() ? 'Yes' : 'No' | trans }}</dd>
 
-						<dt>{{ 'Locked' | trans }}</dt>
-						<dd>{{ user.isLocked() ? 'Yes' : 'No' | trans }}</dd>
-					</dl>
-				</div> <!-- /.col-md-6 -->
-			</div>
-		</div>
-	</div>
+                        <dt>{{ 'Locked' | trans }}</dt>
+                        <dd>{{ user.isLocked() ? 'Yes' : 'No' | trans }}</dd>
+                    </dl>
+                </div> <!-- /.col-md-6 -->
+            </div>
+        </div>
+    </div>
 {% endblock %}
