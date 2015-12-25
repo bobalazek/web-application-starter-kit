@@ -34,7 +34,7 @@ class ResetPasswordType extends AbstractType
         }
 
         $builder->add('submitButton', 'submit', array(
-            'label' => 'Save',
+            'label' => 'Submit',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),
