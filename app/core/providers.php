@@ -1,5 +1,18 @@
 <?php
 
+use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
+use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader as MappingYamlFileLoader;
+use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
+use Symfony\Component\Security\Core\AuthenticationEvents;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\PersistentObject;
+use Application\Doctrine\ORM\DoctrineManagerRegistry;
+
 /***** Config *****/
 if (! file_exists(APP_DIR.'/configs/global.php')) {
     exit('No global config file found. Please create one (app/configs/global.php)!');
@@ -127,7 +140,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
 
 $app['translator']->addLoader(
     'yaml',
-    new Symfony\Component\Translation\Loader\YamlFileLoader()
+    new TranslationYamlFileLoader()
 );
 
 /*** Application Translator ***/
@@ -186,7 +199,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), array(
 
 $app['translator']->addLoader(
     'yaml',
-    new Symfony\Component\Translation\Loader\YamlFileLoader()
+    new TranslationYamlFileLoader()
 );
 
 /*** Application Translator ***/
@@ -227,31 +240,31 @@ if (
         )
     );
 
-    Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(
+    AnnotationRegistry::registerLoader(
         array(
             require VENDOR_DIR.'/autoload.php',
             'loadClass',
         )
     );
 
-    $entityManagerConfig = Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
+    $entityManagerConfig = Setup::createAnnotationMetadataConfiguration(
         array(APP_DIR.'/src/Application/Entity'),
         $app['debug']
     );
 
-    $entityManager = Doctrine\ORM\EntityManager::create(
+    $entityManager = EntityManager::create(
         $app['dbs.options']['default'],
         $entityManagerConfig
     );
 
-    Doctrine\Common\Persistence\PersistentObject::setObjectManager(
+    PersistentObject::setObjectManager(
         $entityManager
     );
 
     $app['orm.proxies_dir'] = STORAGE_DIR.'/cache/proxy';
 
     $app['orm.manager_registry'] = $app->share(function ($app) {
-        return new Application\Doctrine\ORM\DoctrineManagerRegistry(
+        return new DoctrineManagerRegistry(
             'manager_registry',
             array('default' => $app['orm.em']->getConnection()),
             array('default' => $app['orm.em'])
@@ -262,7 +275,7 @@ if (
         $app->extend(
             'form.extensions',
             function ($extensions) use ($app) {
-                $extensions[] = new Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension(
+                $extensions[] = new DoctrineOrmExtension(
                     $app['orm.manager_registry']
                 );
 
@@ -278,21 +291,21 @@ $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app['validator.mapping.mapping.file_path'] = APP_DIR.'/configs/validation.yml';
 
 $app['validator.mapping.class_metadata_factory'] = $app->share(function ($app) {
-    return new Symfony\Component\Validator\Mapping\ClassMetadataFactory(
-        new Symfony\Component\Validator\Mapping\Loader\YamlFileLoader(
+    return new ClassMetadataFactory(
+        new MappingYamlFileLoader(
             APP_DIR.'/configs/validation.yml'
         )
     );
 });
 
 $app['validator.unique_entity'] = $app->share(function ($app) {
-    return new Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator(
+    return new UniqueEntityValidator(
         $app['orm.manager_registry']
     );
 });
 
 $app['security.validator.user_password'] = $app->share(function ($app) {
-    return new Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator(
+    return new UserPasswordValidator(
         $app['security'],
         $app['security.encoder_factory']
     );
@@ -409,7 +422,7 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
 
 /*** Listeners ***/
 $app['dispatcher']->addListener(
-    Symfony\Component\Security\Core\AuthenticationEvents::AUTHENTICATION_SUCCESS,
+    AuthenticationEvents::AUTHENTICATION_SUCCESS,
     function ($event) use ($app) {
         $user = $event->getAuthenticationToken()->getUser();
 

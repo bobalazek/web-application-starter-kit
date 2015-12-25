@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Application\Entity\UserEntity;
 
 /*** Database check ***/
 $app->before(function () use ($app) {
@@ -34,7 +35,7 @@ $app->before(function () use ($app) {
     if (
         $token &&
         ! $app['security.trust_resolver']->isAnonymous($token) &&
-        ($token->getUser() instanceof \Application\Entity\UserEntity)
+        ($token->getUser() instanceof UserEntity)
     ) {
         $app['user'] = $token->getUser();
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Cookie;
 
 /*========== Index ==========*/
 $app->mount(
@@ -58,13 +59,13 @@ $app->mount(
 
 /*** Set Locale ***/
 $app->match('/set-locale/{locale}', function ($locale) use ($app) {
-    $cookie = new \Symfony\Component\HttpFoundation\Cookie(
+    $cookie = new Cookie(
         'locale',
         $locale,
         new \DateTime('now + 1 year')
     );
 
-    $response = \Symfony\Component\HttpFoundation\Response::create(null, 302, array(
+    $response = Response::create(null, 302, array(
         'Location' => isset($_SERVER['HTTP_REFERER'])
             ? $_SERVER['HTTP_REFERER']
             : $app['baseUrl'],

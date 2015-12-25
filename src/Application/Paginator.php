@@ -2,8 +2,8 @@
 
 namespace Application;
 
-use Knp\Component\Pager\Paginator;
 use Silex\Application;
+use Knp\Component\Pager\Paginator as KnpPaginator;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -19,7 +19,7 @@ class Paginator
 
     public function paginate($data, $currentPage = 1, $limitPerPage = 10, $options = array())
     {
-        $paginator = new Paginator();
+        $paginator = new KnpPaginator();
 
         if ($currentPage == null) {
             $currentPage = 1;
