@@ -20,7 +20,8 @@ class RoleType extends AbstractType
         $builder->add('role', 'text');
         $builder->add('priority', 'number');
 
-        $builder->add('Save', 'submit', array(
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Save',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),

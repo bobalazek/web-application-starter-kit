@@ -8,7 +8,8 @@ use Silex\ControllerProviderInterface;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class PostsControllerProvider implements ControllerProviderInterface
+class PostsControllerProvider
+    implements ControllerProviderInterface
 {
     public function connect(Application $app)
     {

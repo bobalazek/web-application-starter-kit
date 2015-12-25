@@ -28,7 +28,7 @@ class MembersAreaController
         $data = array(
             'lastUsername' => $app['session']->get('_security.last_username'),
             'lastError' => $app['security.last_error']($app['request']),
-            'csrfToken' => $app['form.csrf_provider']->getToken('authenticate'), // The intention MUST be "authenticate"
+            'csrfToken' => $app['form.csrf_provider']->getToken('authenticate'),
         );
 
         return new Response(
@@ -96,10 +96,10 @@ class MembersAreaController
                 ;
 
                 $alert = 'success';
-                $alertMessage = 'members-area.register.confirm.successText';
+                $alertMessage = 'Your account has been activated!';
             } else {
                 $alert = 'danger';
-                $alertMessage = 'members-area.register.confirm.activationCodeNotFound';
+                $alertMessage = 'This activation code was not found!';
             }
         } else {
             if (
@@ -132,7 +132,7 @@ class MembersAreaController
                     $app['orm.em']->flush();
 
                     $alert = 'success';
-                    $alertMessage = 'members-area.register.successText';
+                    $alertMessage = 'You have successfully registered. We have sent you an confirmation email. Please click the link inside to activate your account.';
                 }
             }
         }
@@ -207,12 +207,12 @@ class MembersAreaController
                         ;
 
                         $alert = 'success';
-                        $alertMessage = 'members-area.request-password.reset.success';
+                        $alertMessage = 'You password has been reset successfully.';
                     }
                 }
             } else {
                 $alert = 'danger';
-                $alertMessage = 'members-area.request-password.reset.resetPasswordCodeNotFound';
+                $alertMessage = 'This reset code was not found.';
             }
         } else {
             if ($request->getMethod() == 'POST') {
@@ -241,10 +241,10 @@ class MembersAreaController
                         ;
 
                         $alert = 'success';
-                        $alertMessage = 'requestPassword.request.success';
+                        $alertMessage = 'We have sent you an email. The link inside the email will lead you to a reset page.';
                     } else {
                         $alert = 'danger';
-                        $alertMessage = 'requestPassword.request.emailNotFound';
+                        $alertMessage = 'This email was not found in our database.';
                     }
                 }
             }

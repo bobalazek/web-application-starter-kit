@@ -22,12 +22,23 @@ class ResetPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($this->action == 'reset') {
-            $builder->add('plainPassword', 'text');
+            $builder->add('plainPassword', 'repeated', array(
+                'type' => 'password',
+                'first_name' => 'password',
+                'second_name' => 'repeatPassword',
+                'required' => false,
+                'invalid_message' => 'The password is invalid',
+            ));
         } else {
             $builder->add('email', 'email');
         }
 
-        $builder->add('Submit', 'submit');
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Save',
+            'attr' => array(
+                'class' => 'btn-primary btn-lg btn-block',
+            ),
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

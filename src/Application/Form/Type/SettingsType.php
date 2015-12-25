@@ -26,11 +26,12 @@ class SettingsType extends AbstractType
             ),
         ));
 
-        $builder->add('Save', 'submit', array(
-           'attr' => array(
-               'class' => 'btn-primary btn-lg btn-block',
-           ),
-       ));
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Save',
+            'attr' => array(
+                'class' => 'btn-primary btn-lg btn-block',
+            ),
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

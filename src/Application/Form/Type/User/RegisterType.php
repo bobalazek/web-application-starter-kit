@@ -40,7 +40,7 @@ class RegisterType extends AbstractType
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
             'required' => false,
-            'invalid_message' => 'errors.user.password.invalidText',
+            'invalid_message' => 'The password is invalid',
         ));
 
         $builder->add('Save', 'submit', array(

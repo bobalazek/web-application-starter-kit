@@ -2,18 +2,19 @@
 
 namespace Application\Doctrine\ORM;
 
-use Exception;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class DoctrineManagerRegistry implements ManagerRegistry
+class DoctrineManagerRegistry
+    implements ManagerRegistry
 {
     protected $managers;
     protected $connections;
     protected $name;
-    public function __construct($name, array $connections, array $managers, $defaultConnection = "default", $defaultManager = "default")
+    
+    public function __construct($name, array $connections, array $managers, $defaultConnection = 'default', $defaultManager = 'default')
     {
         $this->name = $name;
         $this->managers = $managers;
@@ -91,8 +92,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
      */
     public function resetManager($name = null)
     {
-        #@TODO fix it
-        throw new Exception("not implemented yet");
+        throw new \Exception('Not yet implemented');
     }
 
     /**
@@ -100,8 +100,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
      */
     public function getAliasNamespace($alias)
     {
-        #@TODO fix it
-        throw new Exception("not implemented yet");
+        throw new \Exception('Not yet implemented');
     }
 
     /**

@@ -36,7 +36,8 @@ class PostType extends AbstractType
             ),
         ));
 
-        $builder->add('Save', 'submit', array(
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Save',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),
