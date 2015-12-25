@@ -187,8 +187,21 @@ class MembersAreaController
                             )
                         ;
 
-                        $app['orm.em']->merge($userEntity);
+                        $app['orm.em']->persist($userEntity);
                         $app['orm.em']->flush();
+                        
+                        $app['application.mailer']
+                            ->swiftMessageInitializeAndSend(array(
+                                'subject' => $app['name'].' - '.$app['translator']->trans('Reset Password Confirmation'),
+                                'to' => array(
+                                    $userEntity->getEmail() => $userEntity->getProfile()->getFullName(),
+                                ),
+                                'body' => 'emails/users/reset-password-confirmation.html.twig',
+                                'templateData' => array(
+                                    'user' => $userEntity,
+                                ),
+                            ))
+                        ;
 
                         $alert = 'success';
                         $alertMessage = 'members-area.request-password.reset.success';
