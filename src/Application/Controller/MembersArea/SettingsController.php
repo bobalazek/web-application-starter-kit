@@ -11,9 +11,85 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class SettingsController
 {
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function indexAction(Request $request, Application $app)
     {
         $data = array();
+
+        if (! $app['security']->isGranted('ROLE_ADMIN')) {
+            $app->abort(403);
+        }
+
+        $form = $app['form.factory']->create(
+            new \Application\Form\Type\SettingsType($app)
+        );
+
+        if ($request->getMethod() == 'POST') {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                if (! empty($data)) {
+                    foreach ($data as $key => $value) {
+                        $settingEntity = $app['orm.em']
+                            ->getRepository('Application\Entity\SettingEntity')
+                            ->findOneByKey($key)
+                        ;
+
+                        if ($settingEntity === null) {
+                            $settingEntity = new \Application\Entity\SettingEntity();
+
+                            $settingEntity
+                                ->setKey($key)
+                            ;
+                        }
+
+                        $settingEntity
+                            ->setValue($value)
+                        ;
+
+                        $app['orm.em']->persist($settingEntity);
+                    }
+
+                    try {
+                        $app['orm.em']->flush();
+
+                        $app['flashbag']->add(
+                            'success',
+                            $app['translator']->trans(
+                                'members-area.settings.save.successText'
+                            )
+                        );
+                    } catch (\Exception $e) {
+                        $app['flashbag']->add(
+                            'danger',
+                            $e->getMessage()
+                        );
+                    }
+
+                    return $app->redirect(
+                        $app['url_generator']->generate(
+                            'members-area.settings'
+                        )
+                    );
+                } else {
+                    $app['flashbag']->add(
+                        'info',
+                        $app['translator']->trans(
+                            'members-area.settings.save.noChangeText'
+                        )
+                    );
+                }
+            }
+        }
+
+        $data['form'] = $form->createView();
 
         return new Response(
             $app['twig']->render(

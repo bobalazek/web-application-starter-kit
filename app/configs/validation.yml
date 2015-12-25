@@ -2,65 +2,55 @@ Application\Entity\PostEntity:
     properties:
         title:
             - NotBlank:
-                message: errors.post.title.notBlank
                 groups: [ newAndEdit ]
 
 Application\Entity\ProfileEntity:
     properties:
         firstName:
             - NotBlank:
-                message: errors.profile.name.notBlank
                 groups: [ newAndEdit ]
         image:
             - Image:
-                mimeTypesMessage: errors.profile.image.invalid
                 groups: [ newAndEdit ]
 
 Application\Entity\RoleEntity:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: role
-            message: errors.role.role.alreadyInUse
+            message: 'This role already existss'
             groups: [ newAndEdit ]
     properties:
         name:
             - NotBlank:
-                message: errors.role.name.notBlank
                 groups: [ newAndEdit ]
         role:
             - NotBlank:
-                message: errors.role.role.notBlank
                 groups: [ newAndEdit ]
 
 Application\Entity\UserEntity:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: email
-            message: errors.user.email.alreadyInUse
+            message: 'This email is already in use'
             groups: [ new, edit, register, settings ]
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: username
-            message: errors.user.username.alreadyInUse
+            message: 'This username is already in use'
             groups: [ new, edit, register, settings ]
     properties:
         username:
             - NotBlank:
-                message: errors.user.username.notBlank
                 groups: [ new, edit, register, settings ]
         email:
             - NotBlank:
-                message: errors.user.email.notBlank
                 groups: [ new, edit, register, settings, resetPasswordRequest ]
             - Email:
-                message: errors.user.email.invalid
                 groups: [ new, edit, register, settings, resetPasswordRequest ]
         plainPassword:
             - NotBlank:
-                message: errors.user.password.notBlank
                 groups: [ new, register, settingsPassword, resetPasswordReset ]
         oldPassword:
             - Symfony\Component\Security\Core\Validator\Constraints\UserPassword:
-                message: errors.user.password.oldIsInvalid
                 groups: [ settingsPassword ]
         profile:
             - Valid: ~

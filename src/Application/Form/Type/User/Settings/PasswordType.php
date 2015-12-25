@@ -19,7 +19,6 @@ class PasswordType extends AbstractType
             'type' => 'password',
             'first_name' => 'newPassword',
             'second_name' => 'newPasswordRepeat',
-            'invalid_message' => 'errors.user.password.invalidText',
         ));
 
         $builder->add('Save', 'submit', array(
