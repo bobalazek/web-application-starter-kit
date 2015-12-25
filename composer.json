@@ -2,7 +2,7 @@
     "type": "project",
     "name": "bobalazek/web-application-starter-kit",
     "description": "An Web Application starter kit / boilerplate by Borut Balazek - build on Silex",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "license": "MIT",
     "authors": [
         {
