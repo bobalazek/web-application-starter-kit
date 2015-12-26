@@ -88,7 +88,7 @@ var Application = function () {
                     newWidget+
                     '<div class="clearfix">' +
                         '<div class="pull-right">' +
-                            '<a class="btn btn-xs btn-danger remove-meta-button"' +
+                            '<a class="btn btn-xs btn-danger remove-post-meta-button"' +
                                 'href="#">' +
                                 '<i class="fa fa-times"></i>' +
                             '</a>' +
@@ -96,17 +96,17 @@ var Application = function () {
                     '</div>'
                 );
                 newLi.appendTo(postMetas);
-                initializeRemoveMetaButton();
+                initializeRemovePostMetaButton();
             });
             
-            function initializeRemoveMetaButton() {
-                jQuery('.remove-meta-button').on('click', function(e) {
+            function initializeRemovePostMetaButton() {
+                jQuery('.remove-post-meta-button').on('click', function(e) {
                     e.preventDefault();
                     jQuery(this).closest('li').remove();
                     postMetasCount--;
                 });
             }
-            initializeRemoveMetaButton();
+            initializeRemovePostMetaButton();
         },
     }
 }();
