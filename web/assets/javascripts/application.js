@@ -140,6 +140,22 @@ var Application = function () {
                     return false;
                 }
             });
+            
+            jQuery('.object-checkbox').on('click', function() {
+                var all = jQuery('.object-checkbox').length;
+                var checked = jQuery('.object-checkbox:checked').length;
+
+                if (all == checked) {
+                    jQuery('#check-all-checkbox').prop('checked', true);
+                    jQuery('#check-all-checkbox').prop('indeterminate', false);
+                } else if(checked == 0) {
+                    jQuery('#check-all-checkbox').prop('checked', false);
+                    jQuery('#check-all-checkbox').prop('indeterminate', false);
+                } else {
+                    jQuery('#check-all-checkbox').prop('checked', false);
+                    jQuery('#check-all-checkbox').prop('indeterminate', true);
+                }
+            });
         },
     }
 }();
