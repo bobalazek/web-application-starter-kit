@@ -10,6 +10,7 @@ var Application = function () {
                 Application.timeAgoInitialize();
                 Application.paginatorInitialize();
                 Application.postMetasInitialize();
+                Application.listActionsInitialize();
 
                 jQuery('#preloader').fadeOut(); // Hide preloader, when everything is ready...
 
@@ -107,6 +108,38 @@ var Application = function () {
                 });
             }
             initializeRemovePostMetaButton();
+        },
+        listActionsInitialize: function() {
+            jQuery('#check-all-checkbox').on('click', function() {
+                var isChecked = jQuery(this).is(':checked');
+
+                if(isChecked) {
+                    jQuery('.object-checkbox').prop('checked', true);
+                } else {
+                    jQuery('.object-checkbox').prop('checked', false);
+                }
+            });
+            
+            jQuery('#remove-selected-button').on('click', function() {
+                var hasIds = false;
+                var ids = [];
+
+                jQuery('.object-checkbox').each(function() {
+                    var isChecked = jQuery(this).is(':checked');
+
+                    if(isChecked) {
+                        hasIds = true;
+
+                        ids.push(jQuery(this).attr('value'));
+                    }
+                });
+
+                if(hasIds) {
+                    window.location.href = jQuery(this).attr('href')+'?ids='+ids.join(',');
+
+                    return false;
+                }
+            });
         },
     }
 }();

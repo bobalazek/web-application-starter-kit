@@ -272,9 +272,32 @@ class UsersController
             $app->abort(403);
         }
 
+        $users = array();
+        $ids = $request->query->get('ids', false);
+        $idsExploded = explode(',', $ids);
+        foreach ($idsExploded as $singleId) {
+            $singleEntity = $app['orm.em']->find(
+                'Application\Entity\UserEntity',
+                $singleId
+            );
+
+            if ($singleEntity) {
+                $users[] = $singleEntity;
+            }
+        }
+
         $user = $app['orm.em']->find('Application\Entity\UserEntity', $id);
 
-        if (! $user) {
+        if (
+            (
+                ! $user &&
+                $ids === false
+            ) ||
+            (
+                empty($users) &&
+                $ids !== false
+            )
+        ) {
             $app->abort(404);
         }
 
@@ -282,7 +305,14 @@ class UsersController
 
         if ($confirmAction) {
             try {
-                $app['orm.em']->remove($user);
+                if ($users) {
+                    foreach ($users as $user) {
+                        $app['orm.em']->remove($user);
+                    }
+                } else {
+                    $app['orm.em']->remove($user);
+                }
+                
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(
@@ -306,6 +336,8 @@ class UsersController
         }
 
         $data['user'] = $user;
+        $data['users'] = $users;
+        $data['ids'] = $ids;
 
         return new Response(
             $app['twig']->render('contents/members-area/users/remove.html.twig', $data)

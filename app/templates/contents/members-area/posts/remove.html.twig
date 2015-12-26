@@ -4,8 +4,12 @@
 
 {% block main %}
     <h1>
-        {{ 'Remove Post' | trans }}
-        <small>"{{ post }}"</small>
+        {% if posts %}
+            {{ 'Remove Posts' | trans }}
+        {% else %}
+            {{ 'Remove Post' | trans }}
+            <small>"{{ post }}"</small>
+        {% endif %}
     </h1>
     <ol class="breadcrumb">
         <li>
@@ -26,12 +30,28 @@
         <h4 class="alert-heading">
             {{ 'Warning!' | trans }}
         </h4>
-        <p>{{ 'Are you sure you want to remove this post?' | trans }}</p>
+        {% if posts %}
+            <p>{{ 'Are you sure you want to remove this posts?' | trans }}</p>
+            <ul style="margin-bottom: 10px;">
+                {% for post in posts %}
+                    <li>{{ post }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ 'Are you sure you want to remove this post?' | trans }}</p>
+        {% endif %}
         <p>
-            <a class="btn btn-danger"
-                href="{{ url('members-area.posts.remove', { id: post.getId(), action: 'confirm' }) }}">
-                {{ 'Confirm' | trans }}
-            </a>
+            {% if posts %}
+                <a class="btn btn-danger"
+                    href="{{ url('members-area.posts.remove', { id: 0, action: 'confirm', ids: ids }) }}">
+                    {{ 'Confirm' | trans }}
+                </a>
+            {% else %}
+                <a class="btn btn-danger"
+                    href="{{ url('members-area.posts.remove', { id: post.getId(), action: 'confirm' }) }}">
+                    {{ 'Confirm' | trans }}
+                </a>
+            {% endif %}
             <a class="btn btn-success"
                 href="{{ url('members-area.posts') }}">
                 {{ 'Cancel' | trans }}

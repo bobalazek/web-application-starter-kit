@@ -24,6 +24,7 @@
         <table class="table table-striped table-condensed">
             <thead>
                 <tr>
+                    <th width="180"></th>
                     <th>{{ paginator_sortable(pagination, 'Email', 'u.email') }}</th>
                     <th>{{ paginator_sortable(pagination, 'Username', 'u.username') }}</th>
                     <th width="150">
@@ -43,52 +44,18 @@
                     <th width="200">{{ 'Roles' | trans }}</th>
                     <th width="160">{{ paginator_sortable(pagination, 'Time created', 'u.timeCreated') }}</th>
                     <th width="160">{{ paginator_sortable(pagination, 'Time last active', 'u.timeLastActive') }}</th>
-                    <th width="200">{{ 'Actions'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
                 {% for user in pagination.getItems() %}
                     <tr class="{{ user.isLocked() ? 'danger' : '' }}">
-                        <td>{{ user.getEmail() }}</td>
-                        <td>{{ user.getUsername() }}</td>
                         <td>
-                            {% if user.getProfile() %}
-                                <div>
-                                    <b>{{ 'First name' | trans }}:</b>
-                                    {{ user.getProfile().getFirstName() }}
-                                </div>
-                                <div class="{{ user.getProfile().getLastName() == '' ? 'hidden' : '' }}">
-                                    <b>{{ 'Last name' | trans }}:</b>
-                                    {{ user.getProfile().getLastName() }}
-                                </div>
-                            {% endif %}
-                            {% if user.getProfile().getImageUrl() %}
-                                <div>
-                                    <b>{{ 'Image' | trans }}:</b>
-                                    <a href="{{ user.getProfile().getImageUrl() }}" target="_blank">
-                                        <img src="{{ user.getProfile().getImageUrl() }}" alt="User image" style="max-width: 64px;" />
-                                    </a>
-                                </div>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <div>
-                                <b>{{ 'Enabled'|trans }}:</b>
-                                {{ user.isEnabled() ? 'Yes' | trans : 'No'|trans }}
+                            <div class="object-checkbox-wrapper">
+                                <input class="object-checkbox"
+                                    type="checkbox"
+                                    name="ids[]"
+                                    value="{{ user.getId() }}" />
                             </div>
-                            <div>
-                                <b>{{ 'Locked'|trans }}:</b>
-                                {{ user.isLocked() ? 'Yes' | trans : 'No'|trans }}
-                            </div>
-                        </td>
-                        <td>{{ user.getRoles()|join(', ') }}</td>
-                        <td>{{ user.getTimeCreated() | date(app.dateTimeFormat) }}</td>
-                        <td>
-                            {% if user.getTimeLastActive() %}
-                                {{ user.getTimeLastActive() | date(app.dateTimeFormat) }}
-                            {% endif %}
-                        </td>
-                        <td>
                             <a class="btn btn-xs btn-default"
                                 data-toggle="tooltip"
                                 title="{{ 'View' | trans }}"
@@ -137,6 +104,45 @@
                                 <i class="fa fa-fw fa-times"></i>
                             </a>
                         </td>
+                        <td>{{ user.getEmail() }}</td>
+                        <td>{{ user.getUsername() }}</td>
+                        <td>
+                            {% if user.getProfile() %}
+                                <div>
+                                    <b>{{ 'First name' | trans }}:</b>
+                                    {{ user.getProfile().getFirstName() }}
+                                </div>
+                                <div class="{{ user.getProfile().getLastName() == '' ? 'hidden' : '' }}">
+                                    <b>{{ 'Last name' | trans }}:</b>
+                                    {{ user.getProfile().getLastName() }}
+                                </div>
+                            {% endif %}
+                            {% if user.getProfile().getImageUrl() %}
+                                <div>
+                                    <b>{{ 'Image' | trans }}:</b>
+                                    <a href="{{ user.getProfile().getImageUrl() }}" target="_blank">
+                                        <img src="{{ user.getProfile().getImageUrl() }}" alt="User image" style="max-width: 64px;" />
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div>
+                                <b>{{ 'Enabled'|trans }}:</b>
+                                {{ user.isEnabled() ? 'Yes' | trans : 'No'|trans }}
+                            </div>
+                            <div>
+                                <b>{{ 'Locked'|trans }}:</b>
+                                {{ user.isLocked() ? 'Yes' | trans : 'No'|trans }}
+                            </div>
+                        </td>
+                        <td>{{ user.getRoles()|join(', ') }}</td>
+                        <td>{{ user.getTimeCreated() | date(app.dateTimeFormat) }}</td>
+                        <td>
+                            {% if user.getTimeLastActive() %}
+                                {{ user.getTimeLastActive() | date(app.dateTimeFormat) }}
+                            {% endif %}
+                        </td>
                     </tr>
                 {% else %}
                     <tr>
@@ -148,5 +154,21 @@
             </tbody>
         </table>
     </div>
+    <p>
+        <label>
+            <input id="check-all-checkbox"
+                type="checkbox" />
+            {{ 'Check All' | trans }}
+        </label>
+        -
+        {{ 'With Selected' | trans }}:
+        <a id="remove-selected-button"
+            class="btn btn-xs btn-danger"
+            data-toggle="tooltip"
+            title="{{ 'Remove' | trans }}"
+            href="{{ url('members-area.users.remove', { id: 0 }) }}">
+            <i class="fa fa-fw fa-times"></i>
+        </a>
+    </p>
     {{ paginator_bottom_render(pagination) }}
 {% endblock %}

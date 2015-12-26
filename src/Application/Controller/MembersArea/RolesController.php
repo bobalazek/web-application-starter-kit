@@ -187,12 +187,32 @@ class RolesController
             $app->abort(403);
         }
 
-        $role = $app['orm.em']->find(
-            'Application\Entity\RoleEntity',
-            $id
-        );
+        $roles = array();
+        $ids = $request->query->get('ids', false);
+        $idsExploded = explode(',', $ids);
+        foreach ($idsExploded as $singleId) {
+            $singleEntity = $app['orm.em']->find(
+                'Application\Entity\RoleEntity',
+                $singleId
+            );
 
-        if (! $role) {
+            if ($singleEntity) {
+                $roles[] = $singleEntity;
+            }
+        }
+
+        $role = $app['orm.em']->find('Application\Entity\RoleEntity', $id);
+
+        if (
+            (
+                ! $role &&
+                $ids === false
+            ) ||
+            (
+                empty($roles) &&
+                $ids !== false
+            )
+        ) {
             $app->abort(404);
         }
 
@@ -202,7 +222,14 @@ class RolesController
 
         if ($confirmAction) {
             try {
-                $app['orm.em']->remove($role);
+                if ($roles) {
+                    foreach ($roles as $role) {
+                        $app['orm.em']->remove($role);
+                    }
+                } else {
+                    $app['orm.em']->remove($role);
+                }
+                
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(
@@ -228,6 +255,8 @@ class RolesController
         }
 
         $data['role'] = $role;
+        $data['roles'] = $roles;
+        $data['ids'] = $ids;
 
         return new Response(
             $app['twig']->render(

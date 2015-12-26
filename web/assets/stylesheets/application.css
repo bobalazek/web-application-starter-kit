@@ -156,6 +156,16 @@ h6 {}
 	.navbar-brand > div {
 		padding: 3px 0;
 	}
+    
+.object-checkbox-wrapper {
+    display: inline-block; 
+    margin-right: 5px;
+}
+
+    .object-checkbox {
+        position: relative; 
+        top: 2px;
+    }
 
 /********** Media Queries (from Bootstrap) **********/
 /* Extra small devices (phones, up to 480px) */

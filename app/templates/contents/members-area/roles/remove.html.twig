@@ -4,8 +4,12 @@
 
 {% block main %}
     <h1>
-        {{ 'Remove Role' | trans }}
-        <small>"{{ role }}"</small>
+        {% if roles %}
+            {{ 'Remove Roles' | trans }}
+        {% else %}
+            {{ 'Remove Role' | trans }}
+            <small>"{{ role }}"</small>
+        {% endif %}
     </h1>
     <ol class="breadcrumb">
         <li>
@@ -26,12 +30,28 @@
         <h4 class="alert-heading">
             {{ 'Warning!' | trans }}
         </h4>
-        <p>{{ 'Are you sure you want to remove this role?' | trans }}</p>
+        {% if roles %}
+            <p>{{ 'Are you sure you want to remove this roles?' | trans }}</p>
+            <ul style="margin-bottom: 10px;">
+                {% for role in roles %}
+                    <li>{{ role }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ 'Are you sure you want to remove this role?' | trans }}</p>
+        {% endif %}
         <p>
-            <a class="btn btn-danger"
-                href="{{ url('members-area.roles.remove', { id: role.getId(), action: 'confirm' }) }}">
-                {{ 'Confirm' | trans }}
-            </a>
+            {% if roles %}
+                <a class="btn btn-danger"
+                    href="{{ url('members-area.roles.remove', { id: 0, action: 'confirm', ids: ids }) }}">
+                    {{ 'Confirm' | trans }}
+                </a>
+            {% else %}
+                <a class="btn btn-danger"
+                    href="{{ url('members-area.roles.remove', { id: role.getId(), action: 'confirm' }) }}">
+                    {{ 'Confirm' | trans }}
+                </a>
+            {% endif %}
             <a class="btn btn-success"
                 href="{{ url('members-area.roles') }}">
                 {{ 'Cancel' | trans }}

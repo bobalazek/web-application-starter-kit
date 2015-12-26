@@ -199,9 +199,32 @@ class PostsController
             $app->abort(403);
         }
 
+        $posts = array();
+        $ids = $request->query->get('ids', false);
+        $idsExploded = explode(',', $ids);
+        foreach ($idsExploded as $singleId) {
+            $singleEntity = $app['orm.em']->find(
+                'Application\Entity\PostEntity',
+                $singleId
+            );
+
+            if ($singleEntity) {
+                $posts[] = $singleEntity;
+            }
+        }
+
         $post = $app['orm.em']->find('Application\Entity\PostEntity', $id);
 
-        if (! $post) {
+        if (
+            (
+                ! $post &&
+                $ids === false
+            ) ||
+            (
+                empty($posts) &&
+                $ids !== false
+            )
+        ) {
             $app->abort(404);
         }
 
@@ -211,7 +234,14 @@ class PostsController
 
         if ($confirmAction) {
             try {
-                $app['orm.em']->remove($post);
+                if ($posts) {
+                    foreach ($posts as $post) {
+                        $app['orm.em']->remove($post);
+                    }
+                } else {
+                    $app['orm.em']->remove($post);
+                }
+                
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(
@@ -237,6 +267,8 @@ class PostsController
         }
 
         $data['post'] = $post;
+        $data['posts'] = $posts;
+        $data['ids'] = $ids;
 
         return new Response(
             $app['twig']->render(
