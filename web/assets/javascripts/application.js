@@ -9,6 +9,7 @@ var Application = function () {
                 Application.tooltipsInitialize();
                 Application.timeAgoInitialize();
                 Application.paginatorInitialize();
+                Application.postMetasInitialize();
 
                 jQuery('#preloader').fadeOut(); // Hide preloader, when everything is ready...
 
@@ -73,6 +74,39 @@ var Application = function () {
                     window.location.href = url.toString();
                 });
             }
+        },
+        postMetasInitialize: function() {
+            var postMetasCount = jQuery('#postMetas-fields-list li').length;
+            
+            jQuery('#new-post-meta').on('click', function(e) {
+                e.preventDefault();
+                var postMetas = jQuery('#postMetas-fields-list');
+                var newWidget = postMetas.attr('data-prototype');
+                newWidget = newWidget.replace(/__name__/g, postMetasCount);
+                postMetasCount++;
+                var newLi = jQuery('<li></li>').html(
+                    newWidget+
+                    '<div class="clearfix">' +
+                        '<div class="pull-right">' +
+                            '<a class="btn btn-xs btn-danger remove-meta-button"' +
+                                'href="#">' +
+                                '<i class="fa fa-times"></i>' +
+                            '</a>' +
+                        '</div>' +
+                    '</div>'
+                );
+                newLi.appendTo(postMetas);
+                initializeRemoveMetaButton();
+            });
+            
+            function initializeRemoveMetaButton() {
+                jQuery('.remove-meta-button').on('click', function(e) {
+                    e.preventDefault();
+                    jQuery(this).closest('li').remove();
+                    postMetasCount--;
+                });
+            }
+            initializeRemoveMetaButton();
         },
     }
 }();

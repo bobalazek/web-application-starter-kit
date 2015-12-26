@@ -5,6 +5,7 @@ namespace Application\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Application\Form\Type\PostMetaType;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -34,6 +35,17 @@ class PostType extends AbstractType
                 'class' => 'select-picker',
                 'data-live-search' => 'true',
             ),
+        ));
+        
+        $builder->add('postMetas', 'collection', array(
+            'type' => new PostMetaType(),
+            'allow_add' => true,
+            'allow_delete' => true,
+            'delete_empty' => true,
+            'prototype' => true,
+            'cascade_validation' => true,
+            'error_bubbling' => false,
+            'by_reference' => false,
         ));
 
         $builder->add('submitButton', 'submit', array(

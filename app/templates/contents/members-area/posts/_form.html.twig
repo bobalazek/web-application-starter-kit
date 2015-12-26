@@ -1,1 +1,36 @@
-{{ form(form) }}
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.image) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.user) }}
+    <div id="post-meta-wrapper">
+        {% do form.postMetas.setRendered %}
+        <div>
+            {{ form_label(form.postMetas) }}
+            <a id="new-post-meta"
+                class="btn btn-xs btn-success"
+                href="#">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        {{ form_errors(form.postMetas) }}
+        <ul id="postMetas-fields-list"
+            data-prototype="{{ form_widget(form.postMetas.vars.prototype) | e }}">
+            {% for postMeta in form.postMetas %}
+                <li>
+                    {{ form_errors(postMeta) }}
+                    {{ form_widget(postMeta) }}
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <a class="btn btn-xs btn-danger remove-meta-button"
+                                href="#">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {{ form_row(form.submitButton) }}
+{{ form_end(form) }}
