@@ -26,7 +26,8 @@
             <thead>
                 <tr>
                     <th>{{ paginator_sortable(pagination, 'Title', 'p.title') }}</th>
-                    <th>{{ 'Image'|trans }}</th>
+                    <th>{{ 'Image' | trans }}</th>
+                    <th>{{ 'Metas' | trans }}</th>
                     <th>{{ paginator_sortable(pagination, 'User', 'u.username') }}</th>
                     <th width="160">{{ paginator_sortable(pagination, 'Time Created', 'p.timeCreated') }}</th>
                     <th width="100">{{ 'Actions'|trans }}</th>
@@ -43,6 +44,15 @@
                                 </a>
                             {% endif %}
                         </th>
+                        <td>
+                            {% if post.getPostMetas() %}
+                                <ul>
+                                    {% for meta in post.getPostMetas().toArray() %}
+                                        <li>{{ meta }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </td>
                         <td>{{ post.getUser()}}</td>
                         <td>{{ post.getTimeCreated()|date(app.dateTimeFormat) }}</td>
                         <td>
