@@ -40,7 +40,7 @@ class UserType extends AbstractType
             'multiple' => true,
             'expanded' => false,
             'attr' => array(
-                'help_text' => 'Hold the CTRL button to select multiple roles',
+                'data-help-text' => 'Hold the CTRL button to select multiple roles',
             ),
         ));
 

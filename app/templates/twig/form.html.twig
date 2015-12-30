@@ -188,7 +188,7 @@
     <div class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
         {{ form_label(form) }}
         {{ form_widget(form) }}
-        {% for attrname,attrvalue in attr if attrname == 'help_text' %}
+        {% for attrname,attrvalue in attr if attrname == 'data-help-text' %}
             <span class="help-block">
                 {{ attrvalue | trans({}, translation_domain) | raw }}
             </span>
@@ -220,7 +220,7 @@
 {% block checkbox_row -%}
     <div class="form-group{% if not valid %} has-error{% endif %}">
         {{ form_widget(form) }}
-        {% for attrname,attrvalue in attr if attrname == 'help_text' %}
+        {% for attrname,attrvalue in attr if attrname == 'data-help-text' %}
             <span class="help-block">
                 {{ attrvalue | trans({}, translation_domain) | raw }}
             </span>
@@ -232,7 +232,7 @@
 {% block radio_row -%}
     <div class="form-group{% if not valid %} has-error{% endif %}">
         {{ form_widget(form) }}
-        {% for attrname,attrvalue in attr if attrname == 'help_text' %}
+        {% for attrname,attrvalue in attr if attrname == 'data-help-text' %}
             <span class="help-block">
                 {{ attrvalue | trans({}, translation_domain) | raw }}
             </span>
@@ -245,7 +245,7 @@
     id="{{ id }}" name="{{ full_name }}"
     {%- if disabled %} disabled="disabled"{% endif -%}
     {%- if required %} required="required"{% endif -%}
-    {%- for attrname, attrvalue in attr if attrname != 'help_text' -%}
+    {%- for attrname, attrvalue in attr if attrname != 'data-help-text' -%}
         {{- " " -}}
         {%- if attrname in ['placeholder', 'title'] -%}
             {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"

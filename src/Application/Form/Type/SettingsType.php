@@ -22,7 +22,7 @@ class SettingsType extends AbstractType
             'required' => false,
             'data' => $this->app['settings']['foo'],
             'attr' => array(
-                'help_text' => 'Is it really foo?',
+                'data-help-text' => 'Is it really foo?',
             ),
         ));
 
