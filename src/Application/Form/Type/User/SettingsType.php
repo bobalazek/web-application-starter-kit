@@ -26,7 +26,8 @@ class SettingsType extends AbstractType
             'read_only' => true,
         ));
 
-        $builder->add('Save', 'submit', array(
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Submit',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),

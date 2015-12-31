@@ -33,12 +33,6 @@ $app->mount(
     new Application\ControllerProvider\MembersArea\UsersControllerProvider()
 );
 
-/******** Roles ********/
-$app->mount(
-    '/members-area/roles',
-    new Application\ControllerProvider\MembersArea\RolesControllerProvider()
-);
-
 /******** Posts ********/
 $app->mount(
     '/members-area/posts',

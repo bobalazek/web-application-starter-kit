@@ -5,7 +5,6 @@ namespace Application\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Application\Form\Type\PostMetaType;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -36,7 +35,7 @@ class PostType extends AbstractType
                 'data-live-search' => 'true',
             ),
         ));
-        
+
         $builder->add('postMetas', 'collection', array(
             'type' => new PostMetaType(),
             'allow_add' => true,

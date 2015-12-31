@@ -11,6 +11,11 @@ use Silex\ControllerProviderInterface;
 class SettingsControllerProvider
     implements ControllerProviderInterface
 {
+    /**
+     * @param Application $app
+     *
+     * @return \Silex\ControllerCollection
+     */
     public function connect(Application $app)
     {
         $controllers = $app['controllers_factory'];

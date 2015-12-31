@@ -13,8 +13,6 @@ class PaginatorExtension extends \Twig_Extension
 
     /**
      * @param Application $app
-     *
-     * @return void
      */
     public function __construct(Application $app)
     {

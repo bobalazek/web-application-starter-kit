@@ -11,16 +11,25 @@ class FileExtension extends \Twig_Extension
 {
     private $app;
 
+    /**
+     * @param Application $app
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'application/file';
     }
 
+    /**
+     * @return array
+     */
     public function getFunctions()
     {
         return array(
@@ -34,6 +43,9 @@ class FileExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @return string|boolean
+     */
     public function fileContents($path)
     {
         $path = ROOT_DIR.'/'.$path;

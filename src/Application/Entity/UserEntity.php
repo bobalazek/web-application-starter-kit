@@ -54,6 +54,13 @@ class UserEntity
     protected $email;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="json_array", nullable=true)
+     */
+    protected $roles;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
@@ -153,18 +160,6 @@ class UserEntity
      * @ORM\OneToOne(targetEntity="Application\Entity\ProfileEntity", mappedBy="user", cascade={"all"})
      **/
     protected $profile;
-
-    /**
-     * @var Doctrine\Common\Collections\ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Application\Entity\RoleEntity", inversedBy="users")
-     * @ORM\JoinTable(
-     *      name="user_roles",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     *  )
-     */
-    protected $roles;
 
     /**
      * @var Doctrine\Common\Collections\ArrayCollection
@@ -687,25 +682,10 @@ class UserEntity
      */
     public function getRoles()
     {
-        $rolesArray = array();
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
 
-        $userRoles = $this->roles;
-
-        if ($userRoles) {
-            $rolesArray = $userRoles->toArray();
-        }
-
-        if ($rolesArray) {
-            $rolesArray[] = 'ROLE_USER';
-            $rolesArray = array_unique($rolesArray);
-
-            return $rolesArray;
-        } elseif ($this->getId() == 1) {
-            // The user with ID 1 ist normally the super admin
-            return array('ROLE_SUPER_ADMIN');
-        }
-
-        return array('ROLE_USER'); // Fallback, when no roles are found
+        return array_unique($roles);
     }
 
     /**
@@ -713,53 +693,9 @@ class UserEntity
      *
      * @return \Application\Entity\UserEntity
      */
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function hasRole(RoleEntity $role = null)
-    {
-        return $this->roles->contains($role);
-    }
-
-    /**
-     * @param $role
-     *
-     * @return \Application\Entity\UserEntity
-     */
-    public function addRole(RoleEntity $role = null)
-    {
-        if (! $this->roles->contains($role)) {
-            $this->roles->add($role);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param $role
-     *
-     * @return \Application\Entity\UserEntity
-     */
-    public function removeRole($role = null)
-    {
-        if (is_string($role)) {
-            foreach ($this->roles as $singleRole) {
-                if ($singleRole->getRole() == $role) {
-                    $this->roles->removeElement($singleRole);
-                }
-            }
-        } else {
-            if ($this->roles->contains($role)) {
-                $this->roles->removeElement($role);
-            }
-        }
 
         return $this;
     }

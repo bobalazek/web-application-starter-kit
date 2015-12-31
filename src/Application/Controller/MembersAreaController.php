@@ -14,6 +14,12 @@ use Application\Entity\UserEntity;
  */
 class MembersAreaController
 {
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function indexAction(Request $request, Application $app)
     {
         return new Response(
@@ -23,6 +29,12 @@ class MembersAreaController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function loginAction(Request $request, Application $app)
     {
         $data = array(
@@ -39,6 +51,12 @@ class MembersAreaController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function logoutAction(Request $request, Application $app)
     {
         return new Response(
@@ -48,6 +66,12 @@ class MembersAreaController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function registerAction(Request $request, Application $app)
     {
         $data = array();
@@ -149,6 +173,12 @@ class MembersAreaController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function resetPasswordAction(Request $request, Application $app)
     {
         $data = array();

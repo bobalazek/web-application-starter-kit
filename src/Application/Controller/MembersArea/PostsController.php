@@ -13,6 +13,12 @@ use Application\Entity\PostEntity;
  */
 class PostsController
 {
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function indexAction(Request $request, Application $app)
     {
         $data = array();
@@ -61,6 +67,12 @@ class PostsController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function newAction(Request $request, Application $app)
     {
         $data = array();
@@ -121,6 +133,13 @@ class PostsController
         );
     }
 
+    /**
+     * @param $id
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function editAction($id, Request $request, Application $app)
     {
         $data = array();
@@ -188,6 +207,13 @@ class PostsController
         );
     }
 
+    /**
+     * @param $id
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function removeAction($id, Request $request, Application $app)
     {
         $data = array();
@@ -241,7 +267,7 @@ class PostsController
                 } else {
                     $app['orm.em']->remove($post);
                 }
-                
+
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(

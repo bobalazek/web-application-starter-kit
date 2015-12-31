@@ -97,6 +97,13 @@ return array(
 
     // User System Options
     'userSystemOptions' => array(
+        'roles' => array(
+            'ROLE_USER' => 'User',
+            'ROLE_ADMIN' => 'Admin',
+            'ROLE_SUPER_ADMIN' => 'Super admin',
+            'ROLE_USERS_EDITOR' => 'Users editor',
+            'ROLE_POSTS_EDITOR' => 'Posts editor',
+        ),
         'registrationEnabled' => true,
     ),
 

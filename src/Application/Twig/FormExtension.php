@@ -11,16 +11,25 @@ class FormExtension extends \Twig_Extension
 {
     private $app;
 
+    /**
+     * @param Application $app
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'application/form';
     }
 
+    /**
+     * @return array
+     */
     public function getFunctions()
     {
         return array(
@@ -48,11 +57,17 @@ class FormExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @param boolean
+     */
     public function formHasErrors($form)
     {
         return count($form->vars['errors']) > 0;
     }
 
+    /**
+     * @return mixed
+     */
     public function formValue($form, $fallback = null)
     {
         return $form->vars['value']
@@ -61,6 +76,9 @@ class FormExtension extends \Twig_Extension
         ;
     }
 
+    /**
+     * @return boolean
+     */
     public function formCheckboxValue($form)
     {
         return $form->vars['checked']

@@ -76,14 +76,14 @@ class PostEntity
      * @ORM\ManyToOne(targetEntity="Application\Entity\UserEntity", inversedBy="posts")
      */
     protected $user;
-    
+
     /**
      * @var Doctrine\Common\Collections\ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Application\Entity\PostMetaEntity", mappedBy="post", cascade={"all"})
      */
     protected $postMetas;
-    
+
     protected $metas;
 
     /*************** Methods ***************/
@@ -92,7 +92,7 @@ class PostEntity
     {
         $this->postMetas = new ArrayCollection();
     }
-    
+
     /********** General Methods **********/
     /***** Getters, Setters and Other stuff *****/
     /*** Id ***/
@@ -251,13 +251,13 @@ class PostEntity
 
         return $this;
     }
-    
+
     /*** Post Metas ***/
     public function getPostMetas()
     {
         return $this->postMetas;
     }
-    
+
     public function setPostMetas($postMetas)
     {
         if ($postMetas) {
@@ -266,27 +266,27 @@ class PostEntity
             }
             $this->postMetas = $postMetas;
         }
-        
+
         return $this;
     }
-    
+
     public function addPostMeta(PostMetaEntity $postMeta)
     {
         if (! $this->postMetas->contains($postMeta)) {
             $postMeta->setPost($this);
             $this->postMetas->add($postMeta);
         }
-        
+
         return $this;
     }
     public function removePostMeta(PostMetaEntity $postMeta)
     {
         $postMeta->setPost(null);
         $this->postMetas->removeElement($postMeta);
-        
+
         return $this;
     }
-    
+
     /*** Metas ***/
     public function getMetas($key = null)
     {
@@ -297,37 +297,38 @@ class PostEntity
             : $this->metas
         ;
     }
-    
+
     public function setMetas($metas)
     {
         $this->metas = $metas;
+
         return $this;
     }
-    
+
     public function hydratePostMetas()
     {
         $postMetas = $this->getPostMetas()->toArray();
-        
+
         if (count($postMetas)) {
             $metas = array();
-            
+
             foreach ($postMetas as $postMeta) {
                 $metas[$postMeta->getKey()] = $postMeta->getValue();
             }
-            
+
             $this->setMetas($metas);
         }
     }
-    
+
     public function convertMetasToPostMetas($uploadPath, $uploadDir)
     {
         $slugify = new Slugify();
         $metas = $this->getMetas();
-        
+
         if (! empty($metas)) {
             foreach ($metas as $metaKey => $metaValue) {
                 $metaEntity = new PostMetaEntity();
-                
+
                 // Check if it's a file!
                 if ($metaValue instanceof UploadedFile) {
                     $filename = $slugify->slugify(
@@ -342,7 +343,7 @@ class PostEntity
                     );
                     $metaValue = $uploadPath.$filename;
                 }
-                
+
                 $metaEntity
                     ->setKey($metaKey)
                     ->setValue($metaValue)
@@ -381,7 +382,7 @@ class PostEntity
     {
         $this->hydratePostMetas();
     }
-    
+
     /**
      * @ORM\PreUpdate
      */

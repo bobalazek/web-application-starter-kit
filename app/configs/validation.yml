@@ -13,20 +13,6 @@ Application\Entity\ProfileEntity:
             - Image:
                 groups: [ newAndEdit ]
 
-Application\Entity\RoleEntity:
-    constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
-            fields: role
-            message: 'This role already existss'
-            groups: [ newAndEdit ]
-    properties:
-        name:
-            - NotBlank:
-                groups: [ newAndEdit ]
-        role:
-            - NotBlank:
-                groups: [ newAndEdit ]
-
 Application\Entity\UserEntity:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:

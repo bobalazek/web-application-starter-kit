@@ -6,12 +6,20 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class UserType extends AbstractType
 {
+    protected $app;
+
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -34,14 +42,11 @@ class UserType extends AbstractType
             'invalid_message' => 'errors.user.password.invalidText',
         ));
 
-        $builder->add('roles', 'entity', array(
+        $builder->add('roles', 'choice', array(
             'required' => false,
-            'class' => 'Application\Entity\RoleEntity',
             'multiple' => true,
-            'expanded' => false,
-            'attr' => array(
-                'data-help-text' => 'Hold the CTRL button to select multiple roles',
-            ),
+            'expanded' => true,
+            'choices' => $this->app['userSystemOptions']['roles'],
         ));
 
         $builder->add('enabled', 'checkbox', array(

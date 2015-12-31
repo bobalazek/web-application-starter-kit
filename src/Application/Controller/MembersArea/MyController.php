@@ -13,6 +13,12 @@ use Application\Form\Type\User\Settings\PasswordType;
  */
 class MyController
 {
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function indexAction(Request $request, Application $app)
     {
         return $app->redirect(
@@ -20,6 +26,12 @@ class MyController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function profileAction(Request $request, Application $app)
     {
         return new Response(
@@ -29,6 +41,12 @@ class MyController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function profileSettingsAction(Request $request, Application $app)
     {
         $data = array();
@@ -91,6 +109,12 @@ class MyController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function profileSettingsPasswordAction(Request $request, Application $app)
     {
         $data = array();

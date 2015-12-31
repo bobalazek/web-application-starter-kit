@@ -32,7 +32,6 @@ class UsersController
             ->select('u')
             ->from('Application\Entity\UserEntity', 'u')
             ->leftJoin('u.profile', 'p')
-            ->leftJoin('u.roles', 'r')
         ;
 
         $pagination = $app['paginator']->paginate(
@@ -46,9 +45,9 @@ class UsersController
                 'searchFields' => array(
                     'u.username',
                     'u.email',
+                    'u.roles',
                     'p.firstName',
                     'p.lastName',
-                    'r.role',
                 ),
             )
         );
@@ -75,7 +74,7 @@ class UsersController
         }
 
         $form = $app['form.factory']->create(
-            new UserType(),
+            new UserType($app),
             new UserEntity()
         );
 
@@ -178,7 +177,7 @@ class UsersController
         }
 
         $form = $app['form.factory']->create(
-            new UserType(),
+            new UserType($app),
             $user
         );
 
@@ -188,17 +187,14 @@ class UsersController
             if ($form->isValid()) {
                 $userEntity = $form->getData();
 
-                $roleSuperAdmin = $app['orm.em']
-                    ->getRepository('Application\Entity\RoleEntity')
-                    ->findOneByRole('ROLE_SUPER_ADMIN')
-                ;
-
-                if ($userEntity->hasRole($roleSuperAdmin) &&
-                    $userEntity->isLocked()) {
+                if (
+                    $userEntity->isLocked() &&
+                    $app['security.authorization_checker']->isGranted('ROLE_ADMIN', $userEntity)
+                ) {
                     $app['flashbag']->add(
                         'danger',
                         $app['translator']->trans(
-                            'members-area.users.edit.superAdminLockedText'
+                            'An admin user can not be locked!'
                         )
                     );
 
@@ -312,7 +308,7 @@ class UsersController
                 } else {
                     $app['orm.em']->remove($user);
                 }
-                
+
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(

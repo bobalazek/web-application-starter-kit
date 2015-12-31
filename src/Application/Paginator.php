@@ -2,6 +2,10 @@
 
 namespace Application;
 
+use Silex\Application;
+use Knp\Component\Pager\Paginator as KnpPaginator;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * @author Borut BalaÅ¾ek <bobalazek124@gmail.com>
  */
@@ -14,7 +18,7 @@ class Paginator
      *
      * @return void
      */
-    public function __construct(\Silex\Application $app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }
@@ -27,7 +31,7 @@ class Paginator
      */
     public function paginate($data, $currentPage = 1, $limitPerPage = 10, $options = array())
     {
-        $paginator = new \Knp\Component\Pager\Paginator();
+        $paginator = new KnpPaginator();
 
         if ($currentPage == null) {
             $currentPage = 1;
@@ -48,7 +52,7 @@ class Paginator
             false
         );
 
-        if ($searchFields && !($data instanceof \Doctrine\ORM\QueryBuilder)) {
+        if ($searchFields && !($data instanceof QueryBuilder)) {
             throw new \Exception('If you want to use search, you MUST use the QueryBuilder!');
         }
 

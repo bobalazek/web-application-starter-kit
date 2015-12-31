@@ -11,16 +11,25 @@ class UiExtension extends \Twig_Extension
 {
     private $app;
 
+    /**
+     * @param Application $app
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'application/ui';
     }
 
+    /**
+     * @return array
+     */
     public function getFunctions()
     {
         return array(
@@ -41,6 +50,9 @@ class UiExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @return string
+     */
     public function arrayLabels($array = array())
     {
         if (! count($array)) {
@@ -56,6 +68,9 @@ class UiExtension extends \Twig_Extension
         return $output;
     }
 
+    /**
+     * @return string
+     */
     public function pagination($output)
     {
         return $output;
