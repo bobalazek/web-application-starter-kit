@@ -16,7 +16,7 @@
     </ol>
     <div id="main-content">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         {{ 'Users' | trans }}
@@ -30,23 +30,8 @@
                         </li>
                     </ul>
                 </div> <!-- /.panel -->
-            </div> <!-- /.col-md-4 -->
-            <div class="col-md-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        {{ 'Roles' | trans }}
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            {{ 'Total' | trans }}
-                            <span class="badge">
-                                {{ app['orm.em'].getRepository('Application\\Entity\\RoleEntity').countAll() }}
-                            </span>
-                        </li>
-                    </ul>
-                </div> <!-- /.panel -->
-            </div> <!-- /.col-md-4 -->
-            <div class="col-md-4">
+            </div> <!-- /.col-md-6 -->
+            <div class="col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         {{ 'Posts' | trans }}
@@ -60,7 +45,7 @@
                         </li>
                     </ul>
                 </div> <!-- /.panel -->
-            </div> <!-- /.col-md-4 -->
+            </div> <!-- /.col-md-6 -->
         </div> <!-- /.row -->
     </div>
 {% endblock %}
