@@ -699,6 +699,19 @@ class UserEntity
 
         return $this;
     }
+    
+    /**
+     * @param $role
+     *
+     * @return \Application\Entity\UserEntity
+     */
+    public function hasRole($role)
+    {
+        return in_array(
+            $role, 
+            $this->getRoles()
+        );
+    }
 
     /*** Profile ***/
     /**

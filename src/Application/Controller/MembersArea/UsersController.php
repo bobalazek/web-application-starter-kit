@@ -189,12 +189,12 @@ class UsersController
 
                 if (
                     $userEntity->isLocked() &&
-                    $app['security.authorization_checker']->isGranted('ROLE_ADMIN', $userEntity)
+                    $userEntity->hasRole('ROLE_SUPER_ADMIN')
                 ) {
                     $app['flashbag']->add(
                         'danger',
                         $app['translator']->trans(
-                            'An admin user can not be locked!'
+                            'A super admin user can not be locked!'
                         )
                     );
 
