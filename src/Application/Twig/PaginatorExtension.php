@@ -57,7 +57,7 @@ class PaginatorExtension extends \Twig_Extension
                 'paginator_top_render',
                 array(
                     $this,
-                    'paginatorTopRender',    
+                    'paginatorTopRender',
                 ),
                 array(
                     'is_safe' => array('html'),

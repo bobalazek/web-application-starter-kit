@@ -125,7 +125,7 @@ class AbstractImageUpload
     public function imageUpload()
     {
         $image = $this->getImage();
-        
+
         if (null !== $image) {
             $uploadDir = $this->getImageUploadDir();
             $uploadPath = $this->getImageUploadPath();

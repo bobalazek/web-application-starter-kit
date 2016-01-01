@@ -321,7 +321,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $plainPassword
+     * @param string         $plainPassword
      * @param EncoderFactory $encoderFactory
      *
      * @return UserEntity

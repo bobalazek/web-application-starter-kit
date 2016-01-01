@@ -26,25 +26,27 @@ class Mailer
      * Prepares the (swift) email and sends it.
      *
      * @return integer
+     *
+     * @throws \Exception If subject or recpient (to) not specified
      */
     public function swiftMessageInitializeAndSend(array $data = array())
     {
         $swiftMessageInstance = \Swift_Message::newInstance();
-        
+
         if (!isset($data['subject'])) {
-            throw new Exception('You need to specify a subject');
+            throw new \Exception('You need to specify a subject');
         }
-        
+
         if (!isset($data['to'])) {
-            throw new Exception('You need to specify a recipient');
+            throw new \Exception('You need to specify a recipient');
         }
-        
+
         $from = isset($data['from'])
             ? $data['from']
             : array($this->app['email'] => $this->app['emailName'])
         ;
         $to = $data['to'];
-        
+
         $swiftMessageInstance
             ->setSubject($data['subject'])
             ->setTo($to)
@@ -58,7 +60,7 @@ class Mailer
         if (isset($data['bcc'])) {
             $swiftMessageInstance->setBcc($data['bcc']);
         }
-        
+
         $templateData = array(
             'app' => $this->app,
             'user' => $this->app['user'],
