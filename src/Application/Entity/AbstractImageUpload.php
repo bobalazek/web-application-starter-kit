@@ -124,7 +124,9 @@ class AbstractImageUpload
      */
     public function imageUpload()
     {
-        if (null !== $this->getImage()) {
+        $image = $this->getImage();
+        
+        if (null !== $image) {
             $uploadDir = $this->getImageUploadDir();
             $uploadPath = $this->getImageUploadPath();
 
@@ -135,14 +137,14 @@ class AbstractImageUpload
             $slugify = new Slugify();
 
             $filename = $slugify->slugify(
-                $this->getImage()->getClientOriginalName()
+                $image->getClientOriginalName()
             );
 
             $filename .= '_'.sha1(uniqid(mt_rand(), true)).'.'.
-                $this->getImage()->guessExtension()
+                $image->guessExtension()
             ;
 
-            $this->getImage()->move(
+            $image->move(
                 $uploadDir,
                 $filename
             );

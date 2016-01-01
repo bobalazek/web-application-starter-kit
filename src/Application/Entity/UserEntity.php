@@ -695,7 +695,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     /**
      * @param array $roles
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setRoles(array $roles)
     {
@@ -729,7 +729,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     /**
      * @param $profile
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setProfile(ProfileEntity $profile)
     {
@@ -752,7 +752,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     /**
      * @param ArrayCollection $posts
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setPosts($posts)
     {

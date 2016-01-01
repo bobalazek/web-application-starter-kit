@@ -274,7 +274,7 @@ class PostEntity extends AbstractImageUpload
     /**
      * @param $key
      *
-     * @return array|null
+     * @return mixed
      */
     public function getMetas($key = null)
     {
