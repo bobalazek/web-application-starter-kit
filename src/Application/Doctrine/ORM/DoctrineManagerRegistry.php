@@ -88,18 +88,17 @@ class DoctrineManagerRegistry
     {
         return $this->managers;
     }
-
     /**
      * {@inheritDoc}
      */
-    public function getAliasNamespace()
+    public function resetManager($name = null)
     {
     }
-
+    
     /**
      * {@inheritDoc}
      */
-    public function resetManager()
+    public function getAliasNamespace($alias)
     {
     }
 

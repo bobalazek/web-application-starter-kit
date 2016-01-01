@@ -77,6 +77,8 @@ class PostEntity
 
     /**
      * Helper for metas
+     *
+     * @var array
      */
     protected $metas;
 
@@ -224,7 +226,7 @@ class PostEntity
     }
 
     /**
-     * @param array $postMetas
+     * @param ArrayCollection $postMetas
      *
      * @return PostEntity
      */

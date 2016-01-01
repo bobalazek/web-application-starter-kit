@@ -48,7 +48,7 @@ class ResetPasswordType extends AbstractType
             'data_class' => 'Application\Entity\UserEntity',
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-            'validation_groups' => function ($action) {
+            'validation_groups' => function () use ($action) {
                 if ($action == 'reset') {
                     return array('resetPasswordReset');
                 } else {
