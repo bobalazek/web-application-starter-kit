@@ -16,7 +16,7 @@ class UiExtension extends \Twig_Extension
     }
 
     /**
-     * @return \Twig_SimpleFunction[]
+     * @return array
      */
     public function getFunctions()
     {

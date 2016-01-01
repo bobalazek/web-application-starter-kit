@@ -93,7 +93,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     public function resetManager($name = null)
     {
     }
-    
+
     /**
      * {@inheritDoc}
      */

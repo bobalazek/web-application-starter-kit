@@ -16,7 +16,7 @@ class DateExtension extends \Twig_Extension
     }
 
     /**
-     * @return \Twig_SimpleFilter[]
+     * @return array
      */
     public function getFilters()
     {
