@@ -2,8 +2,6 @@
 
 namespace Application\Twig;
 
-use Silex\Application;
-
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */

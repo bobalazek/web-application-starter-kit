@@ -2,6 +2,8 @@
 
 namespace Application\Tool;
 
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
@@ -26,7 +28,7 @@ class Console
     /**
      * @return void
      */
-    public static function prepare($output = null)
+    public static function prepare(OutputInterface $output = null)
     {
         if ($output) {
             $output->writeln('<info>Preparing storage...</info>');

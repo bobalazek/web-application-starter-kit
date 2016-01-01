@@ -195,11 +195,6 @@ class PaginatorExtension extends \Twig_Extension
         $output = '';
 
         $paginationData = $pagination->getPaginationData();
-        $maxPageRange = isset($paginationData['pageRangeLimit'])
-            ? intval($paginationData['pageRangeLimit'])
-            : 10
-        ;
-        $route = $paginationData['route'];
         $routeParameters = $this->app['request']->query->all();
         if (isset($paginationData['routeParameters'])) {
             $routeParameters = array_merge(
@@ -207,11 +202,6 @@ class PaginatorExtension extends \Twig_Extension
                 $paginationData['routeParameters']
             );
         }
-        $pageCount = ceil(
-            intval($paginationData['totalCount']) /
-            intval($paginationData['numItemsPerPage'])
-        );
-        $currentPage = intval($paginationData['current']);
         $total = $paginationData['totalCount'];
 
         if ($total > 0 && $currentPage <= $pageCount) {
