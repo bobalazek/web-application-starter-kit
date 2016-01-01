@@ -690,7 +690,7 @@ class UserEntity
         ;
         $roles[] = 'ROLE_USER';
 
-        return array_unique($roles);
+        return array_unique($roles, SORT_REGULAR);
     }
 
     /**
