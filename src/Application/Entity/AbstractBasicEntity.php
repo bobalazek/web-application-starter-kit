@@ -3,9 +3,9 @@
 namespace Application\Entity;
 
 /**
- * Abstract Meta
+ * Abstract basic entity
  *
- * Some default methods for a meta entity (id, key and value)
+ * Some of the basic variables and methods (id, timeCreated and timeUpdated)
  *
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
@@ -15,7 +15,7 @@ class AbstractBasicEntity
      * @var integer
      */
     protected $id;
-    
+
     /**
      * @var \DateTime
      */
@@ -25,7 +25,7 @@ class AbstractBasicEntity
      * @var \DateTime
      */
     protected $timeUpdated;
-    
+
     /*** Id ***/
     /**
      * @return integer
@@ -46,7 +46,7 @@ class AbstractBasicEntity
 
         return $this;
     }
-    
+
     /*** Time created ***/
     /**
      * @return \DateTime
@@ -88,7 +88,7 @@ class AbstractBasicEntity
 
         return $this;
     }
-    
+
     /**
      * Returns data in array
      *
