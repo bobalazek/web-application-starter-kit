@@ -14,9 +14,7 @@ class Paginator
     protected $app;
 
     /**
-     * @param \Silex\Application $app
-     *
-     * @return void
+     * @param Application $app
      */
     public function __construct(Application $app)
     {

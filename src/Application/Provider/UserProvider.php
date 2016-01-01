@@ -19,8 +19,6 @@ class UserProvider
 
     /**
      * @param Application $app
-     *
-     * @return void
      */
     public function __construct(Application $app)
     {

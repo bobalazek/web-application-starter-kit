@@ -178,7 +178,7 @@ class UserEntity
     protected $credentialsExpired = false;
 
     /**
-     * @return void
+     * The constructor
      */
     public function __construct()
     {

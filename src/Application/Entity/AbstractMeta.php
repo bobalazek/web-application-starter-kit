@@ -11,6 +11,31 @@ namespace Application\Entity;
  */
 class AbstractMeta
 {
+    /**
+     * @var integer
+     */
+    protected $id;
+
+    /**
+     * @var string
+     */
+    protected $key;
+
+    /**
+     * @var string
+     */
+    protected $value;
+
+    /**
+     * @var \DateTime
+     */
+    protected $timeCreated;
+
+    /**
+     * @var \DateTime
+     */
+    protected $timeUpdated;
+    
     /*** Id ***/
     /**
      * @return integer
@@ -138,6 +163,7 @@ class AbstractMeta
      */
     public function __toString()
     {
+        $data = array();
         $key = $this->getKey();
         $value = $this->getValue();
 
