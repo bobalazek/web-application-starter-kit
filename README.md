@@ -2,11 +2,13 @@ README
 ======
 **Web Application Starter Kit**
 
+[![Build Status](https://travis-ci.org/bobalazek/web-application-starter-kit.svg?branch=master)](https://travis-ci.org/bobalazek/web-application-starter-kit)
+[![Latest Stable Version](http://img.shields.io/packagist/v/bobalazek/web-application-starter-kit.svg?style=flat-square)](https://packagist.org/packages/bobalazek/web-application-starter-kit)
+[![Total Downloads](http://img.shields.io/packagist/dt/bobalazek/web-application-starter-kit.svg?style=flat-square)](https://packagist.org/packages/bobalazek/web-application-starter-kit)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/?branch=develop)
+
 A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, forgotten password, profile, edit profile and change password), users, roles, simple statistics and more.
 
-Build status
--------------------
-[![Build Status](https://travis-ci.org/bobalazek/web-application-starter-kit.svg?branch=master)](https://travis-ci.org/bobalazek/web-application-starter-kit)
 
 Requirements & Tools & Helpers
 -------------------
