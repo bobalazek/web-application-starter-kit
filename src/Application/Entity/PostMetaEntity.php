@@ -69,7 +69,7 @@ class PostMetaEntity extends AbstractMeta
     /**
      * @param PostEntity $post
      */
-    public function setPost($post)
+    public function setPost(PostEntity $post = null)
     {
         $this->post = $post;
 

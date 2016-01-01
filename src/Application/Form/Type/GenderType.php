@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class GenderType
-    extends AbstractType
+class GenderType extends AbstractType
 {
     const MALE = 'male';
     const FEMALE = 'female';
