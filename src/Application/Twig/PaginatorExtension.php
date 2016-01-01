@@ -28,7 +28,7 @@ class PaginatorExtension extends \Twig_Extension
     }
 
     /**
-     * @return array
+     * @return \Twig_SimpleFunction[]
      */
     public function getFunctions()
     {
@@ -224,7 +224,7 @@ class PaginatorExtension extends \Twig_Extension
         $total = $paginationData['totalCount'];
 
         if ($total > 0 && $currentPage <= $pageCount) {
-            $from = (($currentPage -1) * $paginationData['numItemsPerPage']) + 1;
+            $from = (($currentPage - 1) * $paginationData['numItemsPerPage']) + 1;
             $to = $currentPage * $paginationData['numItemsPerPage'] > $total
                 ? $total
                 : $currentPage * $paginationData['numItemsPerPage']
