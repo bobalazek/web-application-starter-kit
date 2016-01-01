@@ -50,9 +50,9 @@ class Storage
 
         $fs = new Filesystem();
 
-        foreach ($paths as $path) {
+        foreach ($paths as $path) {"
             $fs->remove($path);
-            $fs->mkdir($paths);
+            $fs->mkdir($paths);"
             $fs->chmod($path, 0777);
         }
 
@@ -124,8 +124,6 @@ class Storage
             exec("ln -f -s $sharedPathDirectory $pathDirectoryTmp");
             exec("rm -rf $pathDirectory");
             exec("mv -Tf $pathDirectoryTmp $pathDirectory");
-
-            // $fs->symlink($pathDirectory, $sharedPathDirectory, true);
         }
     }
 

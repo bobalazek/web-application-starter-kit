@@ -179,11 +179,11 @@ $app->register(
 
 /*** Twig Extensions ***/
 $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig, $app) {
-    $twig->addExtension(new Application\Twig\DateExtension($app));
-    $twig->addExtension(new Application\Twig\FormExtension($app));
-    $twig->addExtension(new Application\Twig\FileExtension($app));
-    $twig->addExtension(new Application\Twig\UiExtension($app));
     $twig->addExtension(new Application\Twig\PaginatorExtension($app));
+    $twig->addExtension(new Application\Twig\DateExtension());
+    $twig->addExtension(new Application\Twig\FormExtension());
+    $twig->addExtension(new Application\Twig\FileExtension());
+    $twig->addExtension(new Application\Twig\UiExtension());
     $twig->addExtension(
         new Cocur\Slugify\Bridge\Twig\SlugifyExtension(
             Cocur\Slugify\Slugify::create()

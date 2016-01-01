@@ -9,16 +9,6 @@ use Silex\Application;
  */
 class FormExtension extends \Twig_Extension
 {
-    private $app;
-
-    /**
-     * @param Application $app
-     */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
-
     /**
      * @return string
      */

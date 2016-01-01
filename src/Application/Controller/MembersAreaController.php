@@ -29,12 +29,11 @@ class MembersAreaController
     }
 
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return Response
      */
-    public function loginAction(Request $request, Application $app)
+    public function loginAction(Application $app)
     {
         $data = array(
             'lastUsername' => $app['session']->get('_security.last_username'),

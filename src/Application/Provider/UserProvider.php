@@ -16,13 +16,24 @@ class UserProvider
     implements UserProviderInterface
 {
     private $app;
-    private $credentials;
 
+    /**
+     * @param Application $app
+     *
+     * @return void
+     */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
+    /**
+     * @param string $username
+     * @param bolean $showExceptionIfNotExistent
+     *
+     * @return UserEntity
+     * @throws UsernameNotFoundException If user was not found 
+     */
     public function loadUserByUsername($username, $showExceptionIfNotExistent = true)
     {
         $user = null;

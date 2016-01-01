@@ -13,6 +13,12 @@ use Application\Entity\UserEntity;
  */
 class UsersController
 {
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function indexAction(Request $request, Application $app)
     {
         $data = array();
@@ -62,6 +68,12 @@ class UsersController
         );
     }
 
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
     public function newAction(Request $request, Application $app)
     {
         $data = array();
@@ -129,7 +141,13 @@ class UsersController
         );
     }
 
-    public function detailAction($id, Request $request, Application $app)
+    /**
+     * @param $id
+     * @param Application $app
+     *
+     * @return Response
+     */
+    public function detailAction($id, Application $app)
     {
         $data = array();
 

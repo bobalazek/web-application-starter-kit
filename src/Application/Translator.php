@@ -23,7 +23,7 @@ class Translator
     /**
      * Sets the locale (if it can)
      */
-    public function setLocale($locale, $ignoreUntranslated = false)
+    public function setLocale($locale)
     {
         $this->app['translator']->setLocale($locale);
 
@@ -83,7 +83,7 @@ class Translator
         }
 
         /***** Already translated *****/
-        $app['application.translator']->setLocale($locale, $ignoreUntranslated = true);
+        $app['application.translator']->setLocale($locale);
         $translatedMessages = $app['translator']->getMessages($locale);
         $translatedMessages = $translatedMessages['messages'];
 

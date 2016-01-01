@@ -3,7 +3,6 @@
 namespace Application\Controller;
 
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
