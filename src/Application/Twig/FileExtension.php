@@ -44,7 +44,7 @@ class FileExtension extends \Twig_Extension
     }
 
     /**
-     * @return string|boolean
+     * @return string|false
      */
     public function fileContents($path)
     {

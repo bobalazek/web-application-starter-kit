@@ -133,6 +133,10 @@ class PostMetaEntity
     {
         return $this->post;
     }
+
+    /**
+     * @param PostEntity|null $post
+     */
     public function setPost($post)
     {
         $this->post = $post;

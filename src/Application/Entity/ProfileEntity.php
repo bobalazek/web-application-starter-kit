@@ -243,6 +243,10 @@ class ProfileEntity
     }
 
     /*** Image upload dir ***/
+
+    /**
+     * @return string
+     */
     public function getImageUploadDir()
     {
         return $this->imageUploadDir;
@@ -265,6 +269,9 @@ class ProfileEntity
         return $this->imageUrl;
     }
 
+    /**
+     * @param string $imageUrl
+     */
     public function setImageUrl($imageUrl)
     {
         $this->imageUrl = $imageUrl;

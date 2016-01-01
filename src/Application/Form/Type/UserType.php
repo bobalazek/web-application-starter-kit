@@ -70,7 +70,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Application\Entity\UserEntity',
-            'validation_groups' => function (FormInterface $form) {
+            'validation_groups' => function(FormInterface $form) {
                 $user = $form->getData();
                 $validationGroups = array();
 

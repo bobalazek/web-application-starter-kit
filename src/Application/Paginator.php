@@ -37,7 +37,7 @@ class Paginator
             $currentPage = 1;
         }
 
-        if (! isset($options['searchParameter'])) {
+        if (!isset($options['searchParameter'])) {
             $options['searchParameter'] = 'search';
         }
 

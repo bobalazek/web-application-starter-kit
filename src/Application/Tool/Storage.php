@@ -64,7 +64,7 @@ class Storage
      */
     public static function prepareUploadsFolder($uploadsDirectory)
     {
-        if (! $uploadsDirectory) {
+        if (!$uploadsDirectory) {
             return false;
         }
 
@@ -72,7 +72,7 @@ class Storage
 
         $uploadsDirectory = 'web/assets/uploads';
 
-        if (! $fs->exists($uploadsDirectory)) {
+        if (!$fs->exists($uploadsDirectory)) {
             $fs->mkdir($uploadsDirectory, 0777);
         }
 
@@ -106,7 +106,7 @@ class Storage
         $sharedDirectory = $root.'/shared/';
 
         // Create the shared directory first (if it does not exists)
-        if (! $fs->exists($sharedDirectory)) {
+        if (!$fs->exists($sharedDirectory)) {
             $fs->mkdir($sharedDirectory, 0777);
         }
 
@@ -114,7 +114,7 @@ class Storage
             $pathDirectory = $releaseRoot.$path;
             $sharedPathDirectory = $sharedDirectory.$path;
 
-            if (! $fs->exists($sharedPathDirectory)) {
+            if (!$fs->exists($sharedPathDirectory)) {
                 $fs->mkdir($sharedPathDirectory, 0777);
             }
 
