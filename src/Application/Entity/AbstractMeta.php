@@ -35,7 +35,7 @@ class AbstractMeta
      * @var \DateTime
      */
     protected $timeUpdated;
-    
+
     /*** Id ***/
     /**
      * @return integer

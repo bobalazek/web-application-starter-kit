@@ -8,7 +8,7 @@ README
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/?branch=develop)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61/mini.png)](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61)
 
-A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, forgotten password, profile, edit profile and change password), users, roles, simple statistics and more.
+A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, reset password, profile, edit profile and change password), users, roles, simple statistics, settings and more.
 
 
 Requirements & Tools & Helpers
