@@ -20,9 +20,8 @@ if (! file_exists($vendorAutoloaderFilePath) && php_sapi_name() != 'cli') {
 $autoloader = require $vendorAutoloaderFilePath;
 
 /********** Application **********/
-$app = new \Silex\Application();
+$app = new Application();
 
-require APP_DIR.'/core/functions.php';
 require APP_DIR.'/core/providers.php';
 require APP_DIR.'/core/middlewares.php';
 require APP_DIR.'/core/routes.php';
