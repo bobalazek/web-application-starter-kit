@@ -21,16 +21,22 @@ class UiExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'array_labels' => new \Twig_Function_Method(
-                $this,
-                'arrayLabels',
+             new \Twig_SimpleFunction(
+                'array_labels',
+                array(
+                    $this,
+                    'arrayLabels',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'pagination' => new \Twig_Function_Method(
-                $this,
+            new \Twig_SimpleFunction(
                 'pagination',
+                array(
+                    $this,
+                    'pagination',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )

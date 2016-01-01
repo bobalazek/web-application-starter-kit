@@ -33,51 +33,72 @@ class PaginatorExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'paginator_limit_per_page_render' => new \Twig_Function_Method(
-                $this,
-                'paginatorLimitPerPageRender',
+            new \Twig_SimpleFunction(
+                'paginator_limit_per_page_render',
+                array(
+                    $this,
+                    'paginatorLimitPerPageRender',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'paginator_search_render' => new \Twig_Function_Method(
-                $this,
-                'paginatorSearchRender',
+            new \Twig_SimpleFunction(
+                'paginator_search_render',
+                array(
+                    $this,
+                    'paginatorSearchRender',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'paginator_top_render' => new \Twig_Function_Method(
-                $this,
-                'paginatorTopRender',
+            new \Twig_SimpleFunction(
+                'paginator_top_render',
+                array(
+                    $this,
+                    'paginatorTopRender',    
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'paginator_pagination_render' => new \Twig_Function_Method(
-                $this,
-                'paginatorPaginationRender',
+            new \Twig_SimpleFunction(
+                'paginator_pagination_render',
+                array(
+                    $this,
+                    'paginatorPaginationRender',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'paginator_results_text_render' => new \Twig_Function_Method(
-                $this,
-                'paginatorResultsTextRender',
+            new \Twig_SimpleFunction(
+                'paginator_results_text_render',
+                array(
+                    $this,
+                    'paginatorResultsTextRender',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'paginator_bottom_render' => new \Twig_Function_Method(
-                $this,
-                'paginatorBottomRender',
+            new \Twig_SimpleFunction(
+                'paginator_bottom_render',
+                array(
+                    $this,
+                    'paginatorBottomRender',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
             ),
-            'paginator_sortable' => new \Twig_Function_Method(
-                $this,
-                'paginatorSortable',
+            new \Twig_SimpleFunction(
+                'paginator_sortable',
+                array(
+                    $this,
+                    'paginatorSortable',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )

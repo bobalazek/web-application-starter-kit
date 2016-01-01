@@ -21,9 +21,12 @@ class FileExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'file_contents' => new \Twig_Function_Method(
-                $this,
-                'fileContents',
+            new \Twig_SimpleFunction(
+                'file_contents',
+                array(
+                    $this,
+                    'fileContents',
+                ),
                 array(
                     'is_safe' => array('html'),
                 )
