@@ -19,8 +19,6 @@ use Cocur\Slugify\Slugify;
  */
 class PostEntity
 {
-    /*************** Variables ***************/
-    /********** General Variables **********/
     /**
      * @var integer
      *
@@ -71,7 +69,6 @@ class PostEntity
      */
     protected $timeUpdated;
 
-    /***** Relationship Variables *****/
     /**
      * @ORM\ManyToOne(targetEntity="Application\Entity\UserEntity", inversedBy="posts")
      */
@@ -84,23 +81,33 @@ class PostEntity
      */
     protected $postMetas;
 
+    /**
+     * Helper for metas
+     */
     protected $metas;
 
-    /*************** Methods ***************/
-    /********** Contructor **********/
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->postMetas = new ArrayCollection();
     }
 
-    /********** General Methods **********/
-    /***** Getters, Setters and Other stuff *****/
     /*** Id ***/
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param $id
+     *
+     * @return PostEntity
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -109,11 +116,19 @@ class PostEntity
     }
 
     /*** Title ***/
+    /**
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * @param string $title
+     *
+     * @return PostEntity
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -122,11 +137,19 @@ class PostEntity
     }
 
     /*** Content ***/
+    /**
+     * @return string
+     */
     public function getContent()
     {
         return $this->content;
     }
 
+    /**
+     * @param string $content
+     *
+     * @return PostEntity
+     */
     public function setContent($content)
     {
         $this->content = $content;
@@ -135,11 +158,19 @@ class PostEntity
     }
 
     /*** Image ***/
+    /**
+     * @return File
+     */
     public function getImage()
     {
         return $this->image;
     }
 
+    /**
+     * @param File $image
+     *
+     * @return PostEntity
+     */
     public function setImage(File $image = null)
     {
         $this->image = $image;
@@ -148,11 +179,19 @@ class PostEntity
     }
 
     /*** Image path ***/
+    /**
+     * @return string
+     */
     public function getImageUploadPath()
     {
         return $this->imageUploadPath;
     }
 
+    /**
+     * @param string $imageUploadPath
+     *
+     * @return PostEntity
+     */
     public function setImageUploadPath($imageUploadPath)
     {
         $this->imageUploadPath = $imageUploadPath;
@@ -161,7 +200,6 @@ class PostEntity
     }
 
     /*** Image upload dir ***/
-
     /**
      * @return string
      */
@@ -170,6 +208,11 @@ class PostEntity
         return $this->imageUploadDir;
     }
 
+    /**
+     * @param string $imageUploadDir
+     *
+     * @return PostEntity
+     */
     public function setImageUploadDir($imageUploadDir)
     {
         $this->imageUploadDir = $imageUploadDir;
@@ -178,6 +221,9 @@ class PostEntity
     }
 
     /*** Image URL ***/
+    /**
+     * @return string
+     */
     public function getImageUrl()
     {
         return $this->imageUrl;
@@ -194,38 +240,49 @@ class PostEntity
     }
 
     /*** Image upload ***/
+    /**
+     * @return PostEntity
+     */
     public function imageUpload()
     {
-        if (null === $this->getImage()) {
-            return;
+        if (null !== $this->getImage()) {
+            $slugify = new Slugify();
+
+            $filename = $slugify->slugify(
+                $this->getImage()->getClientOriginalName()
+            );
+
+            $filename .= '_'.sha1(uniqid(mt_rand(), true)).'.'.
+                $this->getImage()->guessExtension()
+            ;
+
+            $this->getImage()->move(
+                $this->getImageUploadDir(),
+                $filename
+            );
+
+            $this->setImageUrl($this->getImageUploadPath().$filename);
+
+            $this->setImage(null);
         }
-
-        $slugify = new Slugify();
-
-        $filename = $slugify->slugify(
-            $this->getImage()->getClientOriginalName()
-        );
-
-        $filename .= '_'.sha1(uniqid(mt_rand(), true)).'.'.
-            $this->getImage()->guessExtension()
-        ;
-
-        $this->getImage()->move(
-            $this->getImageUploadDir(),
-            $filename
-        );
-
-        $this->setImageUrl($this->getImageUploadPath().$filename);
-
-        $this->setImage(null);
+        
+        return $this:
     }
 
     /*** Time created ***/
+    /**
+     * @return \DateTime
+     */
     public function getTimeCreated()
     {
         return $this->timeCreated;
     }
 
+    /**
+     * @param \DateTime $timeCreated
+     *
+     * @return PostEntity
+     */
     public function setTimeCreated(\DateTime $timeCreated)
     {
         $this->timeCreated = $timeCreated;
@@ -234,11 +291,19 @@ class PostEntity
     }
 
     /*** Time updated ***/
+    /**
+     * @return \DateTime
+     */
     public function getTimeUpdated()
     {
         return $this->timeUpdated;
     }
 
+    /**
+     * @param \DateTime $timeUpdated
+     *
+     * @return PostEntity
+     */
     public function setTimeUpdated(\DateTime $timeUpdated)
     {
         $this->timeUpdated = $timeUpdated;
@@ -247,11 +312,19 @@ class PostEntity
     }
 
     /*** User ***/
+    /**
+     * @return UserEntity
+     */
     public function getUser()
     {
         return $this->user;
     }
 
+    /**
+     * @param UserEntity $user
+     *
+     * @return PostEntity
+     */
     public function setUser(UserEntity $user = null)
     {
         $this->user = $user;

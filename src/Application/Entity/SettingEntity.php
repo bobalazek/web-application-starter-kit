@@ -11,9 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Application\Repository\SettingRepository")
  * @ORM\HasLifecycleCallbacks()
  *
- * @author Borut BalaÅ¾ek <bobalazek124@gmail.com>
+ * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class SettingEntity
+    extends AbstractMeta
 {
     /*************** Variables ***************/
     /********** General Variables **********/
@@ -53,127 +54,6 @@ class SettingEntity
      * @ORM\Column(name="time_updated", type="datetime")
      */
     protected $timeUpdated;
-
-    /*************** Methods ***************/
-    /*** Id ***/
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param $id
-     *
-     * @return \Application\Entity\SettingEntity
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /*** Key ***/
-    /**
-     * @return string
-     */
-    public function getKey()
-    {
-        return $this->key;
-    }
-
-    /**
-     * @param $key
-     *
-     * @return \Application\Entity\SettingEntity
-     */
-    public function setKey($key)
-    {
-        $this->key = $key;
-
-        return $this;
-    }
-
-    /*** Value ***/
-    /**
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param $value
-     *
-     * @return \Application\Entity\SettingEntity
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /*** Time created ***/
-    /**
-     * @return \DateTime
-     */
-    public function getTimeCreated()
-    {
-        return $this->timeCreated;
-    }
-
-    /**
-     * @param \DateTime $timeCreated
-     *
-     * @return \Application\Entity\SettingEntity
-     */
-    public function setTimeCreated(\DateTime $timeCreated)
-    {
-        $this->timeCreated = $timeCreated;
-
-        return $this;
-    }
-
-    /*** Time updated ***/
-    /**
-     * @return \DateTime
-     */
-    public function getTimeUpdated()
-    {
-        return $this->timeUpdated;
-    }
-
-    /**
-     * @param \DateTime $timeUpdated
-     *
-     * @return \Application\Entity\SettingEntity
-     */
-    public function setTimeUpdated(\DateTime $timeUpdated)
-    {
-        $this->timeUpdated = $timeUpdated;
-
-        return $this;
-    }
-
-    /**
-     * Returns data in array
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        return array(
-            'id' => $this->getId(),
-            'key' => $this->getKey(),
-            'value' => $this->getValue(),
-            'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
-        );
-    }
 
     /********** Callback Methods **********/
     /**

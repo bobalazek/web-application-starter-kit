@@ -284,32 +284,13 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function paginatorSearchRender($pagination)
     {
-        $output = '';
-
-        $paginationData = $pagination->getPaginationData();
-
-        $routeParameters = $this->app['request']->query->all();
-        if (isset($paginationData['routeParameters'])) {
-            $routeParameters = array_merge(
-                $routeParameters,
-                $paginationData['routeParameters']
-            );
-        }
-        $pageCount = ceil(
-            intval($paginationData['totalCount']) /
-            intval($paginationData['numItemsPerPage'])
-        );
-        $currentPage = intval($paginationData['current']);
-
-        $output = $this->app['twig']->render(
+        return $this->app['twig']->render(
             'twig/paginator/search.html.twig',
             array(
                 'app' => $this->app,
                 'pagination' => $pagination,
             )
         );
-
-        return $output;
     }
 
     /**
