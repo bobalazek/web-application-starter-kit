@@ -50,9 +50,9 @@ class Storage
 
         $fs = new Filesystem();
 
-        foreach ($paths as $path) {"
+        foreach ($paths as $path) {
             $fs->remove($path);
-            $fs->mkdir($paths);"
+            $fs->mkdir($paths);
             $fs->chmod($path, 0777);
         }
 
