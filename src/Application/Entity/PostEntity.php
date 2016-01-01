@@ -216,7 +216,7 @@ class PostEntity
 
     /*** Post Metas ***/
     /**
-     * @return array
+     * @return ArrayCollection
      */
     public function getPostMetas()
     {

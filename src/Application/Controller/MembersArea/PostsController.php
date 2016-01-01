@@ -260,7 +260,7 @@ class PostsController
 
         if ($confirmAction) {
             try {
-                if ($posts) {
+                if (!empty($posts)) {
                     foreach ($posts as $post) {
                         $app['orm.em']->remove($post);
                     }

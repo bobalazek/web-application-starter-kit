@@ -319,7 +319,7 @@ class UsersController
 
         if ($confirmAction) {
             try {
-                if ($users) {
+                if (!empty($users)) {
                     foreach ($users as $user) {
                         $app['orm.em']->remove($user);
                     }

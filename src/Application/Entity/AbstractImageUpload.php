@@ -28,6 +28,11 @@ class AbstractImageUpload
      * @var string
      */
     protected $imageUploadDir;
+    
+    /**
+     * @var string
+     */
+    protected $imageUrl;
 
     /*** Image ***/
     /**

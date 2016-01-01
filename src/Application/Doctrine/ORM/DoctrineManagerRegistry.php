@@ -12,6 +12,8 @@ class DoctrineManagerRegistry
 {
     protected $managers;
     protected $connections;
+    protected $defaultManager;
+    protected $defaultConnection;
     protected $name;
 
     public function __construct($name, array $connections, array $managers, $defaultConnection = 'default', $defaultManager = 'default')
@@ -85,22 +87,6 @@ class DoctrineManagerRegistry
     public function getManagers()
     {
         return $this->managers;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function resetManager($name = null)
-    {
-        throw new \Exception('Not yet implemented');
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAliasNamespace($alias)
-    {
-        throw new \Exception('Not yet implemented');
     }
 
     /**
