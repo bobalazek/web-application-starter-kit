@@ -69,7 +69,7 @@ class PostEntity
     protected $user;
 
     /**
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Application\Entity\PostMetaEntity", mappedBy="post", cascade={"all"})
      */

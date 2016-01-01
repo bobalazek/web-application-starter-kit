@@ -27,7 +27,7 @@ class PrepareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        Storage::prepare($output);
+        Storage::prepare();
 
         $output->writeln(
             '<info>The storage was successfully prepared!</info>'

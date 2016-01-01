@@ -43,15 +43,13 @@ class ResetPasswordType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $self = $this;
+        $action = $this->action;
 
         $resolver->setDefaults(array(
             'data_class' => 'Application\Entity\UserEntity',
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-            'validation_groups' => function (FormInterface $form) use ($self) {
-                $action = $self->action;
-
+            'validation_groups' => function ($action) {
                 if ($action == 'reset') {
                     return array('resetPasswordReset');
                 } else {

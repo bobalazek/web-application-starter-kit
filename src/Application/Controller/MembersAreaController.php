@@ -50,12 +50,11 @@ class MembersAreaController
     }
 
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return Response
      */
-    public function logoutAction(Request $request, Application $app)
+    public function logoutAction(Application $app)
     {
         return new Response(
             $app['twig']->render(

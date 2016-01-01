@@ -159,7 +159,7 @@ class UserEntity
     protected $profile;
 
     /**
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Application\Entity\PostEntity", mappedBy="user", cascade={"all"})
      */
@@ -506,11 +506,9 @@ class UserEntity
     }
 
     /**
-     * @param string $reason
-     *
      * @return UserEntity
      */
-    public function lock($reason = '')
+    public function lock()
     {
         $this->setLocked(true);
 

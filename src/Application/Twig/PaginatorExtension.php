@@ -195,13 +195,6 @@ class PaginatorExtension extends \Twig_Extension
         $output = '';
 
         $paginationData = $pagination->getPaginationData();
-        $routeParameters = $this->app['request']->query->all();
-        if (isset($paginationData['routeParameters'])) {
-            $routeParameters = array_merge(
-                $routeParameters,
-                $paginationData['routeParameters']
-            );
-        }
         $pageCount = ceil(
             intval($paginationData['totalCount']) /
             intval($paginationData['numItemsPerPage'])
@@ -257,14 +250,6 @@ class PaginatorExtension extends \Twig_Extension
         $paginationData = $pagination->getPaginationData();
 
         if ($paginationData['totalCount'] > 0) {
-            $routeParameters = $this->app['request']->query->all();
-            if (isset($paginationData['routeParameters'])) {
-                $routeParameters = array_merge(
-                    $routeParameters,
-                    $paginationData['routeParameters']
-                );
-            }
-
             $output = $this->app['twig']->render(
                 'twig/paginator/limit-per-page.html.twig',
                 array(
@@ -317,8 +302,6 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function paginatorSortable($pagination, $text = '', $key = '')
     {
-        $output = '';
-
         $text = $this->app['translator']->trans($text);
 
         $sortDirectionParameterName = $pagination->getPaginatorOption('sortDirectionParameterName');
@@ -368,11 +351,9 @@ class PaginatorExtension extends \Twig_Extension
             : false
         ;
 
-        $output = '<a href="'.$url.'">'.
+        return '<a href="'.$url.'">'.
             $text.
             ($showIcon ? ' <i class="fa fa-chevron-'.$icon.'"></i>' : '').
         '</a>';
-
-        return $output;
     }
 }
