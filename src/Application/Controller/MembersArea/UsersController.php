@@ -24,8 +24,8 @@ class UsersController
         $data = array();
 
         if (
-            ! $app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            ! $app['security']->isGranted('ROLE_ADMIN')
+            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -79,8 +79,8 @@ class UsersController
         $data = array();
 
         if (
-            ! $app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            ! $app['security']->isGranted('ROLE_ADMIN')
+            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -152,15 +152,15 @@ class UsersController
         $data = array();
 
         if (
-            ! $app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            ! $app['security']->isGranted('ROLE_ADMIN')
+            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
 
         $user = $app['orm.em']->find('Application\Entity\UserEntity', $id);
 
-        if (! $user) {
+        if (!$user) {
             $app->abort(404);
         }
 
@@ -179,8 +179,8 @@ class UsersController
         $data = array();
 
         if (
-            ! $app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            ! $app['security']->isGranted('ROLE_ADMIN')
+            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -190,7 +190,7 @@ class UsersController
             $id
         );
 
-        if (! $user) {
+        if (!$user) {
             $app->abort(404);
         }
 
@@ -280,8 +280,8 @@ class UsersController
         $data = array();
 
         if (
-            ! $app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            ! $app['security']->isGranted('ROLE_ADMIN')
+            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -304,7 +304,7 @@ class UsersController
 
         if (
             (
-                ! $user &&
+                !$user &&
                 $ids === false
             ) ||
             (

@@ -113,7 +113,7 @@ class PostEntity
     }
 
     /**
-     * @param $id
+     * @param integer $id
      *
      * @return PostEntity
      */
@@ -251,10 +251,19 @@ class PostEntity
     /*** Image upload ***/
     /**
      * @return PostEntity
+     *
+     * @throws \Exception If upload dir and path are not set
      */
     public function imageUpload()
     {
         if (null !== $this->getImage()) {
+            $uploadDir = $this->getImageUploadDir();
+            $uploadPath = $this->getImageUploadPath();
+            
+            if (!($uploadDir && $uploadPath)) {
+                throw new Exception('You must define the image upload dir and path!');
+            }
+            
             $slugify = new Slugify();
 
             $filename = $slugify->slugify(
@@ -266,11 +275,11 @@ class PostEntity
             ;
 
             $this->getImage()->move(
-                $this->getImageUploadDir(),
+                $uploadDir,
                 $filename
             );
 
-            $this->setImageUrl($this->getImageUploadPath().$filename);
+            $this->setImageUrl($uploadPath.$filename);
 
             $this->setImage(null);
         }

@@ -2,8 +2,6 @@
 
 namespace Application\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Abstract Meta
  *
@@ -23,7 +21,7 @@ class AbstractMeta
     }
 
     /**
-     * @param $id
+     * @param integer $id
      *
      * @return AbstractMeta
      */
@@ -44,7 +42,7 @@ class AbstractMeta
     }
 
     /**
-     * @param $key
+     * @param string $key
      *
      * @return AbstractMeta
      */
@@ -65,7 +63,7 @@ class AbstractMeta
     }
 
     /**
-     * @param $value
+     * @param string $value
      *
      * @return AbstractMeta
      */

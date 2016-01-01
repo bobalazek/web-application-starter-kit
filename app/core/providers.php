@@ -15,7 +15,7 @@ use Doctrine\Common\Persistence\PersistentObject;
 use Application\Doctrine\ORM\DoctrineManagerRegistry;
 
 /***** Config *****/
-if (! file_exists(APP_DIR.'/configs/global.php')) {
+if (!file_exists(APP_DIR.'/configs/global.php')) {
     throw new \Exception('No global config file found. Please create one (app/configs/global.php)!');
 }
 
@@ -70,7 +70,7 @@ foreach ($app['environments'] as $environmentKey => $environment) {
     }
 }
 
-if (! $environmentFound) {
+if (!$environmentFound) {
     // Check if we have a NEAR match (with strpos)
     foreach ($app['environments'] as $environmentKey => $environment) {
         $envDomain = isset($environment['domain'])

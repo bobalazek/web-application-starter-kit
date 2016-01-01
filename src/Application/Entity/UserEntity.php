@@ -678,7 +678,7 @@ class UserEntity
      */
     public function isCredentialsNonExpired()
     {
-        return ! $this->getExpired();
+        return !$this->getExpired();
     }
 
     /*** Roles ***/
@@ -772,7 +772,7 @@ class UserEntity
      */
     public function isEqualTo(AdvancedUserInterface $user)
     {
-        if (! $user instanceof AdvancedUserInterface) {
+        if (!($user instanceof AdvancedUserInterface)) {
             return false;
         }
 

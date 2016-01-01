@@ -34,7 +34,7 @@ $app->before(function () use ($app) {
 
     if (
         $token &&
-        ! $app['security.trust_resolver']->isAnonymous($token) &&
+        !$app['security.trust_resolver']->isAnonymous($token) &&
         ($token->getUser() instanceof UserEntity)
     ) {
         $app['user'] = $token->getUser();
@@ -82,7 +82,7 @@ $app->before(function () use ($app) {
         $app['session']->start();
     }
 
-    if (! isset($app['user'])) {
+    if (!isset($app['user'])) {
         $app['user'] = null;
     }
 
