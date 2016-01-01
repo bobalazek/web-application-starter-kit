@@ -24,34 +24,32 @@ class Mailer
 
     /**
      * Prepares the (swift) email and sends it.
+     *
+     * @return integer
      */
     public function swiftMessageInitializeAndSend(array $data = array())
     {
         $swiftMessageInstance = \Swift_Message::newInstance();
-        $templateData = array(
-            'app' => $this->app,
-            'user' => $this->app['user'],
-        );
-        $emailType = isset($data['type'])
-            ? $data['type']
-            : ''
+        
+        if (!isset($data['subject'])) {
+            throw new Exception('You need to specify a subject');
+        }
+        
+        if (!isset($data['to'])) {
+            throw new Exception('You need to specify a recipient');
+        }
+        
+        $from = isset($data['from'])
+            ? $data['from']
+            : array($this->app['email'] => $this->app['emailName'])
         ;
-
-        if (isset($data['subject'])) {
-            $swiftMessageInstance->setSubject($data['subject']);
-        }
-
-        if (isset($data['from'])) {
-            $swiftMessageInstance->setFrom($data['from']);
-        } else {
-            $swiftMessageInstance->setFrom(array(
-                $this->app['email'] => $this->app['emailName'],
-            ));
-        }
-
-        if (isset($data['to'])) {
-            $swiftMessageInstance->setTo($data['to']);
-        }
+        $to = $data['to'];
+        
+        $swiftMessageInstance
+            ->setSubject($data['subject'])
+            ->setTo($to)
+            ->setFrom($from)
+        ;
 
         if (isset($data['cc'])) {
             $swiftMessageInstance->setCc($data['cc']);
@@ -60,13 +58,13 @@ class Mailer
         if (isset($data['bcc'])) {
             $swiftMessageInstance->setBcc($data['bcc']);
         }
-
-        $templateData['email'] = isset($data['to'])
-            ? $data['to']
-            : false
-        ;
-        $templateData['emailType'] = $emailType;
-        $templateData['swiftMessage'] = $swiftMessageInstance;
+        
+        $templateData = array(
+            'app' => $this->app,
+            'user' => $this->app['user'],
+            'email' => $to,
+            'swiftMessage' => $swiftMessageInstance,
+        );
 
         if (isset($data['templateData'])) {
             $templateData = array_merge(

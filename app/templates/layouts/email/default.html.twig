@@ -300,7 +300,6 @@
     <body>
         {% set message = message is defined ? message : false %}
         {% set email = email is defined ? email : false %}
-        {% set emailType = emailType is defined ? emailType : false %}
         {% set user = user is defined ? user : app['orm.em'].getRepository('Application\\Entity\\UserEntity').findOneByEmail(email) %}
         <table class="body">
             <tr>

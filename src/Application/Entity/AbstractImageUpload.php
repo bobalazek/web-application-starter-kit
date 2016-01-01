@@ -130,8 +130,8 @@ class AbstractImageUpload
             $uploadDir = $this->getImageUploadDir();
             $uploadPath = $this->getImageUploadPath();
 
-            if (!($uploadDir && $uploadPath)) {
-                throw new \Exception('You must define the image upload dir and path!');
+            if (!($uploadDir || $uploadPath)) {
+                throw new \Exception('You must define the imageUploadDir and the imageUploadPath!');
             }
 
             $slugify = new Slugify();

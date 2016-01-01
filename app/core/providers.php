@@ -403,7 +403,7 @@ $app['swiftmailer.options'] = $app['swiftmailerOptions'];
 
 /* Emogrifier */
 $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = array(), $isTwigTemplate = true) use ($app) {
-    $emogrifier = new Pelago\Emogrifier();
+    $emogrifier = new \Pelago\Emogrifier();
     $emogrifier->setHtml(
         $isTwigTemplate
         ? $app['twig']->render($twigTemplatePathOrContent, $twigTemplateData)
