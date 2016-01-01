@@ -5,6 +5,7 @@ namespace Application\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
