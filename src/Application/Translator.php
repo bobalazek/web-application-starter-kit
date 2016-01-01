@@ -73,7 +73,7 @@ class Translator
                 }
             }
 
-            if ($fileMessageStrings) {
+            if (!empty($fileMessageStrings)) {
                 foreach ($fileMessageStrings as $fileMessageString) {
                     if (!isset($allMessages[$fileMessageString])) {
                         $allMessages[$fileMessageString] = $fileMessageString;
@@ -90,7 +90,7 @@ class Translator
         /***** Untranslated *****/
         $untranslatedMessages = array();
 
-        if ($allMessages) {
+        if (!empty($allMessages)) {
             foreach ($allMessages as $singleMessageKey => $singleMessage) {
                 if (!isset($translatedMessages[$singleMessageKey])) {
                     $untranslatedMessages[$singleMessageKey] = $singleMessage;
