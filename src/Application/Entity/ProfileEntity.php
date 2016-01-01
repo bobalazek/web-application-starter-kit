@@ -3,7 +3,6 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Cocur\Slugify\Slugify;
 
 /**
@@ -16,6 +15,7 @@ use Cocur\Slugify\Slugify;
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class ProfileEntity
+    extends AbstractImageUpload
 {
     /**
      * @var integer
@@ -71,21 +71,6 @@ class ProfileEntity
      * @ORM\Column(name="birthdate", type="datetime", nullable=true)
      */
     protected $birthdate;
-
-    /**
-     * @var File
-     */
-    protected $image;
-
-    /**
-     * @var string
-     */
-    protected $imageUploadPath;
-
-    /**
-     * @var string
-     */
-    protected $imageUploadDir;
 
     /**
      * @var string
@@ -288,103 +273,6 @@ class ProfileEntity
         ;
     }
 
-    /*** Image ***/
-    /**
-     * @return File
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param File $image
-     *
-     * @return ProfileEntity
-     */
-    public function setImage(File $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /*** Image path ***/
-    /**
-     * @return string
-     */
-    public function getImageUploadPath()
-    {
-        return $this->imageUploadPath;
-    }
-
-    /**
-     * @param $imageUploadPath
-     *
-     * @return ProfileEntity
-     */
-    public function setImageUploadPath($imageUploadPath)
-    {
-        $this->imageUploadPath = $imageUploadPath;
-
-        return $this;
-    }
-
-    /*** Image upload dir ***/
-    /**
-     * @return string
-     */
-    public function getImageUploadDir()
-    {
-        return $this->imageUploadDir;
-    }
-
-    /**
-     * @param $imageUploadDir
-     *
-     * @return ProfileEntity
-     */
-    public function setImageUploadDir($imageUploadDir)
-    {
-        $this->imageUploadDir = $imageUploadDir;
-
-        return $this;
-    }
-
-    /*** Image URL ***/
-    /**
-     * @param boolean $showPlaceholderIfNull
-     *
-     * @return string
-     */
-    public function getImageUrl($showPlaceholderIfNull = false)
-    {
-        if ($showPlaceholderIfNull && $this->imageUrl === null) {
-            return $this->getPlaceholderImageUrl();
-        }
-
-        return $this->imageUrl;
-    }
-
-    /**
-     * @param string $imageUrl
-     */
-    public function setImageUrl($imageUrl)
-    {
-        $this->imageUrl = $imageUrl;
-
-        return $this;
-    }
-
-    /*** Placeholder Image Src ***/
-    /**
-     * @return string
-     */
-    public function getPlaceholderImageUrl()
-    {
-        return 'http://api.randomuser.me/portraits/lego/'.rand(0, 9).'.jpg';
-    }
-
     /*** Image upload ***/
     /**
      * @return ProfileEntity
@@ -398,7 +286,7 @@ class ProfileEntity
             $uploadPath = $this->getImageUploadPath();
             
             if (!($uploadDir && $uploadPath)) {
-                throw new Exception('You must define the image upload dir and path!');
+                throw new \Exception('You must define the image upload dir and path!');
             }
             
             $slugify = new Slugify();
