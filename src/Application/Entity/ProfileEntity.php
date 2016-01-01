@@ -3,7 +3,6 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Cocur\Slugify\Slugify;
 
 /**
  * Profile Entity
@@ -271,45 +270,6 @@ class ProfileEntity
             ? $this->getBirthdate()->diff(new \DateTime())->format($format)
             : null
         ;
-    }
-
-    /*** Image upload ***/
-    /**
-     * @return ProfileEntity
-     *
-     * @throws \Exception If upload dir and path are not set
-     */
-    public function imageUpload()
-    {
-        if (null !== $this->getImage()) {
-            $uploadDir = $this->getImageUploadDir();
-            $uploadPath = $this->getImageUploadPath();
-
-            if (!($uploadDir && $uploadPath)) {
-                throw new \Exception('You must define the image upload dir and path!');
-            }
-
-            $slugify = new Slugify();
-
-            $filename = $slugify->slugify(
-                $this->getImage()->getClientOriginalName()
-            );
-
-            $filename .= '_'.sha1(uniqid(mt_rand(), true)).'.'.
-                $this->getImage()->guessExtension()
-            ;
-
-            $this->getImage()->move(
-                $uploadDir,
-                $filename
-            );
-
-            $this->setImageUrl($uploadPath.$filename);
-
-            $this->setImage(null);
-        }
-
-        return $this;
     }
 
     /*** User ***/
