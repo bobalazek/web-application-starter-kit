@@ -8,8 +8,7 @@ use Silex\ControllerProviderInterface;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class MyControllerProvider
-    implements ControllerProviderInterface
+class MyControllerProvider implements ControllerProviderInterface
 {
     /**
      * @param Application $app

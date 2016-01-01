@@ -10,8 +10,7 @@ use Application\Tool\Storage;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class PrepareCommand
-    extends ContainerAwareCommand
+class PrepareCommand extends ContainerAwareCommand
 {
     protected function configure()
     {

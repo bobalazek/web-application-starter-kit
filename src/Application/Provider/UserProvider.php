@@ -12,8 +12,7 @@ use Silex\Application;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class UserProvider
-    implements UserProviderInterface
+class UserProvider implements UserProviderInterface
 {
     private $app;
 

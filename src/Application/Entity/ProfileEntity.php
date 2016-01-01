@@ -13,8 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class ProfileEntity
-    extends AbstractImageUpload
+class ProfileEntity extends AbstractImageUpload
 {
     /**
      * @var integer

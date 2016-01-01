@@ -16,8 +16,7 @@ use Cocur\Slugify\Slugify;
  *
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class PostEntity
-    extends AbstractImageUpload
+class PostEntity extends AbstractImageUpload
 {
     /**
      * @var integer

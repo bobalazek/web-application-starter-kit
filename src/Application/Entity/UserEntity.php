@@ -16,8 +16,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
  *
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class UserEntity
-    implements AdvancedUserInterface, \Serializable
+class UserEntity implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer

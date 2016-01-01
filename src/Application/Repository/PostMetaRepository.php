@@ -7,8 +7,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class PostMetaRepository
-    extends EntityRepository
+class PostMetaRepository extends EntityRepository
 {
     public function countAll()
     {

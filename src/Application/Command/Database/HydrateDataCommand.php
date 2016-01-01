@@ -13,8 +13,7 @@ use Silex\Application;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class HydrateDataCommand
-    extends ContainerAwareCommand
+class HydrateDataCommand extends ContainerAwareCommand
 {
     protected $app;
 

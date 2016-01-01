@@ -11,8 +11,7 @@ use Silex\Application;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class PrepareCommand
-    extends ContainerAwareCommand
+class PrepareCommand extends ContainerAwareCommand
 {
     protected $app;
 
