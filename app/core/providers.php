@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
 use Symfony\Component\Security\Core\AuthenticationEvents;
+use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -15,7 +16,7 @@ use Application\Doctrine\ORM\DoctrineManagerRegistry;
 
 /***** Config *****/
 if (! file_exists(APP_DIR.'/configs/global.php')) {
-    exit('No global config file found. Please create one (app/configs/global.php)!');
+    throw new \Exception('No global config file found. Please create one (app/configs/global.php)!');
 }
 
 $app->register(
@@ -177,7 +178,7 @@ $app->register(
 );
 
 /*** Twig Extensions ***/
-$app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
+$app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig, $app) {
     $twig->addExtension(new Application\Twig\DateExtension($app));
     $twig->addExtension(new Application\Twig\FormExtension($app));
     $twig->addExtension(new Application\Twig\FileExtension($app));
@@ -386,7 +387,7 @@ $app['security.role_hierarchy'] = array(
 /* Voters */
 $app['security.voters'] = $app->extend(
     'security.voters',
-    function ($voters) use ($app) {
+    function ($voters) {
         // Add your own voters here!
 
         return $voters;
@@ -423,7 +424,7 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
 /*** Listeners ***/
 $app['dispatcher']->addListener(
     AuthenticationEvents::AUTHENTICATION_SUCCESS,
-    function ($event) use ($app) {
+    function (AuthenticationEvent $event) use ($app) {
         $user = $event->getAuthenticationToken()->getUser();
 
         $user->setTimeLastActive(

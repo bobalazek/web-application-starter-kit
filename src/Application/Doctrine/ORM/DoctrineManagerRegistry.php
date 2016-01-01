@@ -36,7 +36,7 @@ class DoctrineManagerRegistry
      */
     public function getConnection($name = null)
     {
-        if ($name == null) {
+        if ($name === null) {
             $name = $this->getDefaultConnectionName();
         }
 
@@ -72,7 +72,7 @@ class DoctrineManagerRegistry
      */
     public function getManager($name = null)
     {
-        if ($name == null) {
+        if ($name === null) {
             $name = $this->getDefaultManagerName();
         }
 

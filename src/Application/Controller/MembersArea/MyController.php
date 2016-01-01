@@ -14,12 +14,11 @@ use Application\Form\Type\User\Settings\PasswordType;
 class MyController
 {
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return Response
      */
-    public function indexAction(Request $request, Application $app)
+    public function indexAction(Application $app)
     {
         return $app->redirect(
             $app['url_generator']->generate('members-area.my.profile')
@@ -27,12 +26,11 @@ class MyController
     }
 
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return Response
      */
-    public function profileAction(Request $request, Application $app)
+    public function profileAction(Application $app)
     {
         return new Response(
             $app['twig']->render(
@@ -50,10 +48,6 @@ class MyController
     public function profileSettingsAction(Request $request, Application $app)
     {
         $data = array();
-
-        // Used for user action
-        $userOld = $app['user']->toArray(true);
-        $userOld['profile'] = $app['user']->getProfile()->toArray(true);
 
         $form = $app['form.factory']->create(
             new SettingsType(),

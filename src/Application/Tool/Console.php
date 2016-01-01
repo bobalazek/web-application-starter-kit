@@ -10,12 +10,9 @@ class Console
     /**
      * @return string|null
      */
-    public static function execute($command = '', $quiet = true)
+    public static function execute($command = '')
     {
-        return $quiet
-            ? @shell_exec($command)
-            : shell_exec($command)
-        ;
+        return shell_exec($command);
     }
 
     /**
@@ -29,7 +26,7 @@ class Console
     /**
      * @return void
      */
-    public static function prepare($output = false)
+    public static function prepare($output = null)
     {
         if ($output) {
             $output->writeln('<info>Preparing storage...</info>');

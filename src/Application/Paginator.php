@@ -33,7 +33,7 @@ class Paginator
     {
         $paginator = new KnpPaginator();
 
-        if ($currentPage == null) {
+        if ($currentPage === null) {
             $currentPage = 1;
         }
 

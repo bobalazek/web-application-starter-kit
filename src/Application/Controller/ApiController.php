@@ -11,12 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController
 {
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function indexAction(Request $request, Application $app)
+    public function indexAction(Application $app)
     {
         return $app->json(array(
             'status' => 'success',

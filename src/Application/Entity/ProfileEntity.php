@@ -196,7 +196,7 @@ class ProfileEntity
 
     public function setBirthdate($birthdate = null)
     {
-        if ($birthdate == null) {
+        if ($birthdate === null) {
             $this->birthdate = null;
         } elseif ($birthdate instanceof \DateTime) {
             $this->birthdate = $birthdate;
@@ -262,7 +262,7 @@ class ProfileEntity
     /*** Image URL ***/
     public function getImageUrl($showPlaceholderIfNull = false)
     {
-        if ($showPlaceholderIfNull && $this->imageUrl == null) {
+        if ($showPlaceholderIfNull && $this->imageUrl === null) {
             return $this->getPlaceholderImageUrl();
         }
 
