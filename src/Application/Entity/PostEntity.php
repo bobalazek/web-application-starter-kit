@@ -161,6 +161,10 @@ class PostEntity
     }
 
     /*** Image upload dir ***/
+
+    /**
+     * @return string
+     */
     public function getImageUploadDir()
     {
         return $this->imageUploadDir;
@@ -179,6 +183,9 @@ class PostEntity
         return $this->imageUrl;
     }
 
+    /**
+     * @param string $imageUrl
+     */
     public function setImageUrl($imageUrl)
     {
         $this->imageUrl = $imageUrl;
@@ -272,7 +279,7 @@ class PostEntity
 
     public function addPostMeta(PostMetaEntity $postMeta)
     {
-        if (! $this->postMetas->contains($postMeta)) {
+        if (!$this->postMetas->contains($postMeta)) {
             $postMeta->setPost($this);
             $this->postMetas->add($postMeta);
         }
@@ -325,7 +332,7 @@ class PostEntity
         $slugify = new Slugify();
         $metas = $this->getMetas();
 
-        if (! empty($metas)) {
+        if (!empty($metas)) {
             foreach ($metas as $metaKey => $metaValue) {
                 $metaEntity = new PostMetaEntity();
 

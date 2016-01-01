@@ -110,7 +110,7 @@ class MembersAreaController
                 $app['application.mailer']
                     ->swiftMessageInitializeAndSend(array(
                         'subject' => $app['name'].' - '.$app['translator']->trans('Welcome'),
-                        'to' => array( $userEntity->getEmail() ),
+                        'to' => array($userEntity->getEmail()),
                         'body' => 'emails/users/register-welcome.html.twig',
                         'type' => 'user.register.welcome',
                         'templateData' => array(
@@ -143,7 +143,7 @@ class MembersAreaController
                     $app['application.mailer']
                         ->swiftMessageInitializeAndSend(array(
                             'subject' => $app['name'].' - '.$app['translator']->trans('Registration'),
-                            'to' => array( $userEntity->getEmail() ),
+                            'to' => array($userEntity->getEmail()),
                             'body' => 'emails/users/register.html.twig',
                             'type' => 'user.register',
                             'templateData' => array(
@@ -261,7 +261,7 @@ class MembersAreaController
                         $app['application.mailer']
                             ->swiftMessageInitializeAndSend(array(
                                 'subject' => $app['name'].' - '.$app['translator']->trans('Reset password'),
-                                'to' => array( $userEntity->getEmail() ),
+                                'to' => array($userEntity->getEmail()),
                                 'body' => 'emails/users/reset-password.html.twig',
                                 'type' => 'user.reset_password',
                                 'templateData' => array(

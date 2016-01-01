@@ -298,7 +298,7 @@ class UserEntity
     }
 
     /**
-     * @param $password
+     * @param string $password
      *
      * @return \Application\Entity\UserEntity
      */
@@ -375,7 +375,7 @@ class UserEntity
     }
 
     /**
-     * @param $salt
+     * @param string $salt
      *
      * @return \Application\Entity\UserEntity
      */
@@ -396,7 +396,7 @@ class UserEntity
     }
 
     /**
-     * @param $token
+     * @param string $token
      *
      * @return \Application\Entity\UserEntity
      */
@@ -417,7 +417,7 @@ class UserEntity
     }
 
     /**
-     * @param $accessToken
+     * @param string $accessToken
      *
      * @return \Application\Entity\UserEntity
      */
@@ -445,6 +445,9 @@ class UserEntity
         return $this->getEnabled();
     }
 
+    /**
+     * @param boolean $enabled
+     */
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
@@ -490,7 +493,7 @@ class UserEntity
     }
 
     /**
-     * @param $locked
+     * @param boolean $locked
      *
      * @return \Application\Entity\UserEntity
      */
@@ -523,7 +526,7 @@ class UserEntity
 
     /*** Reset password code ***/
     /**
-     * @return boolean
+     * @return string
      */
     public function getResetPasswordCode()
     {
@@ -531,7 +534,7 @@ class UserEntity
     }
 
     /**
-     * @param $resetPasswordCode
+     * @param string $resetPasswordCode
      *
      * @return \Application\Entity\UserEntity
      */
@@ -552,7 +555,7 @@ class UserEntity
     }
 
     /**
-     * @param $activationCode
+     * @param string $activationCode
      *
      * @return \Application\Entity\UserEntity
      */
@@ -565,7 +568,7 @@ class UserEntity
 
     /*** Time last active ***/
     /**
-     * @return Datetime
+     * @return \DateTime
      */
     public function getTimeLastActive()
     {
@@ -586,7 +589,7 @@ class UserEntity
 
     /*** Time created ***/
     /**
-     * @return Datetime
+     * @return \DateTime
      */
     public function getTimeCreated()
     {
@@ -607,7 +610,7 @@ class UserEntity
 
     /*** Time updated ***/
     /**
-     * @return Datetime
+     * @return \DateTime
      */
     public function getTimeUpdated()
     {
@@ -676,9 +679,9 @@ class UserEntity
         return ! $this->getExpired();
     }
 
-   /*** Roles ***/
+    /*** Roles ***/
     /**
-     * @return array
+     * @return string[]
      */
     public function getRoles()
     {
@@ -703,7 +706,7 @@ class UserEntity
     /**
      * @param $role
      *
-     * @return \Application\Entity\UserEntity
+     * @return boolean
      */
     public function hasRole($role)
     {
@@ -715,7 +718,7 @@ class UserEntity
 
     /*** Profile ***/
     /**
-     * @return Application\Entity\ProfileEntity
+     * @return ProfileEntity
      */
     public function getProfile()
     {
@@ -791,7 +794,7 @@ class UserEntity
     }
 
     /**
-     * @return array
+     * @return string
      */
     public function serialize()
     {

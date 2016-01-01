@@ -14,11 +14,11 @@ class Environment
     {
         $root = dirname(dirname(dirname(dirname(__FILE__))));
 
-        if (! file_exists($root.'/app/configs/global-local.php')) {
+        if (!file_exists($root.'/app/configs/global-local.php')) {
             fopen($root.'/app/configs/global-local.php', 'w');
         }
 
-        if (! file_exists($root.'/app/configs/environments/development.php')) {
+        if (!file_exists($root.'/app/configs/environments/development.php')) {
             fopen($root.'/app/configs/environments/development.php', 'w');
         }
     }

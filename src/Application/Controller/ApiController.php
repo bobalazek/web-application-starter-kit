@@ -14,7 +14,7 @@ class ApiController
      * @param Request     $request
      * @param Application $app
      *
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function indexAction(Request $request, Application $app)
     {

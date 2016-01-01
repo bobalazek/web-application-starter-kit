@@ -23,7 +23,7 @@ class SettingsController
     {
         $data = array();
 
-        if (! $app['security']->isGranted('ROLE_ADMIN')) {
+        if (!$app['security']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
         }
 
@@ -37,7 +37,7 @@ class SettingsController
             if ($form->isValid()) {
                 $data = $form->getData();
 
-                if (! empty($data)) {
+                if (!empty($data)) {
                     foreach ($data as $key => $value) {
                         $settingEntity = $app['orm.em']
                             ->getRepository('Application\Entity\SettingEntity')
