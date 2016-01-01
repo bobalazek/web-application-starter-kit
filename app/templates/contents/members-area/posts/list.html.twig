@@ -67,7 +67,7 @@
                         <td>
                             {% if post.getPostMetas() %}
                                 <ul>
-                                    {% for meta in post.getPostMetas().toArray() %}
+                                    {% for meta in post.getPostMetas() %}
                                         <li>{{ meta }}</li>
                                     {% endfor %}
                                 </ul>
