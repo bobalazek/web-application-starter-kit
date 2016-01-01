@@ -93,7 +93,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param $id
+     * @param integer $id
      *
      * @return ProfileEntity
      */
@@ -114,7 +114,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param $title
+     * @param string $title
      *
      * @return ProfileEntity
      */
@@ -144,7 +144,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param $firstName
+     * @param string $firstName
      *
      * @return ProfileEntity
      */
@@ -165,7 +165,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param $middleName
+     * @param string $middleName
      *
      * @return ProfileEntity
      */
@@ -186,7 +186,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param $lastName
+     * @param string $lastName
      *
      * @return ProfileEntity
      */
@@ -221,7 +221,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param $gender
+     * @param string $gender
      *
      * @return ProfileEntity
      */

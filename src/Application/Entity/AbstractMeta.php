@@ -9,13 +9,8 @@ namespace Application\Entity;
  *
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class AbstractMeta
+class AbstractMeta extends AbstractBasicEntity
 {
-    /**
-     * @var integer
-     */
-    protected $id;
-
     /**
      * @var string
      */
@@ -25,37 +20,6 @@ class AbstractMeta
      * @var string
      */
     protected $value;
-
-    /**
-     * @var \DateTime
-     */
-    protected $timeCreated;
-
-    /**
-     * @var \DateTime
-     */
-    protected $timeUpdated;
-
-    /*** Id ***/
-    /**
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param integer $id
-     *
-     * @return AbstractMeta
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /*** Key ***/
     /**
@@ -99,48 +63,6 @@ class AbstractMeta
         return $this;
     }
 
-    /*** Time created ***/
-    /**
-     * @return \DateTime
-     */
-    public function getTimeCreated()
-    {
-        return $this->timeCreated;
-    }
-
-    /**
-     * @param \DateTime $timeCreated
-     *
-     * @return AbstractMeta
-     */
-    public function setTimeCreated(\DateTime $timeCreated)
-    {
-        $this->timeCreated = $timeCreated;
-
-        return $this;
-    }
-
-    /*** Time updated ***/
-    /**
-     * @return \DateTime
-     */
-    public function getTimeUpdated()
-    {
-        return $this->timeUpdated;
-    }
-
-    /**
-     * @param \DateTime $timeUpdated
-     *
-     * @return AbstractMeta
-     */
-    public function setTimeUpdated(\DateTime $timeUpdated)
-    {
-        $this->timeUpdated = $timeUpdated;
-
-        return $this;
-    }
-
     /**
      * Returns data in array
      *
@@ -153,6 +75,7 @@ class AbstractMeta
             'key' => $this->getKey(),
             'value' => $this->getValue(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
+            'time_updated' => $this->getTimeUpdated()->format(DATE_ATOM),
         );
     }
 

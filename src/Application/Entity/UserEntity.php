@@ -772,7 +772,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             return false;
         }
 
-        if ($this->password !== $user->getPassword()) {
+        if ($this->getPassword() !== $user->getPassword()) {
             return false;
         }
 
@@ -780,7 +780,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             return false;
         }
 
-        if ($this->username !== $user->getUsername()) {
+        if ($this->getUsername() !== $user->getUsername()) {
             return false;
         }
 

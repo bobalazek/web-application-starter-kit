@@ -364,6 +364,7 @@ class PostEntity extends AbstractImageUpload
             'image_url' => $this->getImageUrl(),
             'metas' => $this->getMetas(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
+            'time_updated' => $this->getTimeUpdated()->format(DATE_ATOM),
         );
     }
 
