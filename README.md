@@ -5,8 +5,10 @@ README
 [![Build Status](https://travis-ci.org/bobalazek/web-application-starter-kit.svg?branch=master)](https://travis-ci.org/bobalazek/web-application-starter-kit)
 [![Latest Stable Version](http://img.shields.io/packagist/v/bobalazek/web-application-starter-kit.svg?style=flat-square)](https://packagist.org/packages/bobalazek/web-application-starter-kit)
 [![Total Downloads](http://img.shields.io/packagist/dt/bobalazek/web-application-starter-kit.svg?style=flat-square)](https://packagist.org/packages/bobalazek/web-application-starter-kit)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/bobalazek/web-application-starter-kit)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/?branch=develop)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61/mini.png)](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61)
+[![Support via Gittip](http://img.shields.io/gittip/bobalazek.svg?style=flat-square)](https://www.gittip.com/bobalazek/)
 
 A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, reset password, profile, edit profile and change password), users, roles, simple statistics, settings and more.
 
@@ -68,7 +70,7 @@ Commands
 
 Other commands
 ----------------------
-* `sudo php-cs-fixer fix .` - if you want your code fixed before each commit. You will need to install [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
+* `php-cs-fixer fix .` - if you want your code fixed before each commit. You will need to install [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
 
 Modules / Components
 -------------------
