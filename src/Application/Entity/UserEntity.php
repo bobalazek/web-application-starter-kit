@@ -202,7 +202,6 @@ class UserEntity
             md5(uniqid(null, true))
         );
 
-        $this->roles = new ArrayCollection();
         $this->posts = new ArrayCollection();
     }
 
@@ -683,7 +682,7 @@ class UserEntity
 
     /*** Roles ***/
     /**
-     * @return string[]
+     * @return array
      */
     public function getRoles()
     {
@@ -697,7 +696,7 @@ class UserEntity
     }
 
     /**
-     * @param $roles
+     * @param array $roles
      *
      * @return \Application\Entity\UserEntity
      */
@@ -709,7 +708,7 @@ class UserEntity
     }
 
     /**
-     * @param $role
+     * @param string $role
      *
      * @return boolean
      */
@@ -750,11 +749,11 @@ class UserEntity
      */
     public function getPosts()
     {
-        return $this->posts;
+        return $this->posts->toArray();
     }
 
     /**
-     * @param $posts
+     * @param ArrayCollection $posts
      *
      * @return \Application\Entity\UserEntity
      */
@@ -847,7 +846,7 @@ class UserEntity
             'first_name' => $this->getProfile()->getFirstName(),
             'last_name' => $this->getProfile()->getLastName(),
             'full_name' => $this->getProfile()->getFullName(),
-            'time_created' => $this->getTimeCreated(),
+            'time_created' => $this->getTimeCreated()->toArray(DATE_ATOM),
         );
     }
 
