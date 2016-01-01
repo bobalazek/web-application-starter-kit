@@ -202,6 +202,11 @@ class PaginatorExtension extends \Twig_Extension
                 $paginationData['routeParameters']
             );
         }
+        $pageCount = ceil(
+            intval($paginationData['totalCount']) /
+            intval($paginationData['numItemsPerPage'])
+        );
+        $currentPage = intval($paginationData['current']);
         $total = $paginationData['totalCount'];
 
         if ($total > 0 && $currentPage <= $pageCount) {
