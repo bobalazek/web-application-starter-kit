@@ -16,7 +16,7 @@ class DateExtension extends \Twig_Extension
     }
 
     /**
-     * @return Twig_SimpleFilter[]
+     * @return \Twig_SimpleFilter[]
      */
     public function getFilters()
     {
@@ -30,7 +30,7 @@ class DateExtension extends \Twig_Extension
      */
     public function age($date)
     {
-        if (!$date instanceof \DateTime) {
+        if (!($date instanceof \DateTime)) {
             $date = new \DateTime($date);
         }
 

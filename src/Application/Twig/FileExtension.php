@@ -16,7 +16,7 @@ class FileExtension extends \Twig_Extension
     }
 
     /**
-     * @return Twig_SimpleFunction[]
+     * @return \Twig_SimpleFunction[]
      */
     public function getFunctions()
     {
