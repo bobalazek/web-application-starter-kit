@@ -73,7 +73,7 @@ class AbstractMeta
 
         return $this;
     }
-    
+
     /*** Time created ***/
     /**
      * @return \DateTime
@@ -130,7 +130,7 @@ class AbstractMeta
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
         );
     }
-    
+
     /**
      * Converts the key and value to string
      *

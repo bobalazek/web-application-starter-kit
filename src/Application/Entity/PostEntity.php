@@ -255,7 +255,7 @@ class PostEntity
 
         return $this;
     }
-    
+
     /**
      * @param PostMetaEntity $postMeta
      *

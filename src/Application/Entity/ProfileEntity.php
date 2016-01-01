@@ -284,11 +284,11 @@ class ProfileEntity
         if (null !== $this->getImage()) {
             $uploadDir = $this->getImageUploadDir();
             $uploadPath = $this->getImageUploadPath();
-            
+
             if (!($uploadDir && $uploadPath)) {
                 throw new \Exception('You must define the image upload dir and path!');
             }
-            
+
             $slugify = new Slugify();
 
             $filename = $slugify->slugify(
@@ -308,7 +308,7 @@ class ProfileEntity
 
             $this->setImage(null);
         }
-        
+
         return $this;
     }
 
@@ -320,7 +320,7 @@ class ProfileEntity
     {
         return $this->user;
     }
-    
+
     /**
      * @param UserEntity $user
      *

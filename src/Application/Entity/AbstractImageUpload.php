@@ -3,7 +3,6 @@
 namespace Application\Entity;
 
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Abstract image upload
@@ -28,7 +27,7 @@ class AbstractImageUpload
      * @var string
      */
     protected $imageUploadDir;
-    
+
     /*** Image ***/
     /**
      * @return File
@@ -122,11 +121,11 @@ class AbstractImageUpload
         if (null !== $this->getImage()) {
             $uploadDir = $this->getImageUploadDir();
             $uploadPath = $this->getImageUploadPath();
-            
+
             if (!($uploadDir && $uploadPath)) {
                 throw new \Exception('You must define the image upload dir and path!');
             }
-            
+
             $slugify = new Slugify();
 
             $filename = $slugify->slugify(
@@ -146,7 +145,7 @@ class AbstractImageUpload
 
             $this->setImage(null);
         }
-        
+
         return $this;
     }
 }

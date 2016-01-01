@@ -32,7 +32,7 @@ class UserProvider
      * @param bolean $showExceptionIfNotExistent
      *
      * @return UserEntity
-     * @throws UsernameNotFoundException If user was not found 
+     * @throws UsernameNotFoundException If user was not found
      */
     public function loadUserByUsername($username, $showExceptionIfNotExistent = true)
     {

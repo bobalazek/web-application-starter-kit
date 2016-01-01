@@ -18,7 +18,7 @@ class PaginatorExtension extends \Twig_Extension
     {
         $this->app = $app;
     }
-    
+
     /**
      * @return string
      */

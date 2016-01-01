@@ -49,7 +49,7 @@ class ResetPasswordType extends AbstractType
             'data_class' => 'Application\Entity\UserEntity',
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-            'validation_groups' => function(FormInterface $form) use ($self) {
+            'validation_groups' => function (FormInterface $form) use ($self) {
                 $action = $self->action;
 
                 if ($action == 'reset') {

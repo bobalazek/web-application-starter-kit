@@ -171,7 +171,7 @@ class UserEntity
      * @var boolean
      */
     protected $expired = false;
-    
+
     /**
      * @var boolean
      */
@@ -707,7 +707,7 @@ class UserEntity
 
         return $this;
     }
-    
+
     /**
      * @param $role
      *
@@ -716,7 +716,7 @@ class UserEntity
     public function hasRole($role)
     {
         return in_array(
-            $role, 
+            $role,
             $this->getRoles()
         );
     }
