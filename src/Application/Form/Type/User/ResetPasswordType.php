@@ -13,11 +13,20 @@ class ResetPasswordType extends AbstractType
 {
     public $action;
 
+    /**
+     * @param string $action
+     */
     public function __construct($action = '')
     {
         $this->action = $action;
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($this->action == 'reset') {
@@ -40,6 +49,11 @@ class ResetPasswordType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $action = $this->action;
@@ -58,6 +72,9 @@ class ResetPasswordType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return ''; // we don't want any input name wrapper

@@ -14,6 +14,11 @@ class GenderType
     const MALE = 'male';
     const FEMALE = 'female';
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -24,16 +29,25 @@ class GenderType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getParent()
     {
         return 'choice';
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'gender';
     }
 
+    /**
+     * @return string
+     */
     public function getExtendedType()
     {
         return 'gender';

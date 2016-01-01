@@ -11,12 +11,23 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class PostMetaType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('key', 'text');
         $builder->add('value', 'textarea');
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -27,6 +38,9 @@ class PostMetaType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'postMeta';

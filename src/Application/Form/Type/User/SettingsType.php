@@ -12,6 +12,12 @@ use Application\Form\Type\ProfileType;
  */
 class SettingsType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
@@ -34,6 +40,11 @@ class SettingsType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -45,6 +56,9 @@ class SettingsType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'user';

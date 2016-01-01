@@ -11,6 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class PasswordType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('oldPassword', 'password');
@@ -28,6 +34,11 @@ class PasswordType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -38,6 +49,9 @@ class PasswordType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'user';

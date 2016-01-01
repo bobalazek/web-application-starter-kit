@@ -11,6 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class PostType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', 'text');
@@ -55,6 +61,11 @@ class PostType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -65,6 +76,9 @@ class PostType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'post';

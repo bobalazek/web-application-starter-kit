@@ -11,6 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class ProfileType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', 'text', array(
@@ -51,6 +57,11 @@ class ProfileType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -61,6 +72,9 @@ class ProfileType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'profile';

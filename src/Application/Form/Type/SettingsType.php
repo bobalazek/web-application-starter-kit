@@ -6,15 +6,27 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * @author Borut Balažek <bobalazek124@gmail.com>
+ */
 class SettingsType extends AbstractType
 {
     protected $app;
 
+    /**
+     * @param Application $app
+     */
     public function __construct($app)
     {
         $this->app = $app;
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('foo', 'textarea', array(
@@ -34,6 +46,11 @@ class SettingsType extends AbstractType
         ));
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     *
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -42,6 +59,9 @@ class SettingsType extends AbstractType
         ));
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'settings';
