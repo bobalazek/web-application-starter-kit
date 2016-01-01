@@ -74,7 +74,7 @@ class MyController
              *   when the validation kicks in, and one refresh later,
              *   you're logged in as that user.
              */
-                $app['user']->setUsername($currentUserUsername);
+            $app['user']->setUsername($currentUserUsername);
 
             if ($form->isValid()) {
                 $userEntity = $form->getData();
