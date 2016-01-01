@@ -16,8 +16,6 @@ use Doctrine\ORM\Mapping as ORM;
 class SettingEntity
     extends AbstractMeta
 {
-    /*************** Variables ***************/
-    /********** General Variables **********/
     /**
      * @var integer
      *
@@ -55,7 +53,6 @@ class SettingEntity
      */
     protected $timeUpdated;
 
-    /********** Callback Methods **********/
     /**
      * @ORM\PreUpdate
      */

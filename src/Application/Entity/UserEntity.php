@@ -19,8 +19,6 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 class UserEntity
     implements AdvancedUserInterface, \Serializable
 {
-    /*************** Variables ***************/
-    /********** General Variables **********/
     /**
      * @var integer
      *
@@ -155,7 +153,6 @@ class UserEntity
      */
     protected $timeUpdated;
 
-    /***** Relationship Variables *****/
     /**
      * @ORM\OneToOne(targetEntity="Application\Entity\ProfileEntity", mappedBy="user", cascade={"all"})
      **/
@@ -168,12 +165,18 @@ class UserEntity
      */
     protected $posts;
 
-    /***** Other Variables *****/
-    protected $expired = false; // userExpired / accountExpired
+    /**
+     * Otherwise known as: userExpired / accountExpired
+     *
+     * @var boolean
+     */
+    protected $expired = false;
+    
+    /**
+     * @var boolean
+     */
     protected $credentialsExpired = false;
 
-    /*************** Methods ***************/
-    /***** Constructor *****/
     /**
      * @return void
      */
@@ -203,7 +206,6 @@ class UserEntity
         $this->posts = new ArrayCollection();
     }
 
-    /***** Getters, Setters and Other stuff *****/
     /*** Id ***/
     /**
      * @return integer
@@ -216,7 +218,7 @@ class UserEntity
     /**
      * @param $id
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setId($id)
     {
@@ -235,9 +237,9 @@ class UserEntity
     }
 
     /**
-     * @param $locale
+     * @param string $locale
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setLocale($locale)
     {
@@ -256,9 +258,9 @@ class UserEntity
     }
 
     /**
-     * @param $username
+     * @param string $username
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setUsername($username)
     {
@@ -277,9 +279,9 @@ class UserEntity
     }
 
     /**
-     * @param $email
+     * @param string $email
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setEmail($email)
     {
@@ -300,7 +302,7 @@ class UserEntity
     /**
      * @param string $password
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setPassword($password)
     {
@@ -322,9 +324,9 @@ class UserEntity
 
     /**
      * @param $plainPassword
-     * @param $encoderFactory
+     * @param EncoderFactory $encoderFactory
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setPlainPassword($plainPassword, EncoderFactory $encoderFactory = null)
     {
@@ -356,7 +358,7 @@ class UserEntity
     /**
      * @param $oldPassword
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setOldPassword($oldPassword)
     {
@@ -377,7 +379,7 @@ class UserEntity
     /**
      * @param string $salt
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setSalt($salt)
     {
@@ -398,7 +400,7 @@ class UserEntity
     /**
      * @param string $token
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setToken($token)
     {
@@ -419,7 +421,7 @@ class UserEntity
     /**
      * @param string $accessToken
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setAccessToken($accessToken)
     {
@@ -456,7 +458,7 @@ class UserEntity
     }
 
     /**
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function enable()
     {
@@ -466,7 +468,7 @@ class UserEntity
     }
 
     /**
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function disable()
     {
@@ -495,7 +497,7 @@ class UserEntity
     /**
      * @param boolean $locked
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setLocked($locked)
     {
@@ -505,9 +507,9 @@ class UserEntity
     }
 
     /**
-     * @param $reason
+     * @param string $reason
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function lock($reason = '')
     {
@@ -521,7 +523,7 @@ class UserEntity
      */
     public function isAccountNonLocked()
     {
-        return ! $this->isLocked();
+        return !$this->isLocked();
     }
 
     /*** Reset password code ***/
@@ -536,7 +538,7 @@ class UserEntity
     /**
      * @param string $resetPasswordCode
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setResetPasswordCode($resetPasswordCode)
     {
@@ -557,7 +559,7 @@ class UserEntity
     /**
      * @param string $activationCode
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setActivationCode($activationCode)
     {
@@ -578,7 +580,7 @@ class UserEntity
     /**
      * @param $timeLastActive
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setTimeLastActive(\Datetime $timeLastActive = null)
     {
@@ -599,7 +601,7 @@ class UserEntity
     /**
      * @param $timeCreated
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setTimeCreated(\Datetime $timeCreated)
     {
@@ -620,7 +622,7 @@ class UserEntity
     /**
      * @param $timeUpdated
      *
-     * @return \Application\Entity\UserEntity
+     * @return UserEntity
      */
     public function setTimeUpdated(\DateTime $timeUpdated)
     {
@@ -651,7 +653,7 @@ class UserEntity
      */
     public function isAccountNonExpired()
     {
-        return ! $this->getExpired();
+        return !$this->getExpired();
     }
 
     /*** Credentials expired ***/
@@ -685,7 +687,10 @@ class UserEntity
      */
     public function getRoles()
     {
-        $roles = $this->roles;
+        $roles = is_array($this->roles)
+            ? $this->roles
+            : array()
+        ;
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -760,8 +765,9 @@ class UserEntity
         return $this;
     }
 
-    /***** Other AdvancedUserInterface Methods *****/
     /**
+     * @param AdvancedUserInterface $user
+     *
      * @return boolean
      */
     public function isEqualTo(AdvancedUserInterface $user)
@@ -821,7 +827,6 @@ class UserEntity
         ) = unserialize($serialized);
     }
 
-    /********** Magic Methods **********/
     /**
      * @return string
      */
@@ -830,7 +835,6 @@ class UserEntity
         return $this->getUsername();
     }
 
-    /********** Other Methods **********/
     /**
      * @return array
      */
@@ -847,7 +851,6 @@ class UserEntity
         );
     }
 
-    /********** Callback Methods **********/
     /**
      * @ORM\PreUpdate
      */

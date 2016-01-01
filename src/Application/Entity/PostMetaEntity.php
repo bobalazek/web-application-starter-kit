@@ -16,8 +16,6 @@ use Doctrine\ORM\Mapping as ORM;
 class PostMetaEntity
     extends AbstractMeta
 {
-    /*************** Variables ***************/
-    /********** General Variables **********/
     /**
      * @var integer
      *
@@ -55,13 +53,11 @@ class PostMetaEntity
      */
     protected $timeUpdated;
 
-    /***** Relationship Variables *****/
     /**
      * @ORM\ManyToOne(targetEntity="Application\Entity\PostEntity", inversedBy="postMetas")
      */
     protected $post;
 
-    /*************** Methods ***************/
     /*** Post ***/
     /**
      * @return PostEntity
@@ -81,7 +77,6 @@ class PostMetaEntity
         return $this;
     }
 
-    /********** Callback Methods **********/
     /**
      * @ORM\PreUpdate
      */

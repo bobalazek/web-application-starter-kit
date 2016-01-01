@@ -4,6 +4,7 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Cocur\Slugify\Slugify;
 
 /**
  * Profile Entity
@@ -16,8 +17,6 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class ProfileEntity
 {
-    /*************** Variables ***************/
-    /********** General Variables **********/
     /**
      * @var integer
      *
@@ -73,10 +72,19 @@ class ProfileEntity
      */
     protected $birthdate;
 
+    /**
+     * @var File
+     */
     protected $image;
 
+    /**
+     * @var string
+     */
     protected $imageUploadPath;
 
+    /**
+     * @var string
+     */
     protected $imageUploadDir;
 
     /**
@@ -86,21 +94,26 @@ class ProfileEntity
      */
     protected $imageUrl;
 
-    /***** Relationship Variables *****/
     /**
      * @ORM\OneToOne(targetEntity="Application\Entity\UserEntity", inversedBy="profile")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
 
-    /*************** Methods ***************/
-    /***** Getters, Setters and Other stuff *****/
     /*** Id ***/
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param $id
+     *
+     * @return ProfileEntity
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -109,11 +122,19 @@ class ProfileEntity
     }
 
     /*** Title ***/
+    /**
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * @param $title
+     *
+     * @return ProfileEntity
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -122,17 +143,28 @@ class ProfileEntity
     }
 
     /*** Name ***/
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->getFirstName().' '.$this->getLastName();
     }
 
     /*** First name ***/
+    /**
+     * @return string
+     */
     public function getFirstName()
     {
         return $this->firstName;
     }
 
+    /**
+     * @param $firstName
+     *
+     * @return ProfileEntity
+     */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -141,11 +173,19 @@ class ProfileEntity
     }
 
     /*** Middle name ***/
+    /**
+     * @return string
+     */
     public function getMiddleName()
     {
         return $this->middleName;
     }
 
+    /**
+     * @param $middleName
+     *
+     * @return ProfileEntity
+     */
     public function setMiddleName($middleName)
     {
         $this->middleName = $middleName;
@@ -154,11 +194,19 @@ class ProfileEntity
     }
 
     /*** Last name ***/
+    /**
+     * @return string
+     */
     public function getLastName()
     {
         return $this->lastName;
     }
 
+    /**
+     * @param $lastName
+     *
+     * @return ProfileEntity
+     */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
@@ -167,20 +215,33 @@ class ProfileEntity
     }
 
     /*** Full name ***/
+    /**
+     * @return string
+     */
     public function getFullName()
     {
-        return $this->getTitle().' '.
+        return trim(
+            $this->getTitle().' '.
             $this->getFirstName().' '.
             $this->getMiddleName().' '.
-            $this->getLastName();
+            $this->getLastName()
+        );
     }
 
     /*** Gender ***/
+    /**
+     * @return string
+     */
     public function getGender()
     {
         return $this->gender;
     }
 
+    /**
+     * @param $gender
+     *
+     * @return ProfileEntity
+     */
     public function setGender($gender)
     {
         $this->gender = $gender;
@@ -189,11 +250,19 @@ class ProfileEntity
     }
 
     /*** Birthdate ***/
+    /**
+     * @return string
+     */
     public function getBirthdate()
     {
         return $this->birthdate;
     }
 
+    /**
+     * @param mixed $birthdate
+     *
+     * @return ProfileEntity
+     */
     public function setBirthdate($birthdate = null)
     {
         if ($birthdate === null) {
@@ -208,6 +277,9 @@ class ProfileEntity
     }
 
     /*** Age ***/
+    /**
+     * @return string
+     */
     public function getAge($format = '%y')
     {
         return $this->getBirthdate()
@@ -217,11 +289,19 @@ class ProfileEntity
     }
 
     /*** Image ***/
+    /**
+     * @return File
+     */
     public function getImage()
     {
         return $this->image;
     }
 
+    /**
+     * @param File $image
+     *
+     * @return ProfileEntity
+     */
     public function setImage(File $image = null)
     {
         $this->image = $image;
@@ -230,11 +310,19 @@ class ProfileEntity
     }
 
     /*** Image path ***/
+    /**
+     * @return string
+     */
     public function getImageUploadPath()
     {
         return $this->imageUploadPath;
     }
 
+    /**
+     * @param $imageUploadPath
+     *
+     * @return ProfileEntity
+     */
     public function setImageUploadPath($imageUploadPath)
     {
         $this->imageUploadPath = $imageUploadPath;
@@ -243,7 +331,6 @@ class ProfileEntity
     }
 
     /*** Image upload dir ***/
-
     /**
      * @return string
      */
@@ -252,6 +339,11 @@ class ProfileEntity
         return $this->imageUploadDir;
     }
 
+    /**
+     * @param $imageUploadDir
+     *
+     * @return ProfileEntity
+     */
     public function setImageUploadDir($imageUploadDir)
     {
         $this->imageUploadDir = $imageUploadDir;
@@ -260,6 +352,11 @@ class ProfileEntity
     }
 
     /*** Image URL ***/
+    /**
+     * @param boolean $showPlaceholderIfNull
+     *
+     * @return string
+     */
     public function getImageUrl($showPlaceholderIfNull = false)
     {
         if ($showPlaceholderIfNull && $this->imageUrl === null) {
@@ -280,39 +377,58 @@ class ProfileEntity
     }
 
     /*** Placeholder Image Src ***/
+    /**
+     * @return string
+     */
     public function getPlaceholderImageUrl()
     {
         return 'http://api.randomuser.me/portraits/lego/'.rand(0, 9).'.jpg';
     }
 
     /*** Image upload ***/
+    /**
+     * @return ProfileEntity
+     */
     public function imageUpload()
     {
-        if (null === $this->getImage()) {
-            return;
+        if (null !== $this->getImage()) {
+            $slugify = new Slugify();
+
+            $filename = $slugify->slugify(
+                $this->getImage()->getClientOriginalName()
+            );
+
+            $filename .= '_'.sha1(uniqid(mt_rand(), true)).'.'.
+                $this->getImage()->guessExtension()
+            ;
+
+            $this->getImage()->move(
+                $this->getImageUploadDir(),
+                $filename
+            );
+
+            $this->setImageUrl($this->getImageUploadPath().$filename);
+
+            $this->setImage(null);
         }
 
-        $slugify = new \Cocur\Slugify\Slugify();
-
-        $filename = $slugify->slugify(
-            $this->getImage()->getClientOriginalName()
-        );
-
-        $filename .= '_'.sha1(uniqid(mt_rand(), true)).'.'.
-            $this->getImage()->guessExtension()
-        ;
-
-        $this->getImage()->move(
-            $this->getImageUploadDir(),
-            $filename
-        );
-
-        $this->setImageUrl($this->getImageUploadPath().$filename);
-
-        $this->setImage(null);
+        return $this;
     }
 
     /*** User ***/
+    /**
+     * @return UserEntity
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    /**
+     * @param UserEntity $user
+     *
+     * @return ProfileEntity
+     */
     public function setUser(UserEntity $user)
     {
         $this->user = $user;
@@ -320,12 +436,9 @@ class ProfileEntity
         return $this;
     }
 
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /********** Other Methods **********/
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return array(

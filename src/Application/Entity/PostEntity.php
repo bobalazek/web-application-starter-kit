@@ -42,10 +42,19 @@ class PostEntity
      */
     protected $content;
 
+    /**
+     * @var File
+     */
     protected $image;
 
+    /**
+     * @var string
+     */
     protected $imageUploadPath;
 
+    /**
+     * @var string
+     */
     protected $imageUploadDir;
 
     /**
@@ -266,7 +275,7 @@ class PostEntity
             $this->setImage(null);
         }
         
-        return $this:
+        return $this;
     }
 
     /*** Time created ***/
@@ -333,23 +342,37 @@ class PostEntity
     }
 
     /*** Post Metas ***/
+    /**
+     * @return array
+     */
     public function getPostMetas()
     {
-        return $this->postMetas;
+        return $this->postMetas->toArray();
     }
 
+    /**
+     * @param array $postMetas
+     *
+     * @return PostEntity
+     */
     public function setPostMetas($postMetas)
     {
         if ($postMetas) {
             foreach ($postMetas as $postMeta) {
                 $postMeta->setPost($this);
             }
+
             $this->postMetas = $postMetas;
         }
 
         return $this;
     }
 
+    /**
+     * @param PostMetaEntity $postMeta
+     *
+     * @return PostEntity
+     */
     public function addPostMeta(PostMetaEntity $postMeta)
     {
         if (!$this->postMetas->contains($postMeta)) {
@@ -359,6 +382,12 @@ class PostEntity
 
         return $this;
     }
+    
+    /**
+     * @param PostMetaEntity $postMeta
+     *
+     * @return PostEntity
+     */
     public function removePostMeta(PostMetaEntity $postMeta)
     {
         $postMeta->setPost(null);
@@ -368,6 +397,11 @@ class PostEntity
     }
 
     /*** Metas ***/
+    /**
+     * @param $key
+     *
+     * @return array|null
+     */
     public function getMetas($key = null)
     {
         return $key
@@ -378,6 +412,9 @@ class PostEntity
         ;
     }
 
+    /**
+     * @return PostEntity
+     */
     public function setMetas($metas)
     {
         $this->metas = $metas;
@@ -385,9 +422,12 @@ class PostEntity
         return $this;
     }
 
+    /**
+     * @return void
+     */
     public function hydratePostMetas()
     {
-        $postMetas = $this->getPostMetas()->toArray();
+        $postMetas = $this->getPostMetas();
 
         if (count($postMetas)) {
             $metas = array();
@@ -400,6 +440,9 @@ class PostEntity
         }
     }
 
+    /**
+     * @return void
+     */
     public function convertMetasToPostMetas($uploadPath, $uploadDir)
     {
         $slugify = new Slugify();
@@ -435,7 +478,9 @@ class PostEntity
         }
     }
 
-    /********** Other methods ***********/
+    /**
+     * @return array
+     */
     public function toArray()
     {
         return array(
@@ -448,13 +493,14 @@ class PostEntity
         );
     }
 
-    /********** Magic Methods **********/
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getTitle();
     }
 
-    /********** Callback Methods **********/
     /**
      * @ORM\PostLoad
      */
