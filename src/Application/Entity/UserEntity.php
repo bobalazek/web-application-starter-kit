@@ -214,7 +214,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $id
+     * @param integer $id
      *
      * @return UserEntity
      */
@@ -321,7 +321,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $plainPassword
+     * @param string $plainPassword
      * @param EncoderFactory $encoderFactory
      *
      * @return UserEntity
@@ -354,7 +354,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $oldPassword
+     * @param string $oldPassword
      *
      * @return UserEntity
      */
@@ -595,7 +595,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $timeCreated
+     * @param \DateTime $timeCreated
      *
      * @return UserEntity
      */
@@ -616,7 +616,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $timeUpdated
+     * @param \DateTime $timeUpdated
      *
      * @return UserEntity
      */
@@ -727,7 +727,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $profile
+     * @param ProfileEntity $profile
      *
      * @return UserEntity
      */
