@@ -87,7 +87,7 @@ return array(
         'auth_mode' => null,
     ),
 
-    // Remember me Options
+    // Remember me options
     // http://silex.sensiolabs.org/doc/providers/remember_me.html#options
     'rememberMeOptions' => array(
         'key' => 'someRandomKey',
@@ -95,7 +95,7 @@ return array(
         'remember_me_parameter' => 'remember_me',
     ),
 
-    // User System Options
+    // User System options
     'userSystemOptions' => array(
         'roles' => array(
             'ROLE_SUPER_ADMIN' => 'Super admin',
