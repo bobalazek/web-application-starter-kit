@@ -137,6 +137,10 @@ h6 {}
 	.divider-top {
 		border-top: 3px solid #666;
 	}
+    
+    .max-width-80 {
+        max-width: 80px;
+    }
 
 /********** Fixes **********/
 .navbar-brand {

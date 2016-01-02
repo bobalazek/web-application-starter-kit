@@ -5,7 +5,8 @@
 {% block main %}
     <h1>
         {{ 'Users' | trans }}
-        <a class="btn btn-primary btn-sm" href="{{ url('members-area.users.new') }}">
+        <a class="btn btn-primary btn-sm"
+            href="{{ url('members-area.users.new') }}">
             {{ 'New' | trans }}
         </a>
     </h1>
@@ -107,12 +108,12 @@
                         <td>{{ user.getEmail() }}</td>
                         <td>{{ user.getUsername() }}</td>
                         <td>
-                            {% if user.getProfile() %}
+                            <div>
+                                <b>{{ 'First name' | trans }}:</b>
+                                {{ user.getProfile().getFirstName() }}
+                            </div>
+                            {% if user.getProfile().getLastName() %}
                                 <div>
-                                    <b>{{ 'First name' | trans }}:</b>
-                                    {{ user.getProfile().getFirstName() }}
-                                </div>
-                                <div class="{{ user.getProfile().getLastName() == '' ? 'hidden' : '' }}">
                                     <b>{{ 'Last name' | trans }}:</b>
                                     {{ user.getProfile().getLastName() }}
                                 </div>
@@ -120,20 +121,22 @@
                             {% if user.getProfile().getImageUrl() %}
                                 <div>
                                     <b>{{ 'Image' | trans }}:</b>
-                                    <a href="{{ user.getProfile().getImageUrl() }}" target="_blank">
-                                        <img src="{{ user.getProfile().getImageUrl() }}" alt="User image" style="max-width: 64px;" />
+                                    <a href="{{ user.getProfile().getImageUrl() }}" 
+                                        target="_blank">
+                                        <img class="max-width-80"
+                                            src="{{ user.getProfile().getImageUrl() }}" />
                                     </a>
                                 </div>
                             {% endif %}
                         </td>
                         <td>
                             <div>
-                                <b>{{ 'Enabled'|trans }}:</b>
-                                {{ user.isEnabled() ? 'Yes' | trans : 'No'|trans }}
+                                <b>{{ 'Enabled' | trans }}:</b>
+                                {{ (user.isEnabled() ? 'Yes' : 'No') | trans }}
                             </div>
                             <div>
-                                <b>{{ 'Locked'|trans }}:</b>
-                                {{ user.isLocked() ? 'Yes' | trans : 'No'|trans }}
+                                <b>{{ 'Locked' | trans }}:</b>
+                                {{ (user.isLocked() ? 'Yes' : 'No') | trans }}
                             </div>
                         </td>
                         <td>{{ user.getRoles()|join(', ') }}</td>

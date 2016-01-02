@@ -59,8 +59,10 @@
                         <td>{{ post.getTitle() }}</td>
                         <th>
                             {% if post.getImageUrl() %}
-                                <a href="{{ post.getImageUrl() }}" target="_blank">
-                                    <img src="{{ post.getImageUrl() }}" alt="Post image" style="max-width: 80px;" />
+                                <a href="{{ post.getImageUrl() }}"
+                                    target="_blank">
+                                    <img class="max-width-80"
+                                        src="{{ post.getImageUrl() }}" />
                                 </a>
                             {% endif %}
                         </th>
@@ -74,7 +76,7 @@
                             {% endif %}
                         </td>
                         <td>{{ post.getUser()}}</td>
-                        <td>{{ post.getTimeCreated()|date(app.dateTimeFormat) }}</td>
+                        <td>{{ post.getTimeCreated() | date(app.dateTimeFormat) }}</td>
                     </tr>
                 {% else %}
                     <tr>
