@@ -14,7 +14,7 @@ include __DIR__.'/core/definitions.php';
 /********** Autoloader **********/
 $vendorAutoloaderFilePath = VENDOR_DIR.'/autoload.php';
 if (!file_exists($vendorAutoloaderFilePath) && php_sapi_name() != 'cli') {
-    throw new \Exception('Please run "<b>composer install</b>" first!');
+    throw new \Exception('Please run "composer install" first!');
 }
 
 $autoloader = require $vendorAutoloaderFilePath;
