@@ -8,7 +8,7 @@
                 data-toggle="collapse"
                 data-target="#primary-navigation-collapse">
                 <span class="sr-only">
-                    {{ 'Toggle navigation'|trans }}
+                    {{ 'Toggle navigation' | trans }}
                 </span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -26,12 +26,12 @@
                     class="navigation-list nav navbar-nav">
                     <li class="{{ app.currentUriRelative == '' ? 'active' : '' }}">
                         <a href="{{ url('index') }}">
-                            {{ 'Home'|trans }}
+                            {{ 'Home' | trans }}
                         </a>
                     </li>
                     <li class="{{ path('members-area') in app.currentUri ? 'active' : '' }}">
                         <a href="{{ url('members-area') }}">
-                            {{ 'Members area'|trans }}
+                            {{ 'Members area' | trans }}
                         </a>
                     </li>
                 </ul> <!-- /#primary-navigation-list -->
@@ -42,14 +42,14 @@
                             <a href="#"
                                 class="dropdown-toggle"
                                 data-toggle="dropdown">
-                                {{ 'Languages'|trans }}
+                                {{ 'Languages' | trans }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 {% for localeKey, locale in app.locales %}
                                     <li class="{{ app.locale == localeKey ? 'active' : '' }}">
                                         <a href="{{ url('set-locale', { locale : localeKey }) }}">
-                                            {{ locale.languageName|trans }}
+                                            {{ locale.languageName | trans }}
                                         </a>
                                     </li>
                                 {% endfor %}
@@ -59,7 +59,7 @@
                     {% if app.user and is_granted('ROLE_PREVIOUS_ADMIN') %}
                         <li>
                             <a href="?switch_user=_exit">
-                                {{ 'Back to admin'|trans }}
+                                {{ 'Back to admin' | trans }}
                             </a>
                         </li>
                     {% endif %}
@@ -81,23 +81,23 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li class="{{ path('members-area.my.profile') == app.currentUri ? 'active' : '' }}">
                                     <a href="{{ url('members-area.my.profile') }}">
-                                        {{ 'Profile'|trans }}
+                                        {{ 'Profile' | trans }}
                                     </a>
                                 </li>
                                 <li class="{{ path('members-area.my.profile.settings') == app.currentUri ? 'active' : '' }}">
                                     <a href="{{ url('members-area.my.profile.settings') }}">
-                                        {{ 'Settings'|trans }}
+                                        {{ 'Settings' | trans }}
                                     </a>
                                 </li>
                                 <li class="{{ path('members-area.my.profile.settings.password') == app.currentUri ? 'active' : '' }}">
                                     <a href="{{ url('members-area.my.profile.settings.password') }}">
-                                        {{ 'Change password'|trans }}
+                                        {{ 'Change password' | trans }}
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ app.logoutUrl }}">
-                                        {{ 'Logout'|trans }}
+                                        {{ 'Logout' | trans }}
                                     </a>
                                 </li>
                             </ul>
