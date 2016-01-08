@@ -35,6 +35,12 @@ class MembersAreaController
      */
     public function loginAction(Application $app)
     {
+        if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
+            return $app->redirect(
+                $app['url_generator']->generate('members-area')
+            );
+        }
+
         $data = array(
             'lastUsername' => $app['session']->get('_security.last_username'),
             'lastError' => $app['security.last_error']($app['request']),
@@ -71,6 +77,12 @@ class MembersAreaController
      */
     public function registerAction(Request $request, Application $app)
     {
+        if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
+            return $app->redirect(
+                $app['url_generator']->generate('members-area')
+            );
+        }
+
         $data = array();
 
         $code = $request->query->has('code')
@@ -178,6 +190,12 @@ class MembersAreaController
      */
     public function resetPasswordAction(Request $request, Application $app)
     {
+        if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
+            return $app->redirect(
+                $app['url_generator']->generate('members-area')
+            );
+        }
+
         $data = array();
 
         $code = $request->query->has('code')
