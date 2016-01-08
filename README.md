@@ -23,7 +23,8 @@ Requirements & Tools & Helpers
 Setup / Development
 -------------------
 * Navigate yor your web directory: `cd /var/www`
-* Create a new project: `composer create-project bobalazek/web-application-starter-kit --no-scripts`
+* Create a new project: `composer create-project bobalazek/web-application-starter-kit myapp --no-scripts`
+* Navigate inside the application `cd myapp`
 * Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47) or [app/configs/global-local.php.dist](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global-local.php.dist) (in case you will deploy it and need a different local configuration. Just rename the global-local.php.dist to global-local.php and set your own configuration)
 * Run the following commands:
     * `composer install`
