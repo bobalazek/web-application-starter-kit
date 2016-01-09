@@ -22,7 +22,10 @@ class SettingsType extends AbstractType
     {
         $builder->add(
             'profile',
-            new ProfileType()
+            new ProfileType(),
+            array(
+                'label' => false,
+            )
         );
 
         $builder->add('username', 'text', array(
