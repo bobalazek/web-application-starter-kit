@@ -17,6 +17,7 @@ class SettingRepository extends EntityRepository
         return $this->createQueryBuilder('s')
             ->select('COUNT(s.id)')
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getSingleScalarResult()
+        ;
     }
 }
