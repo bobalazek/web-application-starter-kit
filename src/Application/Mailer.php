@@ -15,7 +15,7 @@ class Mailer
     protected $swiftMessageInstanceTemplate;
 
     /**
-     * @param Silex\Application $app
+     * @param Application $app
      */
     public function __construct(Application $app)
     {
