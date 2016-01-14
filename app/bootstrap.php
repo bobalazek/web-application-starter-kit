@@ -9,7 +9,7 @@ umask(0000);
 date_default_timezone_set('Europe/Vienna');
 
 /********** Definitions **********/
-include __DIR__.'/core/definitions.php';
+require __DIR__.'/core/definitions.php';
 
 /********** Autoloader **********/
 $vendorAutoloaderFilePath = VENDOR_DIR.'/autoload.php';
