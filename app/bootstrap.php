@@ -17,7 +17,7 @@ if (!file_exists($vendorAutoloaderFilePath) && php_sapi_name() != 'cli') {
     throw new \Exception('Please run "composer install" first!');
 }
 
-$autoloader = require $vendorAutoloaderFilePath;
+$autoloader = include $vendorAutoloaderFilePath;
 
 /********** Application **********/
 $app = new Application();
