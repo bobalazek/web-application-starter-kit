@@ -50,8 +50,8 @@
         "phpunit/phpunit": "4.1"
     },
     "autoload": {
-        "psr-0": {
-            "": "src/"
+        "psr-4": {
+            "Application\\": "src/"
         }
     },
     "autoload-dev": {
