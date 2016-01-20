@@ -26,7 +26,8 @@
                 <script id="config-js">
                     var baseUrl = "{{ app.baseUrl }}";
                     var baseUri = "{{ app.baseUri }}";
-                    var datatablesTranslationsUrl = "{{ 'settings.datatables.translations.url' | trans }}";
+                    var currentUrl = "{{ app.currentUrl }}";
+                    var currentUri = "{{ app.currentUri }}";
                 </script>
                 <script id="modernizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
                 <script id="detectizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/detectizr/dist/detectizr.js"></script>
