@@ -7,7 +7,7 @@ use Knp\Component\Pager\Paginator as KnpPaginator;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * @author Borut BalaÅ¾ek <bobalazek124@gmail.com>
+ * @author Borut Balažek <bobalazek124@gmail.com>
  */
 class Paginator
 {
