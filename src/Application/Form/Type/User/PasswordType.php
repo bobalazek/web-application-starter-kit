@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Form\Type\User\Settings;
+namespace Application\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,12 +19,16 @@ class PasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('oldPassword', 'password');
+        $builder->add('oldPassword', 'password', array(
+            'label' => 'Current password',
+        ));
 
         $builder->add('plainPassword', 'repeated', array(
             'type' => 'password',
             'first_name' => 'newPassword',
             'second_name' => 'newPasswordRepeat',
+            'first_options'  => array('label' => 'New password'),
+            'second_options' => array('label' => 'Repeat new password'),
         ));
 
         $builder->add('Save', 'submit', array(

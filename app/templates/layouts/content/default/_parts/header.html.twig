@@ -84,13 +84,13 @@
                                         {{ 'Profile' | trans }}
                                     </a>
                                 </li>
-                                <li class="{{ path('members-area.my.profile.settings') == app.currentUri ? 'active' : '' }}">
-                                    <a href="{{ url('members-area.my.profile.settings') }}">
+                                <li class="{{ path('members-area.my.settings') == app.currentUri ? 'active' : '' }}">
+                                    <a href="{{ url('members-area.my.settings') }}">
                                         {{ 'Settings' | trans }}
                                     </a>
                                 </li>
-                                <li class="{{ path('members-area.my.profile.settings.password') == app.currentUri ? 'active' : '' }}">
-                                    <a href="{{ url('members-area.my.profile.settings.password') }}">
+                                <li class="{{ path('members-area.my.password') == app.currentUri ? 'active' : '' }}">
+                                    <a href="{{ url('members-area.my.password') }}">
                                         {{ 'Change password' | trans }}
                                     </a>
                                 </li>

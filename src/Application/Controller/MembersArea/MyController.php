@@ -6,7 +6,7 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Application\Form\Type\User\SettingsType;
-use Application\Form\Type\User\Settings\PasswordType;
+use Application\Form\Type\User\PasswordType;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -34,7 +34,7 @@ class MyController
     {
         return new Response(
             $app['twig']->render(
-                'contents/members-area/my/profile/index.html.twig'
+                'contents/members-area/my/profile.html.twig'
             )
         );
     }
@@ -45,7 +45,7 @@ class MyController
      *
      * @return Response
      */
-    public function profileSettingsAction(Request $request, Application $app)
+    public function settingsAction(Request $request, Application $app)
     {
         $data = array();
 
@@ -87,7 +87,7 @@ class MyController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.my.profile.settings.successText'
+                        'members-area.my.settings.successText'
                     )
                 );
             }
@@ -97,7 +97,7 @@ class MyController
 
         return new Response(
             $app['twig']->render(
-                'contents/members-area/my/profile/settings.html.twig',
+                'contents/members-area/my/settings.html.twig',
                 $data
             )
         );
@@ -109,7 +109,7 @@ class MyController
      *
      * @return Response
      */
-    public function profileSettingsPasswordAction(Request $request, Application $app)
+    public function passwordAction(Request $request, Application $app)
     {
         $data = array();
 
@@ -136,7 +136,7 @@ class MyController
                     $app['flashbag']->add(
                         'success',
                         $app['translator']->trans(
-                            'members-area.my.profile.settings.password.successText'
+                            'members-area.my.password.successText'
                         )
                     );
                 }
@@ -147,7 +147,7 @@ class MyController
 
         return new Response(
             $app['twig']->render(
-                'contents/members-area/my/profile/settings/password.html.twig',
+                'contents/members-area/my/password.html.twig',
                 $data
             )
         );

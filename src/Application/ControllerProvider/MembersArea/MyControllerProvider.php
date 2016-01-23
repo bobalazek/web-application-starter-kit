@@ -32,16 +32,16 @@ class MyControllerProvider implements ControllerProviderInterface
         ->bind('members-area.my.profile');
 
         $controllers->match(
-            '/profile/settings',
-            'Application\Controller\MembersArea\MyController::profileSettingsAction'
+            '/settings',
+            'Application\Controller\MembersArea\MyController::settingsAction'
         )
-        ->bind('members-area.my.profile.settings');
+        ->bind('members-area.my.settings');
 
         $controllers->match(
-            '/profile/settings/password',
-            'Application\Controller\MembersArea\MyController::profileSettingsPasswordAction'
+            '/password',
+            'Application\Controller\MembersArea\MyController::passwordAction'
         )
-        ->bind('members-area.my.profile.settings.password');
+        ->bind('members-area.my.password');
 
         return $controllers;
     }

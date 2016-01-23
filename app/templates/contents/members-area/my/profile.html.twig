@@ -1,3 +1,5 @@
 {% extends 'contents/members-area/users/detail.html.twig' %}
 
 {% set user = user | default(app.user) %}
+
+{% block title %}{{ 'Profile' | trans }} | {{ 'My' | trans }} | {{ parent() }}{% endblock %}
