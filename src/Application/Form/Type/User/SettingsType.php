@@ -36,7 +36,7 @@ class SettingsType extends AbstractType
         ));
 
         $builder->add('submitButton', 'submit', array(
-            'label' => 'Submit',
+            'label' => 'Save',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),
