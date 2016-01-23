@@ -31,7 +31,8 @@ class PasswordType extends AbstractType
             'second_options' => array('label' => 'Repeat new password'),
         ));
 
-        $builder->add('Save', 'submit', array(
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Save',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),
