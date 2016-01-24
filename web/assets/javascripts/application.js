@@ -11,6 +11,7 @@ var Application = function () {
                 Application.paginatorInitialize();
                 Application.postMetasInitialize();
                 Application.listActionsInitialize();
+                Application.selectsInitialize();
 
                 jQuery('#preloader').fadeOut(); // Hide preloader, when everything is ready...
 
@@ -156,6 +157,9 @@ var Application = function () {
                     jQuery('#check-all-checkbox').prop('indeterminate', true);
                 }
             });
+        },
+        selectsInitialize: function() {
+            jQuery('.select-picker').selectpicker();
         },
     }
 }();
