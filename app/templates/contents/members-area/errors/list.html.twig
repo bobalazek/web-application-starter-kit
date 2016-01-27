@@ -1,0 +1,45 @@
+{% extends 'layouts/content/members-area.html.twig' %}
+
+{% block title %}{{ 'Errors' | trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'Errors' | trans }}</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ url('members-area') }}">
+                {{ 'Home' | trans }}
+            </a>
+        </li>
+        <li class="active">
+            {{ 'Errors' | trans }}
+        </li>
+    </ol>
+    {{ paginator_top_render(pagination) }}
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>{{ paginator_sortable(pagination, 'Code', 'e.code') }}</th>
+                    <th>{{ paginator_sortable(pagination, 'Message', 'e.message') }}</th>
+                    <th width="160">{{ paginator_sortable(pagination, 'Time Created', 'p.timeCreated') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for error in pagination.getItems() %}
+                    <tr>
+                        <td>{{ error.getCode() }}</td>
+                        <td>{{ error.getMessage() }}</td>
+                        <td>{{ error.getTimeCreated() | date(app.dateTimeFormat) }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9">
+                            {{ 'No errors yet' | trans }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {{ paginator_bottom_render(pagination) }}
+{% endblock %}

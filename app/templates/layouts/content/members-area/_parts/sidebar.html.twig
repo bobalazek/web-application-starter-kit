@@ -23,14 +23,18 @@
         </li>
     {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
+        <li class="{{ path('members-area.errors') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.errors') }}">
+                <i class="fa fa-fw fa-exclamation"></i>
+                {{ 'Errors' | trans }}
+            </a>
+        </li>
         <li class="{{ path('members-area.statistics') in app.currentUri ? 'active' : '' }}" role="presentation">
             <a href="{{ url('members-area.statistics') }}">
                 <i class="fa fa-fw fa-bar-chart"></i>
                 {{ 'Statistics' | trans }}
             </a>
         </li>
-    {% endif %}
-    {% if is_granted('ROLE_ADMIN') %}
         <li class="{{ path('members-area.settings') in app.currentUri ? 'active' : '' }}" role="presentation">
             <a href="{{ url('members-area.settings') }}">
                 <i class="fa fa-fw fa-cog"></i>

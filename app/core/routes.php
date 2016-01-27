@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Cookie;
+use Application\Entity\ErrorEntity;
 
 /*========== Index ==========*/
 $app->mount(
@@ -37,6 +38,12 @@ $app->mount(
 $app->mount(
     '/members-area/posts',
     new Application\ControllerProvider\MembersArea\PostsControllerProvider()
+);
+
+/******** Errors ********/
+$app->mount(
+    '/members-area/errors',
+    new Application\ControllerProvider\MembersArea\ErrorsControllerProvider()
 );
 
 /******** Statistics ********/
@@ -76,6 +83,32 @@ $app->match('/set-locale/{locale}', function ($locale) use ($app) {
 $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
         return;
+    }
+    
+    // Send my email
+    if ($app['errorOptions']['sendByEmail']) {
+        $app['application.mailer']
+            ->swiftMessageInitializeAndSend(array(
+                'subject' => $app['name'].' - '.$app['translator']->trans('An error occured').' ('.$code.')',
+                'to' => array($app['email'] => $app['emailName']),
+                'body' => 'emails/error.html.twig',
+                'templateData' => array(
+                    'e' => $e,
+                    'code' => $code,
+                ),
+            ))
+        ;
+    }
+    
+    if ($app['errorOptions']['saveIntoTheDatabase']) {
+        $errorEntity = new ErrorEntity();
+        $errorEntity
+            ->setCode($code)
+            ->setMessage($e->getMessage())
+            ->setException(json_encode($e))
+        ;
+        $app['orm.em']->persist($errorEntity);
+        $app['orm.em']->flush();
     }
 
     // 404.html, or 40x.html, or 4xx.html, or default.html

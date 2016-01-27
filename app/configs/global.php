@@ -106,6 +106,12 @@ return array(
         ),
         'registrationEnabled' => true,
     ),
+    
+    // Error options
+    'errorOptions' => array(
+        'saveIntoTheDatabase' => true,
+        'sendByEmail' => false,
+    ),
 
     // Default settings (the setting values from the DB
     //   will override this values)
