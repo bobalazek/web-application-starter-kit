@@ -54,21 +54,10 @@ class MyController
             $app['user']
         );
 
-        // IMPORTANT Security fix!
-        $currentUserUsername = $app['user']->getUsername();
-
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
-
-            // IMPORTANT Security fix!
-            /*
-             * Some weird bug here allows to impersonate to another user
-             *   by just changing to his (like some admins) username
-             *   (after failed "username already used" message)
-             *   when the validation kicks in, and one refresh later,
-             *   you're logged in as that user.
-             */
-            $app['user']->setUsername($currentUserUsername);
+            // Important, to prevent the user to stay impersonated!
+            $app['orm.em']->refresh($app['user']); 
 
             if ($form->isValid()) {
                 $userEntity = $form->getData();
