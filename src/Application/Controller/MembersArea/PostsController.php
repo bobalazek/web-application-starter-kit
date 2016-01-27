@@ -19,7 +19,7 @@ class PostsController
      *
      * @return Response
      */
-    public function indexAction(Request $request, Application $app)
+    public function listAction(Request $request, Application $app)
     {
         $data = array();
 
@@ -61,7 +61,7 @@ class PostsController
 
         return new Response(
             $app['twig']->render(
-                'contents/members-area/posts/index.html.twig',
+                'contents/members-area/posts/list.html.twig',
                 $data
             )
         );

@@ -19,7 +19,7 @@ class UsersController
      *
      * @return Response
      */
-    public function indexAction(Request $request, Application $app)
+    public function listAction(Request $request, Application $app)
     {
         $data = array();
 
@@ -62,7 +62,7 @@ class UsersController
 
         return new Response(
             $app['twig']->render(
-                'contents/members-area/users/index.html.twig',
+                'contents/members-area/users/list.html.twig',
                 $data
             )
         );

@@ -21,7 +21,7 @@ class PostsControllerProvider implements ControllerProviderInterface
 
         $controllers->match(
             '',
-            'Application\Controller\MembersArea\PostsController::indexAction'
+            'Application\Controller\MembersArea\PostsController::listAction'
         )
         ->bind('members-area.posts');
 

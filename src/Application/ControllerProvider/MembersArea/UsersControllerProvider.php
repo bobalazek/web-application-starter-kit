@@ -21,7 +21,7 @@ class UsersControllerProvider implements ControllerProviderInterface
 
         $controllers->match(
             '',
-            'Application\Controller\MembersArea\UsersController::indexAction'
+            'Application\Controller\MembersArea\UsersController::listAction'
         )
         ->bind('members-area.users');
 
