@@ -100,7 +100,10 @@ $app->error(function (\Exception $e, $code) use ($app) {
         ;
     }
     
-    if ($app['errorOptions']['saveIntoTheDatabase']) {
+    if (
+        isset($app['orm.em']) &&
+        $app['errorOptions']['saveIntoTheDatabase']
+    ) {
         $errorEntity = new ErrorEntity();
         $errorEntity
             ->setCode($code)

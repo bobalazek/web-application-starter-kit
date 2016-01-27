@@ -25,7 +25,7 @@ class ErrorEntity extends AbstractImageUpload
     protected $id;
 
     /**
-     * @var string
+     * @var integer
      *
      * @ORM\Column(name="code", type="integer")
      */
