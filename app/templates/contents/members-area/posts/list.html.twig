@@ -57,7 +57,7 @@
                             </a>
                         </td>
                         <td>{{ post.getTitle() }}</td>
-                        <th>
+                        <td>
                             {% if post.getImageUrl() %}
                                 <a href="{{ post.getImageUrl() }}"
                                     target="_blank">
@@ -65,7 +65,7 @@
                                         src="{{ post.getImageUrl() }}" />
                                 </a>
                             {% endif %}
-                        </th>
+                        </td>
                         <td>
                             {% if post.getPostMetas() %}
                                 <ul>
