@@ -136,7 +136,7 @@ class Storage
 
         foreach ($paths as $path) {
             $fs->remove($path);
-            $fs->touch($paths);
+            $fs->touch($path);
             $fs->chmod($path, 0777);
         }
     }
