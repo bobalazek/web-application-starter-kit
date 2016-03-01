@@ -5,6 +5,8 @@
 {% block main %}
     <h1>{{ 'Error' | trans }}</h1>
     <div id="main-content">
-        Something went wrong. :(
+        Something went wrong.
+        <h3>{{ 'Message' | trans }}</h3>
+        {{ e.getMessage() }}
     </div>
 {% endblock %}

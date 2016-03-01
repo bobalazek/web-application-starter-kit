@@ -21,8 +21,6 @@ class SettingsController
      */
     public function indexAction(Request $request, Application $app)
     {
-        $data = array();
-
         if (!$app['security']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
         }
@@ -91,12 +89,12 @@ class SettingsController
             }
         }
 
-        $data['form'] = $form->createView();
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/settings/index.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                )
             )
         );
     }

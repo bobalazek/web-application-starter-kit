@@ -19,8 +19,6 @@ class ErrorsController
      */
     public function listAction(Request $request, Application $app)
     {
-        $data = array();
-
         if (!$app['security']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
         }
@@ -49,12 +47,12 @@ class ErrorsController
             )
         );
 
-        $data['pagination'] = $pagination;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/errors/list.html.twig',
-                $data
+                array(
+                    'pagination' => $pagination,
+                )
             )
         );
     }

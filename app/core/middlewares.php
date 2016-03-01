@@ -1,5 +1,6 @@
 <?php
 
+use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Application\Entity\UserEntity;
@@ -10,12 +11,6 @@ $app->before(function () use ($app) {
         isset($app['databaseOptions']) &&
         is_array($app['databaseOptions'])
     ) {
-        if ($app['databaseOptions']['default']['driver'] != 'pdo_mysql') {
-            return new Response(
-                'Currently the system only works with the pdo_mysql driver.'
-            );
-        }
-
         try {
             $app['db']->connect();
         } catch (PDOException $e) {
@@ -78,15 +73,10 @@ $app->before(function (Request $request) use ($app) {
 
 /*** Set Variables ****/
 $app->before(function () use ($app) {
-    if (!$app['session']->isStarted()) {
-        $app['session']->start();
-    }
-
     if (!isset($app['user'])) {
         $app['user'] = null;
     }
 
-    $app['sessionId'] = $app['session']->getId();
     $app['host'] = $app['request']->getHost();
     $app['hostWithScheme'] = $app['request']->getScheme().'://'.$app['host'];
     $app['baseUri'] = $app['request']->getBaseUrl();
@@ -128,7 +118,7 @@ $app->before(function () use ($app) {
             );
         }
     }
-}, \Silex\Application::EARLY_EVENT);
+}, Application::EARLY_EVENT);
 
 /*** Set Logut path ***/
 $app->before(function (Request $request) use ($app) {

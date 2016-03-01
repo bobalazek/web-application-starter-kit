@@ -21,8 +21,6 @@ class UsersController
      */
     public function listAction(Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -58,12 +56,12 @@ class UsersController
             )
         );
 
-        $data['pagination'] = $pagination;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/list.html.twig',
-                $data
+                array(
+                    'pagination' => $pagination,
+                )
             )
         );
     }
@@ -76,8 +74,6 @@ class UsersController
      */
     public function newAction(Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -131,12 +127,12 @@ class UsersController
             }
         }
 
-        $data['form'] = $form->createView();
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/new.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                )
             )
         );
     }
@@ -149,8 +145,6 @@ class UsersController
      */
     public function detailAction($id, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -164,20 +158,18 @@ class UsersController
             $app->abort(404);
         }
 
-        $data['user'] = $user;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/detail.html.twig',
-                $data
+                array(
+                    'user' => $user,
+                )
             )
         );
     }
 
     public function editAction($id, Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -263,22 +255,19 @@ class UsersController
             }
         }
 
-        $data['form'] = $form->createView();
-
-        $data['user'] = $user;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/edit.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                    'user' => $user,
+                )
             )
         );
     }
 
     public function removeAction($id, Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -349,12 +338,15 @@ class UsersController
             );
         }
 
-        $data['user'] = $user;
-        $data['users'] = $users;
-        $data['ids'] = $ids;
-
         return new Response(
-            $app['twig']->render('contents/members-area/users/remove.html.twig', $data)
+            $app['twig']->render(
+                'contents/members-area/users/remove.html.twig',
+                array(
+                    'user' => $user,
+                    'users' => $users,
+                    'ids' => $ids,
+                )
+            )
         );
     }
 }

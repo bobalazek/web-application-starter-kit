@@ -7,8 +7,7 @@ use Symfony\Component\Console\Application;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class TranslatorTest
-    extends WebTestCase
+class TranslatorTest extends WebTestCase
 {
     public function testSwitchLocale()
     {

@@ -1,9 +1,19 @@
 <?php
 
 return array(
-    'debug' => true,
+    'debug' => false,
 
     // Database stuff
-    // We don't need the database in the testing stage
-    'databaseOptions' => false,
+    'databaseOptions' => array(
+        'default' => array(
+            'driver' => 'pdo_sqlite',
+            'path' => STORAGE_DIR.'/database/testing.db',
+        ),
+    ),
+    
+    // Error options
+    'errorOptions' => array(
+        'saveIntoTheDatabase' => false,
+        'sendByEmail' => false,
+    ),
 );

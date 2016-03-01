@@ -17,6 +17,12 @@ class StatisticsController
      */
     public function indexAction(Application $app)
     {
+        if (
+            !$app['security']->isGranted('ROLE_ADMIN')
+        ) {
+            $app->abort(403);
+        }
+
         return new Response(
             $app['twig']->render(
                 'contents/members-area/statistics/index.html.twig'

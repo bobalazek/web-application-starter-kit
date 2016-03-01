@@ -8,8 +8,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class PrepareCommandTest
-    extends \PHPUnit_Framework_TestCase
+class PrepareCommandTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecute()
     {

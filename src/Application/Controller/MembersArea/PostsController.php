@@ -21,8 +21,6 @@ class PostsController
      */
     public function listAction(Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -57,12 +55,12 @@ class PostsController
             )
         );
 
-        $data['pagination'] = $pagination;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/list.html.twig',
-                $data
+                array(
+                    'pagination' => $pagination,
+                )
             )
         );
     }
@@ -75,8 +73,6 @@ class PostsController
      */
     public function newAction(Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -123,12 +119,12 @@ class PostsController
             }
         }
 
-        $data['form'] = $form->createView();
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/new.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                )
             )
         );
     }
@@ -142,8 +138,6 @@ class PostsController
      */
     public function editAction($id, Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -196,13 +190,13 @@ class PostsController
             }
         }
 
-        $data['form'] = $form->createView();
-        $data['post'] = $post;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/edit.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                    'post' => $post,
+                )
             )
         );
     }
@@ -216,8 +210,6 @@ class PostsController
      */
     public function removeAction($id, Request $request, Application $app)
     {
-        $data = array();
-
         if (
             !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
             !$app['security']->isGranted('ROLE_ADMIN')
@@ -292,14 +284,14 @@ class PostsController
             );
         }
 
-        $data['post'] = $post;
-        $data['posts'] = $posts;
-        $data['ids'] = $ids;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/remove.html.twig',
-                $data
+                array(
+                    'post' => $post,
+                    'posts' => $posts,
+                    'ids' => $ids,
+                )
             )
         );
     }

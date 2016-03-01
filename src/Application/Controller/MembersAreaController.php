@@ -83,8 +83,6 @@ class MembersAreaController
             );
         }
 
-        $data = array();
-
         $code = $request->query->has('code')
             ? $request->query->get('code')
             : false
@@ -168,14 +166,14 @@ class MembersAreaController
             }
         }
 
-        $data['form'] = $form->createView();
-        $data['alert'] = $alert;
-        $data['alertMessage'] = $alertMessage;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/register.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                    'alert' => $alert,
+                    'alertMessage' => $alertMessage,
+                )
             )
         );
     }
@@ -193,8 +191,6 @@ class MembersAreaController
                 $app['url_generator']->generate('members-area')
             );
         }
-
-        $data = array();
 
         $code = $request->query->has('code')
             ? $request->query->get('code')
@@ -292,16 +288,16 @@ class MembersAreaController
             }
         }
 
-        $data['code'] = $code;
-        $data['action'] = $action;
-        $data['form'] = $form->createView();
-        $data['alert'] = $alert;
-        $data['alertMessage'] = $alertMessage;
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/reset-password.html.twig',
-                $data
+                array(
+                    'code' => $code,
+                    'action' => $action,
+                    'form' => $form->createView(),
+                    'alert' => $alert,
+                    'alertMessage' => $alertMessage,
+                )
             )
         );
     }

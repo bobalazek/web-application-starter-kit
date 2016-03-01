@@ -126,6 +126,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
         $app['twig']->resolveTemplate($templates)->render(
             array(
                 'code' => $code,
+                'e' => $e,
             )
         ),
         $code
