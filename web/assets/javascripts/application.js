@@ -137,9 +137,11 @@ var Application = function () {
 
                 if(hasIds) {
                     window.location.href = jQuery(this).attr('href')+'?ids='+ids.join(',');
-
-                    return false;
+                } else {
+                    alert('Please select at least one row!');
                 }
+                
+                return false;
             });
             
             jQuery('.object-checkbox').on('click', function() {
