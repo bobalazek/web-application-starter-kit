@@ -43,7 +43,7 @@ class WebTestCase extends SilexWebTestCase
 
         $cookie = new Cookie($session->getName(), $session->getId());
         $client->getCookieJar()->set($cookie);
-        
+
         return $client;
     }
 }

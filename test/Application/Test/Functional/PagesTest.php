@@ -12,9 +12,9 @@ class PagesTest extends WebTestCase
     /**
      * Setss up the environment (inclusive preparation the tables)
      */
-    public function setUp()
+    public static function setUpBeforeClass()
     {
-        parent::setUp();
+        parent::setUpBeforeClass();
 
         shell_exec('bin/console orm:schema-tool:update -f --dump-sql');
     }
@@ -25,7 +25,7 @@ class PagesTest extends WebTestCase
     public function testAnonymousUserUrls()
     {
         $client = $this->createClient();
-        
+
         $urls = $this->getAnonymousUserUrls();
         foreach ($urls as $url) {
             $client->request('GET', $url);
@@ -43,7 +43,7 @@ class PagesTest extends WebTestCase
     public function testUserUrls()
     {
         $client = $this->doLogin('user', array('ROLE_USER'));
-        
+
         $userUrls = $this->getUserUrls();
         foreach ($userUrls as $url) {
             $client->request('GET', $url);
@@ -61,7 +61,7 @@ class PagesTest extends WebTestCase
     public function testAdminUserUrls()
     {
         $client = $this->doLogin('admin', array('ROLE_ADMIN'));
-        
+
         $urls = $this->getAdminUserUrls();
         foreach ($urls as $url) {
             $client->request('GET', $url);
@@ -130,7 +130,7 @@ class PagesTest extends WebTestCase
             '/members-area/users/new',
             '/members-area/posts',
             '/members-area/posts/new',
-            // '/members-area/errors',
+            // '/members-area/errors', // To-Do
             '/members-area/statistics',
             '/members-area/settings',
         );

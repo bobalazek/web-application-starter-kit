@@ -113,6 +113,10 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function paginatorPaginationRender($pagination)
     {
+        if (!$pagination) {
+            return '';
+        }
+
         $output = '';
 
         $paginationData = $pagination->getPaginationData();
@@ -213,6 +217,10 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function paginatorResultsTextRender($pagination)
     {
+        if (!$pagination) {
+            return '';
+        }
+
         $output = '';
 
         $paginationData = $pagination->getPaginationData();
@@ -266,6 +274,10 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function paginatorLimitPerPageRender($pagination)
     {
+        if (!$pagination) {
+            return '';
+        }
+
         $output = '';
 
         $paginationData = $pagination->getPaginationData();
@@ -323,8 +335,11 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function paginatorSortable($pagination, $text = '', $key = '')
     {
-        $text = $this->app['translator']->trans($text);
+        if (!$pagination) {
+            return '';
+        }
 
+        $text = $this->app['translator']->trans($text);
         $sortDirectionParameterName = $pagination->getPaginatorOption('sortDirectionParameterName');
         $direction = isset($sortDirectionParameterName)
             ? $this->app['request']->query->get($sortDirectionParameterName)

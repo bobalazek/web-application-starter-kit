@@ -10,7 +10,7 @@ return array(
             'path' => STORAGE_DIR.'/database/testing.db',
         ),
     ),
-    
+
     // Error options
     'errorOptions' => array(
         'saveIntoTheDatabase' => false,

@@ -13,11 +13,14 @@ require __DIR__.'/core/definitions.php';
 
 /********** Autoloader **********/
 $vendorAutoloaderFilePath = VENDOR_DIR.'/autoload.php';
-if (!file_exists($vendorAutoloaderFilePath) && php_sapi_name() != 'cli') {
+if (
+    php_sapi_name() != 'cli' &&
+    !file_exists($vendorAutoloaderFilePath)
+) {
     throw new \Exception('Please run "composer install" first!');
 }
 
-$autoloader = include $vendorAutoloaderFilePath;
+$autoloader = require $vendorAutoloaderFilePath;
 
 /********** Application **********/
 $app = new Application();
