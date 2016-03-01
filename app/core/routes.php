@@ -84,7 +84,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
     if ($app['debug']) {
         return;
     }
-    
+
     // Send my email
     if ($app['errorOptions']['sendByEmail']) {
         $app['application.mailer']
@@ -99,7 +99,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
             ))
         ;
     }
-    
+
     if (
         isset($app['orm.em']) &&
         $app['errorOptions']['saveIntoTheDatabase']

@@ -140,7 +140,7 @@ var Application = function () {
                 } else {
                     alert('Please select at least one row!');
                 }
-                
+
                 return false;
             });
             

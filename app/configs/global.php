@@ -106,7 +106,7 @@ return array(
         ),
         'registrationEnabled' => true,
     ),
-    
+
     // Error options
     'errorOptions' => array(
         'saveIntoTheDatabase' => true,

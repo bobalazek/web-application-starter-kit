@@ -57,7 +57,7 @@ class MyController
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             // Important, to prevent the user to stay impersonated!
-            $app['orm.em']->refresh($app['user']); 
+            $app['orm.em']->refresh($app['user']);
 
             if ($form->isValid()) {
                 $userEntity = $form->getData();
