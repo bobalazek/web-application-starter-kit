@@ -15,8 +15,6 @@ class GenderType extends AbstractType
 
     /**
      * @param OptionsResolverInterface $resolver
-     *
-     * @return void
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

@@ -8,7 +8,6 @@ namespace Application\Tool;
 class Composer
 {
     /**
-     * @return void
      */
     public static function postInstallCmd()
     {
@@ -18,7 +17,6 @@ class Composer
     }
 
     /**
-     * @return void
      */
     public static function postUpdateCmd()
     {
@@ -26,7 +24,6 @@ class Composer
     }
 
     /**
-     * @return void
      */
     public static function download()
     {
@@ -34,7 +31,6 @@ class Composer
     }
 
     /**
-     * @return void
      */
     public static function update()
     {
@@ -42,7 +38,7 @@ class Composer
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public static function isInstalled()
     {

@@ -3,7 +3,7 @@
 namespace Application\Entity;
 
 /**
- * Abstract basic entity
+ * Abstract basic entity.
  *
  * Some of the basic variables and methods (id, timeCreated and timeUpdated)
  *
@@ -12,7 +12,7 @@ namespace Application\Entity;
 class AbstractBasicEntity
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -28,7 +28,7 @@ class AbstractBasicEntity
 
     /*** Id ***/
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -36,7 +36,7 @@ class AbstractBasicEntity
     }
 
     /**
-     * @param integer $id
+     * @param int $id
      *
      * @return AbstractBasicEntity
      */
@@ -90,7 +90,7 @@ class AbstractBasicEntity
     }
 
     /**
-     * Returns data in array
+     * Returns data in array.
      *
      * @return array
      */

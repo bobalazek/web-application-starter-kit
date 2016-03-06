@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Cocur\Slugify\Slugify;
 
 /**
- * Abstract image upload
+ * Abstract image upload.
  *
  * Some default methods for the abstract image upload
  *

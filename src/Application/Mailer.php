@@ -25,7 +25,7 @@ class Mailer
     /**
      * Prepares the (swift) email and sends it.
      *
-     * @return integer
+     * @return int
      *
      * @throws \Exception If subject or recpient (to) not specified
      */
@@ -111,7 +111,7 @@ class Mailer
     }
 
     /**
-     * Sends the (swift) email
+     * Sends the (swift) email.
      */
     public function send($swiftMessage = false)
     {
@@ -123,7 +123,7 @@ class Mailer
     }
 
     /**
-     * Short for swift image
+     * Short for swift image.
      */
     public function image($path)
     {

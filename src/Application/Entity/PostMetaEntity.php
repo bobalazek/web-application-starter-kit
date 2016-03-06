@@ -5,7 +5,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Post Meta Entity
+ * Post Meta Entity.
  *
  * @ORM\Table(name="post_metas")
  * @ORM\Entity(repositoryClass="Application\Repository\PostMetaRepository")
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 class PostMetaEntity extends AbstractMeta
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id

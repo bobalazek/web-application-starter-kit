@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Cocur\Slugify\Slugify;
 
 /**
- * Post Entity
+ * Post Entity.
  *
  * @ORM\Table(name="posts")
  * @ORM\Entity(repositoryClass="Application\Repository\PostRepository")
@@ -19,7 +19,7 @@ use Cocur\Slugify\Slugify;
 class PostEntity extends AbstractImageUpload
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -75,14 +75,14 @@ class PostEntity extends AbstractImageUpload
     protected $postMetas;
 
     /**
-     * Helper for metas
+     * Helper for metas.
      *
      * @var array
      */
     protected $metas;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -91,7 +91,7 @@ class PostEntity extends AbstractImageUpload
 
     /*** Id ***/
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -99,7 +99,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /**
-     * @param integer $id
+     * @param int $id
      *
      * @return PostEntity
      */
@@ -297,7 +297,6 @@ class PostEntity extends AbstractImageUpload
     }
 
     /**
-     * @return void
      */
     public function hydratePostMetas()
     {
@@ -315,7 +314,6 @@ class PostEntity extends AbstractImageUpload
     }
 
     /**
-     * @return void
      */
     public function convertMetasToPostMetas($uploadPath, $uploadDir)
     {

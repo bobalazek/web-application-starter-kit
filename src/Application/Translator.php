@@ -24,7 +24,7 @@ class Translator
     }
 
     /**
-     * Sets the locale (if it can)
+     * Sets the locale (if it can).
      */
     public function setLocale($locale)
     {
@@ -41,7 +41,7 @@ class Translator
     }
 
     /**
-     * Prepares and finds all the translated and untranslated string in tempates and controllers
+     * Prepares and finds all the translated and untranslated string in tempates and controllers.
      */
     public function prepare(Application $app, $locale)
     {

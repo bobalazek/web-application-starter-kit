@@ -10,7 +10,7 @@ use Application\Test\WebTestCase;
 class PagesTest extends WebTestCase
 {
     /**
-     * Setss up the environment (inclusive preparation the tables)
+     * Setss up the environment (inclusive preparation the tables).
      */
     public static function setUpBeforeClass()
     {
@@ -20,7 +20,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * Test the routes for a anonymous user
+     * Test the routes for a anonymous user.
      */
     public function testAnonymousUserUrls()
     {
@@ -38,7 +38,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * Test the routes for an normal user
+     * Test the routes for an normal user.
      */
     public function testUserUrls()
     {
@@ -56,7 +56,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * Test the routes for an admin user
+     * Test the routes for an admin user.
      */
     public function testAdminUserUrls()
     {
@@ -74,7 +74,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * Check for a 404 page
+     * Check for a 404 page.
      */
     public function test404()
     {
@@ -89,7 +89,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * URLs for non-logined users
+     * URLs for non-logined users.
      *
      * @return array
      */
@@ -104,7 +104,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * URLs for logined users
+     * URLs for logined users.
      *
      * @return array
      */
@@ -119,7 +119,7 @@ class PagesTest extends WebTestCase
     }
 
     /**
-     * URLs for admin users
+     * URLs for admin users.
      *
      * @return array
      */

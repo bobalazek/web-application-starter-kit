@@ -3,7 +3,7 @@
 namespace Application\Entity;
 
 /**
- * Abstract Meta
+ * Abstract Meta.
  *
  * Some default methods for a meta entity (id, key and value)
  *
@@ -64,7 +64,7 @@ class AbstractMeta extends AbstractBasicEntity
     }
 
     /**
-     * Returns data in array
+     * Returns data in array.
      *
      * @return array
      */
@@ -80,7 +80,7 @@ class AbstractMeta extends AbstractBasicEntity
     }
 
     /**
-     * Converts the key and value to string
+     * Converts the key and value to string.
      *
      * @return string
      */

@@ -25,7 +25,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDefaultConnectionName()
     {
@@ -33,7 +33,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConnection($name = null)
     {
@@ -45,7 +45,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConnections()
     {
@@ -53,7 +53,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConnectionNames()
     {
@@ -61,7 +61,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDefaultManagerName()
     {
@@ -69,7 +69,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getManager($name = null)
     {
@@ -81,28 +81,28 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getManagers()
     {
         return $this->managers;
     }
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function resetManager($name = null)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getAliasNamespace($alias)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getManagerNames()
     {
@@ -110,7 +110,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getRepository($persistentObject, $persistentManagerName = null)
     {
@@ -118,7 +118,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getManagerForClass($class)
     {

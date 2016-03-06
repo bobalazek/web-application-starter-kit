@@ -8,7 +8,6 @@ namespace Application\Tool;
 class Environment
 {
     /**
-     * @return void
      */
     public static function prepare()
     {

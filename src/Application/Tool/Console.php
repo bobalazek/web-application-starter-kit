@@ -27,8 +27,6 @@ class Console
 
     /**
      * @param OutputInterface $output
-     *
-     * @return void
      */
     public static function prepare(OutputInterface $output = null)
     {

@@ -10,7 +10,6 @@ use Symfony\Component\Filesystem\Filesystem;
 class Storage
 {
     /**
-     * @return void
      */
     public static function prepare()
     {
@@ -40,7 +39,6 @@ class Storage
     }
 
     /**
-     * @return void
      */
     public static function prepareFolders(array $paths = array(), $uploadsPath = false)
     {
@@ -60,7 +58,6 @@ class Storage
     }
 
     /**
-     * @return void
      */
     public static function prepareUploadsFolder($uploadsDirectory)
     {
@@ -90,7 +87,6 @@ class Storage
     }
 
     /**
-     * @return void
      */
     public static function prepareSharedFolders(array $paths = array())
     {
@@ -128,7 +124,6 @@ class Storage
     }
 
     /**
-     * @return void
      */
     public static function prepareLogFiles(array $paths)
     {

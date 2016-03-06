@@ -5,7 +5,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Profile Entity
+ * Profile Entity.
  *
  * @ORM\Table(name="profiles")
  * @ORM\Entity(repositoryClass="Application\Repository\ProfileRepository")
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProfileEntity extends AbstractImageUpload
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -85,7 +85,7 @@ class ProfileEntity extends AbstractImageUpload
 
     /*** Id ***/
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -93,7 +93,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /**
-     * @param integer $id
+     * @param int $id
      *
      * @return ProfileEntity
      */

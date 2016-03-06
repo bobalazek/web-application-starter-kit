@@ -5,7 +5,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Error Entity
+ * Error Entity.
  *
  * @ORM\Table(name="errors")
  * @ORM\Entity(repositoryClass="Application\Repository\ErrorRepository")
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ErrorEntity extends AbstractImageUpload
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -25,7 +25,7 @@ class ErrorEntity extends AbstractImageUpload
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="code", type="integer")
      */
@@ -61,7 +61,7 @@ class ErrorEntity extends AbstractImageUpload
 
     /*** Id ***/
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -69,7 +69,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /**
-     * @param integer $id
+     * @param int $id
      *
      * @return ErrorEntity
      */
@@ -82,7 +82,7 @@ class ErrorEntity extends AbstractImageUpload
 
     /*** Code ***/
     /**
-     * @return integer
+     * @return int
      */
     public function getCode()
     {
@@ -90,7 +90,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /**
-     * @param integer $code
+     * @param int $code
      *
      * @return ErrorEntity
      */

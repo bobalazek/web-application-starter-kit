@@ -14,8 +14,6 @@ class ProfileType extends AbstractType
     /**
      * @param FormBuilderInterface $builder
      * @param $options
-     *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -59,8 +57,6 @@ class ProfileType extends AbstractType
 
     /**
      * @param OptionsResolverInterface $resolver
-     *
-     * @return void
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

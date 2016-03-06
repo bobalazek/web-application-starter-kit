@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
 /**
- * User Entity
+ * User Entity.
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="Application\Repository\UserRepository")
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 class UserEntity implements AdvancedUserInterface, \Serializable
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -104,14 +104,14 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $accessToken;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
     protected $enabled = false;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="locked", type="boolean")
      */
@@ -165,19 +165,19 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $posts;
 
     /**
-     * Otherwise known as: userExpired / accountExpired
+     * Otherwise known as: userExpired / accountExpired.
      *
-     * @var boolean
+     * @var bool
      */
     protected $expired = false;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $credentialsExpired = false;
 
     /**
-     * The constructor
+     * The constructor.
      */
     public function __construct()
     {
@@ -206,7 +206,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
 
     /*** Id ***/
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -214,7 +214,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param integer $id
+     * @param int $id
      *
      * @return UserEntity
      */
@@ -430,7 +430,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
 
     /*** Enabled ***/
     /**
-     * @return boolean
+     * @return bool
      */
     public function getEnabled()
     {
@@ -438,7 +438,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isEnabled()
     {
@@ -446,7 +446,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param boolean $enabled
+     * @param bool $enabled
      */
     public function setEnabled($enabled)
     {
@@ -477,7 +477,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
 
     /*** Locked ***/
     /**
-     * @return boolean
+     * @return bool
      */
     public function getLocked()
     {
@@ -485,7 +485,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isLocked()
     {
@@ -493,7 +493,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param boolean $locked
+     * @param bool $locked
      *
      * @return UserEntity
      */
@@ -515,7 +515,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isAccountNonLocked()
     {
@@ -629,7 +629,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
 
     /*** Expired ***/
     /**
-     * @return boolean
+     * @return bool
      */
     public function getExpired()
     {
@@ -637,7 +637,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isExpired()
     {
@@ -645,7 +645,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isAccountNonExpired()
     {
@@ -654,7 +654,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
 
     /*** Credentials expired ***/
     /**
-     * @return boolean
+     * @return bool
      */
     public function getCredentialsExpired()
     {
@@ -662,7 +662,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCredentialsExpired()
     {
@@ -670,7 +670,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCredentialsNonExpired()
     {
@@ -707,7 +707,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     /**
      * @param string $role
      *
-     * @return boolean
+     * @return bool
      */
     public function hasRole($role)
     {
@@ -764,7 +764,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     /**
      * @param AdvancedUserInterface $user
      *
-     * @return boolean
+     * @return bool
      */
     public function isEqualTo(AdvancedUserInterface $user)
     {
@@ -788,7 +788,6 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return void
      */
     public function eraseCredentials()
     {
@@ -810,7 +809,6 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return void
      */
     public function unserialize($serialized)
     {
@@ -819,8 +817,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->email,
             $this->password,
-            $this->salt,
-        ) = unserialize($serialized);
+            $this->salt) = unserialize($serialized);
     }
 
     /**

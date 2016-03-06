@@ -5,7 +5,7 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Setting Entity
+ * Setting Entity.
  *
  * @ORM\Table(name="settings")
  * @ORM\Entity(repositoryClass="Application\Repository\SettingRepository")
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 class SettingEntity extends AbstractMeta
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id

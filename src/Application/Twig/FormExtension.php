@@ -55,7 +55,7 @@ class FormExtension extends \Twig_Extension
     }
 
     /**
-     * @param boolean
+     * @param bool
      */
     public function formHasErrors($form)
     {
@@ -74,7 +74,7 @@ class FormExtension extends \Twig_Extension
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function formCheckboxValue($form)
     {

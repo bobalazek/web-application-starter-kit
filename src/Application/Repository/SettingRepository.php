@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityRepository;
 class SettingRepository extends EntityRepository
 {
     /**
-     * @return integer
+     * @return int
      */
     public function countAll()
     {
