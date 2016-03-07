@@ -86,11 +86,11 @@ $app->error(function (\Exception $e, $code) use ($app) {
     }
 
     // Send my email
-    if ($app['errorOptions']['sendByEmail']) {
+    if ($app['error_options']['send_by_email']) {
         $app['application.mailer']
             ->swiftMessageInitializeAndSend(array(
                 'subject' => $app['name'].' - '.$app['translator']->trans('An error occured').' ('.$code.')',
-                'to' => array($app['email'] => $app['emailName']),
+                'to' => $app['email'],
                 'body' => 'emails/error.html.twig',
                 'templateData' => array(
                     'e' => $e,
@@ -102,7 +102,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
 
     if (
         isset($app['orm.em']) &&
-        $app['errorOptions']['saveIntoTheDatabase']
+        $app['error_options']['save_into_the_database']
     ) {
         $errorEntity = new ErrorEntity();
         $errorEntity

@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{ error.getCode() }}</td>
                         <td>{{ error.getMessage() }}</td>
-                        <td>{{ error.getTimeCreated() | date(app.dateTimeFormat) }}</td>
+                        <td>{{ error.getTimeCreated() | date(app.date_time_format) }}</td>
                     </tr>
                 {% else %}
                     <tr>

@@ -8,34 +8,33 @@ return array(
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
-    'email' => 'info@bobalazek.com',
-    'emailName' => 'Web Application Starter Kit Mailer',
+    'email' => array('info@bobalazek.com' => 'Web Application Starter Kit Mailer'),
 
     // Default Locale / Language stuff
     'locale' => 'en_US', // Default locale
-    'languageCode' => 'en', // Default language code
-    'languageName' => 'English',
-    'countryCode' => 'us', // Default country code
-    'flagCode' => 'us',
-    'dateFormat' => 'd.m.Y',
-    'dateTimeFormat' => 'd.m.Y H:i:s',
+    'language_code' => 'en', // Default language code
+    'language_name' => 'English',
+    'country_code' => 'us', // Default country code
+    'flag_code' => 'us',
+    'date_format' => 'd.m.Y',
+    'date_time_format' => 'd.m.Y H:i:s',
 
     'locales' => array( // All available locales
         'en_US' => array(
-            'languageCode' => 'en',
-            'languageName' => 'English',
-            'countryCode' => 'us',
-            'flagCode' => 'us',
-            'dateFormat' => 'd.m.Y',
-            'dateTimeFormat' => 'd.m.Y H:i:s',
+            'language_code' => 'en',
+            'language_name' => 'English',
+            'country_code' => 'us',
+            'flag_code' => 'us',
+            'date_format' => 'd.m.Y',
+            'date_time_format' => 'd.m.Y H:i:s',
         ),
         'de_DE' => array(
-            'languageCode' => 'de',
-            'languageName' => 'Deutsch',
-            'countryCode' => 'de',
-            'flagCode' => 'de',
-            'dateFormat' => 'd.m.Y',
-            'dateTimeFormat' => 'd.m.Y H:i:s',
+            'language_code' => 'de',
+            'language_name' => 'Deutsch',
+            'country_code' => 'de',
+            'flag_code' => 'de',
+            'date_format' => 'd.m.Y',
+            'date_time_format' => 'd.m.Y H:i:s',
         ),
     ),
 
@@ -58,14 +57,9 @@ return array(
         ),
     ),
 
-    // Time and date
-    'currentTime' => date('H:i:s'),
-    'currentDate' => date('Y-m-d'),
-    'currentDateTime' => date('Y-m-d H:i:s'),
-
     // Database / Doctrine options
     // http://silex.sensiolabs.org/doc/providers/doctrine.html#parameters
-    'databaseOptions' => array(
+    'database_options' => array(
         'default' => array(
             'driver' => 'pdo_mysql',
             'host' => 'localhost',
@@ -78,7 +72,7 @@ return array(
 
     // Swiftmailer options
     // http://silex.sensiolabs.org/doc/providers/swiftmailer.html#parameters
-    'swiftmailerOptions' => array(
+    'swiftmailer_options' => array(
         'host' => 'corcosoft.com',
         'port' => 465,
         'username' => 'info@corcosoft.com',
@@ -89,14 +83,14 @@ return array(
 
     // Remember me options
     // http://silex.sensiolabs.org/doc/providers/remember_me.html#options
-    'rememberMeOptions' => array(
+    'remember_me_options' => array(
         'key' => 'someRandomKey',
         'name' => 'user',
         'remember_me_parameter' => 'remember_me',
     ),
 
     // User System options
-    'userSystemOptions' => array(
+    'user_system_options' => array(
         'roles' => array(
             'ROLE_SUPER_ADMIN' => 'Super admin',
             'ROLE_ADMIN' => 'Admin',
@@ -104,13 +98,13 @@ return array(
             'ROLE_POSTS_EDITOR' => 'Posts editor',
             'ROLE_USER' => 'User',
         ),
-        'registrationEnabled' => true,
+        'registration_enabled' => true,
     ),
 
     // Error options
-    'errorOptions' => array(
-        'saveIntoTheDatabase' => true,
-        'sendByEmail' => false,
+    'error_options' => array(
+        'save_into_the_database' => true,
+        'send_by_email' => false,
     ),
 
     // Default settings (the setting values from the DB

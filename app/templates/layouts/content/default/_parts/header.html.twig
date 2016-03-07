@@ -49,7 +49,7 @@
                                 {% for localeKey, locale in app.locales %}
                                     <li class="{{ app.locale == localeKey ? 'active' : '' }}">
                                         <a href="{{ url('set-locale', { locale : localeKey }) }}">
-                                            {{ locale.languageName | trans }}
+                                            {{ locale.language_name | trans }}
                                         </a>
                                     </li>
                                 {% endfor %}

@@ -8,8 +8,8 @@ use Application\Entity\UserEntity;
 /*** Database check ***/
 $app->before(function () use ($app) {
     if (
-        isset($app['databaseOptions']) &&
-        is_array($app['databaseOptions'])
+        isset($app['database_options']) &&
+        is_array($app['database_options'])
     ) {
         try {
             $app['db']->connect();
@@ -58,10 +58,10 @@ $app->before(function (Request $request) use ($app) {
     if ($localeCookie &&
         array_key_exists($localeCookie, $app['locales'])) {
         $app['locale'] = $localeCookie;
-        $app['languageCode'] = $app['locales'][$localeCookie]['languageCode'];
-        $app['languageName'] = $app['locales'][$localeCookie]['languageName'];
-        $app['countryCode'] = $app['locales'][$localeCookie]['countryCode'];
-        $app['flagCode'] = $app['locales'][$localeCookie]['flagCode'];
+        $app['language_code'] = $app['locales'][$localeCookie]['language_code'];
+        $app['language_name'] = $app['locales'][$localeCookie]['language_name'];
+        $app['country_code'] = $app['locales'][$localeCookie]['country_code'];
+        $app['flag_code'] = $app['locales'][$localeCookie]['flag_code'];
 
         if ($localeFromQueryOrHeaders) {
             $app['forceLocale'] = $app['locale'];
@@ -93,8 +93,8 @@ $app->before(function () use ($app) {
     );
 
     if (
-        isset($app['databaseOptions']) &&
-        is_array($app['databaseOptions'])
+        isset($app['database_options']) &&
+        is_array($app['database_options'])
     ) {
         // Settings
         $settingsCollection = $app['orm.em']

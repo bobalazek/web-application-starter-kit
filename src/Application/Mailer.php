@@ -43,7 +43,7 @@ class Mailer
 
         $from = isset($data['from'])
             ? $data['from']
-            : array($this->app['email'] => $this->app['emailName'])
+            : $this->app['email']
         ;
         $to = $data['to'];
 

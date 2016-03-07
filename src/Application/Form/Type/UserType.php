@@ -53,7 +53,7 @@ class UserType extends AbstractType
             'required' => false,
             'multiple' => true,
             'expanded' => true,
-            'choices' => $this->app['userSystemOptions']['roles'],
+            'choices' => $this->app['user_system_options']['roles'],
         ));
 
         $builder->add('enabled', 'checkbox', array(

@@ -76,7 +76,7 @@
                             {% endif %}
                         </td>
                         <td>{{ post.getUser() }}</td>
-                        <td>{{ post.getTimeCreated() | date(app.dateTimeFormat) }}</td>
+                        <td>{{ post.getTimeCreated() | date(app.date_time_format) }}</td>
                     </tr>
                 {% else %}
                     <tr>

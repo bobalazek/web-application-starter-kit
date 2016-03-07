@@ -116,7 +116,7 @@ if (file_exists(APP_DIR.'/configs/environments/'.$app['environment'].'.php')) {
 
 /* Environment variables */
 if (getenv('APPLICATION_DATABASE_PASSWORD')) {
-    $app['databaseOptions']['default']['password'] = getenv('APPLICATION_DATABASE_PASSWORD');
+    $app['database_options']['default']['password'] = getenv('APPLICATION_DATABASE_PASSWORD');
 }
 
 /***** Session *****/
@@ -215,13 +215,13 @@ $app['application.mailer'] = $app->share(function () use ($app) {
 
 /***** Doctrine Database & Doctrine ORM *****/
 if (
-    isset($app['databaseOptions']) &&
-    is_array($app['databaseOptions'])
+    isset($app['database_options']) &&
+    is_array($app['database_options'])
 ) {
     $app->register(
         new Silex\Provider\DoctrineServiceProvider(),
         array(
-            'dbs.options' => $app['databaseOptions'],
+            'dbs.options' => $app['database_options'],
         )
     );
 
@@ -356,7 +356,7 @@ $securityFirewalls['members-area'] = array(
         'invalidate_session' => true,
         'csrf_parameter' => 'csrf_token',
     ),
-    'remember_me' => $app['rememberMeOptions'],
+    'remember_me' => $app['remember_me_options'],
     'switch_user' => array(
         'parameter' => 'switch_user',
         'role' => 'ROLE_ALLOWED_TO_SWITCH',
@@ -399,7 +399,7 @@ $app->register(new Silex\Provider\RememberMeServiceProvider());
 
 /***** Swiftmailer / Mailer *****/
 $app->register(new Silex\Provider\SwiftmailerServiceProvider());
-$app['swiftmailer.options'] = $app['swiftmailerOptions'];
+$app['swiftmailer.options'] = $app['swiftmailer_options'];
 
 /* Emogrifier */
 $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = array(), $isTwigTemplate = true) use ($app) {

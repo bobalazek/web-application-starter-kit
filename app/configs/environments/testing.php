@@ -4,7 +4,7 @@ return array(
     'debug' => false,
 
     // Database stuff
-    'databaseOptions' => array(
+    'database_options' => array(
         'default' => array(
             'driver' => 'pdo_sqlite',
             'path' => STORAGE_DIR.'/database/testing.db',
@@ -12,7 +12,7 @@ return array(
     ),
 
     // Error options
-    'errorOptions' => array(
+    'error_options' => array(
         'saveIntoTheDatabase' => false,
         'sendByEmail' => false,
     ),

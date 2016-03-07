@@ -140,10 +140,10 @@
                             </div>
                         </td>
                         <td>{{ user.getRoles()|join(', ') }}</td>
-                        <td>{{ user.getTimeCreated() | date(app.dateTimeFormat) }}</td>
+                        <td>{{ user.getTimeCreated() | date(app.date_time_format) }}</td>
                         <td>
                             {% if user.getTimeLastActive() %}
-                                {{ user.getTimeLastActive() | date(app.dateTimeFormat) }}
+                                {{ user.getTimeLastActive() | date(app.date_time_format) }}
                             {% endif %}
                         </td>
                     </tr>
