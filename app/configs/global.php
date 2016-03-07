@@ -4,7 +4,7 @@ return array(
     'environment' => 'development',
     'debug' => true,
     'name' => 'Web Application Starter Kit',
-    'version' => '1.0.0-rc.2',
+    'version' => '1.0.0-rc.3',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
