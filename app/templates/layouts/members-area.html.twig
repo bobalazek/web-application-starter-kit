@@ -1,6 +1,6 @@
-{% extends 'layouts/content/default.html.twig' %}
+{% extends 'layouts/default.html.twig' %}
 
-{% block title %}{{ 'Members area'|trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Members area' | trans }} | {{ parent() }}{% endblock %}
 
 {% block content %}
     <div class="container-fluid">
@@ -9,7 +9,7 @@
                 <div class="col-md-2">
                     <div id="sidebar" role="complementary">
                         {% block sidebar %}
-                            {% include 'layouts/content/members-area/_parts/sidebar.html.twig' %}
+                            {% include 'layouts/members-area/_parts/sidebar.html.twig' %}
                         {% endblock %}
                     </div>
                 </div>

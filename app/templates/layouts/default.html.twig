@@ -2,7 +2,7 @@
 <html id="html" class="no-js" lang="{{ app.language_code }}">
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %}{{ app.name|trans }}{% endblock %}</title>
+        <title>{% block title %}{{ app.name | trans }}{% endblock %}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="cleartype" content="on" />
         <meta name="author" content="{{ app.author }}" />
@@ -39,20 +39,19 @@
     <body id="body">
         <div id="application" role="application">
             {% block application %}
-                {% include 'layouts/content/default/_parts/preloader.html.twig' %}
                 <div id="wrapper">
                     {% block wrapper %}
                         {% set isContainerFluid = isContainerFluid is defined ? isContainerFluid : true %}
                         <header id="header" role="banner">
                             {% block header %}
-                                {% include 'layouts/content/default/_parts/header.html.twig' %}
+                                {% include 'layouts/default/_header.html.twig' %}
                             {% endblock %}
                         </header> <!-- /#header -->
                         <div id="content">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {% include 'layouts/content/default/_parts/flash-messages.html.twig' %}
+                                        {% include 'layouts/default/_flash-messages.html.twig' %}
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +74,7 @@
                         </div> <!-- /#content -->
                         <footer id="footer" role="contentinfo">
                             {% block footer %}
-                                {% include 'layouts/content/default/_parts/footer.html.twig' %}
+                                {% include 'layouts/default/_footer.html.twig' %}
                             {% endblock %}
                         </footer> <!-- /#footer -->
                     {% endblock %}
