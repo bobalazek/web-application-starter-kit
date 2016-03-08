@@ -7,7 +7,7 @@
         {{ 'Register' | trans }}
     </h1>
     <hr />
-    {% if app.user_system_options.registration_enabled %}
+    {% if app.user_system_options.registrations_enabled %}
         {% if alert %}
             <div class="alert alert-{{ alert }}">
                 {{ alertMessage | trans | raw }}

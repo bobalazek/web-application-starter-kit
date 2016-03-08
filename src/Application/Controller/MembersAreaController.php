@@ -134,7 +134,7 @@ class MembersAreaController
         } else {
             if (
                 $request->getMethod() == 'POST' &&
-                $app['user_system_options']['registration_enabled']
+                $app['user_system_options']['registrations_enabled']
             ) {
                 $form->handleRequest($request);
 

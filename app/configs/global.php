@@ -98,7 +98,7 @@ return array(
             'ROLE_POSTS_EDITOR' => 'Posts editor',
             'ROLE_USER' => 'User',
         ),
-        'registration_enabled' => true,
+        'registrations_enabled' => true,
     ),
 
     // Error options
