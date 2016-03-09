@@ -10,7 +10,7 @@ return array(
             'firstName' => 'John',
             'lastName' => 'Doe',
             'gender' => 'male',
-            'birthdate' => '01-01-1990',
+            'birthdate' => '1990-01-01',
         ),
         'roles' => array(
             'ROLE_SUPER_ADMIN',
