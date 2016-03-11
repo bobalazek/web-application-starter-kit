@@ -108,7 +108,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    protected $enabled = false;
+    protected $enabled = true;
 
     /**
      * @var bool

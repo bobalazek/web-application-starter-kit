@@ -49,11 +49,17 @@ class UserType extends AbstractType
             'invalid_message' => 'errors.user.password.invalidText',
         ));
 
+        $rolesChoices = $this->app['user_system_options']['roles'];
+        if (!$this->app['security']->isGranted('ROLE_SUPER_ADMIN')) {
+            // Only the super admin should be able to set other users to admins and super admins!
+            unset($rolesChoices['ROLE_SUPER_ADMIN']);
+            unset($rolesChoices['ROLE_ADMIN']);
+        }
         $builder->add('roles', 'choice', array(
             'required' => false,
             'multiple' => true,
             'expanded' => true,
-            'choices' => $this->app['user_system_options']['roles'],
+            'choices' => $rolesChoices,
         ));
 
         $builder->add('enabled', 'checkbox', array(
