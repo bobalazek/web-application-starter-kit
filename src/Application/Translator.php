@@ -87,8 +87,8 @@ class Translator
 
         /***** Already translated *****/
         $app['application.translator']->setLocale($locale);
-        $translatedMessages = $app['translator']->getMessages($locale);
-        $translatedMessages = $translatedMessages['messages'];
+        $translatedMessages = $app['translator']->getCatalogue($locale);
+        $translatedMessages = $translatedMessages->all();
 
         /***** Untranslated *****/
         $untranslatedMessages = array();
