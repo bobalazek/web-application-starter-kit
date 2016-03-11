@@ -63,7 +63,7 @@ class SettingsController
                         $app['flashbag']->add(
                             'success',
                             $app['translator']->trans(
-                                'members-area.settings.save.successText'
+                                'The settings were successfully saved!'
                             )
                         );
                     } catch (\Exception $e) {
@@ -82,7 +82,7 @@ class SettingsController
                     $app['flashbag']->add(
                         'info',
                         $app['translator']->trans(
-                            'members-area.settings.save.noChangeText'
+                            'No changes were saved!'
                         )
                     );
                 }

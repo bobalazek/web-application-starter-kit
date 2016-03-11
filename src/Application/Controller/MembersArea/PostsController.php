@@ -104,7 +104,7 @@ class PostsController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.posts.new.successText'
+                        'A new post was successfully created!'
                     )
                 );
 
@@ -175,7 +175,7 @@ class PostsController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.posts.edit.successText'
+                        'The post was successfully edited!'
                     )
                 );
 
@@ -265,7 +265,10 @@ class PostsController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.posts.remove.successText'
+                        'The post "%post%" was successfully removed!',
+                        array(
+                            '%post%' => $post,
+                        )
                     )
                 );
             } catch (\Exception $e) {

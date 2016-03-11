@@ -112,7 +112,7 @@ class UsersController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.users.new.successText'
+                        'A new user was successfully created!'
                     )
                 );
 
@@ -240,7 +240,7 @@ class UsersController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.users.edit.successText'
+                        'The user was successfully edited!'
                     )
                 );
 
@@ -321,7 +321,10 @@ class UsersController
                 $app['flashbag']->add(
                     'success',
                     $app['translator']->trans(
-                        'members-area.users.remove.successText'
+                        'The user "%user%" was successfully removed!',
+                        array(
+                            '%user%' => $user,
+                        )
                     )
                 );
             } catch (\Exception $e) {
