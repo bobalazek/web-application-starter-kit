@@ -1,6 +1,6 @@
 {% extends 'layouts/members-area.html.twig' %}
 
-{% block title %}{{ user.getProfile().getName() }} | {{ 'Users' | trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ user }} | {{ 'Users' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
     <div class="row">

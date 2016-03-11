@@ -1,6 +1,6 @@
 {% extends 'layouts/members-area.html.twig' %}
 
-{% block title %}{{ 'Remove' | trans }} | {{ 'Posts' | trans }} | {{ parent() }}{% endblock %}
+{% block title %}{{ 'Remove' | trans }} | {{ post ? post : posts | join(', ') }} | {{ 'Posts' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
     <h1>
