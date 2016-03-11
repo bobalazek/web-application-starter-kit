@@ -139,7 +139,7 @@
                                 {{ (user.isLocked() ? 'Yes' : 'No') | trans }}
                             </div>
                         </td>
-                        <td>{{ user.getRoles()|join(', ') }}</td>
+                        <td>{{ user.getRoles() | join(', ') }}</td>
                         <td>{{ user.getTimeCreated() | date(app.date_time_format) }}</td>
                         <td>
                             {% if user.getTimeLastActive() %}
