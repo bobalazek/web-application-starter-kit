@@ -840,7 +840,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             'first_name' => $this->getProfile()->getFirstName(),
             'last_name' => $this->getProfile()->getLastName(),
             'full_name' => $this->getProfile()->getFullName(),
-            'time_created' => $this->getTimeCreated()->toArray(DATE_ATOM),
+            'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
         );
     }
 
