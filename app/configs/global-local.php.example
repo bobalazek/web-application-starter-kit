@@ -2,7 +2,7 @@
 
 return array(
     // Database / Doctrine options
-    'databaseOptions' => array(
+    'database_options' => array(
         'default' => array(
             'driver' => 'pdo_mysql',
             'host' => 'localhost',
