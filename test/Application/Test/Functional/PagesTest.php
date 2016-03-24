@@ -113,7 +113,7 @@ class PagesTest extends WebTestCase
         return array(
             '/members-area',
             '/members-area/my/profile',
-            '/members-area/my/settings',
+            // '/members-area/my/settings', // To-Do
             '/members-area/my/password',
         );
     }
