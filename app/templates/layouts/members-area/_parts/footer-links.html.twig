@@ -2,17 +2,19 @@
     <ul id="footer-links-list"
         class="list-unstyled text-center">
         <li>
-            <a href="{{ app.baseUrl }}/members-area/login">
+            <a href="{{ url('members-area.login') }}">
                 {{ 'Login' | trans }}
             </a>
         </li>
+        {% if app.user_system_options.registrations_enabled %}
+            <li>
+                <a href="{{ url('members-area.register') }}">
+                    {{ 'Register' | trans }}
+                </a>
+            </li>
+        {% endif %}
         <li>
-            <a href="{{ app.baseUrl }}/members-area/register">
-                {{ 'Register' | trans }}
-            </a>
-        </li>
-        <li>
-            <a href="{{ app.baseUrl }}/members-area/reset-password">
+            <a href="{{ url('members-area.reset-password') }}">
                 {{ 'Reset password' | trans }}
             </a>
         </li>
