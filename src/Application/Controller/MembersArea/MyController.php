@@ -54,10 +54,14 @@ class MyController
             $app['user']
         );
 
+        // Security fix
+        $currentUserUsername = $app['user']->getUsername();
+
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
-            // Important, to prevent the user to stay impersonated!
-            $app['orm.em']->refresh($app['user']);
+           
+            // Security fix
+            $app['user']->setUsername($currentUserUsername);
 
             if ($form->isValid()) {
                 $userEntity = $form->getData();
