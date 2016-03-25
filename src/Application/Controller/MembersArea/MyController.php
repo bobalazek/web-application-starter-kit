@@ -54,14 +54,8 @@ class MyController
             $app['user']
         );
 
-        // Security fix
-        $currentUserUsername = $app['user']->getUsername();
-
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
-           
-            // Security fix
-            $app['user']->setUsername($currentUserUsername);
 
             if ($form->isValid()) {
                 $userEntity = $form->getData();
@@ -83,6 +77,8 @@ class MyController
                         'Your settings were successfully saved!'
                     )
                 );
+            } else {
+                $app['orm.em']->refresh($app['user']);
             }
         }
 
