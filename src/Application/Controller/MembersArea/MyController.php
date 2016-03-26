@@ -47,8 +47,6 @@ class MyController
      */
     public function settingsAction(Request $request, Application $app)
     {
-        $data = array();
-
         $form = $app['form.factory']->create(
             new SettingsType(),
             $app['user']
@@ -82,12 +80,12 @@ class MyController
             }
         }
 
-        $data['form'] = $form->createView();
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/my/settings.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                )
             )
         );
     }
@@ -100,8 +98,6 @@ class MyController
      */
     public function passwordAction(Request $request, Application $app)
     {
-        $data = array();
-
         $form = $app['form.factory']->create(
             new PasswordType(),
             $app['user']
@@ -132,12 +128,12 @@ class MyController
             }
         }
 
-        $data['form'] = $form->createView();
-
         return new Response(
             $app['twig']->render(
                 'contents/members-area/my/password.html.twig',
-                $data
+                array(
+                    'form' => $form->createView(),
+                )
             )
         );
     }
