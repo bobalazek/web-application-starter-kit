@@ -42,17 +42,14 @@ $app->before(function (Request $request) use ($app) {
         ? $request->cookies->get('locale')
         : false
     ;
-    $localeFromQueryOrHeaders = false;
 
     // If locale is passed tought the query
     if ($request->query->get('locale', false)) {
         $localeCookie = $request->query->get('locale', false);
-        $localeFromQueryOrHeaders = true;
     }
 
     if ($request->headers->get('Locale', false)) {
         $localeCookie = $request->headers->get('Locale', false);
-        $localeFromQueryOrHeaders = true;
     }
 
     if ($localeCookie &&
@@ -62,10 +59,6 @@ $app->before(function (Request $request) use ($app) {
         $app['language_name'] = $app['locales'][$localeCookie]['language_name'];
         $app['country_code'] = $app['locales'][$localeCookie]['country_code'];
         $app['flag_code'] = $app['locales'][$localeCookie]['flag_code'];
-
-        if ($localeFromQueryOrHeaders) {
-            $app['forceLocale'] = $app['locale'];
-        }
     }
 
     $app['application.translator']->setLocale($app['locale']);
