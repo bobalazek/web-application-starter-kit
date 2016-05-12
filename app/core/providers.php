@@ -1,18 +1,17 @@
 <?php
 
-use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
-use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
-use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader as MappingYamlFileLoader;
+use Application\Doctrine\ORM\DoctrineManagerRegistry;
+use Application\EventListener;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Persistence\PersistentObject;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
 use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
-use Symfony\Component\Security\Core\AuthenticationEvents;
-use Symfony\Component\Security\Core\Event\AuthenticationEvent;
-use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Persistence\PersistentObject;
-use Application\Doctrine\ORM\DoctrineManagerRegistry;
+use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
+use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader as MappingYamlFileLoader;
 
 /***** Config *****/
 if (!file_exists(APP_DIR.'/configs/global.php')) {
@@ -421,17 +420,23 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
     return $emogrifier->emogrify();
 });
 
+/*** Profiler ***/
+if ($app['show_profiler']) {
+    $app->register(new Silex\Provider\HttpFragmentServiceProvider());
+    $app->register(new Silex\Provider\ServiceControllerServiceProvider());
+    $app->register(new Silex\Provider\WebProfilerServiceProvider(), array(
+        'profiler.cache_dir' => STORAGE_DIR.'/cache/profiler',
+        'profiler.mount_prefix' => '/_profiler',
+    ));
+}
+
 /*** Listeners ***/
-$app['dispatcher']->addListener(
-    AuthenticationEvents::AUTHENTICATION_SUCCESS,
-    function (AuthenticationEvent $event) use ($app) {
-        $user = $event->getAuthenticationToken()->getUser();
+if (isset($app['orm.em'])) {
+    $app['dispatcher']->addSubscriber(
+        new EventListener\AuthenticationEventsListener($app)
+    );
 
-        $user->setTimeLastActive(
-            new \DateTime()
-        );
-
-        $app['orm.em']->persist($user);
-        $app['orm.em']->flush();
-    }
-);
+    $app['dispatcher']->addSubscriber(
+        new EventListener\SecurityEventsListener($app)
+    );
+}

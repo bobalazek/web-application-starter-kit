@@ -34,6 +34,12 @@ $app->mount(
     new Application\ControllerProvider\MembersArea\UsersControllerProvider()
 );
 
+/******** User actions ********/
+$app->mount(
+    '/members-area/user-actions',
+    new Application\ControllerProvider\MembersArea\UserActionsControllerProvider()
+);
+
 /******** Posts ********/
 $app->mount(
     '/members-area/posts',

@@ -13,6 +13,12 @@
                 {{ 'Users' | trans }}
             </a>
         </li>
+        <li class="{{ path('members-area.user-actions') in app.currentUri ? 'active' : '' }}" role="presentation">
+            <a href="{{ url('members-area.user-actions') }}">
+                <i class="fa fa-fw fa-shield"></i>
+                {{ 'User actions' | trans }}
+            </a>
+        </li>
     {% endif %}
     {% if is_granted('ROLE_POSTS_EDITOR') or is_granted('ROLE_ADMIN') %}
         <li class="{{ path('members-area.posts') in app.currentUri ? 'active' : '' }}" role="presentation">

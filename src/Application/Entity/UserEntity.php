@@ -165,6 +165,13 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $posts;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Application\Entity\UserActionEntity", mappedBy="user", cascade={"all"})
+     */
+    protected $userActions;
+
+    /**
      * Otherwise known as: userExpired / accountExpired.
      *
      * @var bool
@@ -202,6 +209,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
         );
 
         $this->posts = new ArrayCollection();
+        $this->userActions = new ArrayCollection();
     }
 
     /*** Id ***/
@@ -757,6 +765,27 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     public function setPosts($posts)
     {
         $this->posts = $posts;
+
+        return $this;
+    }
+
+    /*** User actions ***/
+    /**
+     * @return array
+     */
+    public function getUserActions()
+    {
+        return $this->userActions->toArray();
+    }
+
+    /**
+     * @param $userActions
+     *
+     * @return UserEntity
+     */
+    public function setUserActions($userActions)
+    {
+        $this->userActions = $userActions;
 
         return $this;
     }
