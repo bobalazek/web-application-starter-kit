@@ -3,7 +3,21 @@
     <div class="row">
         <div class="col-md-4">
             <h3>{{ 'Profile' | trans }}</h3>
-            {{ form_row(form.profile) }}
+            {{ form_row(form.profile.title) }}
+            {{ form_row(form.profile.firstName) }}
+            {{ form_row(form.profile.middleName) }}
+            {{ form_row(form.profile.lastName) }}
+            {{ form_row(form.profile.gender) }}
+            {{ form_row(form.profile.birthdate) }}
+            {{ form_row(form.profile.image) }}
+            {% if user is defined and user.getProfile().getImageUrl() %}
+                <h4>{{ 'Current image' | trans }}</h4>
+                <img class="img-responsive"
+                    src="{{ user.getProfile().getImageUrl() }}"
+                    style="max-height: 100px;" />
+                {{ form_row(form.profile.removeImage) }}
+            {% endif %}
+            {% do form.profile.removeImage.setRendered %}
         </div>
         <div class="col-md-4">
             <h3>{{ 'Account' | trans }}</h3>

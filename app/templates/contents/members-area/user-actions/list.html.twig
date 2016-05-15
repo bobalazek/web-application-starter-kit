@@ -20,7 +20,6 @@
             <thead>
                 <tr>
                     <th>{{ paginator_sortable(pagination, 'User', 'u.username') }}</th>
-                    <th width="70">{{ paginator_sortable(pagination, 'Type', 'ua.type') }}</th>
                     <th>{{ paginator_sortable(pagination, 'Key', 'ua.key') }}</th>
                     <th>{{ paginator_sortable(pagination, 'Message', 'ua.message') }}</th>
                     <th>{{ 'Data' | trans }}</th>
@@ -38,7 +37,6 @@
                                 </a>
                             {% endif %}
                         </td>
-                        <td>{{ userAction.getType() }}</td>
                         <td>{{ userAction.getKey() }}</td>
                         <td>{{ userAction.getMessage() | trans }}</td>
                         <td>

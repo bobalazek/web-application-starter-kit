@@ -17,11 +17,11 @@ Application\Entity\UserEntity:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: email
-            message: 'This email is already in use'
+            message: 'This email is already in use!'
             groups: [ new, edit, register, settings ]
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: username
-            message: 'This username is already in use'
+            message: 'This username is already in use!'
             groups: [ new, edit, register, settings ]
     properties:
         username:

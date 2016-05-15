@@ -1,6 +1,14 @@
 {{ form_start(form) }}
     {{ form_row(form.title) }}
     {{ form_row(form.image) }}
+    {% if post is defined and post.getImageUrl() %}
+        <h4>{{ 'Current image' | trans }}</h4>
+        <img class="img-responsive"
+            src="{{ post.getImageUrl() }}"
+            style="max-height: 100px;" />
+        {{ form_row(form.removeImage) }}
+    {% endif %}
+    {% do form.removeImage.setRendered %}
     {{ form_row(form.content) }}
     {{ form_row(form.user) }}
     <div id="post-meta-wrapper">

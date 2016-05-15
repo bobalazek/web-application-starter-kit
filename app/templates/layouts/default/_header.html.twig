@@ -94,6 +94,11 @@
                                         {{ 'Password' | trans }}
                                     </a>
                                 </li>
+                                <li class="{{ path('members-area.my.actions') == app.currentUri ? 'active' : '' }}">
+                                    <a href="{{ url('members-area.my.actions') }}">
+                                        {{ 'Actions' | trans }}
+                                    </a>
+                                </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ app.logoutUrl }}">

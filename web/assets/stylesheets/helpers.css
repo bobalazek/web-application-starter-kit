@@ -240,3 +240,30 @@
 .max-width-80 {
     max-width: 80px;
 }
+
+/*** Syntax highlight ***/
+pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
+
+pre .string {
+    color: green;
+}
+
+pre .number {
+    color: darkorange;
+}
+
+pre .boolean {
+    color: blue;
+}
+
+pre .null {
+    color: magenta;
+}
+
+pre .key {
+    color: red;
+}

@@ -36,13 +36,6 @@ class UserActionEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=64, nullable=true)
-     */
-    protected $type;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="message", type="text", nullable=true)
      */
     protected $message;
@@ -127,27 +120,6 @@ class UserActionEntity
     public function setKey($key)
     {
         $this->key = $key;
-
-        return $this;
-    }
-
-    /*** Type ***/
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param $type
-     *
-     * @return UserActionEntity
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
 
         return $this;
     }

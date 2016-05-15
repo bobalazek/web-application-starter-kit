@@ -49,7 +49,6 @@ class UserActionsController
                     'p.firstName',
                     'p.middleName',
                     'p.lastName',
-                    'ua.type',
                     'ua.key',
                     'ua.message',
                     'ua.data',

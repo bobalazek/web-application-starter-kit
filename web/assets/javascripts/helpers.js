@@ -21,7 +21,7 @@
     }
 }());
 
-/*** Syntax ***/
+/*** Syntax highlight ***/
 function syntaxHighlight(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 

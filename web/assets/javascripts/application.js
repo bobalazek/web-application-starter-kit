@@ -65,6 +65,9 @@ var Application = function () {
                     url.removeQuery(searchParameter);
                     url.addQuery(searchParameter, value);
 
+                    url.removeQuery(pageParameter);
+                    url.addQuery(pageParameter, 1);
+
                     window.location.href = url.toString();
                 });
 

@@ -2,10 +2,10 @@
 
 namespace Application\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Doctrine\Common\Collections\ArrayCollection;
 use Cocur\Slugify\Slugify;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Post Entity.
@@ -80,6 +80,11 @@ class PostEntity extends AbstractImageUpload
      * @var array
      */
     protected $metas;
+
+    /**
+     * @var bool
+     */
+    protected $removeImage = false;
 
     /**
      * Constructor.
@@ -348,6 +353,27 @@ class PostEntity extends AbstractImageUpload
                 ;
             }
         }
+    }
+
+    /*** Remove image ***/
+    /**
+     * @return bool
+     */
+    public function getRemoveImage()
+    {
+        return $this->removeImage;
+    }
+
+    /**
+     * @param bool $removeImage
+     *
+     * @return PostEntity
+     */
+    public function setRemoveImage($removeImage)
+    {
+        $this->removeImage = $removeImage;
+
+        return $this;
     }
 
     /**

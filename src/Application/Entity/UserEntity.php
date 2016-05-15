@@ -3,8 +3,8 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
 /**
@@ -858,19 +858,33 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
+     * @param $allData Show all the data for this user.
+     *
      * @return array
      */
-    public function toArray()
+    public function toArray($allData = true)
     {
-        return array(
-            'id' => $this->getId(),
+        $data = array(
             'username' => $this->getUsername(),
             'email' => $this->getEmail(),
+            'title' => $this->getProfile()->getTitle(),
             'first_name' => $this->getProfile()->getFirstName(),
+            'middle_name' => $this->getProfile()->getMiddleName(),
             'last_name' => $this->getProfile()->getLastName(),
             'full_name' => $this->getProfile()->getFullName(),
-            'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
+            'gender' => $this->getProfile()->getGender(),
+            'birthdate' => $this->getProfile()->getBirthdate()->format('Y-m-d'),
+            'image_url' => $this->getProfile()->getImageUrl(),
         );
+
+        if ($allData) {
+            $data = array_merge($data, array(
+                'id' => $this->getId(),
+                'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
+            ));
+        }
+
+        return $data;
     }
 
     /**

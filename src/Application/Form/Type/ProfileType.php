@@ -53,6 +53,14 @@ class ProfileType extends AbstractType
         $builder->add('image', 'file', array(
             'required' => false,
         ));
+        $builder->add('removeImage', 'checkbox', array(
+            'required' => false,
+            'data' => false,
+            'label' => 'Remove image?',
+            'attr' => array(
+                'data-help-text' => 'Should the image be removed (goes into effect after the save)?',
+            ),
+        ));
     }
 
     /**

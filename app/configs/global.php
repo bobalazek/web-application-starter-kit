@@ -3,9 +3,9 @@
 return array(
     'environment' => 'development',
     'debug' => true,
-    'show_profiler' => true,
+    'show_profiler' => false,
     'name' => 'Web Application Starter Kit',
-    'version' => '1.1.0',
+    'version' => '1.2.0',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
@@ -17,8 +17,8 @@ return array(
     'language_name' => 'English',
     'country_code' => 'us', // Default country code
     'flag_code' => 'us',
-    'date_format' => 'd.m.Y',
-    'date_time_format' => 'd.m.Y H:i:s',
+    'date_format' => 'm/d/Y',
+    'date_time_format' => 'm/d/Y H:i:s',
 
     'locales' => array( // All available locales
         'en_US' => array(
@@ -26,8 +26,8 @@ return array(
             'language_name' => 'English',
             'country_code' => 'us',
             'flag_code' => 'us',
-            'date_format' => 'd.m.Y',
-            'date_time_format' => 'd.m.Y H:i:s',
+            'date_format' => 'm/d/Y',
+            'date_time_format' => 'm/d/Y H:i:s',
         ),
         'de_DE' => array(
             'language_code' => 'de',

@@ -43,6 +43,12 @@ class MyControllerProvider implements ControllerProviderInterface
         )
         ->bind('members-area.my.password');
 
+        $controllers->match(
+            '/actions',
+            'Application\Controller\MembersArea\MyController::actionsAction'
+        )
+        ->bind('members-area.my.actions');
+
         return $controllers;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Application\Controller\MembersArea;
 
+use Application\Form\Type\SettingsType;
+use Application\Entity\SettingEntity;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Form\Type\SettingsType;
-use Application\Entity\SettingEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>

@@ -2,12 +2,12 @@
 
 namespace Application\Provider;
 
+use Application\Entity\UserEntity;
+use Silex\Application;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Application\Entity\UserEntity;
-use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>

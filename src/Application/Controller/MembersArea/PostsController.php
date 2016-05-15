@@ -2,11 +2,11 @@
 
 namespace Application\Controller\MembersArea;
 
+use Application\Form\Type\PostType;
+use Application\Entity\PostEntity;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Form\Type\PostType;
-use Application\Entity\PostEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -161,6 +161,10 @@ class PostsController
 
             if ($form->isValid()) {
                 $postEntity = $form->getData();
+
+                if ($postEntity->getRemoveImage()) {
+                    $postEntity->setImageUrl(null);
+                }
 
                 /*** Image ***/
                 $postEntity

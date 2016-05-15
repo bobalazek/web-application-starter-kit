@@ -2,10 +2,10 @@
 
 namespace Application\Command\Environment;
 
+use Application\Tool\Environment;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Application\Tool\Environment;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>

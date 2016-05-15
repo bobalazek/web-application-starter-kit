@@ -83,6 +83,11 @@ class ProfileEntity extends AbstractImageUpload
      */
     protected $user;
 
+    /**
+     * @var bool
+     */
+    protected $removeImage = false;
+
     /*** Id ***/
     /**
      * @return int
@@ -288,6 +293,27 @@ class ProfileEntity extends AbstractImageUpload
     public function setUser(UserEntity $user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /*** Remove image ***/
+    /**
+     * @return bool
+     */
+    public function getRemoveImage()
+    {
+        return $this->removeImage;
+    }
+
+    /**
+     * @param bool $removeImage
+     *
+     * @return PostEntity
+     */
+    public function setRemoveImage($removeImage)
+    {
+        $this->removeImage = $removeImage;
 
         return $this;
     }

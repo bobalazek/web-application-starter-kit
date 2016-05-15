@@ -46,7 +46,6 @@ class AuthenticationEventsListener implements EventSubscriberInterface
         $userActionEntity
             ->setUser($user)
             ->setKey('user.login.fail')
-            ->setType('event')
             ->setMessage('An user has tried to log in!')
             ->setData(array(
                 'username' => $authenticationToken->getUser(),

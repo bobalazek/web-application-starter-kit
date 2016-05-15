@@ -2,11 +2,12 @@
 
 namespace Application\Controller\MembersArea;
 
+use Application\Entity\UserActionEntity;
+use Application\Form\Type\User\SettingsType;
+use Application\Form\Type\User\PasswordType;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Form\Type\User\SettingsType;
-use Application\Form\Type\User\PasswordType;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -47,6 +48,8 @@ class MyController
      */
     public function settingsAction(Request $request, Application $app)
     {
+        $userOld = $app['user']->toArray(false);
+
         $form = $app['form.factory']->create(
             new SettingsType(),
             $app['user']
@@ -58,6 +61,10 @@ class MyController
             if ($form->isValid()) {
                 $userEntity = $form->getData();
 
+                if ($userEntity->getProfile()->getRemoveImage()) {
+                    $userEntity->getProfile()->setImageUrl(null);
+                }
+
                 /*** Image ***/
                 $userEntity
                     ->getProfile()
@@ -65,8 +72,22 @@ class MyController
                     ->setImageUploadDir(WEB_DIR.'/assets/uploads/')
                     ->imageUpload()
                 ;
-
                 $app['orm.em']->persist($userEntity);
+
+                $userActionEntity = new UserActionEntity();
+                $userActionEntity
+                    ->setUser($userEntity)
+                    ->setKey('user.settings.change')
+                    ->setMessage('User has changed his settings!')
+                    ->setData(array(
+                        'old' => $userOld,
+                        'new' => $app['user']->toArray(false),
+                    ))
+                    ->setIp($app['request']->getClientIp())
+                    ->setUserAgent($app['request']->headers->get('User-Agent'))
+                ;
+                $app['orm.em']->persist($userActionEntity);
+
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(
@@ -116,6 +137,17 @@ class MyController
                     );
 
                     $app['orm.em']->persist($userEntity);
+
+                    $userActionEntity = new UserActionEntity();
+                    $userActionEntity
+                        ->setUser($userEntity)
+                        ->setKey('user.password.change')
+                        ->setMessage('User has changed his password!')
+                        ->setIp($app['request']->getClientIp())
+                        ->setUserAgent($app['request']->headers->get('User-Agent'))
+                    ;
+                    $app['orm.em']->persist($userActionEntity);
+
                     $app['orm.em']->flush();
 
                     $app['flashbag']->add(
@@ -133,6 +165,50 @@ class MyController
                 'contents/members-area/my/password.html.twig',
                 array(
                     'form' => $form->createView(),
+                )
+            )
+        );
+    }
+
+    /**
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return Response
+     */
+    public function actionsAction(Request $request, Application $app)
+    {
+        $limitPerPage = $request->query->get('limit_per_page', 20);
+        $currentPage = $request->query->get('page');
+
+        $userActionResults = $app['orm.em']
+            ->createQueryBuilder()
+            ->select('ua')
+            ->from('Application\Entity\UserActionEntity', 'ua')
+            ->where('ua.user = ?1')
+            ->setParameter(1, $app['user'])
+        ;
+
+        $pagination = $app['paginator']->paginate(
+            $userActionResults,
+            $currentPage,
+            $limitPerPage,
+            array(
+                'route' => 'members-area.my.actions',
+                'defaultSortFieldName' => 'ua.timeCreated',
+                'defaultSortDirection' => 'desc',
+                'searchFields' => array(
+                    'ua.key',
+                    'ua.ip',
+                ),
+            )
+        );
+
+        return new Response(
+            $app['twig']->render(
+                'contents/members-area/my/actions.html.twig',
+                array(
+                    'pagination' => $pagination,
                 )
             )
         );

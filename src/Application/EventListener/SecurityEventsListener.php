@@ -30,7 +30,6 @@ class SecurityEventsListener implements EventSubscriberInterface
         $userActionEntity
             ->setUser($user)
             ->setKey('user.login')
-            ->setType('event')
             ->setMessage('User has been logged in!')
             ->setIp($app['request']->getClientIp())
             ->setUserAgent($app['request']->headers->get('User-Agent'))
@@ -58,7 +57,6 @@ class SecurityEventsListener implements EventSubscriberInterface
             $userActionEntity
                 ->setUser($targetUser)
                 ->setKey('user.switch.back')
-                ->setType('event')
                 ->setMessage(
                     'User has switched back to own user (from user with ID "'.$user->getId().'")!'
                 )
@@ -77,7 +75,6 @@ class SecurityEventsListener implements EventSubscriberInterface
             $userActionEntity
                 ->setUser($user)
                 ->setKey('user.switch')
-                ->setType('event')
                 ->setMessage(
                     'User has switched to user with ID "'.$targetUser->getId().'"!'
                 )

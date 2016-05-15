@@ -2,8 +2,8 @@
 
 namespace Application\Entity;
 
-use Symfony\Component\HttpFoundation\File\File;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Abstract image upload.

@@ -2,11 +2,11 @@
 
 namespace Application\Controller\MembersArea;
 
+use Application\Form\Type\UserType;
+use Application\Entity\UserEntity;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Form\Type\UserType;
-use Application\Entity\UserEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -218,6 +218,10 @@ class UsersController
                     );
                 }
 
+                if ($userEntity->getProfile()->getRemoveImage()) {
+                    $userEntity->getProfile()->setImageUrl(null);
+                }
+
                 /*** Image ***/
                 $userEntity
                     ->getProfile()
@@ -229,7 +233,7 @@ class UsersController
                 /*** Password ***/
                 if ($userEntity->getPlainPassword()) {
                     $userEntity->setPlainPassword(
-                        $userEntity->getPlainPassword(), // This getPassword() is here just the plain password. That's why we need to convert it
+                        $userEntity->getPlainPassword(),
                         $app['security.encoder_factory']
                     );
                 }

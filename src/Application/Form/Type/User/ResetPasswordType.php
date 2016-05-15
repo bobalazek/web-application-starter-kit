@@ -34,6 +34,12 @@ class ResetPasswordType extends AbstractType
                 'second_name' => 'repeatPassword',
                 'required' => false,
                 'invalid_message' => 'The password is invalid',
+                'first_options'  => array(
+                    'label' => 'New password',
+                ),
+                'second_options' => array(
+                    'label' => 'Repeat new Password',
+                ),
             ));
         } else {
             $builder->add('email', 'email');
@@ -73,6 +79,6 @@ class ResetPasswordType extends AbstractType
      */
     public function getName()
     {
-        return ''; // we don't want any input name wrapper
+        return 'user';
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Application\Command\Database;
 
+use Application\Entity\UserEntity;
+use Application\Entity\ProfileEntity;
+use Silex\Application;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Application\Entity\UserEntity;
-use Application\Entity\ProfileEntity;
-use Silex\Application;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>

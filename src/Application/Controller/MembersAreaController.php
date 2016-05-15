@@ -2,12 +2,13 @@
 
 namespace Application\Controller;
 
+use Application\Entity\UserEntity;
+use Application\Entity\UserActionEntity;
+use Application\Form\Type\User\RegisterType;
+use Application\Form\Type\User\ResetPasswordType;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Application\Form\Type\User\RegisterType;
-use Application\Form\Type\User\ResetPasswordType;
-use Application\Entity\UserEntity;
 
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
@@ -228,8 +229,18 @@ class MembersAreaController
                                 $app['security.encoder_factory']
                             )
                         ;
-
                         $app['orm.em']->persist($userEntity);
+
+                        $userActionEntity = new UserActionEntity();
+                        $userActionEntity
+                            ->setUser($userEntity)
+                            ->setKey('user.password.reset')
+                            ->setMessage('User has reset his password!')
+                            ->setIp($app['request']->getClientIp())
+                            ->setUserAgent($app['request']->headers->get('User-Agent'))
+                        ;
+                        $app['orm.em']->persist($userActionEntity);
+
                         $app['orm.em']->flush();
 
                         $app['application.mailer']
@@ -264,22 +275,46 @@ class MembersAreaController
                         ->getRepository('Application\Entity\UserEntity')
                         ->findOneByEmail(
                             $temporaryUserEntity->getEmail()
-                        );
+                        )
+                    ;
 
                     if ($userEntity) {
-                        $app['application.mailer']
-                            ->swiftMessageInitializeAndSend(array(
-                                'subject' => $app['name'].' - '.$app['translator']->trans('Reset password'),
-                                'to' => array($userEntity->getEmail()),
-                                'body' => 'emails/users/reset-password.html.twig',
-                                'templateData' => array(
-                                    'user' => $userEntity,
-                                ),
-                            ))
+                        $userEntity
+                            ->setResetPasswordCode(md5(uniqid(null, true)))
                         ;
+                        $app['orm.em']->persist($userEntity);
 
-                        $alert = 'success';
-                        $alertMessage = 'We have sent you an email. The link inside the email will lead you to a reset page.';
+                        $userActionEntity = new UserActionEntity();
+                        $userActionEntity
+                            ->setUser($userEntity)
+                            ->setKey('user.password.request')
+                            ->setMessage('User has requested a password reset!')
+                            ->setIp($app['request']->getClientIp())
+                            ->setUserAgent($app['request']->headers->get('User-Agent'))
+                        ;
+                        $app['orm.em']->persist($userActionEntity);
+
+                        // In the REALLY unlikely case that the reset password code wouldn't be unique
+                        try {
+                            $app['orm.em']->flush();
+
+                            $app['application.mailer']
+                                ->swiftMessageInitializeAndSend(array(
+                                    'subject' => $app['name'].' - '.$app['translator']->trans('Reset password'),
+                                    'to' => array($userEntity->getEmail()),
+                                    'body' => 'emails/users/reset-password.html.twig',
+                                    'templateData' => array(
+                                        'user' => $userEntity,
+                                    ),
+                                ))
+                            ;
+
+                            $alert = 'success';
+                            $alertMessage = 'We have sent you an email. The link inside the email will lead you to a reset page.';
+                        } catch (\Exception $e) {
+                            $alert = 'danger';
+                            $alertMessage = 'Whops. Something went wrong. Please try again.';
+                        }
                     } else {
                         $alert = 'danger';
                         $alertMessage = 'This email was not found in our database.';
