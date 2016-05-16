@@ -1,3 +1,10 @@
+## 1.3.3 (2016-05-16)
+Bugs:
+* Fix locale directory
+
+Other:
+* Upgraded some bower dependencies
+
 ## 1.3.2 (2016-05-16)
 Bugs:
 * Fixed gitignore
