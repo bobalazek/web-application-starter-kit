@@ -1,0 +1,15 @@
+{% extends 'layouts/email.html.twig' %}
+
+{% block main %}
+    <table class="row note">
+        <tr>
+            <td class="wrapper last">
+                <h4>
+                    {{ 'Hello' | trans }}
+                    <b>{{ user.getProfile().getFullName() }}</b>!
+                </h4>
+                <p>{{ 'Your email has been successfully changed!' | trans }}</p>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

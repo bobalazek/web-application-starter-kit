@@ -1,0 +1,26 @@
+{% extends 'layouts/email.html.twig' %}
+
+{% block main %}
+    <table class="row note">
+        <tr>
+            <td class="wrapper last">
+                <h4>
+                    {{ 'Hello' | trans }}
+                    <b>{{ user.getProfile().getFullName() }}</b>!
+                </h4>
+                <p>{{ 'Please click the link below, to confirm you email change' | trans }}:</p>
+                <table class="twelve columns">
+                    <tr>
+                        <td class="panel">
+                            <a href="{{ url('members-area.my.settings', { new_email_code: user.getNewEmailCode() }) }}" target="_blank">
+                                {{ url('members-area.my.settings', { new_email_code: user.getNewEmailCode() }) }}
+                            </a>
+                        </td>
+                        <td class="expander"></td>
+                    </tr>
+                </table>
+                <p>{{ 'If the link does not work, copy and paste it into your browser window' | trans }}</p>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

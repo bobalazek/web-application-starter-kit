@@ -110,17 +110,24 @@ $app->error(function (\Exception $e, $code) use ($app) {
         isset($app['orm.em']) &&
         $app['error_options']['save_into_the_database']
     ) {
+        // A more "friendly" exception version (without stack trace)
+        $exception = new \stdClass();
+        $exception->message = $e->getMessage();
+        $exception->code = $e->getCode();
+        $exception->file = $e->getFile();
+        $exception->line = $e->getLine();
+
         $errorEntity = new ErrorEntity();
         $errorEntity
             ->setCode($code)
             ->setMessage($e->getMessage())
-            ->setException(json_encode($e))
+            ->setException(json_encode($exception))
         ;
         $app['orm.em']->persist($errorEntity);
         $app['orm.em']->flush();
     }
 
-    // 404.html, or 40x.html, or 4xx.html, or default.html
+    // 404.html, or 40x.html, or 4xx.html or default.html
     $templates = array(
         'contents/errors/'.$code.'.html.twig',
         'contents/errors/'.substr($code, 0, 2).'x.html.twig',

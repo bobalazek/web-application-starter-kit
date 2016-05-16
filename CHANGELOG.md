@@ -1,3 +1,11 @@
+## 1.3 (2016-05-16)
+Bugs:
+* Reset password code expires
+* Change email needs confirmation
+* Show exception data in errors
+* Full name fix
+* Typo fixes
+
 ## 1.2 (2016-05-15)
 Bugs:
 * Search fix (should always start from page 1 when doing a search)

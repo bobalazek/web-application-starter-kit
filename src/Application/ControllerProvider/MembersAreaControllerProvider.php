@@ -52,6 +52,12 @@ class MembersAreaControllerProvider implements ControllerProviderInterface
         )
         ->bind('members-area.reset-password');
 
+        $controllers->match(
+            '/new-email',
+            'Application\Controller\MembersAreaController::newEmailAction'
+        )
+        ->bind('members-area.new-email');
+
         return $controllers;
     }
 }

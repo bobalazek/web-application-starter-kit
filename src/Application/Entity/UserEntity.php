@@ -51,6 +51,15 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $email;
 
     /**
+     * We must confirm the new password, so temporary save it inside this field.
+     *
+     * @var string
+     *
+     * @ORM\Column(name="new_email", type="string", length=64)
+     */
+    protected $newEmail;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="json_array", nullable=true)
@@ -95,7 +104,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $token;
 
     /**
-     * Used for authentification & co.
+     * Used for authentication & co.
      *
      * @var string
      *
@@ -132,11 +141,25 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $activationCode;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="new_email_code", type="string", length=255, nullable=true, unique=true)
+     */
+    protected $newEmailCode;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="time_last_active", type="datetime", nullable=true)
      */
     protected $timeLastActive;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_reset_password_code_expires", type="datetime", nullable=true)
+     */
+    protected $timeResetPasswordCodeExpires;
 
     /**
      * @var \DateTime
@@ -205,6 +228,10 @@ class UserEntity implements AdvancedUserInterface, \Serializable
         );
 
         $this->setResetPasswordCode(
+            md5(uniqid(null, true))
+        );
+
+        $this->setNewEmailCode(
             md5(uniqid(null, true))
         );
 
@@ -292,6 +319,27 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /*** New email ***/
+    /**
+     * @return string
+     */
+    public function getNewEmail()
+    {
+        return $this->newEmail;
+    }
+
+    /**
+     * @param string $newEmail
+     *
+     * @return UserEntity
+     */
+    public function setNewEmail($newEmail)
+    {
+        $this->newEmail = $newEmail;
 
         return $this;
     }
@@ -572,6 +620,27 @@ class UserEntity implements AdvancedUserInterface, \Serializable
         return $this;
     }
 
+    /*** New email code ***/
+    /**
+     * @return string
+     */
+    public function getNewEmailCode()
+    {
+        return $this->newEmailCode;
+    }
+
+    /**
+     * @param string $newEmailCode
+     *
+     * @return UserEntity
+     */
+    public function setNewEmailCode($newEmailCode)
+    {
+        $this->newEmailCode = $newEmailCode;
+
+        return $this;
+    }
+
     /*** Time last active ***/
     /**
      * @return \DateTime
@@ -589,6 +658,27 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     public function setTimeLastActive(\Datetime $timeLastActive = null)
     {
         $this->timeLastActive = $timeLastActive;
+
+        return $this;
+    }
+
+    /*** Time reset password code expires ***/
+    /**
+     * @return \DateTime
+     */
+    public function getTimeResetPasswordCodeExpires()
+    {
+        return $this->timeResetPasswordCodeExpires;
+    }
+
+    /**
+     * @param $timeResetPasswordCodeExpires
+     *
+     * @return UserEntity
+     */
+    public function setTimeResetPasswordCodeExpires(\Datetime $timeResetPasswordCodeExpires = null)
+    {
+        $this->timeResetPasswordCodeExpires = $timeResetPasswordCodeExpires;
 
         return $this;
     }

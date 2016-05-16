@@ -48,12 +48,63 @@ class MyController
      */
     public function settingsAction(Request $request, Application $app)
     {
-        $userOld = $app['user']->toArray(false);
+        $userOld = clone $app['user'];
+        $userOldArray = $userOld->toArray(false);
 
         $form = $app['form.factory']->create(
             new SettingsType(),
             $app['user']
         );
+        $newEmailCode = $request->query->get('new_email_code');
+
+        if ($newEmailCode) {
+            $userByNewEmailCode = $app['orm.em']
+                ->getRepository('Application\Entity\UserEntity')
+                ->findOneByNewEmailCode($newEmailCode)
+            ;
+
+            if (
+                $userByNewEmailCode &&
+                $userByNewEmailCode === $app['user']
+            ) {
+                $app['user']
+                    ->setNewEmailCode(null)
+                    ->setEmail($app['user']->getNewEmail())
+                    ->setNewEmail(null)
+                ;
+                $app['orm.em']->persist($app['user']);
+                $app['orm.em']->flush();
+
+                $app['application.mailer']
+                    ->swiftMessageInitializeAndSend(array(
+                        'subject' => $app['name'].' - '.$app['translator']->trans('Email change confirmation'),
+                        'to' => array($app['user']->getEmail()),
+                        'body' => 'emails/users/new-email-confirmation.html.twig',
+                        'templateData' => array(
+                            'user' => $app['user'],
+                        ),
+                    ))
+                ;
+
+                $app['flashbag']->add(
+                    'success',
+                    $app['translator']->trans(
+                        'You have successfully changed to your new email address!'
+                    )
+                );
+            } else {
+                $app['flashbag']->add(
+                    'warning',
+                    $app['translator']->trans(
+                        'The new email code is invalid. Please request your new password again!'
+                    )
+                );
+            }
+
+            return $app->redirect(
+                $app['url_generator']->generate('members-area.my.settings')
+            );
+        }
 
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
@@ -74,14 +125,40 @@ class MyController
                 ;
                 $app['orm.em']->persist($userEntity);
 
+                if ($userOld->getEmail() !== $userEntity->getEmail()) {
+                    $userEntity
+                        ->setNewEmailCode(md5(uniqid(null, true)))
+                        ->setNewEmail($userEntity->getEmail())
+                        ->setEmail($userOld->getEmail())
+                    ;
+
+                    $app['application.mailer']
+                        ->swiftMessageInitializeAndSend(array(
+                            'subject' => $app['name'].' - '.$app['translator']->trans('Email change'),
+                            'to' => array($userEntity->getNewEmail()),
+                            'body' => 'emails/users/new-email.html.twig',
+                            'templateData' => array(
+                                'user' => $userEntity,
+                            ),
+                        ))
+                    ;
+
+                    $app['flashbag']->add(
+                        'success',
+                        $app['translator']->trans(
+                            'Please confirm your new password, by clicking the confirmation link we just sent you to the new email address!'
+                        )
+                    );
+                }
+
                 $userActionEntity = new UserActionEntity();
                 $userActionEntity
                     ->setUser($userEntity)
                     ->setKey('user.settings.change')
                     ->setMessage('User has changed his settings!')
                     ->setData(array(
-                        'old' => $userOld,
-                        'new' => $app['user']->toArray(false),
+                        'old' => $userOldArray,
+                        'new' => $userEntity->toArray(false),
                     ))
                     ->setIp($app['request']->getClientIp())
                     ->setUserAgent($app['request']->headers->get('User-Agent'))
@@ -95,6 +172,10 @@ class MyController
                     $app['translator']->trans(
                         'Your settings were successfully saved!'
                     )
+                );
+
+                return $app->redirect(
+                    $app['url_generator']->generate('members-area.my.settings')
                 );
             } else {
                 $app['orm.em']->refresh($app['user']);

@@ -46,6 +46,11 @@
                 <h3>{{ 'Account' | trans }}</h3>
                 {{ form_row(form.username) }}
                 {{ form_row(form.email) }}
+                {% if app.user.getNewEmail() %}
+                    <div class="alert alert-info">
+                        {{ 'You have requested a new email (:email:). Please go to the inbox of that address and confirm it!' | trans({ ':email:': app.user.getNewEmail() }) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         {{ form_row(form.submitButton) }}

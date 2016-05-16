@@ -5,11 +5,13 @@ return array(
     'debug' => true,
     'show_profiler' => false,
     'name' => 'Web Application Starter Kit',
-    'version' => '1.2.0',
+    'version' => '1.3.0',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
-    'email' => array('info@bobalazek.com' => 'Web Application Starter Kit Mailer'),
+    'email' => array(
+        'info@bobalazek.com' => 'Web Application Starter Kit Mailer',
+    ),
 
     // Default Locale / Language stuff
     'locale' => 'en_US', // Default locale
@@ -100,6 +102,7 @@ return array(
             'ROLE_USER' => 'User',
         ),
         'registrations_enabled' => true,
+        'reset_password_expiry_time' => '15 minutes', // How how long should the token / code be valid? It also prevents the user from re-requesting the password again in this time-frame, so you may not set that too high
     ),
 
     // Error options

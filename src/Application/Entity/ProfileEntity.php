@@ -211,7 +211,7 @@ class ProfileEntity extends AbstractImageUpload
         return trim(
             $this->getTitle().' '.
             $this->getFirstName().' '.
-            $this->getMiddleName().' '.
+            ($this->getMiddleName() ? $this->getMiddleName().' ' : '').
             $this->getLastName()
         );
     }
