@@ -3,7 +3,7 @@
 *-local.php
 /composer.phar
 /app/configs/environments/development.php
-/app/locales/*_untranslated.yml
+/app/locales/*/*_untranslated.yml
 /var/*
 !/var/.gitkeep
 /vendor/

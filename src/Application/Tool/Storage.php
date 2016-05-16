@@ -10,6 +10,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class Storage
 {
     /**
+     * Prepare all the folders and files for storage.
      */
     public static function prepare()
     {
@@ -39,6 +40,7 @@ class Storage
     }
 
     /**
+     * Prepare the folders for storage.
      */
     public static function prepareFolders(array $paths = array(), $uploadsPath = false)
     {
@@ -58,6 +60,7 @@ class Storage
     }
 
     /**
+     * Prepare the uploads folder (so images can be uploaded).
      */
     public static function prepareUploadsFolder($uploadsDirectory)
     {
@@ -70,7 +73,7 @@ class Storage
         $uploadsDirectory = 'web/assets/uploads';
 
         if (!$fs->exists($uploadsDirectory)) {
-            $fs->mkdir($uploadsDirectory, 0777);
+            $fs->mkdir($uploadsDirectory, 0755);
         }
 
         $user = PHP_OS == 'Darwin' // Fix for OSX
@@ -80,50 +83,14 @@ class Storage
 
         try {
             $fs->chown($uploadsDirectory, $user);
-            $fs->chmod($uploadsDirectory, 0777);
+            $fs->chmod($uploadsDirectory, 0755);
         } catch (\Exception $e) {
             // Not sure If we need to show this errors. Let's think about that...
         }
     }
 
     /**
-     */
-    public static function prepareSharedFolders(array $paths = array())
-    {
-        if (empty($paths)) {
-            return false;
-        }
-
-        $fs = new Filesystem();
-
-        $releaseRoot = dirname(dirname(dirname(dirname(__FILE__)))).'/'; // Current version root
-        $root = dirname(dirname($releaseRoot));
-
-        $sharedDirectory = $root.'/shared/';
-
-        // Create the shared directory first (if it does not exists)
-        if (!$fs->exists($sharedDirectory)) {
-            $fs->mkdir($sharedDirectory, 0777);
-        }
-
-        foreach ($paths as $path) {
-            $pathDirectory = $releaseRoot.$path;
-            $sharedPathDirectory = $sharedDirectory.$path;
-
-            if (!$fs->exists($sharedPathDirectory)) {
-                $fs->mkdir($sharedPathDirectory, 0777);
-            }
-
-            $pathDirectoryTmp = $pathDirectory.'_tmp';
-
-            // Symlink it per hand
-            exec("ln -f -s $sharedPathDirectory $pathDirectoryTmp");
-            exec("rm -rf $pathDirectory");
-            exec("mv -Tf $pathDirectoryTmp $pathDirectory");
-        }
-    }
-
-    /**
+     * Prepare the log files.
      */
     public static function prepareLogFiles(array $paths)
     {

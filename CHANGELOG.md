@@ -1,3 +1,9 @@
+## 1.3.2 (2016-05-16)
+Bugs:
+* Fixed gitignore
+* Added test for user actions
+* Removed unused stuff in storage tool class
+
 ## 1.3.1 (2016-05-16)
 Other:
 * Changed locales structure and added validators for translation

@@ -115,6 +115,7 @@ class PagesTest extends WebTestCase
             '/members-area/my/profile',
             // '/members-area/my/settings', // To-Do
             '/members-area/my/password',
+            // '/members-area/my/actions', // To-Do
         );
     }
 
@@ -128,6 +129,7 @@ class PagesTest extends WebTestCase
         return array(
             '/members-area/users',
             '/members-area/users/new',
+            '/members-area/user-actions',
             '/members-area/posts',
             '/members-area/posts/new',
             // '/members-area/errors', // To-Do

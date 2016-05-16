@@ -10,7 +10,7 @@ README
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61/mini.png)](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61)
 [![Support via Gittip](http://img.shields.io/gittip/bobalazek.svg?style=flat-square)](https://www.gittip.com/bobalazek/)
 
-A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, reset password, profile, edit profile and change password), users, roles, simple statistics, settings and more.
+A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, reset password, profile, edit profile and change password), users, user actions, user roles, simple statistics, settings and more.
 
 
 Requirements & Tools & Helpers
