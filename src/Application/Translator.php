@@ -28,14 +28,26 @@ class Translator
      */
     public function setLocale($locale)
     {
-        $this->app['translator']->setLocale($locale);
+        $app = $this->app;
 
-        $localeFile = APP_DIR.'/locales/'.$this->app['locale'].'.yml';
-        if (file_exists($localeFile)) {
-            $this->app['translator']->addResource(
+        $app['translator']->setLocale($locale);
+
+        $localeMessagesFile = APP_DIR.'/locales/'.$app['locale'].'/messages.yml';
+        if (file_exists($localeMessagesFile)) {
+            $app['translator']->addResource(
                 'yaml',
-                $localeFile,
-                $this->app['locale']
+                $localeMessagesFile,
+                $app['locale']
+            );
+        }
+
+        $localeValidatorsFile = APP_DIR.'/locales/'.$app['locale'].'/validators.yml';
+        if (file_exists($localeValidatorsFile)) {
+            $app['translator']->addResource(
+                'yaml',
+                $localeValidatorsFile,
+                $app['locale'],
+                'validators'
             );
         }
     }
@@ -46,7 +58,7 @@ class Translator
     public function prepare(Application $app, $locale)
     {
         $templatesPath = APP_DIR.'/templates';
-        $untranslatedMessagesFile = APP_DIR.'/locales/'.$locale.'_untranslated.yml';
+        $untranslatedMessagesFile = APP_DIR.'/locales/'.$locale.'/messages_untranslated.yml';
 
         $extractor = new TwigExtractor($app['twig']);
 

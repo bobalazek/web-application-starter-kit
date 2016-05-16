@@ -1,3 +1,7 @@
+## 1.3.1 (2016-05-16)
+Other:
+* Changed locales structure and added validators for translation
+
 ## 1.3 (2016-05-16)
 Bugs:
 * Reset password code expires
