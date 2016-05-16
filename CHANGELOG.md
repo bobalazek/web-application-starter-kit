@@ -1,3 +1,7 @@
+## 1.3.4 (2016-05-16)
+Bugs:
+* Locales fix
+
 ## 1.3.3 (2016-05-16)
 Bugs:
 * Fix locale directory
