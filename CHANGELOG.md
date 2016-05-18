@@ -1,3 +1,7 @@
+## 1.3.5 (2016-05-17)
+Bugs:
+* User roles fix (reload user when roles change)
+
 ## 1.3.4 (2016-05-16)
 Bugs:
 * Locales fix

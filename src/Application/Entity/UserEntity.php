@@ -903,6 +903,10 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             return false;
         }
 
+        if (serialize($this->getRoles()) !== serialize($user->getRoles())) {
+            return false;
+        }
+
         return true;
     }
 
