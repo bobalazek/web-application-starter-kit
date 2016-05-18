@@ -1,3 +1,7 @@
+## 1.3.6 (2016-05-17)
+Other:
+* Minor tweaks (mostly documentation stuff)
+
 ## 1.3.5 (2016-05-17)
 Bugs:
 * User roles fix (reload user when roles change)
