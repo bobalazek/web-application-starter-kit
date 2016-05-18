@@ -25,6 +25,8 @@ class Translator
 
     /**
      * Sets the locale (if it can).
+     *
+     * @param string $locale
      */
     public function setLocale($locale)
     {
@@ -54,6 +56,11 @@ class Translator
 
     /**
      * Prepares and finds all the translated and untranslated string in tempates and controllers.
+     *
+     * @param Application $app
+     * @param string      $locale
+     *
+     * @return array
      */
     public function prepare(Application $app, $locale)
     {

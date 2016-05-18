@@ -10,9 +10,7 @@ use Silex\Application;
 class Mailer
 {
     protected $app;
-
     protected $swiftMessageInstance;
-    protected $swiftMessageInstanceTemplate;
 
     /**
      * @param Application $app
@@ -24,6 +22,8 @@ class Mailer
 
     /**
      * Prepares the (swift) email and sends it.
+     *
+     * @param array $data Swiftmailer data
      *
      * @return int
      *
@@ -98,11 +98,19 @@ class Mailer
     }
 
     /***** Swift Message Instance *****/
+    /**
+     * @return \Swift_Message
+     */
     public function getSwiftMessageInstance()
     {
         return $this->swiftMessageInstance;
     }
 
+    /**
+     * @param \Swift_Message $swiftMessageInstance
+     *
+     * @return Mailer
+     */
     public function setSwiftMessageInstance(\Swift_Message $swiftMessageInstance)
     {
         $this->swiftMessageInstance = $swiftMessageInstance;
@@ -112,6 +120,8 @@ class Mailer
 
     /**
      * Sends the (swift) email.
+     *
+     * @param mixed $swiftMessage
      */
     public function send($swiftMessage = false)
     {
@@ -124,6 +134,8 @@ class Mailer
 
     /**
      * Short for swift image.
+     *
+     * @param string $path
      */
     public function image($path)
     {

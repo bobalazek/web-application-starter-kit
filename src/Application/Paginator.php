@@ -22,10 +22,12 @@ class Paginator
     }
 
     /**
-     * @param $data
-     * @param $currentPage
-     * @param $limitPerPage
-     * @param $options
+     * @param mixed $data
+     * @param int   $currentPage
+     * @param int   $limitPerPage
+     * @param array $options
+     *
+     * @throws \Exception If searchFields $option key is set without the $data variable being type QueryBuilder.
      */
     public function paginate($data, $currentPage = 1, $limitPerPage = 10, $options = array())
     {
@@ -67,13 +69,11 @@ class Paginator
             }
         }
 
-        $pagination = $paginator->paginate(
+        return $paginator->paginate(
             $data,
             $currentPage,
             $limitPerPage,
             $options
         );
-
-        return $pagination;
     }
 }
