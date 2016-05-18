@@ -1,3 +1,7 @@
+## 1.3.7 (2016-05-17)
+Other:
+* Changed user.provider to users.provider
+
 ## 1.3.6 (2016-05-17)
 Other:
 * Minor tweaks (mostly documentation stuff)
