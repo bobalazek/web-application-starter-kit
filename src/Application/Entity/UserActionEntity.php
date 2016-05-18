@@ -15,8 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserActionEntity
 {
-    /*************** Variables ***************/
-    /********** General Variables **********/
     /**
      * @var int
      *
@@ -75,13 +73,11 @@ class UserActionEntity
      */
     protected $timeUpdated;
 
-    /***** Relationship Variables *****/
     /**
      * @ORM\ManyToOne(targetEntity="Application\Entity\UserEntity", inversedBy="userActions")
      */
     protected $user;
 
-    /*************** Methods ***************/
     /*** Id ***/
     /**
      * @return int
@@ -271,14 +267,13 @@ class UserActionEntity
      *
      * @return UserActionEntity
      */
-    public function setUser(\Application\Entity\UserEntity $user = null)
+    public function setUser(UserEntity $user = null)
     {
         $this->user = $user;
 
         return $this;
     }
 
-    /********** Other Methods **********/
     /**
      * @return array
      */
@@ -292,7 +287,6 @@ class UserActionEntity
         );
     }
 
-    /********** Callback Methods **********/
     /**
      * @ORM\PreUpdate
      */

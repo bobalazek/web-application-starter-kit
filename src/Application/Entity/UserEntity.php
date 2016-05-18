@@ -911,6 +911,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
+     * {@inheritdoc}
      */
     public function eraseCredentials()
     {
@@ -932,6 +933,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
+     * {@inheritdoc}
      */
     public function unserialize($serialized)
     {
