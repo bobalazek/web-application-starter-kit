@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class UserProvider implements UserProviderInterface
+class UsersProvider implements UserProviderInterface
 {
     private $app;
 

@@ -37,7 +37,7 @@ class AuthenticationEventsListener implements EventSubscriberInterface
         $app = $this->app;
 
         $authenticationToken = $event->getAuthenticationToken();
-        $user = $app['user.provider']->loadUserByUsername(
+        $user = $app['users.provider']->loadUserByUsername(
             $authenticationToken->getUser(),
             false
         );

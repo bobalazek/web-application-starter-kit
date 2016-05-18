@@ -324,9 +324,9 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
     'http_cache.cache_dir' => STORAGE_DIR.'/cache/http/',
 ));
 
-/***** User Provider *****/
-$app['user.provider'] = $app->share(function () use ($app) {
-    return new Application\Provider\UserProvider($app);
+/***** Users Provider *****/
+$app['users.provider'] = $app->share(function () use ($app) {
+    return new Application\Provider\UsersProvider($app);
 });
 
 /***** Security *****/
@@ -360,7 +360,7 @@ $securityFirewalls['members-area'] = array(
         'parameter' => 'switch_user',
         'role' => 'ROLE_ALLOWED_TO_SWITCH',
     ),
-    'users' => $app['user.provider'],
+    'users' => $app['users.provider'],
 );
 
 $app->register(
