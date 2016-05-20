@@ -55,7 +55,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
      *
      * @var string
      *
-     * @ORM\Column(name="new_email", type="string", length=64)
+     * @ORM\Column(name="new_email", type="string", length=64, nullable=true)
      */
     protected $newEmail;
 

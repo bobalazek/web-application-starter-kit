@@ -2,16 +2,16 @@ Application\Entity\PostEntity:
     properties:
         title:
             - NotBlank:
-                groups: [ newAndEdit ]
+                groups: [ new_and_edit ]
 
 Application\Entity\ProfileEntity:
     properties:
         firstName:
             - NotBlank:
-                groups: [ newAndEdit ]
+                groups: [ new_and_edit ]
         image:
             - Image:
-                groups: [ newAndEdit ]
+                groups: [ new_and_edit ]
 
 Application\Entity\UserEntity:
     constraints:
@@ -29,14 +29,14 @@ Application\Entity\UserEntity:
                 groups: [ new, edit, register, settings ]
         email:
             - NotBlank:
-                groups: [ new, edit, register, settings, resetPasswordRequest ]
+                groups: [ new, edit, register, settings, reset_password_request ]
             - Email:
-                groups: [ new, edit, register, settings, resetPasswordRequest ]
+                groups: [ new, edit, register, settings, reset_password_request ]
         plainPassword:
             - NotBlank:
-                groups: [ new, register, settingsPassword, resetPasswordReset ]
+                groups: [ new, register, settings_password, reset_password_reset ]
         oldPassword:
             - Symfony\Component\Security\Core\Validator\Constraints\UserPassword:
-                groups: [ settingsPassword ]
+                groups: [ settings_password ]
         profile:
             - Valid: ~

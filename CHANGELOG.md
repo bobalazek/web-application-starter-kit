@@ -1,3 +1,10 @@
+## 1.4.0 (2016-05-20)
+Other:
+* camelCase to snake_case in form types
+* Remove not needed share wrapper
+* New email fix
+* Paginator fixes
+
 ## 1.3.7 (2016-05-17)
 Other:
 * Changed user.provider to users.provider

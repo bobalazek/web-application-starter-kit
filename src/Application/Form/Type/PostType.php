@@ -74,7 +74,7 @@ class PostType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Application\Entity\PostEntity',
-            'validation_groups' => array('newAndEdit'),
+            'validation_groups' => array('new_and_edit'),
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
         ));

@@ -34,7 +34,7 @@ class UserActionsController
             ->leftJoin('u.profile', 'p')
         ;
 
-        $pagination = $app['paginator']->paginate(
+        $pagination = $app['application.paginator']->paginate(
             $userActionResults,
             $currentPage,
             $limitPerPage,

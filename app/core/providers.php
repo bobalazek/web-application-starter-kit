@@ -124,9 +124,9 @@ $app->register(new Silex\Provider\SessionServiceProvider(), array(
 ));
 
 /* Flashbag */
-$app['flashbag'] = $app->share(function () use ($app) {
+$app['flashbag'] = function ($app) {
     return $app['session']->getFlashBag();
-});
+};
 
 /***** Http Cache *****/
 $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
@@ -144,19 +144,19 @@ $app['translator']->addLoader(
 );
 
 /*** Application Translator ***/
-$app['application.translator'] = $app->share(function () use ($app) {
+$app['application.translator'] = function ($app) {
     return new Application\Translator($app);
-});
+};
 
 /*** Application Mailer ***/
-$app['application.mailer'] = $app->share(function () use ($app) {
+$app['application.mailer'] = function ($app) {
     return new Application\Mailer($app);
-});
+};
 
 /*** Paginator ***/
-$app['paginator'] = $app->share(function () use ($app) {
+$app['application.paginator'] = function ($app) {
     return new Application\Paginator($app);
-});
+};
 
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
@@ -203,14 +203,14 @@ $app['translator']->addLoader(
 );
 
 /*** Application Translator ***/
-$app['application.translator'] = $app->share(function () use ($app) {
+$app['application.translator'] = function ($app) {
     return new Application\Translator($app);
-});
+};
 
 /*** Application Mailer ***/
-$app['application.mailer'] = $app->share(function () use ($app) {
+$app['application.mailer'] = function ($app) {
     return new Application\Mailer($app);
-});
+};
 
 /***** Doctrine Database & Doctrine ORM *****/
 if (
@@ -263,53 +263,49 @@ if (
 
     $app['orm.proxies_dir'] = STORAGE_DIR.'/cache/proxy';
 
-    $app['orm.manager_registry'] = $app->share(function ($app) {
+    $app['orm.manager_registry'] = function ($app) {
         return new DoctrineManagerRegistry(
             'manager_registry',
             array('default' => $app['orm.em']->getConnection()),
             array('default' => $app['orm.em'])
         );
-    });
+    };
 
-    $app['form.extensions'] = $app->share(
-        $app->extend(
-            'form.extensions',
-            function ($extensions) use ($app) {
-                $extensions[] = new DoctrineOrmExtension(
-                    $app['orm.manager_registry']
-                );
+    $app['form.extensions'] = $app->extend(
+        'form.extensions',
+        function ($extensions) use ($app) {
+            $extensions[] = new DoctrineOrmExtension(
+                $app['orm.manager_registry']
+            );
 
-                return $extensions;
-            }
-        )
+            return $extensions;
+        }
     );
 }
 
 /***** Validator *****/
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
-$app['validator.mapping.mapping.file_path'] = APP_DIR.'/configs/validation.yml';
-
-$app['validator.mapping.class_metadata_factory'] = $app->share(function ($app) {
+$app['validator.mapping.class_metadata_factory'] = function ($app) {
     return new ClassMetadataFactory(
         new MappingYamlFileLoader(
             APP_DIR.'/configs/validation.yml'
         )
     );
-});
+};
 
-$app['validator.unique_entity'] = $app->share(function ($app) {
+$app['validator.unique_entity'] = function ($app) {
     return new UniqueEntityValidator(
         $app['orm.manager_registry']
     );
-});
+};
 
-$app['security.validator.user_password'] = $app->share(function ($app) {
+$app['security.validator.user_password'] = function ($app) {
     return new UserPasswordValidator(
         $app['security'],
         $app['security.encoder_factory']
     );
-});
+};
 
 $app['validator.validator_service_ids'] = array(
     'doctrine.orm.validator.unique' => 'validator.unique_entity',
@@ -325,9 +321,9 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
 ));
 
 /***** Users Provider *****/
-$app['users.provider'] = $app->share(function () use ($app) {
+$app['users.provider'] = function () use ($app) {
     return new Application\Provider\UsersProvider($app);
-});
+};
 
 /***** Security *****/
 $securityFirewalls = array();

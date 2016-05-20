@@ -270,7 +270,7 @@ class MyController
             ->setParameter(1, $app['user'])
         ;
 
-        $pagination = $app['paginator']->paginate(
+        $pagination = $app['application.paginator']->paginate(
             $userActionResults,
             $currentPage,
             $limitPerPage,

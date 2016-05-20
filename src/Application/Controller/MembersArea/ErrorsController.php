@@ -32,7 +32,7 @@ class ErrorsController
             ->from('Application\Entity\ErrorEntity', 'e')
         ;
 
-        $pagination = $app['paginator']->paginate(
+        $pagination = $app['application.paginator']->paginate(
             $errorResults,
             $currentPage,
             $limitPerPage,

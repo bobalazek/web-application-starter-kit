@@ -66,9 +66,9 @@ class ResetPasswordType extends AbstractType
             'csrf_field_name' => 'csrf_token',
             'validation_groups' => function () use ($action) {
                 if ($action == 'reset') {
-                    return array('resetPasswordReset');
+                    return array('reset_password_reset');
                 } else {
-                    return array('resetPasswordRequest');
+                    return array('reset_password_request');
                 }
             },
         ));

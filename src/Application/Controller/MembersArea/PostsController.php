@@ -38,7 +38,7 @@ class PostsController
             ->leftJoin('p.user', 'u')
         ;
 
-        $pagination = $app['paginator']->paginate(
+        $pagination = $app['application.paginator']->paginate(
             $postResults,
             $currentPage,
             $limitPerPage,
