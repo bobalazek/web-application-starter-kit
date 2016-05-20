@@ -57,7 +57,7 @@ class UsersProvider implements UserProviderInterface
         }
 
         if (
-            !$user && 
+            !$user &&
             $showExceptionIfNotExistent
         ) {
             throw new UsernameNotFoundException(
@@ -72,32 +72,32 @@ class UsersProvider implements UserProviderInterface
     }
 
     /** 
-     * @param string $accessToken 
-     * @param bolean $throwExceptionIfNotExistent 
+     * @param string $accessToken
+     * @param bolean $throwExceptionIfNotExistent
      * 
-     * @return UserEntity 
+     * @return UserEntity
      * 
      * @throws UsernameNotFoundException If user was not found 
-     */ 
-    public function loadUserByAccessToken($accessToken, $throwExceptionIfNotExistent = true) 
-    { 
-        $user = $this->app['orm.em'] 
-            ->getRepository('Application\Entity\UserEntity') 
-            ->findOneBy(array( 
-                'accessToken' => $accessToken, 
-            )) 
-        ; 
- 
-        if ( 
-            !$user && 
-            $throwExceptionIfNotExistent 
-        ) { 
-            throw new UsernameNotFoundException( 
-                'A user with this access token was not found.' 
-            ); 
-        } 
- 
-        return $user; 
+     */
+    public function loadUserByAccessToken($accessToken, $throwExceptionIfNotExistent = true)
+    {
+        $user = $this->app['orm.em']
+            ->getRepository('Application\Entity\UserEntity')
+            ->findOneBy(array(
+                'accessToken' => $accessToken,
+            ))
+        ;
+
+        if (
+            !$user &&
+            $throwExceptionIfNotExistent
+        ) {
+            throw new UsernameNotFoundException(
+                'A user with this access token was not found.'
+            );
+        }
+
+        return $user;
     }
 
     public function refreshUser(UserInterface $user)

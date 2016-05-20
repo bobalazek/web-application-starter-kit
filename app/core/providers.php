@@ -12,9 +12,6 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
 use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
 use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader as MappingYamlFileLoader;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Security\Guard\Firewall\GuardAuthenticationListener;
-use Symfony\Component\Security\Guard\Provider\GuardAuthenticationProvider;
 
 /***** Config *****/
 if (!file_exists(APP_DIR.'/configs/global.php')) {

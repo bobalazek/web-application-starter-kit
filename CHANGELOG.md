@@ -1,3 +1,7 @@
+## 1.5.1 (2016-05-20)
+Other:
+* CS fixes
+
 ## 1.5.0 (2016-05-20)
 Other:
 * Dependency fixes
