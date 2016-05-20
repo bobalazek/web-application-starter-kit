@@ -16,6 +16,11 @@ $app->mount(
     new Application\ControllerProvider\ApiControllerProvider()
 );
 
+$app->mount(
+    '/api/v1',
+    new Application\ControllerProvider\Api\V1ControllerProvider()
+);
+
 /*========== Members Area ==========*/
 $app->mount(
     '/members-area',

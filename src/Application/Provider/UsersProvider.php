@@ -37,18 +37,14 @@ class UsersProvider implements UserProviderInterface
         $user = null;
 
         $userByUsername = $this->app['orm.em']
-            ->getRepository(
-                'Application\Entity\UserEntity'
-            )
+            ->getRepository('Application\Entity\UserEntity')
             ->findOneBy(array(
                 'username' => $username,
             ))
         ;
 
         $userByEmail = $this->app['orm.em']
-            ->getRepository(
-                'Application\Entity\UserEntity'
-            )
+            ->getRepository('Application\Entity\UserEntity')
             ->findOneBy(array(
                 'email' => $username,
             ))
@@ -60,7 +56,10 @@ class UsersProvider implements UserProviderInterface
             $user = $userByEmail;
         }
 
-        if (!$user && $showExceptionIfNotExistent) {
+        if (
+            !$user && 
+            $showExceptionIfNotExistent
+        ) {
             throw new UsernameNotFoundException(
                 sprintf(
                     'Username or Email "%s" does not exist.',
@@ -70,6 +69,35 @@ class UsersProvider implements UserProviderInterface
         }
 
         return $user;
+    }
+
+    /** 
+     * @param string $accessToken 
+     * @param bolean $throwExceptionIfNotExistent 
+     * 
+     * @return UserEntity 
+     * 
+     * @throws UsernameNotFoundException If user was not found 
+     */ 
+    public function loadUserByAccessToken($accessToken, $throwExceptionIfNotExistent = true) 
+    { 
+        $user = $this->app['orm.em'] 
+            ->getRepository('Application\Entity\UserEntity') 
+            ->findOneBy(array( 
+                'accessToken' => $accessToken, 
+            )) 
+        ; 
+ 
+        if ( 
+            !$user && 
+            $throwExceptionIfNotExistent 
+        ) { 
+            throw new UsernameNotFoundException( 
+                'A user with this access token was not found.' 
+            ); 
+        } 
+ 
+        return $user; 
     }
 
     public function refreshUser(UserInterface $user)

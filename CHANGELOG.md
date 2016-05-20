@@ -1,3 +1,7 @@
+## 1.5.0 (2016-05-20)
+Other:
+* Dependency fixes
+
 ## 1.4.0 (2016-05-20)
 Other:
 * camelCase to snake_case in form types
