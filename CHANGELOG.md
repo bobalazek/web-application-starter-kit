@@ -1,3 +1,6 @@
+## 1.6.1 (2016-05-20)
+* Set the minimal version on 5.5.9
+
 ## 1.6.0 (2016-05-24)
 * Added tools: email preview and database backup
 * Removed changelog groups
