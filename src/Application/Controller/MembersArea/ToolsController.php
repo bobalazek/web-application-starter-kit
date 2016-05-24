@@ -13,12 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class ToolsController
 {
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return Response
      */
-    public function indexAction(Request $request, Application $app)
+    public function indexAction(Application $app)
     {
         if (
             !$app['security']->isGranted('ROLE_TOOLS') &&

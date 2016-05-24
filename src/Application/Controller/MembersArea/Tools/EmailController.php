@@ -13,12 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class EmailController
 {
     /**
-     * @param Request     $request
      * @param Application $app
      *
      * @return Response
      */
-    public function indexAction(Request $request, Application $app)
+    public function indexAction(Application $app)
     {
         $data = array();
 

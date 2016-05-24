@@ -1,3 +1,6 @@
+## 1.6.2 (2016-05-20)
+* Removed unused parameters in controllers
+
 ## 1.6.1 (2016-05-20)
 * Set the minimal version on 5.5.9
 
