@@ -28,6 +28,13 @@
                                 {{ app['orm.em'].getRepository('Application\\Entity\\UserEntity').countAll() }}
                             </span>
                         </li>
+                        <li></li>
+                        <li class="list-group-item">
+                            {{ 'Actions' | trans }}
+                            <span class="badge">
+                                {{ app['orm.em'].getRepository('Application\\Entity\\UserActionEntity').countAll() }}
+                            </span>
+                        </li>
                     </ul>
                 </div> <!-- /.panel -->
             </div> <!-- /.col-md-4 -->

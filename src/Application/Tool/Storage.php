@@ -16,6 +16,8 @@ class Storage
     {
         self::prepareFolders(array(
             'var',
+            'var/backups',
+            'var/backups/database',
             'var/cache',
             'var/cache/assetic',
             'var/cache/file',
@@ -42,7 +44,7 @@ class Storage
     /**
      * Prepare the folders for storage.
      */
-    public static function prepareFolders(array $paths = array(), $uploadsPath = false)
+    public static function prepareFolders(array $paths = array(), $removeIfExists = false)
     {
         if (empty($paths)) {
             return false;
@@ -51,12 +53,16 @@ class Storage
         $fs = new Filesystem();
 
         foreach ($paths as $path) {
-            $fs->remove($path);
+            if (
+                $removeIfExists &&
+                $fs->exists($path)
+            ) {
+                $fs->remove($path);
+            }
+
             $fs->mkdir($paths);
             $fs->chmod($path, 0777);
         }
-
-        self::prepareUploadsFolder($uploadsPath);
     }
 
     /**
@@ -85,19 +91,24 @@ class Storage
             $fs->chown($uploadsDirectory, $user);
             $fs->chmod($uploadsDirectory, 0755);
         } catch (\Exception $e) {
-            // Not sure If we need to show this errors. Let's think about that...
         }
     }
 
     /**
      * Prepare the log files.
      */
-    public static function prepareLogFiles(array $paths)
+    public static function prepareLogFiles(array $paths, $removeIfExists = false)
     {
         $fs = new Filesystem();
 
         foreach ($paths as $path) {
-            $fs->remove($path);
+            if (
+                $removeIfExists &&
+                $fs->exists($path)
+            ) {
+                $fs->remove($path);
+            }
+
             $fs->touch($path);
             $fs->chmod($path, 0777);
         }

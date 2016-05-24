@@ -1,0 +1,33 @@
+{% extends 'layouts/members-area.html.twig' %}
+
+{% block title %}{{ 'Tools' | trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'Tools' | trans }}</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ url('members-area') }}">
+                {{ 'Home' | trans }}
+            </a>
+        </li>
+        <li class="active">
+            {{ 'Tools' | trans }}
+        </li>
+    </ol>
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block"
+                href="{{ url('members-area.tools.email') }}">
+                <i class="fa fa-envelope"></i> <br />
+                {{ 'Email' | trans }}
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-default btn-lg btn-block"
+                href="{{ url('members-area.tools.database-backup') }}">
+                <i class="fa fa-database"></i> <br />
+                {{ 'Database Backup' | trans }}
+            </a>
+        </div>
+    </div>
+{% endblock %}

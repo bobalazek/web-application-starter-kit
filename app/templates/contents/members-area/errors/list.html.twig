@@ -22,6 +22,7 @@
                     <th>{{ paginator_sortable(pagination, 'Code', 'e.code') }}</th>
                     <th>{{ paginator_sortable(pagination, 'Message', 'e.message') }}</th>
                     <th>{{ 'Exception' | trans }}</th>
+                    <th>{{ 'Data' | trans }}</th>
                     <th width="160">{{ paginator_sortable(pagination, 'Time Created', 'e.timeCreated') }}</th>
                 </tr>
             </thead>
@@ -38,6 +39,15 @@
                             </button>
                             <div id="error-exception-{{ error.getId() }}"
                                 class="hidden">{{ error.getException() }}</div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                data-toggle="modal" data-target="#error-data-modal"
+                                data-id="{{ error.getId() }}">
+                                {{ 'Show' | trans }}
+                            </button>
+                            <div id="error-data-{{ error.getId() }}"
+                                class="hidden">{{ error.getData() }}</div>
                         </td>
                         <td>{{ error.getTimeCreated() | date(app.date_time_format) }}</td>
                     </tr>
@@ -86,6 +96,37 @@
             </div>
         </div>
     </div>
+    <div id="error-data-modal"
+        class="modal fade"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="error-data-modal"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 id="error-data-modal-title"
+                        class="modal-title">
+                        {{ 'Error data' | trans }}
+                    </h4>
+                </div>
+                <div id="error-data-modal-body" class="modal-body"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-default"
+                        type="button"
+                        data-dismiss="modal">
+                        {{ 'Close' | trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block body_javascripts_after %}
@@ -98,6 +139,21 @@
                     var id = button.attr('data-id');
                     var modal = jQuery(this);
                     var content = jQuery('#error-exception-' + id).html();
+
+                    modal.find('.modal-body').html((content
+                        ? '<pre>' + syntaxHighlight(JSON.stringify(JSON.parse(content), undefined, 4)) + '</pre>'
+                        : '{{ 'No data!' | trans }}'
+                    ));
+                }
+            );
+
+            jQuery('#error-data-modal').on(
+                'show.bs.modal',
+                function (event) {
+                    var button = jQuery(event.relatedTarget);
+                    var id = button.attr('data-id');
+                    var modal = jQuery(this);
+                    var content = jQuery('#error-data-' + id).html();
 
                     modal.find('.modal-body').html((content
                         ? '<pre>' + syntaxHighlight(JSON.stringify(JSON.parse(content), undefined, 4)) + '</pre>'

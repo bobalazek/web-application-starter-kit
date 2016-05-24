@@ -10,8 +10,30 @@ README
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61/mini.png)](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61)
 [![Support via Gittip](http://img.shields.io/gittip/bobalazek.svg?style=flat-square)](https://www.gittip.com/bobalazek/)
 
-A simple web application boilerplate for min or mid scale applications. Included user system (login, logout, register, reset password, profile, edit profile and change password), users, user actions, user roles, simple statistics, settings and more.
-
+A simple web application boilerplate for small or mid scale applications. Included:
+* Users system
+    * Login
+    * Logout
+    * Register
+    * Reset password
+    * Basic profile
+    * Settings / edit profile
+    * Change password
+* Basic user roles system - ability to assign roles for each user
+* Administration
+    * Users
+        * View
+        * Edit
+        * Switch / impersonate
+        * Remove
+    * User actions
+    * Posts
+* Tools
+    * Email preview - you are able to view the email templates while working on them (without the need of sending test emails to yourself for every change)
+    * Database backup - backup and restore your database schema
+* Errors / exceptions tracking - save the exceptions / errors directly to the database and / or send emails when an error happened
+* Statistics
+* Settings
 
 Requirements & Tools & Helpers
 -------------------
@@ -22,7 +44,7 @@ Requirements & Tools & Helpers
 
 Setup / Development
 -------------------
-* Navigate yor your web directory: `cd /var/www`
+* Navigate your your web directory: `cd /var/www`
 * Create a new project: `composer create-project bobalazek/web-application-starter-kit myapp --no-scripts`
 * Navigate inside the application `cd myapp`
 * Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47) or [app/configs/global-local.php.example](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global-local.php.example) (in case you will deploy it and need a different local configuration. Just rename the global-local.php.example to global-local.php and set your own configuration)
@@ -67,7 +89,7 @@ Commands
 * `bin/console application:environment:prepare` - Will create the global-local.php and development-local.php files (if they do not exist)
 * `bin/console application:database:hydrate-data [-r|--remove-existing-data]` - Will hydrate the tables with some basic data, like: 2 users and 6 roles (the `--remove-existing-data` flag will truncate all tables before re-hydrating them)
 * `bin/console application:storage:prepare` - Will prepare all the storage (var/) folders, like: cache, logs, sessions, etc.
-* `bin/console application:translations:prepare` - Prepares all the untranslated string into a separate (app/locales/{locale}_untranslated.yml) file. Accepts an locale argument (defaults to 'en_US' - usage: `bin/console application:translations:prepare --locale de_DE` or `bin/console application:translations:prepare -l de_DE` )
+* `bin/console application:translations:prepare` - Prepares all the untranslated string into a separate (app/locales/{locale}/messages_untranslated.yml) file. Accepts an locale argument (defaults to 'en_US' - usage: `bin/console application:translations:prepare --locale de_DE` or `bin/console application:translations:prepare -l de_DE` )
 
 Other commands
 ----------------------
@@ -124,8 +146,8 @@ File structure
 * app/
     * configs/ => All basic config stuff (+ validation)
     * core/ => The core files such as providers, routes, middlewares and definitions
-    * fixtures/ => Used when hydrating the database
-    * locales/ => Translations & co.
+    * fixtures/ => Used for hydrating the database
+    * locales/ => Used for translations
     * templates/ => All twig templates
 * bin/
     * console

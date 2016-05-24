@@ -46,6 +46,13 @@ class ErrorEntity extends AbstractImageUpload
     protected $exception;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="data", type="text", nullable=true)
+     */
+    protected $data;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="time_created", type="datetime")
@@ -139,6 +146,27 @@ class ErrorEntity extends AbstractImageUpload
     public function setException($exception)
     {
         $this->exception = $exception;
+
+        return $this;
+    }
+
+    /*** Data ***/
+    /**
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string $data
+     *
+     * @return ErrorEntity
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
 
         return $this;
     }

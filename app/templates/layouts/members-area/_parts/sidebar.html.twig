@@ -29,6 +29,12 @@
         </li>
     {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
+    <li class="{{ path('members-area.tools') in app.currentUri ? 'active' : '' }}" role="presentation">
+        <a href="{{ url('members-area.tools') }}">
+            <i class="fa fa-fw fa-wrench"></i>
+            {{ 'Tools' | trans }}
+        </a>
+    </li>
         <li class="{{ path('members-area.errors') in app.currentUri ? 'active' : '' }}" role="presentation">
             <a href="{{ url('members-area.errors') }}">
                 <i class="fa fa-fw fa-exclamation"></i>

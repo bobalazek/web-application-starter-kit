@@ -5,7 +5,7 @@ return array(
     'debug' => true,
     'show_profiler' => false,
     'name' => 'Web Application Starter Kit',
-    'version' => '1.5.1',
+    'version' => '1.6.0',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
@@ -105,7 +105,7 @@ return array(
         'reset_password_expiry_time' => '15 minutes', // How how long should the token / code be valid? It also prevents the user from re-requesting the password again in this time-frame, so you may not set that too high
     ),
 
-    // Error options
+    // Error options (will be executed only when debug is set to false)
     'error_options' => array(
         'save_into_the_database' => true,
         'send_by_email' => false,

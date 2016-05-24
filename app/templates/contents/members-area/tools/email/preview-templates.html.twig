@@ -1,0 +1,76 @@
+{% extends 'layouts/members-area.html.twig' %}
+
+{% block title %}{{ 'Preview Templates' | trans }} | {{ 'Email' | trans }} | {{ 'Tools' | trans }} | {{ parent() }}{% endblock %}
+
+{% block head_javascripts_after %}
+    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            mode : "textareas",
+            editor_selector : 'html-editor',
+            valid_elements : '*[*]',
+            plugins: [
+                "advlist autolink lists link image charmap anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste"
+            ],
+            height: 320,
+        });
+    </script>
+{% endblock %}
+
+{% block main %}
+    <h1>{{ 'Tools' | trans }}</h1>
+    <h2>{{ 'Email' | trans }}</h2>
+    <h3>{{ 'Preview Templates' | trans }}</h3>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ url('members-area') }}">
+                {{ 'Home' | trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('members-area.tools') }}">
+                {{ 'Tools' | trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('members-area.tools.email') }}">
+                {{ 'Email' | trans }}
+            </a>
+        </li>
+        <li class="active">
+            {{ 'Preview Templates' | trans }}
+        </li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>{{ 'Templates' | trans }}</h4>
+            <div class="list-group">
+                {% for templateName in templates %}
+                    <a href="?template={{ templateName }}"
+                        class="list-group-item {{ template == templateName ? 'active' : '' }}">
+                        {{ templateName }}.html.twig
+                    </a>
+                {% else %}
+                    <li>{{ 'No templates found' | trans }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-9">
+            {% if template %}
+                <h4>
+                    {{ 'Template' | trans }}:
+                    <i>{{ template }}.html.twig</i>
+                </h4>
+                <iframe src="?template={{ template }}&raw=true"
+                    frameborder="0"
+                    style="width: 100%; height: 500px;"></iframe>
+            {% else %}
+                <p class="alert alert-info">
+                    {{ 'Select a template on the left' | trans }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

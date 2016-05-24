@@ -51,6 +51,12 @@ $app->mount(
     new Application\ControllerProvider\MembersArea\PostsControllerProvider()
 );
 
+/******** Tools ********/
+$app->mount(
+    '/members-area/tools',
+    new Application\ControllerProvider\MembersArea\ToolsControllerProvider()
+);
+
 /******** Errors ********/
 $app->mount(
     '/members-area/errors',
@@ -122,12 +128,28 @@ $app->error(function (\Exception $e, $code) use ($app) {
         $exception->file = $e->getFile();
         $exception->line = $e->getLine();
 
+        $data = array(
+            'is_ajax' => $app['request']->isXmlHttpRequest(),
+            'method' => $app['request']->getMethod(),
+            'route' => $app['request']->get('_route'),
+            'route_params' => $app['request']->get('_route_params'),
+            'query' => $app['request']->query->all(),
+            'request' => $app['request']->request->all(),
+            'server' => $app['request']->server->all(),
+            'files' => $app['request']->files->all(),
+            'cookies' => $app['request']->cookies->all(),
+            'headers' => $app['request']->headers->all(),
+            'environment' => $_ENV,
+        );
+
         $errorEntity = new ErrorEntity();
         $errorEntity
             ->setCode($code)
             ->setMessage($e->getMessage())
             ->setException(json_encode($exception))
+            ->setData(json_encode($data))
         ;
+
         $app['orm.em']->persist($errorEntity);
         $app['orm.em']->flush();
     }

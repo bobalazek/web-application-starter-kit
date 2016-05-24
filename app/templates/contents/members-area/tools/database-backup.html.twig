@@ -1,0 +1,89 @@
+{% extends 'layouts/members-area.html.twig' %}
+
+{% block title %}{{ 'Database Backup' | trans }} | {{ 'Tools' | trans }} | {{ parent() }}{% endblock %}
+
+{% block main %}
+    <h1>{{ 'Tools' | trans }}</h1>
+    <h2>{{ 'Database Backup' | trans }}</h2>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ url('members-area') }}">
+                {{ 'Home' | trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('members-area.tools') }}">
+                {{ 'Tools' | trans }}
+            </a>
+        </li>
+        <li class="active">
+            {{ 'Database Backup' | trans }}
+        </li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <h3>
+                {{ 'Backups' | trans }}
+                <a class="btn btn-default"
+                    href="{{ url('members-area.tools.database-backup', { action: 'new' }) }}">
+                    {{ 'New' | trans }}
+                </a>
+            </h3>
+            {% if backups %}
+                <div class="list-group">
+                    {% for backup in backups %}
+                        <a class="list-group-item {{ selectedBackup == backup ? 'active' : '' }}"
+                            href="{{ url('members-area.tools.database-backup', { backup: backup.name }) }}">
+                            {{ backup.name }}
+                            <small>({{ macros.bytesToSize(backup.size) }})</small>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ 'No backups yet!' | trans }}
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            {% if selectedBackup %}
+                <h3>
+                    {{ 'Backup' | trans }}
+                    <small>{{ selectedBackup }}</small>
+                    <a class="btn btn-default"
+                        href="{{ url('members-area.tools.database-backup', { action: 'restore', backup: selectedBackup }) }}">
+                        {{ 'Restore' | trans }}
+                    </a>
+                </h3>
+                <pre>{{ backupData }}</pre>
+            {% else %}
+                <div class="alert alert-info">
+                    {{ 'No backup selected' | trans }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% import _self as macros %}
+{% macro bytesToSize(bytes) %}
+{% spaceless %}
+    {% set kilobyte = 1000 %}
+    {% set megabyte = kilobyte * 1000 %}
+    {% set gigabyte = megabyte * 1000 %}
+    {% set terabyte = gigabyte * 1000 %}
+    {% set petabyte = terabyte * 1000 %}
+
+    {% if bytes < kilobyte %}
+        {{ bytes ~ ' B' }}
+    {% elseif bytes < megabyte %}
+        {{ (bytes / kilobyte)|number_format(2, '.') ~ ' KB' }}
+    {% elseif bytes < gigabyte %}
+        {{ (bytes / megabyte)|number_format(2, '.') ~ ' MB' }}
+    {% elseif bytes < terabyte %}
+        {{ (bytes / gigabyte)|number_format(2, '.') ~ ' GB' }}
+    {% elseif bytes < petabyte %}
+        {{ (bytes / terabyte)|number_format(2, '.') ~ ' TB' }}
+    {% else %}
+        {{ (bytes / petabyte)|number_format(2, '.') ~ ' PB' }}
+    {% endif %}
+{% endspaceless %}
+{% endmacro %}
