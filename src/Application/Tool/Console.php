@@ -10,6 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Console
 {
     /**
+     * @param string $command
+     *
      * @return string|null
      */
     public static function execute($command = '')

@@ -8,6 +8,7 @@ namespace Application\Tool;
 class Composer
 {
     /**
+     * Post install composer commands.
      */
     public static function postInstallCmd()
     {
@@ -17,6 +18,7 @@ class Composer
     }
 
     /**
+     * Post update composer commands.
      */
     public static function postUpdateCmd()
     {
@@ -24,6 +26,7 @@ class Composer
     }
 
     /**
+     * Downloads composer.
      */
     public static function download()
     {
@@ -31,6 +34,7 @@ class Composer
     }
 
     /**
+     * Updates composer.
      */
     public static function update()
     {
@@ -42,12 +46,10 @@ class Composer
      */
     public static function isInstalled()
     {
-        $installed = false;
-
         if (`which composer`) {
-            $installed = true;
+            return true;
         }
 
-        return $installed;
+        return false;
     }
 }

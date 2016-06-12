@@ -75,7 +75,7 @@ class EmailController
             APP_DIR.'/templates/emails/*.html.twig'
         );
 
-        if ($templatesArray) {
+        if (!empty($templatesArray)) {
             foreach ($templatesArray as $templatePath) {
                 $templatePath = str_replace(
                     APP_DIR.'/templates/emails/',

@@ -43,6 +43,9 @@ class Storage
 
     /**
      * Prepare the folders for storage.
+     *
+     * @param array $paths
+     * @param bool  $removeIfExists
      */
     public static function prepareFolders(array $paths = array(), $removeIfExists = false)
     {
@@ -67,6 +70,8 @@ class Storage
 
     /**
      * Prepare the uploads folder (so images can be uploaded).
+     *
+     * @param string $uploadsDirectory
      */
     public static function prepareUploadsFolder($uploadsDirectory)
     {
@@ -91,11 +96,15 @@ class Storage
             $fs->chown($uploadsDirectory, $user);
             $fs->chmod($uploadsDirectory, 0755);
         } catch (\Exception $e) {
+            // Could not chown and / or chmod the uploads directory
         }
     }
 
     /**
      * Prepare the log files.
+     *
+     * @param array $paths
+     * @param bool  $removeIfExists
      */
     public static function prepareLogFiles(array $paths, $removeIfExists = false)
     {

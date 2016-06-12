@@ -5,7 +5,7 @@ return array(
     'debug' => true,
     'show_profiler' => true,
     'name' => 'Web Application Starter Kit',
-    'version' => '1.7.0',
+    'version' => '1.7.1',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)

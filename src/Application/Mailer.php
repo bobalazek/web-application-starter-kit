@@ -25,9 +25,9 @@ class Mailer
      *
      * @param array $data Swiftmailer data
      *
-     * @return int
+     * @return int Number of successfully sent emails
      *
-     * @throws \Exception If subject or recpient (to) not specified
+     * @throws \Exception If subject or recipient (to) are not specified
      */
     public function swiftMessageInitializeAndSend(array $data = array())
     {

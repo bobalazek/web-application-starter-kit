@@ -8,6 +8,7 @@ namespace Application\Tool;
 class Environment
 {
     /**
+     * Prepares some files for the development environment.
      */
     public static function prepare()
     {

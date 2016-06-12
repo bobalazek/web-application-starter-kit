@@ -1,3 +1,6 @@
+## 1.7.1 (2016-06-12)
+* Minor CS changes
+
 ## 1.7.0 (2016-06-12)
 * Added meters to password fields
 * Other minor fixes
