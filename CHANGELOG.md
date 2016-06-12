@@ -1,7 +1,11 @@
-## 1.6.2 (2016-05-20)
+## 1.7.0 (2016-06-12)
+* Added meters to password fields
+* Other minor fixes
+
+## 1.6.2 (2016-05-24)
 * Removed unused parameters in controllers
 
-## 1.6.1 (2016-05-20)
+## 1.6.1 (2016-05-24)
 * Set the minimal version on 5.5.9
 
 ## 1.6.0 (2016-05-24)

@@ -46,7 +46,16 @@ class UserType extends AbstractType
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
             'required' => false,
-            'invalid_message' => 'errors.user.password.invalidText',
+            'invalid_message' => 'The password fields must match.',
+            'first_options' => array(
+                'label' => 'New password',
+                'attr' => array(
+                    'class' => 'password-meter-input',
+                ),
+            ),
+            'second_options' => array(
+                'label' => 'Repeat new Password',
+            ),
         ));
 
         $rolesChoices = $this->app['user_system_options']['roles'];
@@ -55,6 +64,7 @@ class UserType extends AbstractType
             unset($rolesChoices['ROLE_SUPER_ADMIN']);
             unset($rolesChoices['ROLE_ADMIN']);
         }
+
         $builder->add('roles', 'choice', array(
             'required' => false,
             'multiple' => true,

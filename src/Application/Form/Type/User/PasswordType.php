@@ -25,8 +25,16 @@ class PasswordType extends AbstractType
             'type' => 'password',
             'first_name' => 'newPassword',
             'second_name' => 'newPasswordRepeat',
-            'first_options' => array('label' => 'New password'),
-            'second_options' => array('label' => 'Repeat new password'),
+            'invalid_message' => 'The password fields must match.',
+            'first_options' => array(
+                'label' => 'New password',
+                'attr' => array(
+                    'class' => 'password-meter-input',
+                ),
+            ),
+            'second_options' => array(
+                'label' => 'Repeat new Password',
+            ),
         ));
 
         $builder->add('submitButton', 'submit', array(

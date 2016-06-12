@@ -1,7 +1,7 @@
 {
     "type": "project",
     "name": "bobalazek/web-application-starter-kit",
-    "description": "An Web Application starter kit / boilerplate by Borut Balazek - build on Silex",
+    "description": "An Web Application starter kit / boilerplate by Borut Balazek - build with Silex",
     "license": "MIT",
     "authors": [
         {

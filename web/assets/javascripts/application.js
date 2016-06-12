@@ -12,6 +12,7 @@ var Application = function () {
                 Application.postMetasInitialize();
                 Application.listActionsInitialize();
                 Application.selectsInitialize();
+                Application.passwordMetersInitialize();
 
                 jQuery('#preloader').fadeOut(); // Hide preloader, when everything is ready...
 
@@ -165,6 +166,22 @@ var Application = function () {
         },
         selectsInitialize: function() {
             jQuery('.select-picker').selectpicker();
+        },
+        passwordMetersInitialize: function() {
+            var passwordMeterInput = jQuery('.password-meter-input');
+
+            passwordMeterInput.each(function() {
+                var self = jQuery(this);
+                var passwordMeter = self.parent().find('.password-meter');
+
+                self.on('keyup', function() {
+                    var value = self.val();
+                    var result = zxcvbn(value);
+                    var score = result.score;
+                    
+                    passwordMeter.val(score);
+                });
+            });
         },
     }
 }();

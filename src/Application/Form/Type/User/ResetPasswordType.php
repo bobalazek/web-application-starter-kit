@@ -32,10 +32,12 @@ class ResetPasswordType extends AbstractType
                 'type' => 'password',
                 'first_name' => 'password',
                 'second_name' => 'repeatPassword',
-                'required' => false,
-                'invalid_message' => 'The password is invalid',
+                'invalid_message' => 'The password fields must match.',
                 'first_options' => array(
                     'label' => 'New password',
+                    'attr' => array(
+                        'class' => 'password-meter-input',
+                    ),
                 ),
                 'second_options' => array(
                     'label' => 'Repeat new Password',

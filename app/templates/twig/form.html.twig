@@ -2,9 +2,13 @@
 
 {% block form_widget_simple -%}
     {% if type is not defined or 'file' != type %}
-        {% set attr = attr | merge({class: (attr.class | default('') ~ ' form-control') | trim}) %}
+        {% set attr = attr | merge({ class: (attr.class | default('') ~ ' form-control') | trim }) %}
     {% endif %}
-    {{- parent() -}}
+    {%- set type = type | default('text') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {% if attr.class is defined and 'password-meter-input' in attr.class %}
+        <meter class="password-meter" max="4"></meter>
+    {% endif %}
 {%- endblock form_widget_simple %}
 
 {% block textarea_widget -%}

@@ -43,11 +43,20 @@ class RegisterType extends AbstractType
             'type' => 'password',
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
-            'required' => false,
-            'invalid_message' => 'The password is invalid',
+            'invalid_message' => 'The password fields must match.',
+            'first_options' => array(
+                'label' => 'New password',
+                'attr' => array(
+                    'class' => 'password-meter-input',
+                ),
+            ),
+            'second_options' => array(
+                'label' => 'Repeat new Password',
+            ),
         ));
 
-        $builder->add('Save', 'submit', array(
+        $builder->add('submitButton', 'submit', array(
+            'label' => 'Register',
             'attr' => array(
                 'class' => 'btn-primary btn-lg btn-block',
             ),

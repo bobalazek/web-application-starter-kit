@@ -25,13 +25,14 @@
             {% block head_javascripts_before %}{% endblock %}
             {% block head_javascripts %}
                 <script id="config-js">
-                    var baseUrl = "{{ app.baseUrl }}";
-                    var baseUri = "{{ app.baseUri }}";
-                    var currentUrl = "{{ app.currentUrl }}";
-                    var currentUri = "{{ app.currentUri }}";
+                    var baseUrl = '{{ app.baseUrl }}';
+                    var baseUri = '{{ app.baseUri }}';
+                    var currentUrl = '{{ app.currentUrl }}';
+                    var currentUri = '{{ app.currentUri }}';
                 </script>
                 <script id="modernizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
                 <script id="respond-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/respond/dest/respond.min.js"></script>
+                <script id="zxcvbn-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/zxcvbn/dist/zxcvbn.js"></script>
             {% endblock %}
             {% block head_javascripts_after %}{% endblock %}
         <!-- Head Javascripts /END -->
