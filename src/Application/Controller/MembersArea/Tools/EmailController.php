@@ -59,6 +59,7 @@ class EmailController
             'formData' => array(
                 'message' => 'Just a test message!',
             ),
+            'e' => new \Exception('Some error happened!'),
         );
 
         if ($template && $raw) {

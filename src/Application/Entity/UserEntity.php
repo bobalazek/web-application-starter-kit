@@ -95,24 +95,6 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     protected $salt;
 
     /**
-     * Used for emails & co.
-     *
-     * @var string
-     *
-     * @ORM\Column(name="token", type="string", length=255, nullable=true)
-     */
-    protected $token;
-
-    /**
-     * Used for authentication & co.
-     *
-     * @var string
-     *
-     * @ORM\Column(name="access_token", type="string", length=255, nullable=true)
-     */
-    protected $accessToken;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean")
@@ -212,14 +194,6 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->setSalt(
-            md5(uniqid(null, true))
-        );
-
-        $this->setToken(
-            md5(uniqid(null, true))
-        );
-
-        $this->setAccessToken(
             md5(uniqid(null, true))
         );
 
@@ -438,48 +412,6 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     public function setSalt($salt)
     {
         $this->salt = $salt;
-
-        return $this;
-    }
-
-    /*** Token ***/
-    /**
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
-     * @param string $token
-     *
-     * @return UserEntity
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /*** Access Token ***/
-    /**
-     * @return string
-     */
-    public function getAccessToken()
-    {
-        return $this->accessToken;
-    }
-
-    /**
-     * @param string $accessToken
-     *
-     * @return UserEntity
-     */
-    public function setAccessToken($accessToken)
-    {
-        $this->accessToken = $accessToken;
 
         return $this;
     }

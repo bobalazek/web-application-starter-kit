@@ -9,18 +9,6 @@
                     <b>{{ user.getProfile().getFullName() }}</b>!
                 </h4>
                 <p>{{ 'You have been locked' | trans }}!</p>
-                {% if user.getLockedReason() %}
-                    <h5>{{ 'Reason' | trans }}:</h5>
-                    <table class="twelve columns">
-                        <tr>
-                            <td class="panel">
-                                {{ user.getLockedReason() }}
-                            </td>
-                            <td class="expander"></td>
-                        </tr>
-                    </table>
-                    <p></p>
-                {% endif %}
             </td>
         </tr>
     </table>
