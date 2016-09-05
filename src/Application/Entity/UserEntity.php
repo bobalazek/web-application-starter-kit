@@ -201,14 +201,6 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             md5(uniqid(null, true))
         );
 
-        $this->setResetPasswordCode(
-            md5(uniqid(null, true))
-        );
-
-        $this->setNewEmailCode(
-            md5(uniqid(null, true))
-        );
-
         $this->posts = new ArrayCollection();
         $this->userActions = new ArrayCollection();
     }
