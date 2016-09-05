@@ -1,3 +1,9 @@
+## 1.7.3 (2016-09-05)
+* Removed unused code
+
+## 1.7.2 (2016-07-31)
+* Minor cleanup
+
 ## 1.7.1 (2016-06-12)
 * Minor CS changes
 
