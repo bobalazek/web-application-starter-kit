@@ -8,7 +8,6 @@ README
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/bobalazek/web-application-starter-kit)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/?branch=develop)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61/mini.png)](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61)
-[![Support via Gittip](http://img.shields.io/gittip/bobalazek.svg?style=flat-square)](https://www.gittip.com/bobalazek/)
 
 A simple web application boilerplate for small or mid scale applications. Included:
 * Users system
