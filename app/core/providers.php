@@ -192,26 +192,6 @@ $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twi
     return $twig;
 }));
 
-/***** Translation *****/
-$app->register(new Silex\Provider\TranslationServiceProvider(), array(
-    'locale_fallback' => 'en_US',
-));
-
-$app['translator']->addLoader(
-    'yaml',
-    new TranslationYamlFileLoader()
-);
-
-/*** Application Translator ***/
-$app['application.translator'] = function ($app) {
-    return new Application\Translator($app);
-};
-
-/*** Application Mailer ***/
-$app['application.mailer'] = function ($app) {
-    return new Application\Mailer($app);
-};
-
 /***** Doctrine Database & Doctrine ORM *****/
 if (
     isset($app['database_options']) &&
