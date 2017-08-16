@@ -1,3 +1,6 @@
+## 1.8.0 (2017-08-16)
+* PHP 7.1 compatibility
+
 ## 1.7.3 (2016-09-05)
 * Removed unused code
 
