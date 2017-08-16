@@ -36,7 +36,7 @@ A simple web application boilerplate for small or mid scale applications. Includ
 
 Requirements & Tools & Helpers
 -------------------
-* PHP > 5.3.9
+* PHP > 5.6
 * [Composer](https://getcomposer.org/)
 * [Bower](http://bower.io/)
 * [PHP Coding Standards Fixer](http://cs.sensiolabs.org/) (optional)
