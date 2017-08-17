@@ -1,10 +1,10 @@
 <?php
 
-$finder = Symfony\CS\Finder::create()
+$finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->exclude('var')
 ;
 
-return Symfony\CS\Config::create()
+return PhpCsFixer\Config::create()
     ->finder($finder)
 ;
