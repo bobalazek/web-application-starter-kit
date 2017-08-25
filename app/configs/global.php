@@ -41,25 +41,6 @@ return array(
         ),
     ),
 
-    // Environments
-    'environments' => array(
-        'testing' => array(
-            'domain' => 'testing.example.com',
-            'uri' => '/',
-            'directory' => '/home/example/domains/example.com/subdomains/testing',
-        ),
-        'staging' => array(
-            'domain' => 'staging.example.com',
-            'uri' => '/',
-            'directory' => '/home/example/domains/example.com/subdomains/staging',
-        ),
-        'production' => array(
-            'domain' => 'example.com',
-            'uri' => '/',
-            'directory' => '/home/example/domains/example.com/public_html',
-        ),
-    ),
-
     // Database / Doctrine options
     // http://silex.sensiolabs.org/doc/providers/doctrine.html#parameters
     'database_options' => array(

@@ -33,78 +33,9 @@ if (file_exists(APP_DIR.'/configs/global-local.php')) {
 }
 
 /* Environment */
-$app['environment'] = isset($app['environment'])
-    ? $app['environment']
-    : 'development'
-;
+$app['environment'] = getenv('APPLICATION_ENVIRONMENT') ?: 'development';
 
-$serverHost = isset($_SERVER['HTTP_HOST'])
-    ? $_SERVER['HTTP_HOST']
-    : null
-;
-$serverDir = isset($_SERVER['PWD'])
-    ? $_SERVER['PWD']
-    : null
-;
-$environmentFound = false;
-
-// Check if we have an EXACT match (with ==)
-foreach ($app['environments'] as $environmentKey => $environment) {
-    $envDomain = isset($environment['domain'])
-        ? $environment['domain']
-        : false
-    ;
-    $envDir = isset($environment['directory'])
-        ? $environment['directory']
-        : false
-    ;
-
-    if (
-        $serverHost == $envDomain ||
-        $serverDir == $envDir
-    ) {
-        $app['environment'] = $environmentKey;
-        $environmentFound = true;
-        break;
-    }
-}
-
-if (!$environmentFound) {
-    // Check if we have a NEAR match (with strpos)
-    foreach ($app['environments'] as $environmentKey => $environment) {
-        $envDomain = isset($environment['domain'])
-            ? $environment['domain']
-            : false
-        ;
-        $envDir = isset($environment['directory'])
-            ? $environment['directory']
-            : false
-        ;
-
-        if (
-            strpos($serverHost, $envDomain) !== false ||
-            strpos($serverDir, $envDir) !== false
-        ) {
-            $app['environment'] = $environmentKey;
-            $environmentFound = true;
-            break;
-        }
-    }
-}
-
-/* Environment - Variable */
-$environmentVariable = getenv('APPLICATION_ENVIRONMENT');
-if (
-    $environmentVariable &&
-    in_array(
-        $environmentVariable,
-        array_keys($app['environments'])
-    )
-) {
-    $app['environment'] = $environmentVariable;
-}
-
-/* Config - Environment */
+/* Environment Config */
 if (file_exists(APP_DIR.'/configs/environments/'.$app['environment'].'.php')) {
     $app->register(
         new Igorw\Silex\ConfigServiceProvider(
