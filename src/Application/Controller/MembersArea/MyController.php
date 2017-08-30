@@ -96,7 +96,7 @@ class MyController
                 $app['flashbag']->add(
                     'warning',
                     $app['translator']->trans(
-                        'The new email code is invalid. Please request your new password again!'
+                        'The new email code is invalid. Please change your new email again!'
                     )
                 );
             }
