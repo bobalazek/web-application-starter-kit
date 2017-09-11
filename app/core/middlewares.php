@@ -33,6 +33,10 @@ $app->before(function () use ($app) {
         ($token->getUser() instanceof UserEntity)
     ) {
         $app['user'] = $token->getUser();
+
+        $app['user']->setTimeLastActive(new \Datetime());
+        $app['orm.em']->persist($app['user']);
+        $app['orm.em']->flush();
     }
 });
 

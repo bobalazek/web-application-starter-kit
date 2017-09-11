@@ -10,7 +10,7 @@ use Silex\Application;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class SecurityEventsListener implements EventSubscriberInterface
+class SecurityListener implements EventSubscriberInterface
 {
     protected $app;
 

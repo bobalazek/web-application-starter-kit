@@ -340,10 +340,10 @@ if ($app['show_profiler']) {
 /*** Listeners ***/
 if (isset($app['orm.em'])) {
     $app['dispatcher']->addSubscriber(
-        new EventListener\AuthenticationEventsListener($app)
+        new EventListener\AuthenticationListener($app)
     );
 
     $app['dispatcher']->addSubscriber(
-        new EventListener\SecurityEventsListener($app)
+        new EventListener\SecurityListener($app)
     );
 }

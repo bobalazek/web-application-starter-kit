@@ -10,26 +10,13 @@ use Silex\Application;
 /**
  * @author Borut Balažek <bobalazek124@gmail.com>
  */
-class AuthenticationEventsListener implements EventSubscriberInterface
+class AuthenticationListener implements EventSubscriberInterface
 {
     protected $app;
 
     public function __construct(Application $app)
     {
         $this->app = $app;
-    }
-
-    public function onAuthenticationSuccess($event)
-    {
-        $app = $this->app;
-
-        $user = $event->getAuthenticationToken()->getUser();
-        $user
-            ->setTimeLastActive(new \DateTime())
-        ;
-
-        $app['orm.em']->persist($user);
-        $app['orm.em']->flush();
     }
 
     public function onAuthenticationFailure($event)
@@ -72,7 +59,6 @@ class AuthenticationEventsListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            AuthenticationEvents::AUTHENTICATION_SUCCESS => array('onAuthenticationSuccess'),
             AuthenticationEvents::AUTHENTICATION_FAILURE => array('onAuthenticationFailure'),
         );
     }
