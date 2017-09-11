@@ -282,7 +282,6 @@ $app['security.access_rules'] = array(
     array('^/members-area/register', 'IS_AUTHENTICATED_ANONYMOUSLY'),
     array('^/members-area/reset-password', 'IS_AUTHENTICATED_ANONYMOUSLY'),
     array('^/members-area', 'ROLE_USER'),
-    array('^/members-area/oauth', 'ROLE_USER'),
 );
 
 $app['security.role_hierarchy'] = array(
