@@ -26,12 +26,12 @@ class PostMetaType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\PostMetaEntity',
-            'validation_groups' => array('new_and_edit'),
+            'validation_groups' => ['new_and_edit'],
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-        ));
+        ]);
     }
 
     /**

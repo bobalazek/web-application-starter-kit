@@ -42,26 +42,26 @@ class UsersController
             $userResults,
             $currentPage,
             $limitPerPage,
-            array(
+            [
                 'route' => 'members-area.users',
                 'defaultSortFieldName' => 'u.email',
                 'defaultSortDirection' => 'asc',
-                'searchFields' => array(
+                'searchFields' => [
                     'u.username',
                     'u.email',
                     'u.roles',
                     'p.firstName',
                     'p.lastName',
-                ),
-            )
+                ],
+            ]
         );
 
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/list.html.twig',
-                array(
+                [
                     'pagination' => $pagination,
-                )
+                ]
             )
         );
     }
@@ -119,9 +119,9 @@ class UsersController
                 return $app->redirect(
                     $app['url_generator']->generate(
                         'members-area.users.edit',
-                        array(
+                        [
                             'id' => $userEntity->getId(),
-                        )
+                        ]
                     )
                 );
             }
@@ -130,9 +130,9 @@ class UsersController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/new.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
-                )
+                ]
             )
         );
     }
@@ -161,9 +161,9 @@ class UsersController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/detail.html.twig',
-                array(
+                [
                     'user' => $user,
-                )
+                ]
             )
         );
     }
@@ -211,9 +211,9 @@ class UsersController
                     return $app->redirect(
                         $app['url_generator']->generate(
                             'members-area.users.edit',
-                            array(
+                            [
                                 'id' => $userEntity->getId(),
-                            )
+                            ]
                         )
                     );
                 }
@@ -251,9 +251,9 @@ class UsersController
                 return $app->redirect(
                     $app['url_generator']->generate(
                         'members-area.users.edit',
-                        array(
+                        [
                             'id' => $userEntity->getId(),
-                        )
+                        ]
                     )
                 );
             }
@@ -262,10 +262,10 @@ class UsersController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/edit.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
                     'user' => $user,
-                )
+                ]
             )
         );
     }
@@ -279,7 +279,7 @@ class UsersController
             $app->abort(403);
         }
 
-        $users = array();
+        $users = [];
         $ids = $request->query->get('ids', false);
         $idsExploded = explode(',', $ids);
         foreach ($idsExploded as $singleId) {
@@ -326,9 +326,9 @@ class UsersController
                     'success',
                     $app['translator']->trans(
                         'The user "%user%" was successfully removed!',
-                        array(
+                        [
                             '%user%' => $user,
-                        )
+                        ]
                     )
                 );
             } catch (\Exception $e) {
@@ -348,11 +348,11 @@ class UsersController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/users/remove.html.twig',
-                array(
+                [
                     'user' => $user,
                     'users' => $users,
                     'ids' => $ids,
-                )
+                ]
             )
         );
     }

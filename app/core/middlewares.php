@@ -100,7 +100,7 @@ $app->before(function () use ($app) {
         ;
 
         if ($settingsCollection) {
-            $settingsArray = array();
+            $settingsArray = [];
 
             foreach ($settingsCollection as $settingsSingle) {
                 $key = $settingsSingle->getKey();

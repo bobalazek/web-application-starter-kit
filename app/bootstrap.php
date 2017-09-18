@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 umask(0000);
 
 /********** Set Timezone **********/
-date_default_timezone_set('Europe/Vienna');
+date_default_timezone_set('Europe/Berlin');
 
 /********** Definitions **********/
 require __DIR__.'/core/definitions.php';
@@ -21,6 +21,12 @@ if (
 }
 
 $autoloader = require $vendorAutoloaderFilePath;
+
+/********** Dotenv **********/
+if (file_exists(ROOT_DIR.'/.env')) {
+    $dotenv = new Dotenv\Dotenv(ROOT_DIR);
+    $dotenv->load();
+}
 
 /********** Application **********/
 $app = new Application();

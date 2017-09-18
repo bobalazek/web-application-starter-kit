@@ -19,36 +19,36 @@ class PostType extends AbstractType
     {
         $builder->add('title', 'text');
 
-        $builder->add('image', 'file', array(
+        $builder->add('image', 'file', [
             'required' => false,
-        ));
-        $builder->add('removeImage', 'checkbox', array(
+        ]);
+        $builder->add('removeImage', 'checkbox', [
             'required' => false,
             'data' => false,
             'label' => 'Remove image?',
-            'attr' => array(
+            'attr' => [
                 'data-help-text' => 'Should the image be removed (goes into effect after the save)?',
-            ),
-        ));
+            ],
+        ]);
 
-        $builder->add('content', 'textarea', array(
+        $builder->add('content', 'textarea', [
             'required' => false,
-            'attr' => array(
+            'attr' => [
                 'class' => 'html-editor',
-            ),
-        ));
+            ],
+        ]);
 
-        $builder->add('user', 'entity', array(
+        $builder->add('user', 'entity', [
             'required' => false,
             'empty_value' => false,
             'class' => 'Application\Entity\UserEntity',
-            'attr' => array(
+            'attr' => [
                 'class' => 'select-picker',
                 'data-live-search' => 'true',
-            ),
-        ));
+            ],
+        ]);
 
-        $builder->add('postMetas', 'collection', array(
+        $builder->add('postMetas', 'collection', [
             'type' => new PostMetaType(),
             'allow_add' => true,
             'allow_delete' => true,
@@ -57,14 +57,14 @@ class PostType extends AbstractType
             'cascade_validation' => true,
             'error_bubbling' => false,
             'by_reference' => false,
-        ));
+        ]);
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Save',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -72,12 +72,12 @@ class PostType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\PostEntity',
-            'validation_groups' => array('new_and_edit'),
+            'validation_groups' => ['new_and_edit'],
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-        ));
+        ]);
     }
 
     /**

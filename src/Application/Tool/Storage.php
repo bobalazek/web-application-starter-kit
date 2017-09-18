@@ -14,7 +14,7 @@ class Storage
      */
     public static function prepare()
     {
-        self::prepareFolders(array(
+        self::prepareFolders([
             'var',
             'var/backups',
             'var/backups/database',
@@ -31,14 +31,14 @@ class Storage
             'var/sessions',
             'var/mailer',
             'var/mailer/spool',
-        ));
+        ]);
 
-        self::prepareLogFiles(array(
-            'var/logs/development.log',
-            'var/logs/testing.log',
-            'var/logs/staging.log',
-            'var/logs/production.log',
-        ));
+        self::prepareLogFiles([
+            'var/logs/dev.log',
+            'var/logs/test.log',
+            'var/logs/qa.log',
+            'var/logs/prod.log',
+        ]);
     }
 
     /**
@@ -47,7 +47,7 @@ class Storage
      * @param array $paths
      * @param bool  $removeIfExists
      */
-    public static function prepareFolders(array $paths = array(), $removeIfExists = false)
+    public static function prepareFolders(array $paths = [], $removeIfExists = false)
     {
         if (empty($paths)) {
             return false;
@@ -89,8 +89,7 @@ class Storage
 
         $user = PHP_OS == 'Darwin' // Fix for OSX
             ? get_current_user()
-            : 'www-data'
-        ;
+            : 'www-data';
 
         try {
             $fs->chown($uploadsDirectory, $user);

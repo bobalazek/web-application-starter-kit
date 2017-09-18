@@ -48,9 +48,9 @@ class ToolsController
             $app->abort(403);
         }
 
-        $data = array();
+        $data = [];
 
-        $backups = array();
+        $backups = [];
         $action = $request->query->get('action');
         $selectedBackup = $request->query->get('backup');
         $backupData = null;
@@ -110,11 +110,11 @@ class ToolsController
                     $backupFilePath
                 );
 
-                $backups[] = array(
+                $backups[] = [
                     'name' => $backupFileName,
                     'path' => $backupFilePath,
                     'size' => filesize($backupFilePath),
-                );
+                ];
             }
 
             $backups = array_reverse($backups);

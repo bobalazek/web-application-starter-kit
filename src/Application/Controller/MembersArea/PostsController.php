@@ -42,25 +42,25 @@ class PostsController
             $postResults,
             $currentPage,
             $limitPerPage,
-            array(
+            [
                 'route' => 'members-area.posts',
                 'defaultSortFieldName' => 'p.timeCreated',
                 'defaultSortDirection' => 'desc',
-                'searchFields' => array(
+                'searchFields' => [
                     'p.title',
                     'p.content',
                     'u.username',
                     'u.email',
-                ),
-            )
+                ],
+            ]
         );
 
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/list.html.twig',
-                array(
+                [
                     'pagination' => $pagination,
-                )
+                ]
             )
         );
     }
@@ -111,9 +111,9 @@ class PostsController
                 return $app->redirect(
                     $app['url_generator']->generate(
                         'members-area.posts.edit',
-                        array(
+                        [
                             'id' => $postEntity->getId(),
-                        )
+                        ]
                     )
                 );
             }
@@ -122,9 +122,9 @@ class PostsController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/new.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
-                )
+                ]
             )
         );
     }
@@ -186,9 +186,9 @@ class PostsController
                 return $app->redirect(
                     $app['url_generator']->generate(
                         'members-area.posts.edit',
-                        array(
+                        [
                             'id' => $postEntity->getId(),
-                        )
+                        ]
                     )
                 );
             }
@@ -197,10 +197,10 @@ class PostsController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/edit.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
                     'post' => $post,
-                )
+                ]
             )
         );
     }
@@ -221,7 +221,7 @@ class PostsController
             $app->abort(403);
         }
 
-        $posts = array();
+        $posts = [];
         $ids = $request->query->get('ids', false);
         $idsExploded = explode(',', $ids);
         foreach ($idsExploded as $singleId) {
@@ -270,9 +270,9 @@ class PostsController
                     'success',
                     $app['translator']->trans(
                         'The post "%post%" was successfully removed!',
-                        array(
+                        [
                             '%post%' => $post,
-                        )
+                        ]
                     )
                 );
             } catch (\Exception $e) {
@@ -294,11 +294,11 @@ class PostsController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/posts/remove.html.twig',
-                array(
+                [
                     'post' => $post,
                     'posts' => $posts,
                     'ids' => $ids,
-                )
+                ]
             )
         );
     }

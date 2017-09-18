@@ -12,27 +12,26 @@
         <!-- Stylesheets -->
             {% block stylesheets_before %}{% endblock %}
             {% block stylesheets %}
-                <link id="animate.css-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/animate.css/animate.min.css" />
-                <link id="font-awesome-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/fontawesome/css/font-awesome.min.css" />
-                <link id="bootstrap-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/bootstrap/dist/css/bootstrap.min.css" />
-                <link id="bootstrap-select-css" rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" />
-                <link id="helpers-css" rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/helpers.css" />
-                <link id="application-css" rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/application.css?version={{ app.version }}" />
+                <link rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/animate.css/animate.min.css" />
+                <link rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/fontawesome/css/font-awesome.min.css" />
+                <link rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/bootstrap/dist/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="{{ app.baseUri }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" />
+                <link rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/helpers.css" />
+                <link rel="stylesheet" href="{{ app.baseUri }}/assets/stylesheets/application.css?v={{ app.version }}" />
             {% endblock %}
             {% block stylesheets_after %}{% endblock %}
         <!-- Stylesheets /END -->
         <!-- Head Javascripts -->
             {% block head_javascripts_before %}{% endblock %}
             {% block head_javascripts %}
-                <script id="config-js">
+                <script>
                     var baseUrl = '{{ app.baseUrl }}';
                     var baseUri = '{{ app.baseUri }}';
                     var currentUrl = '{{ app.currentUrl }}';
                     var currentUri = '{{ app.currentUri }}';
                 </script>
-                <script id="modernizr-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
-                <script id="respond-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/respond/dest/respond.min.js"></script>
-                <script id="zxcvbn-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/zxcvbn/dist/zxcvbn.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/modernizr/modernizr.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/respond/dest/respond.min.js"></script>
             {% endblock %}
             {% block head_javascripts_after %}{% endblock %}
         <!-- Head Javascripts /END -->
@@ -64,11 +63,6 @@
                                                 {% block main %}{% endblock %}
                                             </div> <!-- /#main -->
                                         </div> <!-- /.col-md-8 -->
-                                        {# <div class="col-md-4">
-                                            <div id="sidebar" role="complementary">
-                                                {% block sidebar %}{% endblock %}
-                                            </div> <!-- /#sidebar -->
-                                        </div> <!-- /.col-md-4 --> #}
                                     </div> <!-- /.row -->
                                 </div> <!-- /.container-fluid -->
                             {% endblock %}
@@ -86,20 +80,18 @@
         <!-- Body Javascripts -->
             {% block body_javascripts_before %}{% endblock %}
             {% block body_javascripts %}
-                <script id="jquery-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery/dist/jquery.min.js"></script>
-                <script id="jquery-migrate-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-                <script id="jquery-noconflict-js" type="text/javascript">
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery/dist/jquery.min.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+                <script type="text/javascript">
                     jQuery.noConflict();
                 </script>
-                <script id="bootstrap-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-                <script id="bootstrap-select-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-                <script id="moment-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/moment/min/moment-with-locales.min.js"></script>
-                <script id="uri-js" type="text/javascript" src="{{ app.baseUri }}/assets/vendor/uri.js/src/URI.min.js"></script>
-                <script id="helpers-js" type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/helpers.js"></script>
-                <script id="application-js" type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/application.js?version={{ app.version }}"></script>
-                <script id="application-initialize-js">
-                    Application.initialize();
-                </script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/moment/min/moment-with-locales.min.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/vendor/uri.js/src/URI.min.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/helpers.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/wask.js"></script>
+                <script type="text/javascript" src="{{ app.baseUri }}/assets/javascripts/application.js?v={{ app.version }}"></script>
             {% endblock %}
             {% block body_javascripts_after %}{% endblock %}
         <!-- Body Javascripts /END -->

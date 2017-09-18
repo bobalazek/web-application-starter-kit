@@ -1,15 +1,14 @@
 *~
 ._*
-*.lock
 *-local.php
+/.php_cs.cache
+/.env
 /composer.phar
-/app/configs/environments/development.php
 /app/locales/*/*_untranslated.yml
 /var/*
 !/var/.gitkeep
 /vendor/
 /bin/*
-!/bin/application
 !/bin/console
 /web/assets/vendor/*
 /web/assets/uploads/*

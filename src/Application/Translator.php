@@ -79,7 +79,7 @@ class Translator
         $finder->files()->in(ROOT_DIR.'/src');
 
         foreach ($finder as $file) {
-            $fileMessageStrings = array();
+            $fileMessageStrings = [];
 
             $filePath = $file->getRealpath();
             $fileContent = file_get_contents($filePath);
@@ -110,7 +110,7 @@ class Translator
         $translatedMessages = $translatedMessages->all('messages');
 
         /***** Untranslated *****/
-        $untranslatedMessages = array();
+        $untranslatedMessages = [];
 
         if (!empty($allMessages)) {
             foreach ($allMessages as $singleMessageKey => $singleMessage) {
@@ -132,10 +132,10 @@ class Translator
             file_put_contents($untranslatedMessagesFile, $yaml);
         }
 
-        return array(
+        return [
             'allMessages' => $allMessages,
             'translatedMessages' => $translatedMessages,
             'untranslatedMessages' => $untranslatedMessages,
-        );
+        ];
     }
 }

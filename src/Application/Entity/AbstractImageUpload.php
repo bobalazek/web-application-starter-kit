@@ -35,6 +35,7 @@ class AbstractImageUpload
     protected $imageUrl;
 
     /*** Image ***/
+
     /**
      * @return File
      */
@@ -56,6 +57,7 @@ class AbstractImageUpload
     }
 
     /*** Image path ***/
+
     /**
      * @return string
      */
@@ -77,6 +79,7 @@ class AbstractImageUpload
     }
 
     /*** Image upload dir ***/
+
     /**
      * @return string
      */
@@ -98,6 +101,7 @@ class AbstractImageUpload
     }
 
     /*** Image URL ***/
+
     /**
      * @return string
      */
@@ -117,6 +121,7 @@ class AbstractImageUpload
     }
 
     /*** Image upload ***/
+
     /**
      * @return AbstractImageUpload
      *

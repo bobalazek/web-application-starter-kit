@@ -42,11 +42,11 @@ class MembersAreaController
             );
         }
 
-        $data = array(
+        $data = [
             'lastUsername' => $app['session']->get('_security.last_username'),
             'lastError' => $app['security.last_error']($app['request']),
             'csrfToken' => $app['form.csrf_provider']->getToken('authenticate'),
-        );
+        ];
 
         return new Response(
             $app['twig']->render(
@@ -116,14 +116,14 @@ class MembersAreaController
                 $app['orm.em']->flush();
 
                 $app['application.mailer']
-                    ->swiftMessageInitializeAndSend(array(
+                    ->swiftMessageInitializeAndSend([
                         'subject' => $app['name'].' - '.$app['translator']->trans('Welcome'),
-                        'to' => array($userEntity->getEmail()),
+                        'to' => [$userEntity->getEmail()],
                         'body' => 'emails/users/register-welcome.html.twig',
-                        'templateData' => array(
+                        'templateData' => [
                             'user' => $userEntity,
-                        ),
-                    ))
+                        ],
+                    ])
                 ;
 
                 $alert = 'success';
@@ -148,14 +148,14 @@ class MembersAreaController
                     );
 
                     $app['application.mailer']
-                        ->swiftMessageInitializeAndSend(array(
+                        ->swiftMessageInitializeAndSend([
                             'subject' => $app['name'].' - '.$app['translator']->trans('Registration'),
-                            'to' => array($userEntity->getEmail()),
+                            'to' => [$userEntity->getEmail()],
                             'body' => 'emails/users/register.html.twig',
-                            'templateData' => array(
+                            'templateData' => [
                                 'user' => $userEntity,
-                            ),
-                        ))
+                            ],
+                        ])
                     ;
 
                     $app['orm.em']->persist($userEntity);
@@ -170,11 +170,11 @@ class MembersAreaController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/register.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
                     'alert' => $alert,
                     'alertMessage' => $alertMessage,
-                )
+                ]
             )
         );
     }
@@ -252,16 +252,16 @@ class MembersAreaController
                             $app['orm.em']->flush();
 
                             $app['application.mailer']
-                                ->swiftMessageInitializeAndSend(array(
+                                ->swiftMessageInitializeAndSend([
                                     'subject' => $app['name'].' - '.$app['translator']->trans('Reset Password Confirmation'),
-                                    'to' => array(
+                                    'to' => [
                                         $userEntity->getEmail() => $userEntity->getProfile()->getFullName(),
-                                    ),
+                                    ],
                                     'body' => 'emails/users/reset-password-confirmation.html.twig',
-                                    'templateData' => array(
+                                    'templateData' => [
                                         'user' => $userEntity,
-                                    ),
-                                ))
+                                    ],
+                                ])
                             ;
 
                             $alert = 'success';
@@ -319,14 +319,14 @@ class MembersAreaController
                                 $app['orm.em']->flush();
 
                                 $app['application.mailer']
-                                    ->swiftMessageInitializeAndSend(array(
+                                    ->swiftMessageInitializeAndSend([
                                         'subject' => $app['name'].' - '.$app['translator']->trans('Reset password'),
-                                        'to' => array($userEntity->getEmail()),
+                                        'to' => [$userEntity->getEmail()],
                                         'body' => 'emails/users/reset-password.html.twig',
-                                        'templateData' => array(
+                                        'templateData' => [
                                             'user' => $userEntity,
-                                        ),
-                                    ))
+                                        ],
+                                    ])
                                 ;
 
                                 $alert = 'success';
@@ -347,13 +347,13 @@ class MembersAreaController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/reset-password.html.twig',
-                array(
+                [
                     'code' => $code,
                     'action' => $action,
                     'form' => $form->createView(),
                     'alert' => $alert,
                     'alertMessage' => $alertMessage,
-                )
+                ]
             )
         );
     }

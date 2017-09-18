@@ -19,48 +19,45 @@ class RegisterType extends AbstractType
     {
         $builder->add(
             $builder
-                ->create('profile', 'form', array(
+                ->create('profile', 'form', [
                         'by_reference' => true,
                         'data_class' => 'Application\Entity\ProfileEntity',
                         'label' => false,
-                ))
-                    ->add('firstName', 'text', array(
+                ])
+                    ->add('firstName', 'text', [
                         'label' => 'First name',
-                    ))
-                    ->add('lastName', 'text', array(
+                    ])
+                    ->add('lastName', 'text', [
                         'label' => 'Last name',
                         'required' => false,
-                    ))
+                    ])
         );
 
-        $builder->add('username', 'text', array(
+        $builder->add('username', 'text', [
             'label' => 'Username',
-        ));
-        $builder->add('email', 'email', array(
+        ]);
+        $builder->add('email', 'email', [
             'label' => 'Email',
-        ));
-        $builder->add('plainPassword', 'repeated', array(
+        ]);
+        $builder->add('plainPassword', 'repeated', [
             'type' => 'password',
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
             'invalid_message' => 'The password fields must match.',
-            'first_options' => array(
+            'first_options' => [
                 'label' => 'New password',
-                'attr' => array(
-                    'class' => 'password-meter-input',
-                ),
-            ),
-            'second_options' => array(
+            ],
+            'second_options' => [
                 'label' => 'Repeat new Password',
-            ),
-        ));
+            ],
+        ]);
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Register',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -68,12 +65,12 @@ class RegisterType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
-            'validation_groups' => array('register'),
+            'validation_groups' => ['register'],
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-        ));
+        ]);
     }
 
     /**

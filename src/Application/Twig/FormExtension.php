@@ -20,38 +20,38 @@ class FormExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
             new \Twig_SimpleFunction(
                 'form_has_errors',
-                array(
+                [
                     $this,
                     'formHasErrors',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'form_value',
-                array(
+                [
                     $this,
                     'formValue',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'form_checkbox_value',
-                array(
+                [
                     $this,
                     'formCheckboxValue',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
-        );
+        ];
     }
 
     /**

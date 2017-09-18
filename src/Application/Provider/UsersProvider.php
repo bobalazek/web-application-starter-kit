@@ -38,16 +38,16 @@ class UsersProvider implements UserProviderInterface
 
         $userByUsername = $this->app['orm.em']
             ->getRepository('Application\Entity\UserEntity')
-            ->findOneBy(array(
+            ->findOneBy([
                 'username' => $username,
-            ))
+            ])
         ;
 
         $userByEmail = $this->app['orm.em']
             ->getRepository('Application\Entity\UserEntity')
-            ->findOneBy(array(
+            ->findOneBy([
                 'email' => $username,
-            ))
+            ])
         ;
 
         if ($userByUsername) {
@@ -71,21 +71,21 @@ class UsersProvider implements UserProviderInterface
         return $user;
     }
 
-    /** 
+    /**
      * @param string $accessToken
      * @param bolean $throwExceptionIfNotExistent
-     * 
+     *
      * @return UserEntity
-     * 
-     * @throws UsernameNotFoundException If user was not found 
+     *
+     * @throws UsernameNotFoundException If user was not found
      */
     public function loadUserByAccessToken($accessToken, $throwExceptionIfNotExistent = true)
     {
         $user = $this->app['orm.em']
             ->getRepository('Application\Entity\UserEntity')
-            ->findOneBy(array(
+            ->findOneBy([
                 'accessToken' => $accessToken,
-            ))
+            ])
         ;
 
         if (

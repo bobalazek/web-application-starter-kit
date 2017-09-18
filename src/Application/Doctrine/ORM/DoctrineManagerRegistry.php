@@ -87,6 +87,7 @@ class DoctrineManagerRegistry implements ManagerRegistry
     {
         return $this->managers;
     }
+
     /**
      * {@inheritdoc}
      */

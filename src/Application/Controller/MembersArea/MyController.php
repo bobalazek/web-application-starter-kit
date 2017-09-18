@@ -76,14 +76,14 @@ class MyController
                 $app['orm.em']->flush();
 
                 $app['application.mailer']
-                    ->swiftMessageInitializeAndSend(array(
+                    ->swiftMessageInitializeAndSend([
                         'subject' => $app['name'].' - '.$app['translator']->trans('Email change confirmation'),
-                        'to' => array($app['user']->getEmail()),
+                        'to' => [$app['user']->getEmail()],
                         'body' => 'emails/users/new-email-confirmation.html.twig',
-                        'templateData' => array(
+                        'templateData' => [
                             'user' => $app['user'],
-                        ),
-                    ))
+                        ],
+                    ])
                 ;
 
                 $app['flashbag']->add(
@@ -133,14 +133,14 @@ class MyController
                     ;
 
                     $app['application.mailer']
-                        ->swiftMessageInitializeAndSend(array(
+                        ->swiftMessageInitializeAndSend([
                             'subject' => $app['name'].' - '.$app['translator']->trans('Email change'),
-                            'to' => array($userEntity->getNewEmail()),
+                            'to' => [$userEntity->getNewEmail()],
                             'body' => 'emails/users/new-email.html.twig',
-                            'templateData' => array(
+                            'templateData' => [
                                 'user' => $userEntity,
-                            ),
-                        ))
+                            ],
+                        ])
                     ;
 
                     $app['flashbag']->add(
@@ -156,10 +156,10 @@ class MyController
                     ->setUser($userEntity)
                     ->setKey('user.settings.change')
                     ->setMessage('User has changed his settings!')
-                    ->setData(array(
+                    ->setData([
                         'old' => $userOldArray,
                         'new' => $userEntity->toArray(false),
-                    ))
+                    ])
                     ->setIp($app['request']->getClientIp())
                     ->setUserAgent($app['request']->headers->get('User-Agent'))
                 ;
@@ -185,9 +185,9 @@ class MyController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/my/settings.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
-                )
+                ]
             )
         );
     }
@@ -244,9 +244,9 @@ class MyController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/my/password.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
-                )
+                ]
             )
         );
     }
@@ -274,23 +274,23 @@ class MyController
             $userActionResults,
             $currentPage,
             $limitPerPage,
-            array(
+            [
                 'route' => 'members-area.my.actions',
                 'defaultSortFieldName' => 'ua.timeCreated',
                 'defaultSortDirection' => 'desc',
-                'searchFields' => array(
+                'searchFields' => [
                     'ua.key',
                     'ua.ip',
-                ),
-            )
+                ],
+            ]
         );
 
         return new Response(
             $app['twig']->render(
                 'contents/members-area/my/actions.html.twig',
-                array(
+                [
                     'pagination' => $pagination,
-                )
+                ]
             )
         );
     }

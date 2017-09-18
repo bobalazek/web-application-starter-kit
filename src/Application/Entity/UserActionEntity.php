@@ -79,6 +79,7 @@ class UserActionEntity
     protected $user;
 
     /*** Id ***/
+
     /**
      * @return int
      */
@@ -100,6 +101,7 @@ class UserActionEntity
     }
 
     /*** Key ***/
+
     /**
      * @return string
      */
@@ -121,6 +123,7 @@ class UserActionEntity
     }
 
     /*** Message ***/
+
     /**
      * @return string
      */
@@ -142,6 +145,7 @@ class UserActionEntity
     }
 
     /*** Data ***/
+
     /**
      * @return string
      */
@@ -170,6 +174,7 @@ class UserActionEntity
     }
 
     /*** IP ***/
+
     /**
      * @return string
      */
@@ -191,6 +196,7 @@ class UserActionEntity
     }
 
     /*** User agent ***/
+
     /**
      * @return string
      */
@@ -212,6 +218,7 @@ class UserActionEntity
     }
 
     /*** Time created ***/
+
     /**
      * @return \DateTime
      */
@@ -233,6 +240,7 @@ class UserActionEntity
     }
 
     /*** Time updated ***/
+
     /**
      * @return \DateTime
      */
@@ -254,6 +262,7 @@ class UserActionEntity
     }
 
     /*** User ***/
+
     /**
      * @return UserEntity $user
      */
@@ -279,12 +288,12 @@ class UserActionEntity
      */
     public function toArray()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'key' => $this->getKey(),
             'ip' => $this->getIp(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
-        );
+        ];
     }
 
     /**

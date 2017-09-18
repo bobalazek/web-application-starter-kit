@@ -33,7 +33,7 @@ if (file_exists(APP_DIR.'/configs/global-local.php')) {
 }
 
 /* Environment */
-$app['environment'] = getenv('APPLICATION_ENVIRONMENT') ?: 'development';
+$app['environment'] = getenv('APPLICATION_ENVIRONMENT') ?: 'dev';
 
 /* Environment Config */
 if (file_exists(APP_DIR.'/configs/environments/'.$app['environment'].'.php')) {
@@ -44,15 +44,10 @@ if (file_exists(APP_DIR.'/configs/environments/'.$app['environment'].'.php')) {
     );
 }
 
-/* Environment variables */
-if (getenv('APPLICATION_DATABASE_PASSWORD')) {
-    $app['database_options']['default']['password'] = getenv('APPLICATION_DATABASE_PASSWORD');
-}
-
 /***** Session *****/
-$app->register(new Silex\Provider\SessionServiceProvider(), array(
+$app->register(new Silex\Provider\SessionServiceProvider(), [
     'session.storage.save_path' => STORAGE_DIR.'/sessions',
-));
+]);
 
 /* Flashbag */
 $app['flashbag'] = function ($app) {
@@ -60,14 +55,14 @@ $app['flashbag'] = function ($app) {
 };
 
 /***** Http Cache *****/
-$app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
+$app->register(new Silex\Provider\HttpCacheServiceProvider(), [
     'http_cache.cache_dir' => STORAGE_DIR.'/cache/http/',
-));
+]);
 
 /***** Translation *****/
-$app->register(new Silex\Provider\TranslationServiceProvider(), array(
+$app->register(new Silex\Provider\TranslationServiceProvider(), [
     'locale_fallback' => 'en_US',
-));
+]);
 
 $app['translator']->addLoader(
     'yaml',
@@ -89,22 +84,27 @@ $app['application.paginator'] = function ($app) {
     return new Application\Paginator($app);
 };
 
+/*** Application Translator ***/
+$app['application.server_info'] = function ($app) {
+    return new Application\ServerInfo($app);
+};
+
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
 
 /***** Twig / Templating Engine *****/
 $app->register(
     new Silex\Provider\TwigServiceProvider(),
-    array(
+    [
         'twig.path' => APP_DIR.'/templates',
-        'twig.form.templates' => array(
+        'twig.form.templates' => [
             'twig/form.html.twig',
-        ),
-        'twig.options' => array(
+        ],
+        'twig.options' => [
             'cache' => STORAGE_DIR.'/cache/template',
             'debug' => $app['debug'],
-        ),
-    )
+        ],
+    ]
 );
 
 /*** Twig Extensions ***/
@@ -130,36 +130,36 @@ if (
 ) {
     $app->register(
         new Silex\Provider\DoctrineServiceProvider(),
-        array(
+        [
             'dbs.options' => $app['database_options'],
-        )
+        ]
     );
 
     $app->register(
         new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),
-        array(
-            'orm.em.options' => array(
-                'mappings' => array(
-                    array(
+        [
+            'orm.em.options' => [
+                'mappings' => [
+                    [
                         'type' => 'annotation',
                         'namespace' => 'Application\Entity',
                         'path' => SRC_DIR.'/Application/Entity',
                         'use_simple_annotation_reader' => false,
-                    ),
-                ),
-            ),
-        )
+                    ],
+                ],
+            ],
+        ]
     );
 
     AnnotationRegistry::registerLoader(
-        array(
+        [
             require VENDOR_DIR.'/autoload.php',
             'loadClass',
-        )
+        ]
     );
 
     $entityManagerConfig = Setup::createAnnotationMetadataConfiguration(
-        array(APP_DIR.'/src/Application/Entity'),
+        [APP_DIR.'/src/Application/Entity'],
         $app['debug']
     );
 
@@ -177,8 +177,8 @@ if (
     $app['orm.manager_registry'] = function ($app) {
         return new DoctrineManagerRegistry(
             'manager_registry',
-            array('default' => $app['orm.em']->getConnection()),
-            array('default' => $app['orm.em'])
+            ['default' => $app['orm.em']->getConnection()],
+            ['default' => $app['orm.em']]
         );
     };
 
@@ -218,18 +218,18 @@ $app['security.validator.user_password'] = function ($app) {
     );
 };
 
-$app['validator.validator_service_ids'] = array(
+$app['validator.validator_service_ids'] = [
     'doctrine.orm.validator.unique' => 'validator.unique_entity',
     'security.validator.user_password' => 'security.validator.user_password',
-);
+];
 
 /***** Url Generator *****/
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 /***** Http Cache *****/
-$app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
+$app->register(new Silex\Provider\HttpCacheServiceProvider(), [
     'http_cache.cache_dir' => STORAGE_DIR.'/cache/http/',
-));
+]);
 
 /***** Users Provider *****/
 $app['users.provider'] = function () use ($app) {
@@ -237,13 +237,13 @@ $app['users.provider'] = function () use ($app) {
 };
 
 /***** Security *****/
-$securityFirewalls = array();
+$securityFirewalls = [];
 
 /*** Members Area ***/
-$securityFirewalls['members-area'] = array(
+$securityFirewalls['members-area'] = [
     'pattern' => '^/',
     'anonymous' => true,
-    'form' => array(
+    'form' => [
         'login_path' => '/members-area/login',
         'check_path' => '/members-area/login/check',
         'failure_path' => '/members-area/login',
@@ -255,39 +255,39 @@ $securityFirewalls['members-area'] = array(
         'csrf_parameter' => 'csrf_token',
         'with_csrf' => true,
         'use_referer' => true,
-    ),
-    'logout' => array(
+    ],
+    'logout' => [
         'logout_path' => '/members-area/logout',
         'target' => '/members-area',
         'invalidate_session' => true,
         'csrf_parameter' => 'csrf_token',
-    ),
+    ],
     'remember_me' => $app['remember_me_options'],
-    'switch_user' => array(
+    'switch_user' => [
         'parameter' => 'switch_user',
         'role' => 'ROLE_ALLOWED_TO_SWITCH',
-    ),
+    ],
     'users' => $app['users.provider'],
-);
+];
 
 $app->register(
     new Silex\Provider\SecurityServiceProvider(),
-    array(
+    [
         'security.firewalls' => $securityFirewalls,
-    )
+    ]
 );
 
-$app['security.access_rules'] = array(
-    array('^/members-area/login', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-    array('^/members-area/register', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-    array('^/members-area/reset-password', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-    array('^/members-area', 'ROLE_USER'),
-);
+$app['security.access_rules'] = [
+    ['^/members-area/login', 'IS_AUTHENTICATED_ANONYMOUSLY'],
+    ['^/members-area/register', 'IS_AUTHENTICATED_ANONYMOUSLY'],
+    ['^/members-area/reset-password', 'IS_AUTHENTICATED_ANONYMOUSLY'],
+    ['^/members-area', 'ROLE_USER'],
+];
 
-$app['security.role_hierarchy'] = array(
-    'ROLE_SUPER_ADMIN' => array('ROLE_ADMIN', 'ROLE_ALLOWED_TO_SWITCH'),
-    'ROLE_ADMIN' => array('ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'),
-);
+$app['security.role_hierarchy'] = [
+    'ROLE_SUPER_ADMIN' => ['ROLE_ADMIN', 'ROLE_ALLOWED_TO_SWITCH'],
+    'ROLE_ADMIN' => ['ROLE_USER', 'ROLE_ALLOWED_TO_SWITCH'],
+];
 
 /* Voters */
 $app['security.voters'] = $app->extend(
@@ -307,7 +307,7 @@ $app->register(new Silex\Provider\SwiftmailerServiceProvider());
 $app['swiftmailer.options'] = $app['swiftmailer_options'];
 
 /* Emogrifier */
-$app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = array(), $isTwigTemplate = true) use ($app) {
+$app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = [], $isTwigTemplate = true) use ($app) {
     $emogrifier = new \Pelago\Emogrifier();
     $emogrifier->setHtml(
         $isTwigTemplate
@@ -316,9 +316,9 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
             'emails/blank.html.twig',
             array_merge(
                 $twigTemplateData,
-                array(
+                [
                     'content' => $twigTemplatePathOrContent,
-                )
+                ]
             )
         )
     );
@@ -330,10 +330,10 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
 if ($app['show_profiler']) {
     $app->register(new Silex\Provider\HttpFragmentServiceProvider());
     $app->register(new Silex\Provider\ServiceControllerServiceProvider());
-    $app->register(new Silex\Provider\WebProfilerServiceProvider(), array(
+    $app->register(new Silex\Provider\WebProfilerServiceProvider(), [
         'profiler.cache_dir' => STORAGE_DIR.'/cache/profiler',
         'profiler.mount_prefix' => '/_profiler',
-    ));
+    ]);
 }
 
 /*** Listeners ***/

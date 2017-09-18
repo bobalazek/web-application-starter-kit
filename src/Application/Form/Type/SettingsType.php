@@ -28,21 +28,21 @@ class SettingsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('foo', 'textarea', array(
+        $builder->add('foo', 'textarea', [
             'label' => 'Foo?',
             'required' => false,
             'data' => $this->app['settings']['foo'],
-            'attr' => array(
+            'attr' => [
                 'data-help-text' => 'Is it really foo?',
-            ),
-        ));
+            ],
+        ]);
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Save',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -50,10 +50,10 @@ class SettingsType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-        ));
+        ]);
     }
 
     /**

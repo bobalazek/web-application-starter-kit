@@ -16,9 +16,9 @@ class ApiController
      */
     public function indexAction(Application $app)
     {
-        return $app->json(array(
+        return $app->json([
             'status' => 'success',
             'message' => 'Hello API!',
-        ));
+        ]);
     }
 }

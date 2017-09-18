@@ -21,22 +21,22 @@ class SettingsType extends AbstractType
         $builder->add(
             'profile',
             new ProfileType(),
-            array(
+            [
                 'label' => false,
-            )
+            ]
         );
 
-        $builder->add('username', 'text', array(
+        $builder->add('username', 'text', [
             'label' => 'Username',
-        ));
+        ]);
         $builder->add('email', 'email');
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Save',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -44,13 +44,13 @@ class SettingsType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
-            'validation_groups' => array('settings'),
+            'validation_groups' => ['settings'],
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
             'cascade_validation' => true,
-        ));
+        ]);
     }
 
     /**

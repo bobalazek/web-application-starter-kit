@@ -20,18 +20,18 @@ class FileExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
             new \Twig_SimpleFunction(
                 'file_contents',
-                array(
+                [
                     $this,
                     'fileContents',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
-        );
+        ];
     }
 
     /**

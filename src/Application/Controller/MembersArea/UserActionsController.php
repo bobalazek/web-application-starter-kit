@@ -38,11 +38,11 @@ class UserActionsController
             $userActionResults,
             $currentPage,
             $limitPerPage,
-            array(
+            [
                 'route' => 'members-area.user-actions',
                 'defaultSortFieldName' => 'ua.timeCreated',
                 'defaultSortDirection' => 'desc',
-                'searchFields' => array(
+                'searchFields' => [
                     'u.username',
                     'u.email',
                     'p.name',
@@ -52,16 +52,16 @@ class UserActionsController
                     'ua.key',
                     'ua.message',
                     'ua.data',
-                ),
-            )
+                ],
+            ]
         );
 
         return new Response(
             $app['twig']->render(
                 'contents/members-area/user-actions/list.html.twig',
-                array(
+                [
                     'pagination' => $pagination,
-                )
+                ]
             )
         );
     }

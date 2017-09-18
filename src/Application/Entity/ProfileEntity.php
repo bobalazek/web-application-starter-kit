@@ -89,6 +89,7 @@ class ProfileEntity extends AbstractImageUpload
     protected $removeImage = false;
 
     /*** Id ***/
+
     /**
      * @return int
      */
@@ -110,6 +111,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Title ***/
+
     /**
      * @return string
      */
@@ -131,6 +133,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Name ***/
+
     /**
      * @return string
      */
@@ -140,6 +143,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** First name ***/
+
     /**
      * @return string
      */
@@ -161,6 +165,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Middle name ***/
+
     /**
      * @return string
      */
@@ -182,6 +187,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Last name ***/
+
     /**
      * @return string
      */
@@ -203,6 +209,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Full name ***/
+
     /**
      * @return string
      */
@@ -217,6 +224,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Gender ***/
+
     /**
      * @return string
      */
@@ -238,6 +246,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Birthdate ***/
+
     /**
      * @return string
      */
@@ -265,6 +274,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Age ***/
+
     /**
      * @return string
      */
@@ -277,6 +287,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** User ***/
+
     /**
      * @return UserEntity
      */
@@ -298,6 +309,7 @@ class ProfileEntity extends AbstractImageUpload
     }
 
     /*** Remove image ***/
+
     /**
      * @return bool
      */
@@ -323,7 +335,7 @@ class ProfileEntity extends AbstractImageUpload
      */
     public function toArray()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'full_name' => $this->getFullName(),
@@ -335,6 +347,6 @@ class ProfileEntity extends AbstractImageUpload
                 ? $this->getBirthdate()->format(DATE_ATOM)
                 : null,
             'image_url' => $this->getImageUrl(),
-        );
+        ];
     }
 }

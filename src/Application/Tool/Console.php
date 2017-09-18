@@ -38,11 +38,6 @@ class Console
         Storage::prepare();
 
         if ($output) {
-            $output->writeln('<info>Preparing environment...</info>');
-        }
-        Environment::prepare();
-
-        if ($output) {
             $output->writeln('<info>Preparing composer...</info>');
         }
         Composer::download();

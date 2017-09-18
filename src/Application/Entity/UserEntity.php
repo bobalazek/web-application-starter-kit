@@ -206,6 +206,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Id ***/
+
     /**
      * @return int
      */
@@ -227,6 +228,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Locale ***/
+
     /**
      * @return string
      */
@@ -248,6 +250,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Username ***/
+
     /**
      * @return string
      */
@@ -269,6 +272,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Email ***/
+
     /**
      * @return string
      */
@@ -290,6 +294,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** New email ***/
+
     /**
      * @return string
      */
@@ -311,6 +316,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Password ***/
+
     /**
      * @return string
      */
@@ -334,6 +340,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Plain password ***/
+
     /**
      * @return string
      */
@@ -367,6 +374,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Old password ***/
+
     /**
      * @return string
      */
@@ -388,6 +396,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Salt ***/
+
     /**
      * @return string
      */
@@ -409,6 +418,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Enabled ***/
+
     /**
      * @return bool
      */
@@ -456,6 +466,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Locked ***/
+
     /**
      * @return bool
      */
@@ -503,6 +514,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Reset password code ***/
+
     /**
      * @return string
      */
@@ -524,6 +536,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Activation code ***/
+
     /**
      * @return string
      */
@@ -545,6 +558,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** New email code ***/
+
     /**
      * @return string
      */
@@ -566,6 +580,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Time last active ***/
+
     /**
      * @return \DateTime
      */
@@ -587,6 +602,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Time reset password code expires ***/
+
     /**
      * @return \DateTime
      */
@@ -608,6 +624,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Time created ***/
+
     /**
      * @return \DateTime
      */
@@ -629,6 +646,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Time updated ***/
+
     /**
      * @return \DateTime
      */
@@ -650,6 +668,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Expired ***/
+
     /**
      * @return bool
      */
@@ -675,6 +694,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Credentials expired ***/
+
     /**
      * @return bool
      */
@@ -700,6 +720,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Roles ***/
+
     /**
      * @return array
      */
@@ -707,7 +728,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     {
         $roles = is_array($this->roles)
             ? $this->roles
-            : array()
+            : []
         ;
         $roles[] = 'ROLE_USER';
 
@@ -740,6 +761,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Profile ***/
+
     /**
      * @return ProfileEntity
      */
@@ -763,6 +785,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** Posts ***/
+
     /**
      * @return array
      */
@@ -784,6 +807,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /*** User actions ***/
+
     /**
      * @return array
      */
@@ -847,13 +871,13 @@ class UserEntity implements AdvancedUserInterface, \Serializable
      */
     public function serialize()
     {
-        return serialize(array(
+        return serialize([
             $this->id,
             $this->username,
             $this->email,
             $this->password,
             $this->salt,
-        ));
+        ]);
     }
 
     /**
@@ -878,13 +902,13 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param $allData Show all the data for this user.
+     * @param $allData show all the data for this user
      *
      * @return array
      */
     public function toArray($allData = true)
     {
-        $data = array(
+        $data = [
             'username' => $this->getUsername(),
             'email' => $this->getEmail(),
             'title' => $this->getProfile()->getTitle(),
@@ -895,13 +919,13 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             'gender' => $this->getProfile()->getGender(),
             'birthdate' => $this->getProfile()->getBirthdate()->format('Y-m-d'),
             'image_url' => $this->getProfile()->getImageUrl(),
-        );
+        ];
 
         if ($allData) {
-            $data = array_merge($data, array(
+            $data = array_merge($data, [
                 'id' => $this->getId(),
                 'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
-            ));
+            ]);
         }
 
         return $data;

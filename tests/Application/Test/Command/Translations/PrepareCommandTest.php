@@ -25,9 +25,9 @@ class PrepareCommandTest extends \PHPUnit_Framework_TestCase
 
         $command = $application->find('application:translations:prepare');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
+        $commandTester->execute([
             'command' => $command->getName(),
-        ));
+        ]);
 
         $this->assertRegExp(
             '/The Translations for en_US were successfully prepared!/',

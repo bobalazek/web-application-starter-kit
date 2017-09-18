@@ -1,3 +1,16 @@
+## 2.0.0 (2017-09-18)
+* Codebase restructuring
+* Change CS standards
+* Add composer.lock to repository
+* Add server info to statistics
+* Add .env
+* Remove unused stuff
+* Changed environments naming
+
+## 1.9.0 (2017-09-11)
+* Dependency fixes
+* Few naming changes
+
 ## 1.8.0 (2017-08-16)
 * PHP 7.1 compatibility
 

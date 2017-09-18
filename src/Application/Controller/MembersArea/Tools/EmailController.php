@@ -19,7 +19,7 @@ class EmailController
      */
     public function indexAction(Application $app)
     {
-        $data = array();
+        $data = [];
 
         if (!$app['security']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
@@ -45,22 +45,22 @@ class EmailController
             $app->abort(403);
         }
 
-        $data = array();
+        $data = [];
 
-        $templates = array();
+        $templates = [];
         $template = $request->query->get('template', false);
         $raw = $request->query->has('raw');
 
         // Set some possible global defaults for the template
-        $emailData = array(
+        $emailData = [
             'app' => $app,
             'user' => $app['user'],
             'content' => 'Hello world!',
-            'formData' => array(
+            'formData' => [
                 'message' => 'Just a test message!',
-            ),
+            ],
             'e' => new \Exception('Some error happened!'),
-        );
+        ];
 
         if ($template && $raw) {
             $app['debug'] = false;

@@ -19,9 +19,9 @@ class PrepareCommandTest extends \PHPUnit_Framework_TestCase
 
         $command = $application->find('application:storage:prepare');
         $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
+        $commandTester->execute([
             'command' => $command->getName(),
-        ));
+        ]);
 
         $this->assertRegExp(
             '/The storage was successfully prepared!/',

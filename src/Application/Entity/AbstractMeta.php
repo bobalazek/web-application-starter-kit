@@ -22,6 +22,7 @@ class AbstractMeta extends AbstractBasicEntity
     protected $value;
 
     /*** Key ***/
+
     /**
      * @return string
      */
@@ -43,6 +44,7 @@ class AbstractMeta extends AbstractBasicEntity
     }
 
     /*** Value ***/
+
     /**
      * @return string
      */
@@ -70,13 +72,13 @@ class AbstractMeta extends AbstractBasicEntity
      */
     public function toArray()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'key' => $this->getKey(),
             'value' => $this->getValue(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
             'time_updated' => $this->getTimeUpdated()->format(DATE_ATOM),
-        );
+        ];
     }
 
     /**
@@ -86,7 +88,7 @@ class AbstractMeta extends AbstractBasicEntity
      */
     public function __toString()
     {
-        $data = array();
+        $data = [];
         $key = $this->getKey();
         $value = $this->getValue();
 

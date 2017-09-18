@@ -67,6 +67,7 @@ class ErrorEntity extends AbstractImageUpload
     protected $timeUpdated;
 
     /*** Id ***/
+
     /**
      * @return int
      */
@@ -88,6 +89,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /*** Code ***/
+
     /**
      * @return int
      */
@@ -109,6 +111,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /*** Message ***/
+
     /**
      * @return string
      */
@@ -130,6 +133,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /*** Exception ***/
+
     /**
      * @return string
      */
@@ -151,6 +155,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /*** Data ***/
+
     /**
      * @return string
      */
@@ -172,6 +177,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /*** Time created ***/
+
     /**
      * @return \DateTime
      */
@@ -193,6 +199,7 @@ class ErrorEntity extends AbstractImageUpload
     }
 
     /*** Time updated ***/
+
     /**
      * @return \DateTime
      */
@@ -218,13 +225,13 @@ class ErrorEntity extends AbstractImageUpload
      */
     public function toArray()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'code' => $this->getCode(),
             'message' => $this->getMessage(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
             'time_updated' => $this->getTimeUpdated()->format(DATE_ATOM),
-        );
+        ];
     }
 
     /**

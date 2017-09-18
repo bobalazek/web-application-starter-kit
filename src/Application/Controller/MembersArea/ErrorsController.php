@@ -36,23 +36,23 @@ class ErrorsController
             $errorResults,
             $currentPage,
             $limitPerPage,
-            array(
+            [
                 'route' => 'members-area.errors',
                 'defaultSortFieldName' => 'e.timeCreated',
                 'defaultSortDirection' => 'desc',
-                'searchFields' => array(
+                'searchFields' => [
                     'e.code',
                     'e.message',
-                ),
-            )
+                ],
+            ]
         );
 
         return new Response(
             $app['twig']->render(
                 'contents/members-area/errors/list.html.twig',
-                array(
+                [
                     'pagination' => $pagination,
-                )
+                ]
             )
         );
     }

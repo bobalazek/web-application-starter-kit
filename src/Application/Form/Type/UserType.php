@@ -32,31 +32,28 @@ class UserType extends AbstractType
         $builder->add(
             'profile',
             new ProfileType(),
-            array(
+            [
                 'label' => false,
-            )
+            ]
         );
 
-        $builder->add('username', 'text', array(
+        $builder->add('username', 'text', [
             'required' => false,
-        ));
+        ]);
         $builder->add('email', 'email');
-        $builder->add('plainPassword', 'repeated', array(
+        $builder->add('plainPassword', 'repeated', [
             'type' => 'password',
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
             'required' => false,
             'invalid_message' => 'The password fields must match.',
-            'first_options' => array(
+            'first_options' => [
                 'label' => 'New password',
-                'attr' => array(
-                    'class' => 'password-meter-input',
-                ),
-            ),
-            'second_options' => array(
+            ],
+            'second_options' => [
                 'label' => 'Repeat new Password',
-            ),
-        ));
+            ],
+        ]);
 
         $rolesChoices = $this->app['user_system_options']['roles'];
         if (!$this->app['security']->isGranted('ROLE_SUPER_ADMIN')) {
@@ -65,28 +62,28 @@ class UserType extends AbstractType
             unset($rolesChoices['ROLE_ADMIN']);
         }
 
-        $builder->add('roles', 'choice', array(
+        $builder->add('roles', 'choice', [
             'required' => false,
             'multiple' => true,
             'expanded' => true,
             'choices' => $rolesChoices,
-        ));
+        ]);
 
-        $builder->add('enabled', 'checkbox', array(
+        $builder->add('enabled', 'checkbox', [
             'label' => 'Is enabled?',
             'required' => false,
-        ));
-        $builder->add('locked', 'checkbox', array(
+        ]);
+        $builder->add('locked', 'checkbox', [
             'label' => 'Is locked?',
             'required' => false,
-        ));
+        ]);
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Save',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -94,11 +91,11 @@ class UserType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
             'validation_groups' => function (FormInterface $form) {
                 $user = $form->getData();
-                $validationGroups = array();
+                $validationGroups = [];
 
                 if ($user->isLocked()) {
                     $validationGroups[] = 'isLocked';
@@ -115,7 +112,7 @@ class UserType extends AbstractType
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
             'cascade_validation' => true,
-        ));
+        ]);
     }
 
     /**

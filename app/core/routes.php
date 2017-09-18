@@ -83,11 +83,11 @@ $app->match('/set-locale/{locale}', function ($locale) use ($app) {
         new \DateTime('now + 1 year')
     );
 
-    $response = Response::create(null, 302, array(
+    $response = Response::create(null, 302, [
         'Location' => isset($_SERVER['HTTP_REFERER'])
             ? $_SERVER['HTTP_REFERER']
             : $app['baseUrl'],
-    ));
+    ]);
 
     $response->headers->setCookie($cookie);
 
@@ -105,15 +105,15 @@ $app->error(function (\Exception $e, $code) use ($app) {
     // Send my email
     if ($app['error_options']['send_by_email']) {
         $app['application.mailer']
-            ->swiftMessageInitializeAndSend(array(
+            ->swiftMessageInitializeAndSend([
                 'subject' => $app['name'].' - '.$app['translator']->trans('An error occured').' ('.$code.')',
                 'to' => $app['email'],
                 'body' => 'emails/error.html.twig',
-                'templateData' => array(
+                'templateData' => [
                     'e' => $e,
                     'code' => $code,
-                ),
-            ))
+                ],
+            ])
         ;
     }
 
@@ -128,7 +128,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
         $exception->file = $e->getFile();
         $exception->line = $e->getLine();
 
-        $data = array(
+        $data = [
             'is_ajax' => $app['request']->isXmlHttpRequest(),
             'method' => $app['request']->getMethod(),
             'route' => $app['request']->get('_route'),
@@ -140,7 +140,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
             'cookies' => $app['request']->cookies->all(),
             'headers' => $app['request']->headers->all(),
             'environment' => $_ENV,
-        );
+        ];
 
         $errorEntity = new ErrorEntity();
         $errorEntity
@@ -155,19 +155,19 @@ $app->error(function (\Exception $e, $code) use ($app) {
     }
 
     // 404.html, or 40x.html, or 4xx.html or default.html
-    $templates = array(
+    $templates = [
         'contents/errors/'.$code.'.html.twig',
         'contents/errors/'.substr($code, 0, 2).'x.html.twig',
         'contents/errors/'.substr($code, 0, 1).'xx.html.twig',
         'contents/errors/default.html.twig',
-    );
+    ];
 
     return new Response(
         $app['twig']->resolveTemplate($templates)->render(
-            array(
+            [
                 'code' => $code,
                 'e' => $e,
-            )
+            ]
         ),
         $code
     );

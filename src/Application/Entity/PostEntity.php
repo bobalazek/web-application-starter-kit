@@ -95,6 +95,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Id ***/
+
     /**
      * @return int
      */
@@ -116,6 +117,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Title ***/
+
     /**
      * @return string
      */
@@ -137,6 +139,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Content ***/
+
     /**
      * @return string
      */
@@ -158,6 +161,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Time created ***/
+
     /**
      * @return \DateTime
      */
@@ -179,6 +183,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Time updated ***/
+
     /**
      * @return \DateTime
      */
@@ -200,6 +205,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** User ***/
+
     /**
      * @return UserEntity
      */
@@ -221,6 +227,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Post Metas ***/
+
     /**
      * @return ArrayCollection
      */
@@ -276,6 +283,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Metas ***/
+
     /**
      * @param $key
      *
@@ -301,14 +309,12 @@ class PostEntity extends AbstractImageUpload
         return $this;
     }
 
-    /**
-     */
     public function hydratePostMetas()
     {
         $postMetas = $this->getPostMetas();
 
         if (count($postMetas)) {
-            $metas = array();
+            $metas = [];
 
             foreach ($postMetas as $postMeta) {
                 $metas[$postMeta->getKey()] = $postMeta->getValue();
@@ -318,8 +324,6 @@ class PostEntity extends AbstractImageUpload
         }
     }
 
-    /**
-     */
     public function convertMetasToPostMetas($uploadPath, $uploadDir)
     {
         $slugify = new Slugify();
@@ -356,6 +360,7 @@ class PostEntity extends AbstractImageUpload
     }
 
     /*** Remove image ***/
+
     /**
      * @return bool
      */
@@ -381,7 +386,7 @@ class PostEntity extends AbstractImageUpload
      */
     public function toArray()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'content' => $this->getContent(),
@@ -389,7 +394,7 @@ class PostEntity extends AbstractImageUpload
             'metas' => $this->getMetas(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
             'time_updated' => $this->getTimeUpdated()->format(DATE_ATOM),
-        );
+        ];
     }
 
     /**

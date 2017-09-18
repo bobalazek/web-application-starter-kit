@@ -28,7 +28,7 @@ class WebTestCase extends SilexWebTestCase
     /**
      * @return \Symfony\Component\HttpKernel\Client
      */
-    public function doLogin($username, array $roles = array())
+    public function doLogin($username, array $roles = [])
     {
         $app = $this->createApplication();
         $client = $this->createClient();

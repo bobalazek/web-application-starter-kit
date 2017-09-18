@@ -12,7 +12,7 @@
 >
     <testsuites>
         <testsuite name="Web Application Starter Kit Test Suite">
-            <directory>./test</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -21,6 +21,6 @@
         </whitelist>
     </filter>
     <php>
-        <env name="APPLICATION_ENVIRONMENT" value="testing"/>
+        <env name="APPLICATION_ENVIRONMENT" value="test"/>
     </php>
 </phpunit>

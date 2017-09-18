@@ -92,9 +92,9 @@ class SettingsController
         return new Response(
             $app['twig']->render(
                 'contents/members-area/settings/index.html.twig',
-                array(
+                [
                     'form' => $form->createView(),
-                )
+                ]
             )
         );
     }

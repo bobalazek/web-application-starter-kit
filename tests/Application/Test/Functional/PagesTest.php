@@ -42,7 +42,7 @@ class PagesTest extends WebTestCase
      */
     public function testUserUrls()
     {
-        $client = $this->doLogin('user', array('ROLE_USER'));
+        $client = $this->doLogin('user', ['ROLE_USER']);
 
         $userUrls = $this->getUserUrls();
         foreach ($userUrls as $url) {
@@ -60,7 +60,7 @@ class PagesTest extends WebTestCase
      */
     public function testAdminUserUrls()
     {
-        $client = $this->doLogin('admin', array('ROLE_ADMIN'));
+        $client = $this->doLogin('admin', ['ROLE_ADMIN']);
 
         $urls = $this->getAdminUserUrls();
         foreach ($urls as $url) {
@@ -95,12 +95,12 @@ class PagesTest extends WebTestCase
      */
     public function getAnonymousUserUrls()
     {
-        return array(
+        return [
             '/',
             '/members-area/login',
             '/members-area/register',
             '/members-area/reset-password',
-        );
+        ];
     }
 
     /**
@@ -110,13 +110,13 @@ class PagesTest extends WebTestCase
      */
     public function getUserUrls()
     {
-        return array(
+        return [
             '/members-area',
             '/members-area/my/profile',
             // '/members-area/my/settings', // To-Do
             '/members-area/my/password',
             // '/members-area/my/actions', // To-Do
-        );
+        ];
     }
 
     /**
@@ -126,7 +126,7 @@ class PagesTest extends WebTestCase
      */
     public function getAdminUserUrls()
     {
-        return array(
+        return [
             '/members-area/users',
             '/members-area/users/new',
             '/members-area/user-actions',
@@ -135,6 +135,6 @@ class PagesTest extends WebTestCase
             // '/members-area/errors', // To-Do
             '/members-area/statistics',
             '/members-area/settings',
-        );
+        ];
     }
 }

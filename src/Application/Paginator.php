@@ -27,9 +27,9 @@ class Paginator
      * @param int   $limitPerPage
      * @param array $options
      *
-     * @throws \Exception If searchFields $option key is set without the $data variable being type QueryBuilder.
+     * @throws \Exception if searchFields $option key is set without the $data variable being type QueryBuilder
      */
-    public function paginate($data, $currentPage = 1, $limitPerPage = 10, $options = array())
+    public function paginate($data, $currentPage = 1, $limitPerPage = 10, $options = [])
     {
         $paginator = new KnpPaginator();
 

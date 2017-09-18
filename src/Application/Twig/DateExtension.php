@@ -20,9 +20,9 @@ class DateExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('age', array($this, 'age')),
-        );
+        return [
+            new \Twig_SimpleFilter('age', [$this, 'age']),
+        ];
     }
 
     /**

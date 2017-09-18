@@ -29,7 +29,7 @@ class Mailer
      *
      * @throws \Exception If subject or recipient (to) are not specified
      */
-    public function swiftMessageInitializeAndSend(array $data = array())
+    public function swiftMessageInitializeAndSend(array $data = [])
     {
         $swiftMessageInstance = \Swift_Message::newInstance();
 
@@ -61,12 +61,12 @@ class Mailer
             $swiftMessageInstance->setBcc($data['bcc']);
         }
 
-        $templateData = array(
+        $templateData = [
             'app' => $this->app,
             'user' => $this->app['user'],
             'email' => $to,
             'swiftMessage' => $swiftMessageInstance,
-        );
+        ];
 
         if (isset($data['templateData'])) {
             $templateData = array_merge(
@@ -98,6 +98,7 @@ class Mailer
     }
 
     /***** Swift Message Instance *****/
+
     /**
      * @return \Swift_Message
      */

@@ -13,7 +13,6 @@ class Composer
     public static function postInstallCmd()
     {
         Storage::prepare();
-        Environment::prepare();
         Console::updateDatabaseSchema();
     }
 

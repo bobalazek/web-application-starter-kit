@@ -34,9 +34,9 @@ class AuthenticationListener implements EventSubscriberInterface
             ->setUser($user)
             ->setKey('user.login.fail')
             ->setMessage('An user has tried to log in!')
-            ->setData(array(
+            ->setData([
                 'username' => $authenticationToken->getUser(),
-            ))
+            ])
             ->setIp($app['request']->getClientIp())
             ->setUserAgent($app['request']->headers->get('User-Agent'))
         ;
@@ -44,9 +44,9 @@ class AuthenticationListener implements EventSubscriberInterface
         if (!$user) {
             $userActionEntity
                 ->setData(
-                    array(
+                    [
                         'username' => $app['request']->request->get('username'),
-                    )
+                    ]
                 )
             ;
         }
@@ -58,8 +58,8 @@ class AuthenticationListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            AuthenticationEvents::AUTHENTICATION_FAILURE => array('onAuthenticationFailure'),
-        );
+        return [
+            AuthenticationEvents::AUTHENTICATION_FAILURE => ['onAuthenticationFailure'],
+        ];
     }
 }

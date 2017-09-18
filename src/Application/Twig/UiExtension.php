@@ -20,34 +20,34 @@ class UiExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
              new \Twig_SimpleFunction(
                 'array_labels',
-                array(
+                [
                     $this,
                     'arrayLabels',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'pagination',
-                array(
+                [
                     $this,
                     'pagination',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
-        );
+        ];
     }
 
     /**
      * @return string
      */
-    public function arrayLabels($array = array())
+    public function arrayLabels($array = [])
     {
         if (!count($array)) {
             return '';

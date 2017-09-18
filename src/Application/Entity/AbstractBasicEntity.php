@@ -27,6 +27,7 @@ class AbstractBasicEntity
     protected $timeUpdated;
 
     /*** Id ***/
+
     /**
      * @return int
      */
@@ -48,6 +49,7 @@ class AbstractBasicEntity
     }
 
     /*** Time created ***/
+
     /**
      * @return \DateTime
      */
@@ -69,6 +71,7 @@ class AbstractBasicEntity
     }
 
     /*** Time updated ***/
+
     /**
      * @return \DateTime
      */
@@ -96,10 +99,10 @@ class AbstractBasicEntity
      */
     public function toArray()
     {
-        return array(
+        return [
             'id' => $this->getId(),
             'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
             'time_updated' => $this->getTimeUpdated()->format(DATE_ATOM),
-        );
+        ];
     }
 }

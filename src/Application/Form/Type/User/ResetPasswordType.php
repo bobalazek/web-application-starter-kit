@@ -28,31 +28,28 @@ class ResetPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if ($this->action == 'reset') {
-            $builder->add('plainPassword', 'repeated', array(
+            $builder->add('plainPassword', 'repeated', [
                 'type' => 'password',
                 'first_name' => 'password',
                 'second_name' => 'repeatPassword',
                 'invalid_message' => 'The password fields must match.',
-                'first_options' => array(
+                'first_options' => [
                     'label' => 'New password',
-                    'attr' => array(
-                        'class' => 'password-meter-input',
-                    ),
-                ),
-                'second_options' => array(
+                ],
+                'second_options' => [
                     'label' => 'Repeat new Password',
-                ),
-            ));
+                ],
+            ]);
         } else {
             $builder->add('email', 'email');
         }
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Submit',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -62,18 +59,18 @@ class ResetPasswordType extends AbstractType
     {
         $action = $this->action;
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
             'validation_groups' => function () use ($action) {
                 if ($action == 'reset') {
-                    return array('reset_password_reset');
+                    return ['reset_password_reset'];
                 } else {
-                    return array('reset_password_request');
+                    return ['reset_password_request'];
                 }
             },
-        ));
+        ]);
     }
 
     /**

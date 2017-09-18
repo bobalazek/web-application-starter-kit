@@ -58,6 +58,7 @@ class PostMetaEntity extends AbstractMeta
     protected $post;
 
     /*** Post ***/
+
     /**
      * @return PostEntity
      */

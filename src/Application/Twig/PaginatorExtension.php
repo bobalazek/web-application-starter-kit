@@ -32,78 +32,78 @@ class PaginatorExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
             new \Twig_SimpleFunction(
                 'paginator_limit_per_page_render',
-                array(
+                [
                     $this,
                     'paginatorLimitPerPageRender',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'paginator_search_render',
-                array(
+                [
                     $this,
                     'paginatorSearchRender',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'paginator_top_render',
-                array(
+                [
                     $this,
                     'paginatorTopRender',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'paginator_pagination_render',
-                array(
+                [
                     $this,
                     'paginatorPaginationRender',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'paginator_results_text_render',
-                array(
+                [
                     $this,
                     'paginatorResultsTextRender',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'paginator_bottom_render',
-                array(
+                [
                     $this,
                     'paginatorBottomRender',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
             new \Twig_SimpleFunction(
                 'paginator_sortable',
-                array(
+                [
                     $this,
                     'paginatorSortable',
-                ),
-                array(
-                    'is_safe' => array('html'),
-                )
+                ],
+                [
+                    'is_safe' => ['html'],
+                ]
             ),
-        );
+        ];
     }
 
     /**
@@ -142,7 +142,7 @@ class PaginatorExtension extends \Twig_Extension
             $pageRange = range(1, $pageCount);
 
             // Page range by max page numbers
-            $pageRangeTmp = array();
+            $pageRangeTmp = [];
             $rangeFrom = $currentPage - ceil($maxPageRange / 2);
             $rangeTo = $currentPage + ceil($maxPageRange / 2);
 
@@ -159,9 +159,9 @@ class PaginatorExtension extends \Twig_Extension
             if ($currentPage > 1) {
                 $routeParameters = array_merge(
                     $routeParameters,
-                    array(
+                    [
                         $pagination->getPaginatorOption('pageParameterName') => $currentPage - 1,
-                    )
+                    ]
                 );
 
                 $prevUrl = $this->app['url_generator']->generate(
@@ -177,9 +177,9 @@ class PaginatorExtension extends \Twig_Extension
             if ($currentPage < $pageCount) {
                 $routeParameters = array_merge(
                     $routeParameters,
-                    array(
+                    [
                         $pagination->getPaginatorOption('pageParameterName') => $currentPage + 1,
-                    )
+                    ]
                 );
 
                 $nextUrl = $this->app['url_generator']->generate(
@@ -193,7 +193,7 @@ class PaginatorExtension extends \Twig_Extension
 
             $output = $this->app['twig']->render(
                 'twig/paginator/pagination.html.twig',
-                array(
+                [
                     'app' => $this->app,
                     'prevUrl' => $prevUrl,
                     'nextUrl' => $nextUrl,
@@ -203,7 +203,7 @@ class PaginatorExtension extends \Twig_Extension
                     'route' => $route,
                     'currentPage' => $currentPage,
                     'pageCount' => $pageCount,
-                )
+                ]
             );
         }
 
@@ -240,12 +240,12 @@ class PaginatorExtension extends \Twig_Extension
 
             $output = $this->app['twig']->render(
                 'twig/paginator/results-text.html.twig',
-                array(
+                [
                     'app' => $this->app,
                     'from' => $from,
                     'to' => $to,
                     'total' => $total,
-                )
+                ]
             );
         }
 
@@ -261,9 +261,9 @@ class PaginatorExtension extends \Twig_Extension
     {
         return $this->app['twig']->render(
             'twig/paginator/_bottom.html.twig',
-            array(
+            [
                 'pagination' => $pagination,
-            )
+            ]
         );
     }
 
@@ -285,10 +285,10 @@ class PaginatorExtension extends \Twig_Extension
         if ($paginationData['totalCount'] > 0) {
             $output = $this->app['twig']->render(
                 'twig/paginator/limit-per-page.html.twig',
-                array(
+                [
                     'app' => $this->app,
                     'pagination' => $pagination,
-                )
+                ]
             );
         }
 
@@ -304,10 +304,10 @@ class PaginatorExtension extends \Twig_Extension
     {
         return $this->app['twig']->render(
             'twig/paginator/search.html.twig',
-            array(
+            [
                 'app' => $this->app,
                 'pagination' => $pagination,
-            )
+            ]
         );
     }
 
@@ -320,9 +320,9 @@ class PaginatorExtension extends \Twig_Extension
     {
         return $this->app['twig']->render(
             'twig/paginator/_top.html.twig',
-            array(
+            [
                 'pagination' => $pagination,
-            )
+            ]
         );
     }
 
@@ -362,11 +362,11 @@ class PaginatorExtension extends \Twig_Extension
         }
         $routeParameters = array_merge(
             $routeParameters,
-            array(
+            [
                 $pagination->getPaginatorOption('pageParameterName') => 1,
                 $pagination->getPaginatorOption('sortFieldParameterName') => $key,
                 $pagination->getPaginatorOption('sortDirectionParameterName') => $direction,
-            )
+            ]
         );
 
         $url = $this->app['url_generator']->generate(

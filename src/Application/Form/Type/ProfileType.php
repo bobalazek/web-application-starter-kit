@@ -17,50 +17,50 @@ class ProfileType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', array(
+        $builder->add('title', 'text', [
             'label' => 'Title',
             'required' => false,
-        ));
+        ]);
 
-        $builder->add('firstName', 'text', array(
+        $builder->add('firstName', 'text', [
             'label' => 'First name',
-        ));
+        ]);
 
-        $builder->add('middleName', 'text', array(
+        $builder->add('middleName', 'text', [
             'label' => 'Middle name',
             'required' => false,
-        ));
+        ]);
 
-        $builder->add('lastName', 'text', array(
+        $builder->add('lastName', 'text', [
             'label' => 'Last name',
             'required' => false,
-        ));
+        ]);
 
         $builder->add(
             'gender',
             new GenderType(),
-            array(
+            [
                 'label' => 'Gender',
                 'required' => false,
-            )
+            ]
         );
 
-        $builder->add('birthdate', 'birthday', array(
+        $builder->add('birthdate', 'birthday', [
             'label' => 'Birthdate',
             'required' => false,
-        ));
+        ]);
 
-        $builder->add('image', 'file', array(
+        $builder->add('image', 'file', [
             'required' => false,
-        ));
-        $builder->add('removeImage', 'checkbox', array(
+        ]);
+        $builder->add('removeImage', 'checkbox', [
             'required' => false,
             'data' => false,
             'label' => 'Remove image?',
-            'attr' => array(
+            'attr' => [
                 'data-help-text' => 'Should the image be removed (goes into effect after the save)?',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -68,12 +68,12 @@ class ProfileType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\ProfileEntity',
-            'validation_groups' => array('new_and_edit'),
+            'validation_groups' => ['new_and_edit'],
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-        ));
+        ]);
     }
 
     /**

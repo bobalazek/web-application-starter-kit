@@ -60,10 +60,10 @@ class SecurityListener implements EventSubscriberInterface
                 ->setMessage(
                     'User has switched back to own user (from user with ID "'.$user->getId().'")!'
                 )
-                ->setData(array(
+                ->setData([
                     'user_id' => $targetUser->getId(),
                     'from_user_id' => $user->getId(),
-                ))
+                ])
                 ->setIp($app['request']->getClientIp())
                 ->setUserAgent($app['request']->headers->get('User-Agent'))
             ;
@@ -78,10 +78,10 @@ class SecurityListener implements EventSubscriberInterface
                 ->setMessage(
                     'User has switched to user with ID "'.$targetUser->getId().'"!'
                 )
-                ->setData(array(
+                ->setData([
                     'user_id' => $user->getId(),
                     'to_user_id' => $targetUser->getId(),
-                ))
+                ])
                 ->setIp($app['request']->getClientIp())
                 ->setUserAgent($app['request']->headers->get('User-Agent'))
             ;
@@ -93,9 +93,9 @@ class SecurityListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            SecurityEvents::INTERACTIVE_LOGIN => array('onInteractiveLogin'),
-            SecurityEvents::SWITCH_USER => array('onSwitchUser'),
-        );
+        return [
+            SecurityEvents::INTERACTIVE_LOGIN => ['onInteractiveLogin'],
+            SecurityEvents::SWITCH_USER => ['onSwitchUser'],
+        ];
     }
 }

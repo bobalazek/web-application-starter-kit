@@ -1,5 +1,7 @@
 {% extends 'layouts/members-area.html.twig' %}
 
+{% set serverData = app['application.server_info'].getData() %}
+
 {% block title %}{{ 'Statistics' | trans }} | {{ parent() }}{% endblock %}
 
 {% block main %}
@@ -70,4 +72,47 @@
             </div> <!-- /.col-md-4 -->
         </div> <!-- /.row -->
     </div>
+    <div id="server-information-panel"
+        class="panel panel-primary">
+        <div class="panel-heading">{{ 'Server information' | trans }}</div>
+        <div class="panel-body">
+            <div>
+                <b>{{ 'Uptime' | trans }}:</b>
+                {{ serverData.uptime }}
+                <small>
+                    ({{ serverData.uptimeSeconds }}
+                    {{ 'seconds' | trans }})
+                </small>
+            </div>
+            <div>
+                <b>{{ 'Load' | trans }}:</b>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ serverData.loadPercentage }}"
+                        aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: {{ serverData.loadPercentage }}%;">
+                        {{ serverData.loadPercentage | number_format(2) }}%
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <b>{{ 'HDD' | trans }}:</b>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ serverData.hddUsedPercentage }}"
+                        aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: {{ serverData.hddUsedPercentage }}%;">
+                        {{ serverData.hddUsedPercentage | number_format(2) }}%
+                    </div>
+                </div>
+            </div>
+            <div>
+                <b>{{ 'Memory' | trans }}:</b>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ serverData.memoryUsedPercentage }}"
+                        aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: {{ serverData.memoryUsedPercentage }}%;">
+                        {{ serverData.memoryUsedPercentage | number_format(2) }}%
+                    </div>
+                </div>
+            </div>
+            {# dump(serverData) #}
+        </div>
+    </div> <!-- /.panel -->
 {% endblock %}

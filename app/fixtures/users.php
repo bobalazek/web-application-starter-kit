@@ -1,33 +1,33 @@
 <?php
 
-return array(
-    array(
+return [
+    [
         'id' => 1,
         'username' => 'admin',
         'email' => 'admin@myapp.com',
         'plainPassword' => 'test',
-        'profile' => array(
+        'profile' => [
             'firstName' => 'John',
             'lastName' => 'Doe',
             'gender' => 'male',
             'birthdate' => '1990-01-01',
-        ),
-        'roles' => array(
+        ],
+        'roles' => [
             'ROLE_SUPER_ADMIN',
             'ROLE_ADMIN',
-        ),
-    ),
-    array(
+        ],
+    ],
+    [
         'id' => 2,
         'username' => 'test',
         'email' => 'test@myapp.com',
         'plainPassword' => 'test',
-        'profile' => array(
+        'profile' => [
             'firstName' => 'John',
             'lastName' => 'Doe',
-        ),
-        'roles' => array(
+        ],
+        'roles' => [
             'ROLE_TESTER',
-        ),
-    ),
-);
+        ],
+    ],
+];

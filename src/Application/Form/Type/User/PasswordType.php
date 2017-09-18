@@ -17,32 +17,29 @@ class PasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('oldPassword', 'password', array(
+        $builder->add('oldPassword', 'password', [
             'label' => 'Current password',
-        ));
+        ]);
 
-        $builder->add('plainPassword', 'repeated', array(
+        $builder->add('plainPassword', 'repeated', [
             'type' => 'password',
             'first_name' => 'newPassword',
             'second_name' => 'newPasswordRepeat',
             'invalid_message' => 'The password fields must match.',
-            'first_options' => array(
+            'first_options' => [
                 'label' => 'New password',
-                'attr' => array(
-                    'class' => 'password-meter-input',
-                ),
-            ),
-            'second_options' => array(
+            ],
+            'second_options' => [
                 'label' => 'Repeat new Password',
-            ),
-        ));
+            ],
+        ]);
 
-        $builder->add('submitButton', 'submit', array(
+        $builder->add('submitButton', 'submit', [
             'label' => 'Save',
-            'attr' => array(
+            'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
@@ -50,12 +47,12 @@ class PasswordType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
-            'validation_groups' => array('settings_password'),
+            'validation_groups' => ['settings_password'],
             'csrf_protection' => true,
             'csrf_field_name' => 'csrf_token',
-        ));
+        ]);
     }
 
     /**

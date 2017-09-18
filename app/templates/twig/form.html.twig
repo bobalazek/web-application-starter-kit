@@ -6,9 +6,6 @@
     {% endif %}
     {%- set type = type | default('text') -%}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    {% if attr.class is defined and 'password-meter-input' in attr.class %}
-        <meter class="password-meter" max="4"></meter>
-    {% endif %}
 {%- endblock form_widget_simple %}
 
 {% block textarea_widget -%}

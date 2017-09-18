@@ -46,7 +46,7 @@ Setup / Development
 * Navigate your your web directory: `cd /var/www`
 * Create a new project: `composer create-project bobalazek/web-application-starter-kit myapp --no-scripts`
 * Navigate inside the application `cd myapp`
-* Configure database (and maybe other stuff if you want): [app/configs/global.php](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global.php#L47) or [app/configs/global-local.php.example](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global-local.php.example) (in case you will deploy it and need a different local configuration. Just rename the global-local.php.example to global-local.php and set your own configuration)
+* Configure database (and maybe other stuff if you want) - copy/clone [app/configs/global-local.php.example](https://github.com/bobalazek/web-application-starter-kit/blob/master/app/configs/global-local.php.example) into `app/configs/global-local.php` and set the config there. Alternatively, you can also do the same with [.env.example](https://github.com/bobalazek/web-application-starter-kit/blob/master/.env.example), if you only want to change the basics (database configuration & environment).
 * Run the following commands:
     * `composer install`
     * `bin/console orm:schema-tool:update --force` (to install the database schema)
