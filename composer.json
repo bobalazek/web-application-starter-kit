@@ -42,6 +42,7 @@
         "doctrine/common": "~2.7.3",
         "doctrine/dbal": "~2.5.13",
         "doctrine/inflector": "~1.1.0",
+        "doctrine/instantiator": "~1.0.5",
         "doctrine/migrations": "1.0.*@dev",
         "doctrine/orm": "^2.5",
         "swiftmailer/swiftmailer": "5.*",
