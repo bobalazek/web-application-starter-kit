@@ -5,7 +5,7 @@ namespace Application\Twig;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class PaginatorExtension extends \Twig_Extension
 {
@@ -117,15 +117,16 @@ class PaginatorExtension extends \Twig_Extension
             return '';
         }
 
+        $request = $this->app['request_stack']->getCurrentRequest();
+
         $output = '';
 
         $paginationData = $pagination->getPaginationData();
         $maxPageRange = isset($paginationData['pageRangeLimit'])
             ? intval($paginationData['pageRangeLimit'])
-            : 10
-        ;
+            : 10;
         $route = $paginationData['route'];
-        $routeParameters = $this->app['request']->query->all();
+        $routeParameters = $request->query->all();
         if (isset($paginationData['routeParameters'])) {
             $routeParameters = array_merge(
                 $routeParameters,
@@ -220,6 +221,8 @@ class PaginatorExtension extends \Twig_Extension
         if (!$pagination) {
             return '';
         }
+
+        $request = $this->app['request_stack']->getCurrentRequest();
 
         $output = '';
 
@@ -339,10 +342,12 @@ class PaginatorExtension extends \Twig_Extension
             return '';
         }
 
+        $request = $this->app['request_stack']->getCurrentRequest();
+
         $text = $this->app['translator']->trans($text);
         $sortDirectionParameterName = $pagination->getPaginatorOption('sortDirectionParameterName');
         $direction = isset($sortDirectionParameterName)
-            ? $this->app['request']->query->get($sortDirectionParameterName)
+            ? $request->query->get($sortDirectionParameterName)
             : 'asc'
         ;
 
@@ -353,7 +358,7 @@ class PaginatorExtension extends \Twig_Extension
 
         $paginationData = $pagination->getPaginationData();
         $route = $paginationData['route'];
-        $routeParameters = $this->app['request']->query->all();
+        $routeParameters = $request->query->all();
         if (isset($paginationData['routeParameters'])) {
             $routeParameters = array_merge(
                 $routeParameters,
@@ -379,7 +384,7 @@ class PaginatorExtension extends \Twig_Extension
             : 'up'
         ;
 
-        $showIcon = $this->app['request']->query->get(
+        $showIcon = $request->query->get(
             $pagination->getPaginatorOption('sortFieldParameterName'),
             $paginationData['defaultSortFieldName']
         ) == $key

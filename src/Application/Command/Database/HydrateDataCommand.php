@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class HydrateDataCommand extends ContainerAwareCommand
 {

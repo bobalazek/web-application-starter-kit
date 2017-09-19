@@ -3,10 +3,10 @@
 namespace Application\ControllerProvider;
 
 use Silex\Application;
-use Silex\ControllerProviderInterface;
+use Silex\Api\ControllerProviderInterface;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class ApiControllerProvider implements ControllerProviderInterface
 {

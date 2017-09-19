@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Entity(repositoryClass="Application\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
  *
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class PostEntity extends AbstractImageUpload
 {

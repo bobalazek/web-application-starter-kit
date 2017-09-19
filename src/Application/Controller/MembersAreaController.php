@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class MembersAreaController
 {
@@ -34,7 +34,7 @@ class MembersAreaController
      *
      * @return Response
      */
-    public function loginAction(Application $app)
+    public function loginAction(Request $request, Application $app)
     {
         if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
             return $app->redirect(
@@ -44,8 +44,8 @@ class MembersAreaController
 
         $data = [
             'lastUsername' => $app['session']->get('_security.last_username'),
-            'lastError' => $app['security.last_error']($app['request']),
-            'csrfToken' => $app['form.csrf_provider']->getToken('authenticate'),
+            'lastError' => $app['security.last_error']($request),
+            'csrfToken' => $app['csrf.token_manager']->getToken('authenticate'),
         ];
 
         return new Response(
@@ -96,7 +96,7 @@ class MembersAreaController
         $alertMessage = '';
 
         $form = $app['form.factory']->create(
-            new RegisterType(),
+            RegisterType::class,
             new UserEntity()
         );
 
@@ -206,8 +206,11 @@ class MembersAreaController
 
         $currentDateTime = new \DateTime();
         $form = $app['form.factory']->create(
-            new ResetPasswordType($action),
-            new UserEntity()
+            ResetPasswordType::class,
+            new UserEntity(),
+            [
+                'action' => $action,
+            ]
         );
 
         if ($action == 'reset') {
@@ -244,8 +247,8 @@ class MembersAreaController
                                 ->setUser($userEntity)
                                 ->setKey('user.password.reset')
                                 ->setMessage('User has reset his password!')
-                                ->setIp($app['request']->getClientIp())
-                                ->setUserAgent($app['request']->headers->get('User-Agent'))
+                                ->setIp($request->getClientIp())
+                                ->setUserAgent($request->headers->get('User-Agent'))
                             ;
                             $app['orm.em']->persist($userActionEntity);
 
@@ -309,8 +312,8 @@ class MembersAreaController
                                 ->setUser($userEntity)
                                 ->setKey('user.password.request')
                                 ->setMessage('User has requested a password reset!')
-                                ->setIp($app['request']->getClientIp())
-                                ->setUserAgent($app['request']->headers->get('User-Agent'))
+                                ->setIp($request->getClientIp())
+                                ->setUserAgent($request->headers->get('User-Agent'))
                             ;
                             $app['orm.em']->persist($userActionEntity);
 

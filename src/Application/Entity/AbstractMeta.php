@@ -7,7 +7,7 @@ namespace Application\Entity;
  *
  * Some default methods for a meta entity (id, key and value)
  *
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class AbstractMeta extends AbstractBasicEntity
 {

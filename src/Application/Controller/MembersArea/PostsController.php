@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class PostsController
 {
@@ -22,8 +22,8 @@ class PostsController
     public function listAction(Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_POSTS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -74,14 +74,14 @@ class PostsController
     public function newAction(Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_POSTS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
 
         $form = $app['form.factory']->create(
-            new PostType(),
+            PostType::class,
             new PostEntity()
         );
 
@@ -139,8 +139,8 @@ class PostsController
     public function editAction($id, Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_POSTS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -152,7 +152,7 @@ class PostsController
         }
 
         $form = $app['form.factory']->create(
-            new PostType(),
+            PostType::class,
             $post
         );
 
@@ -215,8 +215,8 @@ class PostsController
     public function removeAction($id, Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_POSTS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_POSTS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -250,9 +250,8 @@ class PostsController
             $app->abort(404);
         }
 
-        $confirmAction = $app['request']->query->has('action') &&
-            $app['request']->query->get('action') == 'confirm'
-        ;
+        $confirmAction = $request->query->has('action')
+            && $request->query->get('action') == 'confirm';
 
         if ($confirmAction) {
             try {

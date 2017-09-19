@@ -7,7 +7,7 @@ use Knp\Component\Pager\Paginator as KnpPaginator;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class Paginator
 {
@@ -32,6 +32,7 @@ class Paginator
     public function paginate($data, $currentPage = 1, $limitPerPage = 10, $options = [])
     {
         $paginator = new KnpPaginator();
+        $request = $this->app['request_stack']->getCurrentRequest();
 
         if ($currentPage === null) {
             $currentPage = 1;
@@ -47,7 +48,7 @@ class Paginator
             : false
         ;
 
-        $searchValue = $this->app['request']->query->get(
+        $searchValue = $request->query->get(
             $options['searchParameter'],
             false
         );

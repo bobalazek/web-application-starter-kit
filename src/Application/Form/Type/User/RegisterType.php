@@ -4,10 +4,16 @@ namespace Application\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class RegisterType extends AbstractType
 {
@@ -19,28 +25,28 @@ class RegisterType extends AbstractType
     {
         $builder->add(
             $builder
-                ->create('profile', 'form', [
+                ->create('profile', FormType::class, [
                         'by_reference' => true,
                         'data_class' => 'Application\Entity\ProfileEntity',
                         'label' => false,
                 ])
-                    ->add('firstName', 'text', [
+                    ->add('firstName', TextType::class, [
                         'label' => 'First name',
                     ])
-                    ->add('lastName', 'text', [
+                    ->add('lastName', TextType::class, [
                         'label' => 'Last name',
                         'required' => false,
                     ])
         );
 
-        $builder->add('username', 'text', [
+        $builder->add('username', TextType::class, [
             'label' => 'Username',
         ]);
-        $builder->add('email', 'email', [
+        $builder->add('email', EmailType::class, [
             'label' => 'Email',
         ]);
-        $builder->add('plainPassword', 'repeated', [
-            'type' => 'password',
+        $builder->add('plainPassword', RepeatedType::class, [
+            'type' => PasswordType::class,
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
             'invalid_message' => 'The password fields must match.',
@@ -52,7 +58,7 @@ class RegisterType extends AbstractType
             ],
         ]);
 
-        $builder->add('submitButton', 'submit', [
+        $builder->add('submitButton', SubmitType::class, [
             'label' => 'Register',
             'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
@@ -61,23 +67,13 @@ class RegisterType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
             'validation_groups' => ['register'],
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'user';
     }
 }

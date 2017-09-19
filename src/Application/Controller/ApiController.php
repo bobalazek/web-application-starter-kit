@@ -5,7 +5,7 @@ namespace Application\Controller;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class ApiController
 {

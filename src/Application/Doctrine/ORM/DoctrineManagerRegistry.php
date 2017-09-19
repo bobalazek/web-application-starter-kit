@@ -5,7 +5,7 @@ namespace Application\Doctrine\ORM;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class DoctrineManagerRegistry implements ManagerRegistry
 {

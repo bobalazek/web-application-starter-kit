@@ -5,7 +5,7 @@ namespace Application\Test\Functional;
 use Application\Test\WebTestCase;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class PagesTest extends WebTestCase
 {

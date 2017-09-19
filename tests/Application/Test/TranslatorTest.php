@@ -5,7 +5,7 @@ namespace Application\Test;
 use Symfony\Component\Console\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class TranslatorTest extends WebTestCase
 {

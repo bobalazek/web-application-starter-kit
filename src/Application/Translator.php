@@ -6,10 +6,11 @@ use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Dumper;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class Translator
 {
@@ -21,37 +22,6 @@ class Translator
     public function __construct(Application $app)
     {
         $this->app = $app;
-    }
-
-    /**
-     * Sets the locale (if it can).
-     *
-     * @param string $locale
-     */
-    public function setLocale($locale)
-    {
-        $app = $this->app;
-
-        $app['translator']->setLocale($locale);
-
-        $localeMessagesFile = APP_DIR.'/locales/'.$app['locale'].'/messages.yml';
-        if (file_exists($localeMessagesFile)) {
-            $app['translator']->addResource(
-                'yaml',
-                $localeMessagesFile,
-                $app['locale']
-            );
-        }
-
-        $localeValidatorsFile = APP_DIR.'/locales/'.$app['locale'].'/validators.yml';
-        if (file_exists($localeValidatorsFile)) {
-            $app['translator']->addResource(
-                'yaml',
-                $localeValidatorsFile,
-                $app['locale'],
-                'validators'
-            );
-        }
     }
 
     /**

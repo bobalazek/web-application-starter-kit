@@ -4,10 +4,17 @@ namespace Application\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class PostType extends AbstractType
 {
@@ -17,12 +24,12 @@ class PostType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text');
+        $builder->add('title', TextType::class);
 
-        $builder->add('image', 'file', [
+        $builder->add('image', FileType::class, [
             'required' => false,
         ]);
-        $builder->add('removeImage', 'checkbox', [
+        $builder->add('removeImage', CheckboxType::class, [
             'required' => false,
             'data' => false,
             'label' => 'Remove image?',
@@ -31,16 +38,15 @@ class PostType extends AbstractType
             ],
         ]);
 
-        $builder->add('content', 'textarea', [
+        $builder->add('content', TextareaType::class, [
             'required' => false,
             'attr' => [
                 'class' => 'html-editor',
             ],
         ]);
 
-        $builder->add('user', 'entity', [
+        $builder->add('user', EntityType::class, [
             'required' => false,
-            'empty_value' => false,
             'class' => 'Application\Entity\UserEntity',
             'attr' => [
                 'class' => 'select-picker',
@@ -48,18 +54,17 @@ class PostType extends AbstractType
             ],
         ]);
 
-        $builder->add('postMetas', 'collection', [
-            'type' => new PostMetaType(),
+        $builder->add('postMetas', CollectionType::class, [
+            'entry_type' => PostMetaType::class,
             'allow_add' => true,
             'allow_delete' => true,
             'delete_empty' => true,
             'prototype' => true,
-            'cascade_validation' => true,
             'error_bubbling' => false,
             'by_reference' => false,
         ]);
 
-        $builder->add('submitButton', 'submit', [
+        $builder->add('submitButton', SubmitType::class, [
             'label' => 'Save',
             'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
@@ -68,15 +73,13 @@ class PostType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\PostEntity',
             'validation_groups' => ['new_and_edit'],
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
         ]);
     }
 

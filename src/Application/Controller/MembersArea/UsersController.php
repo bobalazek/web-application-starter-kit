@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class UsersController
 {
@@ -22,8 +22,8 @@ class UsersController
     public function listAction(Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -75,15 +75,18 @@ class UsersController
     public function newAction(Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
 
         $form = $app['form.factory']->create(
-            new UserType($app),
-            new UserEntity()
+            UserType::class,
+            new UserEntity(),
+            [
+                'app' => $app,
+            ]
         );
 
         if ($request->getMethod() == 'POST') {
@@ -146,8 +149,8 @@ class UsersController
     public function detailAction($id, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -171,8 +174,8 @@ class UsersController
     public function editAction($id, Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -187,8 +190,11 @@ class UsersController
         }
 
         $form = $app['form.factory']->create(
-            new UserType($app),
-            $user
+            UserType::class,
+            $user,
+            [
+                'app' => $app,
+            ]
         );
 
         if ($request->getMethod() == 'POST') {
@@ -273,8 +279,8 @@ class UsersController
     public function removeAction($id, Request $request, Application $app)
     {
         if (
-            !$app['security']->isGranted('ROLE_USERS_EDITOR') &&
-            !$app['security']->isGranted('ROLE_ADMIN')
+            !$app['security.authorization_checker']->isGranted('ROLE_USERS_EDITOR') &&
+            !$app['security.authorization_checker']->isGranted('ROLE_ADMIN')
         ) {
             $app->abort(403);
         }
@@ -308,7 +314,8 @@ class UsersController
             $app->abort(404);
         }
 
-        $confirmAction = $app['request']->query->has('action') && $app['request']->query->get('action') == 'confirm';
+        $confirmAction = $request->query->has('action')
+            && $request->query->get('action') == 'confirm';
 
         if ($confirmAction) {
             try {

@@ -8,7 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class SecurityListener implements EventSubscriberInterface
 {
@@ -22,6 +22,7 @@ class SecurityListener implements EventSubscriberInterface
     public function onInteractiveLogin($event)
     {
         $app = $this->app;
+        $request = $app['request_stack']->getCurrentRequest();
 
         $token = $event->getAuthenticationToken();
         $user = $token->getUser();
@@ -31,8 +32,8 @@ class SecurityListener implements EventSubscriberInterface
             ->setUser($user)
             ->setKey('user.login')
             ->setMessage('User has been logged in!')
-            ->setIp($app['request']->getClientIp())
-            ->setUserAgent($app['request']->headers->get('User-Agent'))
+            ->setIp($request->getClientIp())
+            ->setUserAgent($request->headers->get('User-Agent'))
         ;
 
         $app['orm.em']->persist($userActionEntity);
@@ -42,11 +43,12 @@ class SecurityListener implements EventSubscriberInterface
     public function onSwitchUser($event)
     {
         $app = $this->app;
+        $request = $app['request_stack']->getCurrentRequest();
 
-        $user = $app['security']->getToken()->getUser();
+        $user = $app['security.token_storage']->getToken()->getUser();
         $targetUser = $event->getTargetUser();
 
-        if ($app['security']->isGranted('ROLE_PREVIOUS_ADMIN')) {
+        if ($app['security.authorization_checker']->isGranted('ROLE_PREVIOUS_ADMIN')) {
             $targetUser = $app['orm.em']
                 ->find(
                     'Application\Entity\UserEntity',
@@ -64,8 +66,8 @@ class SecurityListener implements EventSubscriberInterface
                     'user_id' => $targetUser->getId(),
                     'from_user_id' => $user->getId(),
                 ])
-                ->setIp($app['request']->getClientIp())
-                ->setUserAgent($app['request']->headers->get('User-Agent'))
+                ->setIp($request->getClientIp())
+                ->setUserAgent($request->headers->get('User-Agent'))
             ;
 
             $app['orm.em']->persist($userActionEntity);
@@ -82,8 +84,8 @@ class SecurityListener implements EventSubscriberInterface
                     'user_id' => $user->getId(),
                     'to_user_id' => $targetUser->getId(),
                 ])
-                ->setIp($app['request']->getClientIp())
-                ->setUserAgent($app['request']->headers->get('User-Agent'))
+                ->setIp($request->getClientIp())
+                ->setUserAgent($request->headers->get('User-Agent'))
             ;
 
             $app['orm.em']->persist($userActionEntity);

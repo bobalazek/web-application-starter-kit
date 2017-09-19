@@ -4,11 +4,13 @@ namespace Application\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class SettingsType extends AbstractType
 {
@@ -28,7 +30,7 @@ class SettingsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('foo', 'textarea', [
+        $builder->add('foo', TextareaType::class, [
             'label' => 'Foo?',
             'required' => false,
             'data' => $this->app['settings']['foo'],
@@ -37,7 +39,7 @@ class SettingsType extends AbstractType
             ],
         ]);
 
-        $builder->add('submitButton', 'submit', [
+        $builder->add('submitButton', SubmitType::class, [
             'label' => 'Save',
             'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
@@ -46,13 +48,14 @@ class SettingsType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
+            'data_class' => 'CoreBundle\Entity\User',
+            'validation_groups' => ['settings'],
+            'cascade_validation' => true,
         ]);
     }
 

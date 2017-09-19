@@ -3,7 +3,7 @@
 namespace Application\Twig;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class FileExtension extends \Twig_Extension
 {

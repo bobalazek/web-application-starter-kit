@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Cookie;
 use Application\Entity\ErrorEntity;
@@ -97,7 +98,7 @@ $app->match('/set-locale/{locale}', function ($locale) use ($app) {
 ->assert('locale', implode('|', array_keys($app['locales'])));
 
 /***** Errors *****/
-$app->error(function (\Exception $e, $code) use ($app) {
+$app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;
     }
@@ -117,10 +118,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
         ;
     }
 
-    if (
-        isset($app['orm.em']) &&
-        $app['error_options']['save_into_the_database']
-    ) {
+    if ($app['error_options']['save_into_the_database']) {
         // A more "friendly" exception version (without stack trace)
         $exception = new \stdClass();
         $exception->message = $e->getMessage();
@@ -129,16 +127,16 @@ $app->error(function (\Exception $e, $code) use ($app) {
         $exception->line = $e->getLine();
 
         $data = [
-            'is_ajax' => $app['request']->isXmlHttpRequest(),
-            'method' => $app['request']->getMethod(),
-            'route' => $app['request']->get('_route'),
-            'route_params' => $app['request']->get('_route_params'),
-            'query' => $app['request']->query->all(),
-            'request' => $app['request']->request->all(),
-            'server' => $app['request']->server->all(),
-            'files' => $app['request']->files->all(),
-            'cookies' => $app['request']->cookies->all(),
-            'headers' => $app['request']->headers->all(),
+            'is_ajax' => $request->isXmlHttpRequest(),
+            'method' => $request->getMethod(),
+            'route' => $request->get('_route'),
+            'route_params' => $request->get('_route_params'),
+            'query' => $request->query->all(),
+            'request' => $request->request->all(),
+            'server' => $request->server->all(),
+            'files' => $request->files->all(),
+            'cookies' => $request->cookies->all(),
+            'headers' => $request->headers->all(),
             'environment' => $_ENV,
         ];
 

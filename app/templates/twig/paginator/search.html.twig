@@ -4,7 +4,7 @@
         <div class="input-group">
             <input id="paginator-search-input"
                 class="form-control input-sm" type="search"
-                value="{{ app.request.get(pagination.getPaginatorOption('searchParameter'), '') }}" />
+                value="{{ app.request_stack.getCurrentRequest().get(pagination.getPaginatorOption('searchParameter'), '') }}" />
             <span class="input-group-btn">
                 <button id="paginator-search-button"
                     class="btn btn-default btn-sm"

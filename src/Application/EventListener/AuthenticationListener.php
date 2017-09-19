@@ -8,7 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class AuthenticationListener implements EventSubscriberInterface
 {
@@ -22,6 +22,7 @@ class AuthenticationListener implements EventSubscriberInterface
     public function onAuthenticationFailure($event)
     {
         $app = $this->app;
+        $request = $app['request_stack']->getCurrentRequest();
 
         $authenticationToken = $event->getAuthenticationToken();
         $user = $app['users.provider']->loadUserByUsername(
@@ -37,15 +38,15 @@ class AuthenticationListener implements EventSubscriberInterface
             ->setData([
                 'username' => $authenticationToken->getUser(),
             ])
-            ->setIp($app['request']->getClientIp())
-            ->setUserAgent($app['request']->headers->get('User-Agent'))
+            ->setIp($request->getClientIp())
+            ->setUserAgent($request->headers->get('User-Agent'))
         ;
 
         if (!$user) {
             $userActionEntity
                 ->setData(
                     [
-                        'username' => $app['request']->request->get('username'),
+                        'username' => $request->request->get('username'),
                     ]
                 )
             ;

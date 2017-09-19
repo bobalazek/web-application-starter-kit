@@ -4,10 +4,12 @@ namespace Application\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class PostMetaType extends AbstractType
 {
@@ -17,20 +19,18 @@ class PostMetaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('key', 'text');
-        $builder->add('value', 'textarea');
+        $builder->add('key', TextType::class);
+        $builder->add('value', TextareaType::class);
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\PostMetaEntity',
             'validation_groups' => ['new_and_edit'],
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
         ]);
     }
 

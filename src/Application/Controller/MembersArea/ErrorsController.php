@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class ErrorsController
 {
@@ -19,7 +19,7 @@ class ErrorsController
      */
     public function listAction(Request $request, Application $app)
     {
-        if (!$app['security']->isGranted('ROLE_ADMIN')) {
+        if (!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
         }
 

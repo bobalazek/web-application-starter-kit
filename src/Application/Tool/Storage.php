@@ -5,7 +5,7 @@ namespace Application\Tool;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class Storage
 {

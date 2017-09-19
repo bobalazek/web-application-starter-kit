@@ -4,13 +4,13 @@ return [
     'environment' => 'dev',
     'debug' => true,
     'show_profiler' => true,
-    'name' => 'Web Application Starter Kit',
-    'version' => '2.0.0',
+    'name' => 'WASK',
+    'version' => '3.0.0-rc1',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
     'email' => [
-        'info@bobalazek.com' => 'Web Application Starter Kit Mailer',
+        'info@bobalazek.com' => 'WASK Mailer',
     ],
 
     // Default Locale / Language stuff

@@ -4,32 +4,28 @@ namespace Application\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class ResetPasswordType extends AbstractType
 {
-    public $action;
-
-    /**
-     * @param string $action
-     */
-    public function __construct($action = '')
-    {
-        $this->action = $action;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if ($this->action == 'reset') {
-            $builder->add('plainPassword', 'repeated', [
-                'type' => 'password',
+        $action = $options['action'];
+
+        if ($action == 'reset') {
+            $builder->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
                 'first_name' => 'password',
                 'second_name' => 'repeatPassword',
                 'invalid_message' => 'The password fields must match.',
@@ -41,10 +37,10 @@ class ResetPasswordType extends AbstractType
                 ],
             ]);
         } else {
-            $builder->add('email', 'email');
+            $builder->add('email', EmailType::class);
         }
 
-        $builder->add('submitButton', 'submit', [
+        $builder->add('submitButton', SubmitType::class, [
             'label' => 'Submit',
             'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
@@ -53,17 +49,15 @@ class ResetPasswordType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $action = $this->action;
-
+        $resolver->setRequired(['action']);
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
-            'validation_groups' => function () use ($action) {
+            'validation_groups' => function () use ($resolver) {
+                $action = $resolver->offsetGet('action');
                 if ($action == 'reset') {
                     return ['reset_password_reset'];
                 } else {
@@ -71,13 +65,5 @@ class ResetPasswordType extends AbstractType
                 }
             },
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'user';
     }
 }

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
  *
  * Some default methods for the abstract image upload
  *
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class AbstractImageUpload
 {

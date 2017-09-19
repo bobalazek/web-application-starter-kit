@@ -4,10 +4,14 @@ namespace Application\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class ProfileType extends AbstractType
 {
@@ -17,43 +21,43 @@ class ProfileType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', [
+        $builder->add('title', TextType::class, [
             'label' => 'Title',
             'required' => false,
         ]);
 
-        $builder->add('firstName', 'text', [
+        $builder->add('firstName', TextType::class, [
             'label' => 'First name',
         ]);
 
-        $builder->add('middleName', 'text', [
+        $builder->add('middleName', TextType::class, [
             'label' => 'Middle name',
             'required' => false,
         ]);
 
-        $builder->add('lastName', 'text', [
+        $builder->add('lastName', TextType::class, [
             'label' => 'Last name',
             'required' => false,
         ]);
 
         $builder->add(
             'gender',
-            new GenderType(),
+            GenderType::class,
             [
                 'label' => 'Gender',
                 'required' => false,
             ]
         );
 
-        $builder->add('birthdate', 'birthday', [
+        $builder->add('birthdate', BirthdayType::class, [
             'label' => 'Birthdate',
             'required' => false,
         ]);
 
-        $builder->add('image', 'file', [
+        $builder->add('image', FileType::class, [
             'required' => false,
         ]);
-        $builder->add('removeImage', 'checkbox', [
+        $builder->add('removeImage', CheckboxType::class, [
             'required' => false,
             'data' => false,
             'label' => 'Remove image?',
@@ -64,15 +68,13 @@ class ProfileType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\ProfileEntity',
             'validation_groups' => ['new_and_edit'],
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
         ]);
     }
 

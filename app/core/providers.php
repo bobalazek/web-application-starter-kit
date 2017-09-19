@@ -1,7 +1,6 @@
 <?php
 
 use Application\Doctrine\ORM\DoctrineManagerRegistry;
-use Application\EventListener;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Persistence\PersistentObject;
 use Doctrine\ORM\EntityManager;
@@ -10,7 +9,7 @@ use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
 use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
-use Symfony\Component\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader as MappingYamlFileLoader;
 
 /***** Config *****/
@@ -59,38 +58,50 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), [
     'http_cache.cache_dir' => STORAGE_DIR.'/cache/http/',
 ]);
 
+/***** Locale ******/
+$app->register(new Silex\Provider\LocaleServiceProvider());
+
 /***** Translation *****/
 $app->register(new Silex\Provider\TranslationServiceProvider(), [
-    'locale_fallback' => 'en_US',
+    'locale' => 'en_US',
+    'locale_fallbacks' => ['en_US'],
 ]);
 
-$app['translator']->addLoader(
-    'yaml',
-    new TranslationYamlFileLoader()
-);
+$app->extend('translator', function($translator, $app) {
+    $translator->addLoader('yaml', new TranslationYamlFileLoader());
 
-/*** Application Translator ***/
-$app['application.translator'] = function ($app) {
-    return new Application\Translator($app);
-};
+    foreach (array_keys($app['locales']) as $locale) {
+        $localeMessagesFile = APP_DIR.'/locales/'.$locale.'/messages.yml';
+        if (file_exists($localeMessagesFile)) {
+            $translator->addResource(
+                'yaml',
+                $localeMessagesFile,
+                $locale
+            );
+        }
 
-/*** Application Mailer ***/
-$app['application.mailer'] = function ($app) {
-    return new Application\Mailer($app);
-};
+        $localeValidatorsFile = APP_DIR.'/locales/'.$locale.'/validators.yml';
+        if (file_exists($localeValidatorsFile)) {
+            $translator->addResource(
+                'yaml',
+                $localeValidatorsFile,
+                $locale,
+                'validators'
+            );
+        }
+    }
 
-/*** Paginator ***/
-$app['application.paginator'] = function ($app) {
-    return new Application\Paginator($app);
-};
-
-/*** Application Translator ***/
-$app['application.server_info'] = function ($app) {
-    return new Application\ServerInfo($app);
-};
+    return $translator;
+});
 
 /***** Form *****/
 $app->register(new Silex\Provider\FormServiceProvider());
+
+/***** Http Fragment *****/
+$app->register(new Silex\Provider\HttpFragmentServiceProvider());
+
+/***** Service controller *****/
+$app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
 /***** Twig / Templating Engine *****/
 $app->register(
@@ -108,12 +119,12 @@ $app->register(
 );
 
 /*** Twig Extensions ***/
-$app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twig, $app) {
+$app['twig'] = $app->extend('twig', function ($twig, $app) {
+    $twig->addExtension(new Application\Twig\DateExtension($app));
+    $twig->addExtension(new Application\Twig\FormExtension($app));
+    $twig->addExtension(new Application\Twig\FileExtension($app));
+    $twig->addExtension(new Application\Twig\UiExtension($app));
     $twig->addExtension(new Application\Twig\PaginatorExtension($app));
-    $twig->addExtension(new Application\Twig\DateExtension());
-    $twig->addExtension(new Application\Twig\FormExtension());
-    $twig->addExtension(new Application\Twig\FileExtension());
-    $twig->addExtension(new Application\Twig\UiExtension());
     $twig->addExtension(
         new Cocur\Slugify\Bridge\Twig\SlugifyExtension(
             Cocur\Slugify\Slugify::create()
@@ -121,7 +132,7 @@ $app['twig'] = $app->share($app->extend('twig', function (\Twig_Environment $twi
     );
 
     return $twig;
-}));
+});
 
 /***** Doctrine Database & Doctrine ORM *****/
 if (
@@ -136,7 +147,7 @@ if (
     );
 
     $app->register(
-        new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),
+        new Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),
         [
             'orm.em.options' => [
                 'mappings' => [
@@ -147,6 +158,31 @@ if (
                         'use_simple_annotation_reader' => false,
                     ],
                 ],
+            ],
+            'orm.custom.functions.string' => [
+                'cast' => 'Oro\ORM\Query\AST\Functions\Cast',
+                'group_concat' => 'Oro\ORM\Query\AST\Functions\String\GroupConcat',
+            ],
+            'orm.custom.functions.datetime' => [
+                'date' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'time' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'timestamp' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'convert_tz' => 'Oro\ORM\Query\AST\Functions\DateTime\ConvertTz',
+            ],
+            'orm.custom.functions.numeric' => [
+                'timestampdiff' => 'Oro\ORM\Query\AST\Functions\Numeric\TimestampDiff',
+                'dayofyear' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'dayofweek' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'week' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'day' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'hour' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'minute' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'month' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'quarter' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'second' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'year' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+                'sign' => 'Oro\ORM\Query\AST\Functions\Numeric\Sign',
+                'pow' => 'Oro\ORM\Query\AST\Functions\Numeric\Pow',
             ],
         ]
     );
@@ -194,11 +230,14 @@ if (
     );
 }
 
+/***** CSRF *****/
+$app->register(new Silex\Provider\CsrfServiceProvider());
+
 /***** Validator *****/
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 
 $app['validator.mapping.class_metadata_factory'] = function ($app) {
-    return new ClassMetadataFactory(
+    return new LazyLoadingMetadataFactory(
         new MappingYamlFileLoader(
             APP_DIR.'/configs/validation.yml'
         )
@@ -223,8 +262,8 @@ $app['validator.validator_service_ids'] = [
     'security.validator.user_password' => 'security.validator.user_password',
 ];
 
-/***** Url Generator *****/
-$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+/***** Routing *****/
+$app->register(new Silex\Provider\RoutingServiceProvider());
 
 /***** Http Cache *****/
 $app->register(new Silex\Provider\HttpCacheServiceProvider(), [
@@ -326,23 +365,38 @@ $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTem
     return $emogrifier->emogrify();
 });
 
-/*** Profiler ***/
+/***** Application *****/
+/*** Translator ***/
+$app['application.translator'] = function ($app) {
+    return new Application\Translator($app);
+};
+
+/*** Mailer ***/
+$app['application.mailer'] = function ($app) {
+    return new Application\Mailer($app);
+};
+
+/*** Paginator ***/
+$app['application.paginator'] = function ($app) {
+    return new Application\Paginator($app);
+};
+
+/*** Server Info ***/
+$app['application.server_info'] = function ($app) {
+    return new Application\ServerInfo($app);
+};
+
+/***** Listeners *****/
+if (isset($app['orm.em'])) {
+    $app->register(
+        new Application\Provider\EventsProvider()
+    );
+}
+
+/***** Profiler *****/
 if ($app['show_profiler']) {
-    $app->register(new Silex\Provider\HttpFragmentServiceProvider());
-    $app->register(new Silex\Provider\ServiceControllerServiceProvider());
     $app->register(new Silex\Provider\WebProfilerServiceProvider(), [
         'profiler.cache_dir' => STORAGE_DIR.'/cache/profiler',
         'profiler.mount_prefix' => '/_profiler',
     ]);
-}
-
-/*** Listeners ***/
-if (isset($app['orm.em'])) {
-    $app['dispatcher']->addSubscriber(
-        new EventListener\AuthenticationListener($app)
-    );
-
-    $app['dispatcher']->addSubscriber(
-        new EventListener\SecurityListener($app)
-    );
 }

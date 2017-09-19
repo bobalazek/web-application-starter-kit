@@ -7,7 +7,7 @@ namespace Application\Entity;
  *
  * Some of the basic variables and methods (id, timeCreated and timeUpdated)
  *
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class AbstractBasicEntity
 {

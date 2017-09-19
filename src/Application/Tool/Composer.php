@@ -3,7 +3,7 @@
 namespace Application\Tool;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class Composer
 {

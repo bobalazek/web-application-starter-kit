@@ -4,11 +4,14 @@ namespace Application\Form\Type\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Application\Form\Type\ProfileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class SettingsType extends AbstractType
 {
@@ -20,18 +23,18 @@ class SettingsType extends AbstractType
     {
         $builder->add(
             'profile',
-            new ProfileType(),
+            ProfileType::class,
             [
                 'label' => false,
             ]
         );
 
-        $builder->add('username', 'text', [
+        $builder->add('username', TextType::class, [
             'label' => 'Username',
         ]);
-        $builder->add('email', 'email');
+        $builder->add('email', EmailType::class);
 
-        $builder->add('submitButton', 'submit', [
+        $builder->add('submitButton', SubmitType::class, [
             'label' => 'Save',
             'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
@@ -40,24 +43,14 @@ class SettingsType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
             'validation_groups' => ['settings'],
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
             'cascade_validation' => true,
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'user';
     }
 }

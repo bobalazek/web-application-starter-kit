@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
  * @ORM\Entity(repositoryClass="Application\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  *
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class UserEntity implements AdvancedUserInterface, \Serializable
 {
@@ -728,8 +728,7 @@ class UserEntity implements AdvancedUserInterface, \Serializable
     {
         $roles = is_array($this->roles)
             ? $this->roles
-            : []
-        ;
+            : [];
         $roles[] = 'ROLE_USER';
 
         return (array) array_unique($roles, SORT_REGULAR);
@@ -906,9 +905,10 @@ class UserEntity implements AdvancedUserInterface, \Serializable
      *
      * @return array
      */
-    public function toArray($allData = true)
+    public function toArray()
     {
         $data = [
+            'id' => $this->getId(),
             'username' => $this->getUsername(),
             'email' => $this->getEmail(),
             'title' => $this->getProfile()->getTitle(),
@@ -919,14 +919,8 @@ class UserEntity implements AdvancedUserInterface, \Serializable
             'gender' => $this->getProfile()->getGender(),
             'birthdate' => $this->getProfile()->getBirthdate()->format('Y-m-d'),
             'image_url' => $this->getProfile()->getImageUrl(),
+            'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
         ];
-
-        if ($allData) {
-            $data = array_merge($data, [
-                'id' => $this->getId(),
-                'time_created' => $this->getTimeCreated()->format(DATE_ATOM),
-            ]);
-        }
 
         return $data;
     }

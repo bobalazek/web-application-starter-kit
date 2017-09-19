@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class MyController
 {
@@ -52,7 +52,7 @@ class MyController
         $userOldArray = $userOld->toArray(false);
 
         $form = $app['form.factory']->create(
-            new SettingsType(),
+            SettingsType::class,
             $app['user']
         );
         $newEmailCode = $request->query->get('new_email_code');
@@ -160,11 +160,11 @@ class MyController
                         'old' => $userOldArray,
                         'new' => $userEntity->toArray(false),
                     ])
-                    ->setIp($app['request']->getClientIp())
-                    ->setUserAgent($app['request']->headers->get('User-Agent'))
+                    ->setIp($request->getClientIp())
+                    ->setUserAgent($request->headers->get('User-Agent'))
                 ;
-                $app['orm.em']->persist($userActionEntity);
 
+                $app['orm.em']->persist($userActionEntity);
                 $app['orm.em']->flush();
 
                 $app['flashbag']->add(
@@ -201,7 +201,7 @@ class MyController
     public function passwordAction(Request $request, Application $app)
     {
         $form = $app['form.factory']->create(
-            new PasswordType(),
+            PasswordType::class,
             $app['user']
         );
 
@@ -224,8 +224,8 @@ class MyController
                         ->setUser($userEntity)
                         ->setKey('user.password.change')
                         ->setMessage('User has changed his password!')
-                        ->setIp($app['request']->getClientIp())
-                        ->setUserAgent($app['request']->headers->get('User-Agent'))
+                        ->setIp($request->getClientIp())
+                        ->setUserAgent($request->headers->get('User-Agent'))
                     ;
                     $app['orm.em']->persist($userActionEntity);
 

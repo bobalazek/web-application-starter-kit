@@ -21,7 +21,7 @@ class EmailController
     {
         $data = [];
 
-        if (!$app['security']->isGranted('ROLE_ADMIN')) {
+        if (!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
         }
 
@@ -41,7 +41,7 @@ class EmailController
      */
     public function previewTemplatesAction(Request $request, Application $app)
     {
-        if (!$app['security']->isGranted('ROLE_ADMIN')) {
+        if (!$app['security.authorization_checker']->isGranted('ROLE_ADMIN')) {
             $app->abort(403);
         }
 

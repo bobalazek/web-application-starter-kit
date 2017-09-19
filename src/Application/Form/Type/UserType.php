@@ -5,44 +5,43 @@ namespace Application\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Silex\Application;
 
 /**
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class UserType extends AbstractType
 {
-    protected $app;
-
-    /**
-     * @param Application $app
-     */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $app = $options['app'];
+
         $builder->add(
             'profile',
-            new ProfileType(),
+            ProfileType::class,
             [
                 'label' => false,
             ]
         );
 
-        $builder->add('username', 'text', [
+        $builder->add('username', TextType::class, [
             'required' => false,
         ]);
-        $builder->add('email', 'email');
-        $builder->add('plainPassword', 'repeated', [
-            'type' => 'password',
+        $builder->add('email', EmailType::class);
+        $builder->add('plainPassword', RepeatedType::class, [
+            'type' => PasswordType::class,
             'first_name' => 'password',
             'second_name' => 'repeatPassword',
             'required' => false,
@@ -55,30 +54,30 @@ class UserType extends AbstractType
             ],
         ]);
 
-        $rolesChoices = $this->app['user_system_options']['roles'];
-        if (!$this->app['security']->isGranted('ROLE_SUPER_ADMIN')) {
+        $rolesChoices = $app['user_system_options']['roles'];
+        if (!$app['security.authorization_checker']->isGranted('ROLE_SUPER_ADMIN')) {
             // Only the super admin should be able to set other users to admins and super admins!
             unset($rolesChoices['ROLE_SUPER_ADMIN']);
             unset($rolesChoices['ROLE_ADMIN']);
         }
 
-        $builder->add('roles', 'choice', [
+        $builder->add('roles', ChoiceType::class, [
             'required' => false,
             'multiple' => true,
             'expanded' => true,
-            'choices' => $rolesChoices,
+            'choices' => array_flip($rolesChoices),
         ]);
 
-        $builder->add('enabled', 'checkbox', [
+        $builder->add('enabled', CheckboxType::class, [
             'label' => 'Is enabled?',
             'required' => false,
         ]);
-        $builder->add('locked', 'checkbox', [
+        $builder->add('locked', CheckboxType::class, [
             'label' => 'Is locked?',
             'required' => false,
         ]);
 
-        $builder->add('submitButton', 'submit', [
+        $builder->add('submitButton', SubmitType::class, [
             'label' => 'Save',
             'attr' => [
                 'class' => 'btn-primary btn-lg btn-block',
@@ -87,10 +86,11 @@ class UserType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired(['app']);
         $resolver->setDefaults([
             'data_class' => 'Application\Entity\UserEntity',
             'validation_groups' => function (FormInterface $form) {
@@ -109,8 +109,6 @@ class UserType extends AbstractType
 
                 return $validationGroups;
             },
-            'csrf_protection' => true,
-            'csrf_field_name' => 'csrf_token',
             'cascade_validation' => true,
         ]);
     }

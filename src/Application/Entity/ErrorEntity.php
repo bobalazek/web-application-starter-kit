@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Application\Repository\ErrorRepository")
  * @ORM\HasLifecycleCallbacks()
  *
- * @author Borut Balažek <bobalazek124@gmail.com>
+ * @author Borut Balazek <bobalazek124@gmail.com>
  */
 class ErrorEntity extends AbstractImageUpload
 {
