@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
+use Symfony\Component\Translation\Translator;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
 use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
 use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
@@ -67,7 +68,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), [
     'locale_fallbacks' => ['en_US'],
 ]);
 
-$app->extend('translator', function ($translator, $app) {
+$app->extend('translator', function (Translator $translator, $app) {
     $translator->addLoader('yaml', new TranslationYamlFileLoader());
 
     foreach (array_keys($app['locales']) as $locale) {
@@ -119,7 +120,7 @@ $app->register(
 );
 
 /*** Twig Extensions ***/
-$app['twig'] = $app->extend('twig', function ($twig, $app) {
+$app->extend('twig', function (\Twig_Environment $twig, $app) {
     $twig->addExtension(new Application\Twig\DateExtension($app));
     $twig->addExtension(new Application\Twig\FormExtension($app));
     $twig->addExtension(new Application\Twig\FileExtension($app));

@@ -74,7 +74,7 @@ class Translator
         }
 
         /***** Already translated *****/
-        $app['application.translator']->setLocale($locale);
+        $app['translator']->setLocale($locale);
         $translatedMessages = $app['translator']->getCatalogue($locale);
         $translatedMessages = $translatedMessages->all('messages');
 

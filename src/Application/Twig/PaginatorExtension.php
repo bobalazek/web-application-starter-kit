@@ -222,8 +222,6 @@ class PaginatorExtension extends \Twig_Extension
             return '';
         }
 
-        $request = $this->app['request_stack']->getCurrentRequest();
-
         $output = '';
 
         $paginationData = $pagination->getPaginationData();

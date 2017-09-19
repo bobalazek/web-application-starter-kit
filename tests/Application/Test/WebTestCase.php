@@ -19,8 +19,8 @@ class WebTestCase extends SilexWebTestCase
         $app = require dirname(__FILE__).'/../../../app/bootstrap.php';
 
         $app['debug'] = false;
-        $app['exception_handler']->disable();
         $app['session.test'] = true;
+        unset($app['exception_handler']);
 
         return $app;
     }
