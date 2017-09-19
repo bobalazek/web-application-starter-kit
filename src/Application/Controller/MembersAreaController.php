@@ -6,6 +6,7 @@ use Application\Entity\UserEntity;
 use Application\Entity\UserActionEntity;
 use Application\Form\Type\User\RegisterType;
 use Application\Form\Type\User\ResetPasswordType;
+use Application\Form\Type\User\ResetPasswordRequestType;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -206,11 +207,10 @@ class MembersAreaController
 
         $currentDateTime = new \DateTime();
         $form = $app['form.factory']->create(
-            ResetPasswordType::class,
-            new UserEntity(),
-            [
-                'action' => $action,
-            ]
+            $action == 'reset'
+                ? ResetPasswordType::class
+                : ResetPasswordRequestType::class,
+            new UserEntity()
         );
 
         if ($action == 'reset') {

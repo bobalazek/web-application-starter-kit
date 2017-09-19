@@ -6,7 +6,6 @@ use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Dumper;
-use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Silex\Application;
 
 /**

@@ -67,7 +67,7 @@ $app->register(new Silex\Provider\TranslationServiceProvider(), [
     'locale_fallbacks' => ['en_US'],
 ]);
 
-$app->extend('translator', function($translator, $app) {
+$app->extend('translator', function ($translator, $app) {
     $translator->addLoader('yaml', new TranslationYamlFileLoader());
 
     foreach (array_keys($app['locales']) as $locale) {
