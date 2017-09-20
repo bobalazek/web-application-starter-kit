@@ -5,7 +5,7 @@ return [
     'debug' => true,
     'show_profiler' => true,
     'name' => 'WASK',
-    'version' => '3.0.0',
+    'version' => '0.1.0',
     'author' => 'Borut Balazek',
 
     // Admin email (& name)
