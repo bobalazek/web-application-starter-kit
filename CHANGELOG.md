@@ -1,3 +1,7 @@
+## 3.1.0 (2017-09-21)
+* More refactoring
+* Testing fixes
+
 ## 3.0.0 (2017-09-19)
 * Migrate to Silex 2
 

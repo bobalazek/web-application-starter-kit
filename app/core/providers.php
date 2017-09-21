@@ -136,104 +136,99 @@ $app->extend('twig', function (\Twig_Environment $twig, $app) {
 });
 
 /***** Doctrine Database & Doctrine ORM *****/
-if (
-    isset($app['database_options']) &&
-    is_array($app['database_options'])
-) {
-    $app->register(
-        new Silex\Provider\DoctrineServiceProvider(),
-        [
-            'dbs.options' => $app['database_options'],
-        ]
-    );
+$app->register(
+    new Silex\Provider\DoctrineServiceProvider(),
+    [
+        'dbs.options' => $app['database_options'],
+    ]
+);
 
-    $app->register(
-        new Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),
-        [
-            'orm.em.options' => [
-                'mappings' => [
-                    [
-                        'type' => 'annotation',
-                        'namespace' => 'Application\Entity',
-                        'path' => SRC_DIR.'/Application/Entity',
-                        'use_simple_annotation_reader' => false,
-                    ],
+$app->register(
+    new Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),
+    [
+        'orm.em.options' => [
+            'mappings' => [
+                [
+                    'type' => 'annotation',
+                    'namespace' => 'Application\Entity',
+                    'path' => SRC_DIR.'/Application/Entity',
+                    'use_simple_annotation_reader' => false,
                 ],
             ],
-            'orm.custom.functions.string' => [
-                'md5'           => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'cast'          => 'Oro\ORM\Query\AST\Functions\Cast',
-                'group_concat'  => 'Oro\ORM\Query\AST\Functions\String\GroupConcat',
-                'concat_ws'     => 'Oro\ORM\Query\AST\Functions\String\ConcatWs',
-                'replace'       => 'Oro\ORM\Query\AST\Functions\String\Replace',
-                'date_format'   => 'Oro\ORM\Query\AST\Functions\String\DateFormat'
-            ],
-            'orm.custom.functions.datetime' => [
-                'date'          => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'time'          => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'timestamp'     => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'convert_tz'    => 'Oro\ORM\Query\AST\Functions\DateTime\ConvertTz'
-            ],
-            'orm.custom.functions.numeric' => [
-                'timestampdiff' => 'Oro\ORM\Query\AST\Functions\Numeric\TimestampDiff',
-                'dayofyear'     => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'dayofweek'     => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'week'          => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'day'           => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'hour'          => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'minute'        => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'month'         => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'quarter'       => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'second'        => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'year'          => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
-                'sign'          => 'Oro\ORM\Query\AST\Functions\Numeric\Sign',
-                'pow'           => 'Oro\ORM\Query\AST\Functions\Numeric\Pow',
-            ],
-        ]
+        ],
+        'orm.custom.functions.string' => [
+            'md5' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'cast' => 'Oro\ORM\Query\AST\Functions\Cast',
+            'group_concat' => 'Oro\ORM\Query\AST\Functions\String\GroupConcat',
+            'concat_ws' => 'Oro\ORM\Query\AST\Functions\String\ConcatWs',
+            'replace' => 'Oro\ORM\Query\AST\Functions\String\Replace',
+            'date_format' => 'Oro\ORM\Query\AST\Functions\String\DateFormat',
+        ],
+        'orm.custom.functions.datetime' => [
+            'date' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'time' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'timestamp' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'convert_tz' => 'Oro\ORM\Query\AST\Functions\DateTime\ConvertTz',
+        ],
+        'orm.custom.functions.numeric' => [
+            'timestampdiff' => 'Oro\ORM\Query\AST\Functions\Numeric\TimestampDiff',
+            'dayofyear' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'dayofweek' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'week' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'day' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'hour' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'minute' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'month' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'quarter' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'second' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'year' => 'Oro\ORM\Query\AST\Functions\SimpleFunction',
+            'sign' => 'Oro\ORM\Query\AST\Functions\Numeric\Sign',
+            'pow' => 'Oro\ORM\Query\AST\Functions\Numeric\Pow',
+        ],
+    ]
+);
+
+AnnotationRegistry::registerLoader(
+    [
+        require VENDOR_DIR.'/autoload.php',
+        'loadClass',
+    ]
+);
+
+$entityManagerConfig = Setup::createAnnotationMetadataConfiguration(
+    [APP_DIR.'/src/Application/Entity'],
+    $app['debug']
+);
+
+$entityManager = EntityManager::create(
+    $app['dbs.options']['default'],
+    $entityManagerConfig
+);
+
+PersistentObject::setObjectManager(
+    $entityManager
+);
+
+$app['orm.proxies_dir'] = STORAGE_DIR.'/cache/proxy';
+
+$app['orm.manager_registry'] = function ($app) {
+    return new DoctrineManagerRegistry(
+        'manager_registry',
+        ['default' => $app['orm.em']->getConnection()],
+        ['default' => $app['orm.em']]
     );
+};
 
-    AnnotationRegistry::registerLoader(
-        [
-            require VENDOR_DIR.'/autoload.php',
-            'loadClass',
-        ]
-    );
-
-    $entityManagerConfig = Setup::createAnnotationMetadataConfiguration(
-        [APP_DIR.'/src/Application/Entity'],
-        $app['debug']
-    );
-
-    $entityManager = EntityManager::create(
-        $app['dbs.options']['default'],
-        $entityManagerConfig
-    );
-
-    PersistentObject::setObjectManager(
-        $entityManager
-    );
-
-    $app['orm.proxies_dir'] = STORAGE_DIR.'/cache/proxy';
-
-    $app['orm.manager_registry'] = function ($app) {
-        return new DoctrineManagerRegistry(
-            'manager_registry',
-            ['default' => $app['orm.em']->getConnection()],
-            ['default' => $app['orm.em']]
+$app['form.extensions'] = $app->extend(
+    'form.extensions',
+    function ($extensions) use ($app) {
+        $extensions[] = new DoctrineOrmExtension(
+            $app['orm.manager_registry']
         );
-    };
 
-    $app['form.extensions'] = $app->extend(
-        'form.extensions',
-        function ($extensions) use ($app) {
-            $extensions[] = new DoctrineOrmExtension(
-                $app['orm.manager_registry']
-            );
-
-            return $extensions;
-        }
-    );
-}
+        return $extensions;
+    }
+);
 
 /***** CSRF *****/
 $app->register(new Silex\Provider\CsrfServiceProvider());
@@ -349,6 +344,7 @@ $app->register(new Silex\Provider\RememberMeServiceProvider());
 /***** Swiftmailer / Mailer *****/
 $app->register(new Silex\Provider\SwiftmailerServiceProvider());
 $app['swiftmailer.options'] = $app['swiftmailer_options'];
+$app['swiftmailer.use_spool'] = false;
 
 /* Emogrifier */
 $app['mailer.css_to_inline_styles_converter'] = $app->protect(function ($twigTemplatePathOrContent, $twigTemplateData = [], $isTwigTemplate = true) use ($app) {

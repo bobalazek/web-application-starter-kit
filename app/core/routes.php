@@ -160,6 +160,19 @@ $app->error(function (\Exception $e, Request $request, $code) use ($app) {
         'contents/errors/default.html.twig',
     ];
 
+    if (
+        $app['debug'] &&
+        php_sapi_name() === 'cli'
+    ) {
+        return new Response(json_encode([
+            'code' => $code,
+            'exception' => [
+                'message' => $e->getMessage(),
+                'stack_trace' => explode("\n", $e->getTraceAsString()),
+            ],
+        ]));
+    }
+
     return new Response(
         $app['twig']->resolveTemplate($templates)->render(
             [

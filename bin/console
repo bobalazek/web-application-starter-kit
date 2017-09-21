@@ -5,11 +5,18 @@ set_time_limit(0);
 
 $app = require dirname(dirname(__FILE__)) . '/app/bootstrap.php';
 
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Helper\HelperSet;
+use Application\Command\Storage;
+use Application\Command\Database;
+use Application\Command\Translations;
 
 $consoleApp = new Application(
     $app['name'],
@@ -19,17 +26,17 @@ $consoleApp = new Application(
 $app->boot();
 
 /********** Doctrine **********/
-$doctrineHelperSet = new Symfony\Component\Console\Helper\HelperSet( array(
-    'db' => new Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper(
+$doctrineHelperSet = new HelperSet([
+    'db' => new ConnectionHelper(
         $app['orm.em']->getConnection()
     ),
-    'em' => new Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper(
+    'em' => new EntityManagerHelper(
         $app['orm.em']
     )
-));
+]);
 
 $consoleApp->setHelperSet($doctrineHelperSet);
-\Doctrine\ORM\Tools\Console\ConsoleRunner::addCommands(
+ConsoleRunner::addCommands(
     $consoleApp
 );
 
@@ -37,7 +44,7 @@ $consoleApp->setHelperSet($doctrineHelperSet);
 /********** Storage **********/
 $consoleApp
     ->add(
-        new \Application\Command\Storage\PrepareCommand(
+        new Storage\PrepareCommand(
             'application:storage:prepare',
             $app
         )
@@ -47,7 +54,7 @@ $consoleApp
 /********** Database **********/
 $consoleApp
     ->add(
-        new \Application\Command\Database\HydrateDataCommand(
+        new Database\HydrateDataCommand(
             'application:database:hydrate-data',
             $app
         )
@@ -57,7 +64,7 @@ $consoleApp
 /********** Translations **********/
 $consoleApp
     ->add(
-        new \Application\Command\Translations\PrepareCommand(
+        new Translations\PrepareCommand(
             'application:translations:prepare',
             $app
         )

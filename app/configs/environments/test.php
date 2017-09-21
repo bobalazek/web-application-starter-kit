@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'debug' => false,
+    'debug' => true,
+    'show_profiler' => false,
 
     // Database stuff
     'database_options' => [

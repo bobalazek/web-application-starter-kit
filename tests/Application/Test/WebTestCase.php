@@ -5,6 +5,7 @@ namespace Application\Test;
 use Silex\WebTestCase as SilexWebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Application\Entity\UserEntity;
 
 /**
  * @author Borut Balazek <bobalazek124@gmail.com>
@@ -37,7 +38,13 @@ class WebTestCase extends SilexWebTestCase
         $session = $app['session'];
         $firewall = 'members-area';
 
-        $token = new UsernamePasswordToken($username, null, $firewall, $roles);
+        $user = new UserEntity();
+        $user
+            ->setEmail($username.'@email.com')
+            ->setUsername($username)
+            ->setRoles($roles);
+
+        $token = new UsernamePasswordToken($user, null, $firewall, $roles);
         $session->set('_security_'.$firewall, serialize($token));
         $session->save();
 

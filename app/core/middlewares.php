@@ -55,10 +55,6 @@ $app->before(function (Request $request, Application $app) {
 
 /*** Set Variables ****/
 $app->before(function (Request $request, Application $app) {
-    if (!$app['session']->isStarted()) {
-        $app['session']->start();
-    }
-
     if (!isset($app['user'])) {
         $app['user'] = null;
     }

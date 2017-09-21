@@ -12,20 +12,19 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_DIR" value="app/" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
         <env name="APPLICATION_ENVIRONMENT" value="test"/>
     </php>
 
     <testsuites>
-        <testsuite name="Web Application Starter Kit Test Suite">
-            <directory>./tests</directory>
+        <testsuite name="WASK Test Suite">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory>src</directory>
         </whitelist>
     </filter>
 </phpunit>

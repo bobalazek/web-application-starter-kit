@@ -46,6 +46,10 @@ class PagesTest extends WebTestCase
 
         $userUrls = $this->getUserUrls();
         foreach ($userUrls as $url) {
+            // A hacky way to work around the KNP paginator bug
+            //   (https://github.com/KnpLabs/knp-components/issues/90).
+            unset($_GET['sort']);
+
             $client->request('GET', $url);
 
             $this->assertTrue(
@@ -99,7 +103,12 @@ class PagesTest extends WebTestCase
      */
     public function getAnonymousUserUrls()
     {
-        return []; // TODO
+        return [
+            '/',
+            '/members-area/login',
+            '/members-area/register',
+            '/members-area/reset-password',
+        ];
     }
 
     /**
@@ -109,7 +118,13 @@ class PagesTest extends WebTestCase
      */
     public function getUserUrls()
     {
-        return []; // TODO
+        return [
+            '/members-area/my',
+            '/members-area/my/profile',
+            '/members-area/my/settings',
+            '/members-area/my/password',
+            '/members-area/my/actions',
+        ];
     }
 
     /**
@@ -119,6 +134,17 @@ class PagesTest extends WebTestCase
      */
     public function getAdminUserUrls()
     {
-        return []; // TODO
+        return [
+            '/members-area/users',
+            '/members-area/user-actions',
+            '/members-area/errors',
+            '/members-area/posts',
+            '/members-area/statistics',
+            '/members-area/tools',
+            '/members-area/tools/email',
+            '/members-area/tools/email/preview-templates',
+            '/members-area/tools/database-backup',
+            '/members-area/settings',
+        ];
     }
 }
