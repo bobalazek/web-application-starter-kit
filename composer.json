@@ -28,7 +28,7 @@
         "saxulum/config-service-provider": "~2.0",
         "dflydev/doctrine-orm-service-provider": "~2.0",
         "cocur/slugify": "~1.1",
-        "pelago/emogrifier": "dev-master",
+        "pelago/emogrifier": "~1.2",
         "knplabs/knp-components": "~1.2",
         "ua-parser/uap-php": "~3.4",
         "oro/doctrine-extensions": "~1.2",

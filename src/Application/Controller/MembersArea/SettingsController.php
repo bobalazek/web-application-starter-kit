@@ -26,7 +26,11 @@ class SettingsController
         }
 
         $form = $app['form.factory']->create(
-            new SettingsType($app)
+            SettingsType::class,
+            null,
+            [
+                'settings' => $app['settings'],
+            ]
         );
 
         if ($request->getMethod() == 'POST') {

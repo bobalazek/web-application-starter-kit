@@ -14,26 +14,18 @@ use Silex\Application;
  */
 class SettingsType extends AbstractType
 {
-    protected $app;
-
-    /**
-     * @param Application $app
-     */
-    public function __construct($app)
-    {
-        $this->app = $app;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $settings = $options['settings'];
+
         $builder->add('foo', TextareaType::class, [
             'label' => 'Foo?',
             'required' => false,
-            'data' => $this->app['settings']['foo'],
+            'data' => $settings['foo'],
             'attr' => [
                 'data-help-text' => 'Is it really foo?',
             ],
@@ -52,9 +44,8 @@ class SettingsType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired(['settings']);
         $resolver->setDefaults([
-            'data_class' => 'CoreBundle\Entity\User',
-            'validation_groups' => ['settings'],
             'cascade_validation' => true,
         ]);
     }

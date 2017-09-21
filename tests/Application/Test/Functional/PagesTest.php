@@ -31,7 +31,7 @@ class PagesTest extends WebTestCase
             $client->request('GET', $url);
 
             $this->assertTrue(
-                $client->getResponse()->isSuccessful(),
+                $client->getResponse()->getStatusCode() === 200,
                 'The url "'.$url.'" could not be loaded by a anonymous user.'
             );
         }
@@ -46,14 +46,10 @@ class PagesTest extends WebTestCase
 
         $userUrls = $this->getUserUrls();
         foreach ($userUrls as $url) {
-            // A hacky way to work around the KNP paginator bug
-            //   (https://github.com/KnpLabs/knp-components/issues/90).
-            unset($_GET['sort']);
-
             $client->request('GET', $url);
 
             $this->assertTrue(
-                $client->getResponse()->isSuccessful(),
+                $client->getResponse()->getStatusCode() === 200,
                 'The url "'.$url.'" could not be loaded by a default user.'
             );
         }
@@ -68,14 +64,10 @@ class PagesTest extends WebTestCase
 
         $urls = $this->getAdminUserUrls();
         foreach ($urls as $url) {
-            // A hacky way to work around the KNP paginator bug
-            //   (https://github.com/KnpLabs/knp-components/issues/90).
-            unset($_GET['sort']);
-
             $client->request('GET', $url);
 
             $this->assertTrue(
-                $client->getResponse()->isSuccessful(),
+                $client->getResponse()->getStatusCode() === 200,
                 'The url "'.$url.'" could not be opened by an admin user.'
             );
         }

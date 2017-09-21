@@ -62,6 +62,7 @@ return [
         'username' => 'info@corcosoft.com',
         'password' => '',
         'encryption' => 'ssl',
+        'auth_mode' => null,
     ],
 
     // Remember me options
