@@ -1,3 +1,7 @@
+## 3.2.0 (2017-09-23)
+* Added deployment stuff
+* .htaccess updates
+
 ## 3.1.0 (2017-09-21)
 * More refactoring
 * Testing fixes
