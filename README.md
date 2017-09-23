@@ -62,6 +62,13 @@ Database
 * Update the schema: `bin/console orm:schema-tool:update --force`
 * Database updated!
 
+Deployment
+-------------------
+* We use [Deployer](https://deployer.org/)
+* Set your configuration inside `deployer/config.php` and `deployer/hosts.php`
+* Run `dep deploy qa` (or whatever environment you want)
+* The app was deployed to your server!
+
 Application name
 -------------------
 You should replace the name for your actual application inside the following files:
