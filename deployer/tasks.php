@@ -43,11 +43,11 @@ after('deploy:vendors', 'database:schema_update');
 
 /*** PHP FPM ***/
 // If you have FPM installed on your server(-s)
-/* desc('Reloading PHP-FPM');
+desc('Reloading PHP-FPM');
 task('php-fpm:reload', function() {
     run('service php7.0-fpm reload');
-})->onStage('prod');
-after('deploy:unlock', 'php-fpm:reload'); */
+})->onStage('prod'); // You can specify on which stage you want it to be executed
+after('deploy:unlock', 'php-fpm:reload');
 
 /*** Deployment unlock ***/
 // Unlock on failed deployment
