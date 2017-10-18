@@ -5,6 +5,7 @@
 /.env
 /composer.phar
 /app/locales/*/*_untranslated.yml
+/deployer/local.php
 /var/*
 !/var/.gitkeep
 /vendor/
