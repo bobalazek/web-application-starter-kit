@@ -4,8 +4,11 @@ namespace Deployer;
 
 /*** Generate .env file ***/
 // Generate the .env file from specified environment variables,
-// defined in deployer/hosts.php:
-//   ->set('env', ['APPLICATION_ENVIRONMENT' => 'qa'])
+//   defined in deployer/hosts.php, for example:
+// ->set('env', ['APPLICATION_ENVIRONMENT' => 'qa'])
+// This means, it will generate o ".env" file on the server,
+//   on the release/project root, with the following contents:
+// APPLICATION_ENVIRONMENT="qa"
 desc('Generating .env file');
 task('deploy:generate_env_file', function () {
     run('cd {{release_path}} && touch .env');
@@ -44,7 +47,7 @@ after('deploy:vendors', 'database:schema_update');
 /*** PHP FPM ***/
 // If you have FPM installed on your server(-s)
 desc('Reloading PHP-FPM');
-task('php-fpm:reload', function() {
+task('php-fpm:reload', function () {
     run('service php7.0-fpm reload');
 })->onStage('prod'); // You can specify on which stage you want it to be executed
 after('deploy:unlock', 'php-fpm:reload');

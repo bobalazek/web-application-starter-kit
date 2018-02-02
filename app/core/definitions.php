@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('DAY_IN_MINUTES')) {
-    define('DAY_IN_MINUTES', 720);
+    define('DAY_IN_MINUTES', 1440);
 }
 
 if (!defined('DS')) {
