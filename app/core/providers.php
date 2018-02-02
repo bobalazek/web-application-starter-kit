@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator;
 use Symfony\Component\Translation\Loader\YamlFileLoader as TranslationYamlFileLoader;
 use Symfony\Component\Validator\Mapping\Factory\LazyLoadingMetadataFactory;
 use Symfony\Component\Validator\Mapping\Loader\YamlFileLoader as MappingYamlFileLoader;
+use Symfony\Component\Form\FormRenderer;
 
 /***** Config *****/
 if (!file_exists(APP_DIR.'/configs/global.php')) {
@@ -133,6 +134,12 @@ $app->extend('twig', function (\Twig_Environment $twig, $app) {
     );
 
     return $twig;
+});
+
+$app->extend('twig.runtimes', function ($runtimes, $app) {
+    return array_merge($runtimes, [
+        FormRenderer::class => 'twig.form.renderer',
+    ]);
 });
 
 /***** Doctrine Database & Doctrine ORM *****/
