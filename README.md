@@ -100,6 +100,7 @@ Commands
 Other commands
 ----------------------
 * `php-cs-fixer fix .` - if you want your code fixed before each commit. You will need to install [PHP Coding Standards Fixer](http://cs.sensiolabs.org/)
+* `bin/simple-phpunit` - run your PHPUnit tests
 
 Modules / Components
 -------------------
