@@ -9,6 +9,8 @@ README
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/bobalazek/web-application-starter-kit/?branch=develop)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61/mini.png)](https://insight.sensiolabs.com/projects/26bba6b1-138f-4ef6-8a80-1e512d27bd61)
 
+**Important note: With the release of SF4, the Symfony team has decided to [retire Silex](https://symfony.com/blog/the-end-of-silex). This mean, it will not support any new SF4 features anymore. So from now on, I suggest using the new SF4 for long-term projects, as I will not be able to add any new (SF4) features to this boilerplate/starter kit. However, I may prepare a similar starter kit for SF4 in the near future, so stay tuned.**
+
 A simple web application boilerplate for small or mid scale applications. Included:
 * Users system
     * Login
